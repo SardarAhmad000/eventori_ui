@@ -5,6 +5,7 @@ class AppTheme{
   static Color splashBackgroundScreen=Color(0xFF1B2638);
   static Color blackColor=Color(0xFF000000);
   static Color whiteColor=Color(0xFFFFFFFF);
+  static Color greyColor=Color(0xFFFCFCFD);
 
 
 

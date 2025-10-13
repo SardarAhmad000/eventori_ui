@@ -1,7 +1,7 @@
-import 'package:eventori/view/onboarding/onboarding_screen_2.dart';
 import 'package:get/get.dart';
 
 import '../view/onboarding/onboarding_screen.dart';
+import '../view/onboarding/selection_screen.dart';
 import '../view/splash/splash_screen.dart';
 import 'app_routes.dart';
 

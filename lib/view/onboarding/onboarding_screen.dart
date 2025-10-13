@@ -1,4 +1,5 @@
 import 'package:eventori/constants/app_text_style.dart';
+import 'package:eventori/view/onboarding/selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,7 +40,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               CustomButton(
                 Text: "Get Started",
                 width: double.infinity,
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed( AppRoutes.selectionScreen);
+                },
               ),
 
               const SizedBox(height: 12),
@@ -54,11 +57,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: context => ))
-                        // Get.toNamed( AppRoutes.SelectionScreen;
+
                       },
                       child: Text(
-                        'Login JSAHAS',
+                        'Login',
                         style: AppTextStyle.loginTextStyle
                       ),
                     ),
