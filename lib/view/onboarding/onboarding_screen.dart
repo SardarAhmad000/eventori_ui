@@ -1,0 +1,80 @@
+import 'package:eventori/constants/app_text_style.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../AppTheme/widgets/app_theme.dart';
+import '../../constants/custom_button.dart';
+import '../../routes/app_routes.dart';
+
+class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({super.key});
+
+  @override
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
+}
+
+class _OnboardingScreenState extends State<OnboardingScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppTheme.blackColor,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              const Spacer(),
+              Text(
+                'Welcome to Eventori',
+                style: AppTextStyle.onBoardingTitleStyle,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'You create the moments. We connect the people.',
+                style: AppTextStyle.onBoardingSubTitleStyle,
+              ),
+              const SizedBox(height: 12),
+              CustomButton(
+                Text: "Get Started",
+                width: double.infinity,
+                onTap: () {},
+              ),
+
+              const SizedBox(height: 12),
+
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Already have an account? ',
+                      style: AppTextStyle.AlreadyTextStyle,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // Navigator.push(context, MaterialPageRoute(builder: context => ))
+                        // Get.toNamed( AppRoutes.SelectionScreen;
+                      },
+                      child: Text(
+                        'Login JSAHAS',
+                        style: AppTextStyle.loginTextStyle
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 24),
+            ],
+          ),
+        ),
+      ),
+
+
+    );
+  }
+}
+
+
