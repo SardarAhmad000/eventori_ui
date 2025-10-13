@@ -1,15 +1,17 @@
 // import 'package:eventori/constants/app_text_style.dart';
 // import 'package:flutter/material.dart';
 //
+// import '../../AppTheme/widgets/app_theme.dart';
 //
-// class SelectionScreen extends StatefulWidget {
-//   const SelectionScreen({Key? key}) : super(key: key);
+//
+// class SelectionScree extends StatefulWidget {
+//   const SelectionScree({Key? key}) : super(key: key);
 //
 //   @override
-//   State<SelectionScreen> createState() => _SelectionScreenState();
+//   State<SelectionScree> createState() => _SelectionScreeState();
 // }
 //
-// class _SelectionScreenState extends State<SelectionScreen> {
+// class _SelectionScreeState extends State<SelectionScree> {
 //   String? selectedAccountType;
 //
 //   @override
@@ -34,22 +36,22 @@
 //     );
 //   }
 //
-//   // Widget _buildHeader() {
-//   //   return Row(
-//   //     children: [
-//   //       IconButton(
-//   //         icon: const Icon(Icons.arrow_back, color: Colors.white),
-//   //         onPressed: () => Navigator.pop(context),
-//   //       ),
-//   //       const Spacer(),
-//   //       const Icon(
-//   //         Icons.calendar_month_outlined,
-//   //         color: Color(0xFF00D9FF),
-//   //         size: 28,
-//   //       ),
-//   //     ],
-//   //   );
-//   // }
+//   Widget _buildHeader() {
+//     return Row(
+//       children: [
+//         IconButton(
+//           icon: const Icon(Icons.arrow_back, color: Colors.white),
+//           onPressed: () => Navigator.pop(context),
+//         ),
+//         const Spacer(),
+//         const Icon(
+//           Icons.calendar_month_outlined,
+//           color: Color(0xFF00D9FF),
+//           size: 28,
+//         ),
+//       ],
+//     );
+//   }
 //
 //   Widget _buildTitle() {
 //     return Column(
@@ -151,18 +153,18 @@
 //       decoration: BoxDecoration(
 //         shape: BoxShape.circle,
 //         border: Border.all(
-//           color: isSelected ? const Color(0xFF00D9FF) : Colors.white54,
-//           width: 2,
+//           color: isSelected ? AppTheme.radioButtonColour : AppTheme.whiteColor,
+//           width: 1,
 //         ),
 //       ),
 //       child: isSelected
 //           ? Center(
 //         child: Container(
-//           width: 12,
-//           height: 12,
-//           decoration: const BoxDecoration(
+//           width: 16,
+//           height: 16,
+//           decoration: BoxDecoration(
 //             shape: BoxShape.circle,
-//             color: Color(0xFF00D9FF),
+//             color: AppTheme.radioButtonColour,
 //           ),
 //         ),
 //       )
@@ -198,7 +200,4 @@
 //       ),
 //     );
 //   }
-// }
-//
-// class _buildHeader {
 // }

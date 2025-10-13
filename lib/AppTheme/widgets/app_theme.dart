@@ -21,6 +21,12 @@ class AppTheme{
   static Color buttonColor=Color(0xFF00B4DB);
   static Color primaryColor=Color(0xFFFCFCFD);
   static Color loginTextColor=Color(0xFF009CBE);
+  static Color radioButtonColour=Color(0xFF7B2CBF);
+
+  //card
+
+  static Color cardColour=Color(0xFF161E28);
+  static Color cardBorder=Color(0xFF7B2CBF);
 
 
 

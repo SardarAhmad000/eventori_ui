@@ -69,9 +69,19 @@ class AppTextStyle{
     fontWeight: FontWeight.w400,
   );
 
+  static  TextStyle cardTitle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.whiteColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
 
-
-
+  static  TextStyle cardDescp = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.whiteColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
 
 
 
