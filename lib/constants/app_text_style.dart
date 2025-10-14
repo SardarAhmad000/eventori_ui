@@ -83,6 +83,20 @@ class AppTextStyle{
     fontWeight: FontWeight.w400,
   );
 
+  //Add Profile Screen
+  static  TextStyle addProfileTitleStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.darkpurpleColor,
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
+  );
+
+  static  TextStyle addProfileSubtitleStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.textSubTitleColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
 
 
 }

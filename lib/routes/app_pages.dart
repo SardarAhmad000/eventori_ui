@@ -1,3 +1,4 @@
+import 'package:eventori/view/auth/addprofilephoto/add_profile_photo_screen.dart';
 import 'package:get/get.dart';
 
 import '../view/onboarding/onboarding_screen.dart';
@@ -10,6 +11,7 @@ class AppPages {
     GetPage(name: AppRoutes.splash, page: () =>  SplashScreen()),
     GetPage(name: AppRoutes.onboradingScreen, page: () =>  OnboardingScreen()),
     GetPage(name: AppRoutes.selectionScreen, page: () =>  SelectionScreen()),
+    GetPage(name: AppRoutes.addProfilePhotoPage, page: () =>  AddProfilePhotoPage()),
 
   ];
 }

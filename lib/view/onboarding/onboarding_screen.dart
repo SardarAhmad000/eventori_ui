@@ -25,7 +25,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               const Spacer(),
               Text(
                 'Welcome to Eventori',
