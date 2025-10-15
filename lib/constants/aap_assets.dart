@@ -1,6 +1,16 @@
 class AppAssets{
   static String arrowIcon= 'assets/app_icons/arrow_icon.png';
   static String appLogo= 'assets/app_icons/app_logo.png';
-  static String uploadIcon= 'assets/app_icons/upload_icon.png';
+  static String uploadImageIcon= 'assets/app_icons/upload_icon.png';
+  static String mailIcon= 'assets/app_icons/mail_icon.png';
+  static String lockIcon= 'assets/app_icons/lock_icon.png';
+  static String googleIcon= 'assets/app_icons/google_icon.png';
+  static String facebookIcon= 'assets/app_icons/facebook_icon.png';
+  static String appleIcon= 'assets/app_icons/apple_icon.png';
+  static String userIcon= 'assets/app_icons/user_icon.png';
+  static String tickPassIcon = 'assets/app_icons/tick_pass_icon.png';
+  // static String tickIconPass= 'assets/app_icons/tick_icon.png';
+  // static String tickIcon= 'assets/app_icons/tick_icon.png';
+
 
 }

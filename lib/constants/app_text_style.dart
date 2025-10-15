@@ -5,6 +5,7 @@ import '../AppTheme/widgets/app_theme.dart';
 class AppTextStyle{
 
   static const String fontFamily = "Outfit";
+
   //Splash Screen Title
 
   static  TextStyle titleStyle = TextStyle(
@@ -46,9 +47,9 @@ class AppTextStyle{
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
-  static  TextStyle loginTextStyle = TextStyle(
+  static  TextStyle cyanColorStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.loginTextColor,
+    color: AppTheme.cyanColor,
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
@@ -97,6 +98,45 @@ class AppTextStyle{
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
+
+  static  TextStyle skipStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.skipTextColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+
+
+  //Login Screen
+  static  TextStyle btwDividerTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.btwDividerTextColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+
+  static  TextStyle bottomtextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.darkpurpleColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+  static  TextStyle bottomSignUptextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.cyanColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  //SIGNUP SCREEN
+  // static  TextStyle passwordRequirmentTextStyle = TextStyle(
+  //   fontFamily: fontFamily,
+  //   color: isValid ? AppTheme.buttonColor : AppTheme.textGreyColor,
+  //   fontSize: 12,
+  //   fontWeight: FontWeight.w400,
+  // );
 
 
 }
