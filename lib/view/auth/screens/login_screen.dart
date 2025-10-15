@@ -7,8 +7,8 @@ import 'package:eventori/view/onboarding/widgets/build_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import '../../constants/custom_validators.dart';
-import '../../routes/app_routes.dart';
+import '../../../constants/custom_validators.dart';
+import '../../../routes/app_routes.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

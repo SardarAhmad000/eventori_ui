@@ -1,8 +1,7 @@
-import 'package:eventori/view/auth/addprofilephoto/add_profile_photo_screen.dart';
+import 'package:eventori/view/auth/screens/add_profile_photo_screen.dart';
 import 'package:get/get.dart';
-
-import '../view/auth/login_screen.dart';
-import '../view/auth/signup/sign_up_screen.dart';
+import '../view/auth/screens/login_screen.dart';
+import '../view/auth/screens/sign_up_screen.dart';
 import '../view/onboarding/onboarding_screen.dart';
 import '../view/onboarding/selection_screen.dart';
 import '../view/splash/splash_screen.dart';
