@@ -126,10 +126,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {
+                          Get.toNamed(AppRoutes.verifyAccountScreen);
                           if (_formKey.currentState!.validate()) {
                             print('Email: ${_emailController.text}');
                             print('Password: ${_passwordController.text}');
-
 
                           }
                         },

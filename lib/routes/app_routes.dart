@@ -5,5 +5,6 @@ abstract class AppRoutes {
   static const addProfilePhotoPage = '/addProfilePhotoPage';
   static const loginScreen = '/loginScreen';
   static const signUpScreen = '/signUpScreen';
+  static const verifyAccountScreen = '/verifyAccountScreen';
 
 }

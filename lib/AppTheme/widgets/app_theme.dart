@@ -9,7 +9,6 @@ class AppTheme{
   static Color greyColor=Color(0xFFFCFCFD);
   static Color redColor=Color(0xFFFF0000);
 
-
   //Splash Color
   static Color textTitle=Color(0xFF00B4DB);
 

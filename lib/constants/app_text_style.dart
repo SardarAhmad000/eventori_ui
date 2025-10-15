@@ -139,4 +139,13 @@ class AppTextStyle{
   // );
 
 
+// VERIFY ACCOUNT SCREEN
+
+  static  TextStyle secondtextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.darkpurpleColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
 }

@@ -107,7 +107,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                     child: CustomButton(
                       Text: "Continue",
                       onTap: () {
-                        Get.toNamed(AppRoutes.loginScreen);
+                        Get.toNamed(AppRoutes.signUpScreen);
                       },
                       buttonColor: AppTheme.buttonCyanColor,
                       textColor: AppTheme.whiteColor,

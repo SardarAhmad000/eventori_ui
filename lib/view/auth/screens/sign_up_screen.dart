@@ -321,6 +321,7 @@ import '../../../constants/app_text_style.dart';
 import '../../../constants/custom_button.dart';
 import '../../../constants/custom_textfield.dart';
 import '../../../constants/custom_validators.dart';
+import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
 import '../controller/sign_up_controller.dart';
 
@@ -563,7 +564,9 @@ class SignUpScreen extends StatelessWidget {
                               Text("Already have an account? ",
                                   style: AppTextStyle.bottomtextStyle),
                               GestureDetector(
-                                onTap: controller.navigateToLogin,
+                                onTap: (){
+                                  Get.toNamed(AppRoutes.loginScreen);
+                                },
                                 child: Text(
                                   'Login',
                                   style: AppTextStyle.bottomSignUptextStyle,

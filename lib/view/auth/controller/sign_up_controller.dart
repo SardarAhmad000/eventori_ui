@@ -416,10 +416,6 @@ class SignUpController extends GetxController {
     }
   }
 
-  /// Navigate to login screen
-  void navigateToLogin() {
-    Get.back();
-  }
 
   /// Clear all fields
   void clearForm() {
