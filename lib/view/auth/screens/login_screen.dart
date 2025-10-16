@@ -18,15 +18,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController loginEmailController = TextEditingController();
+  final TextEditingController loginPasswordController = TextEditingController();
   bool _obscurePassword = true;
   final _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
+    loginEmailController.dispose();
+    loginPasswordController.dispose();
     super.dispose();
   }
 
@@ -57,17 +57,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         'Log in',
-                        style: AppTextStyle.addProfileTitleStyle,
+                        style: AppTextStyle.TitleStyle,
                       ),
                       const SizedBox(height: 8),
                       Text(
                         'Welcome back! Please sign in to continue.',
-                        style: AppTextStyle.addProfileSubtitleStyle,
+                        style: AppTextStyle.SubtitleStyle,
                       ),
                       const SizedBox(height: 12),
 
                       CustomTextField(
-                        controller: _emailController,
+                        controller: loginEmailController,
                         hintText: 'Email Address',
                         prefixIcon: Image.asset(
                           AppAssets.mailIcon,
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 12),
 
                       CustomTextField(
-                        controller: _passwordController,
+                        controller: loginPasswordController,
                         hintText: 'Password',
                         prefixIcon: Image.asset(
                           AppAssets.lockIcon,
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         alignment: Alignment.centerRight,
                         child: GestureDetector(
                           onTap: (){
-
+                            Get.toNamed(AppRoutes.forgotPasswordScreen);
                           },
                           child: Text(
                             'Forgot password',
@@ -127,11 +127,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         textSize: 16,
                         onTap: () {
                           Get.toNamed(AppRoutes.verifyAccountScreen);
-                          if (_formKey.currentState!.validate()) {
-                            print('Email: ${_emailController.text}');
-                            print('Password: ${_passwordController.text}');
+                          // if (_formKey.currentState!.validate()) {
+                            print('Email: ${loginEmailController.text}');
+                            print('Password: ${loginPasswordController.text}');
 
-                          }
+                          // }
                         },
                       ),
 

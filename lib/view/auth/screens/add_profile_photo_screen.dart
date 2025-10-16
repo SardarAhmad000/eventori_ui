@@ -33,12 +33,12 @@ class AddProfilePhotoPage extends StatelessWidget {
 
             Text(
               'Add a profile photo',
-              style: AppTextStyle.addProfileTitleStyle,
+              style: AppTextStyle.TitleStyle,
             ),
             const SizedBox(height: 8),
             Text(
               'Upload a clear photo to personalise your profile.',
-              style: AppTextStyle.addProfileSubtitleStyle,
+              style: AppTextStyle.SubtitleStyle,
             ),
 
             const SizedBox(height: 30),

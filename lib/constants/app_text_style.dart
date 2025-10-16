@@ -85,14 +85,14 @@ class AppTextStyle{
   );
 
   //Add Profile Screen
-  static  TextStyle addProfileTitleStyle = TextStyle(
+  static  TextStyle TitleStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.darkpurpleColor,
     fontSize: 32,
     fontWeight: FontWeight.w600,
   );
 
-  static  TextStyle addProfileSubtitleStyle = TextStyle(
+  static  TextStyle SubtitleStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.textSubTitleColor,
     fontSize: 16,
@@ -147,5 +147,15 @@ class AppTextStyle{
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
+
+  //Forgot Password Screen
+  static  TextStyle strenghtTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.passwordStrenghtTextColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
+
 
 }

@@ -265,4 +265,17 @@ class CustomValidator {
 
     return null; // No errors
   }
+
+  static String? otpRequired(String? value, int otpLength) {
+    if (value == null || value.isEmpty) {
+      return 'Enter your OTP';
+    }
+    if (value.length < otpLength) {
+      return 'Please enter valid OTP';
+    }
+    return null;
+  }
+
+
+
 }

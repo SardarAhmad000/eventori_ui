@@ -1,22 +1,23 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:eventori/AppTheme/widgets/app_theme.dart';
+import 'package:get/get.dart';
+import 'dart:async';
 
 import '../../../constants/app_text_style.dart';
 import '../../../constants/custom_button.dart';
+import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
-import '../widget/otp_Input_widget.dart'; // Your updated OTP widget file
+import '../widget/otp_Input_widget.dart';
 
-class VerifyAccountScreen extends StatefulWidget {
-  const VerifyAccountScreen({super.key});
+class PasswordOTPScreen extends StatefulWidget {
+  const PasswordOTPScreen({super.key});
 
   @override
-  State<VerifyAccountScreen> createState() => _VerifyAccountScreenState();
+  State<PasswordOTPScreen> createState() => PasswordOTPScreenState();
 }
 
-class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
-  /// Global key to access OtpInputFieldState methods (validateOtp, currentOtp)
-  final GlobalKey<OtpInputFieldState> otpKey = GlobalKey<OtpInputFieldState>();
+class PasswordOTPScreenState extends State<PasswordOTPScreen> {
+  final GlobalKey<OtpInputFieldState> _otpFieldKey = GlobalKey();
 
   int _secondsRemaining = 53;
   Timer? _timer;
@@ -33,7 +34,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
     super.dispose();
   }
 
-  /// Starts countdown timer for resend OTP
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secondsRemaining > 0) {
@@ -46,33 +46,24 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
     });
   }
 
-  /// Logic for resending OTP
   void _resendCode() {
     setState(() {
       _secondsRemaining = 53;
     });
     _startTimer();
-
-    // 🔹 Add your resend OTP API call here
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('A new OTP has been sent.')),
-    );
+    // TODO: Add resend code logic here (e.g., API call)
+    debugPrint("Resend OTP triggered");
   }
 
-  /// Verify button logic
   void _verifyCode() {
-    // Validate using the method from OtpInputFieldState
-    if (otpKey.currentState != null && otpKey.currentState!.validateOtp()) {
-      final otp = otpKey.currentState!.currentOtp;
+    final otpFieldState = _otpFieldKey.currentState;
 
-      debugPrint('✅ OTP is valid: $otp');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('OTP Verified: $otp')),
-      );
+    if (otpFieldState != null && otpFieldState.validateOtp()) {
+      final otp = otpFieldState.currentOtp;
+      debugPrint("Entered OTP: $otp");
 
-      // 🔹 Proceed with backend verification or navigation here
-    } else {
-      debugPrint('❌ OTP invalid or empty');
+      // Proceed with backend verification or navigation
+      Get.toNamed(AppRoutes.createNewPasswordScreen);
     }
   }
 
@@ -86,8 +77,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 16),
-
-            /// Header
             CustomHeader(
               backgroundColor: AppTheme.whiteColor,
               arrowColor: AppTheme.blackColor,
@@ -95,9 +84,11 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
               borderColor: AppTheme.backArrowBorderColor,
               showLogo: true,
             ),
-
             const SizedBox(height: 20),
-            Text('Verify your account', style: AppTextStyle.TitleStyle),
+            Text(
+              'Verify your account',
+              style: AppTextStyle.TitleStyle,
+            ),
             const SizedBox(height: 8),
             Text(
               'We\'ve sent a 5-digit code to your email. Please enter it below to reset your password.',
@@ -105,18 +96,18 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
             ),
             const SizedBox(height: 32),
 
-            /// 🔹 OTP Input Field
+            // OTP Input Fields
             OtpInputField(
-              key: otpKey,
+              key: _otpFieldKey,
               otpLength: 5,
               onCompleted: (otp) {
-                debugPrint("Entered OTP: $otp");
+                debugPrint("OTP Completed: $otp");
               },
             ),
 
             const SizedBox(height: 24),
 
-            /// 🔹 Verify Button
+            // Verify Button
             CustomButton(
               Text: 'Verify code',
               width: double.infinity,
@@ -129,7 +120,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
 
             const SizedBox(height: 16),
 
-            /// 🔹 Resend OTP Section
+            // Resend Code
             Center(
               child: GestureDetector(
                 onTap: _secondsRemaining == 0 ? _resendCode : null,
@@ -147,7 +138,9 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                         ),
                       ),
                       TextSpan(
-                        text: '$_secondsRemaining seconds',
+                        text: _secondsRemaining > 0
+                            ? '$_secondsRemaining seconds'
+                            : '',
                         style: AppTextStyle.secondtextStyle,
                       ),
                     ],

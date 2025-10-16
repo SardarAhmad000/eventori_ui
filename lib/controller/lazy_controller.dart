@@ -1,3 +1,4 @@
+import 'package:eventori/view/auth/controller/create_new_password_controller.dart';
 import 'package:get/get.dart';
 import '../view/auth/controller/sign_up_controller.dart';
 import '../view/onboarding/controller/Onboarding_controller.dart';
@@ -10,6 +11,7 @@ class LazyController extends Bindings{
     Get.put(SplashController());
     Get.put(OnboardingController());
     Get.put(SignUpController());
+    // Get.put(CreateNewPasswordController());
     // Get.put(AddProfilePhotoPageController());
     // Get.lazyPut<AddProfilePhotoPageController>(() => AddProfilePhotoPageController());
   }

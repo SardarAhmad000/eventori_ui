@@ -13,9 +13,6 @@ class AppTheme{
   static Color textTitle=Color(0xFF00B4DB);
 
 
-
-
-
   // Onboarding Colors
   static Color onboardingArrowColor=Color(0xFF161E28);
   static Color buttonColor=Color(0xFF00B4DB);
@@ -52,6 +49,11 @@ class AppTheme{
 
   //LOGIN COLOR
   static Color btwDividerTextColor=Color(0xFF697586);
+
+
+  //Forgot Password
+  static Color passwordStrenghtTextColor=Color(0xFF121212);
+  static Color progressIndicatorColor=Color(0xFFD0D5DD);
 
 
 
