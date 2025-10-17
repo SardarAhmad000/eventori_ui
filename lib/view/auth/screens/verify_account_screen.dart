@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eventori/view/auth/widget/pin_code_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:eventori/AppTheme/widgets/app_theme.dart';
 
@@ -15,8 +16,6 @@ class VerifyAccountScreen extends StatefulWidget {
 }
 
 class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
-  /// Global key to access OtpInputFieldState methods (validateOtp, currentOtp)
-  final GlobalKey<OtpInputFieldState> otpKey = GlobalKey<OtpInputFieldState>();
 
   int _secondsRemaining = 53;
   Timer? _timer;
@@ -53,27 +52,13 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
     });
     _startTimer();
 
-    // 🔹 Add your resend OTP API call here
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('A new OTP has been sent.')),
-    );
+    // // 🔹 Add your resend OTP API call here
+    // ScaffoldMessenger.of(context).showSnackBar(
+    //   const SnackBar(content: Text('A new OTP has been sent.')),
+    // );
   }
 
-  /// Verify button logic
-  void _verifyCode() {
-    // Validate using the method from OtpInputFieldState
-    if (otpKey.currentState != null && otpKey.currentState!.validateOtp()) {
-      final otp = otpKey.currentState!.currentOtp;
 
-      debugPrint('✅ OTP is valid: $otp');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('OTP Verified: $otp')),
-      );
-
-    } else {
-      debugPrint('❌ OTP invalid or empty');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,13 +90,23 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
             const SizedBox(height: 32),
 
             /// 🔹 OTP Input Field
-            OtpInputField(
-              key: otpKey,
-              otpLength: 5,
-              onCompleted: (otp) {
-                debugPrint("Entered OTP: $otp");
-              },
+            PinCodeInputWidget(
+                // key: otpKey,
+                length: 5,
+                onChanged: (value){
+
+                },
+                onCompleted: (value){
+                  debugPrint("Entered OTP: $value");
+                }
             ),
+            // OtpInputField(
+            //   key: otpKey,
+            //   otpLength: 5,
+            //   onCompleted: (otp) {
+            //     debugPrint("Entered OTP: $otp");
+            //   },
+            // ),
 
             const SizedBox(height: 24),
 
@@ -123,7 +118,9 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
               buttonColor: AppTheme.buttonCyanColor,
               textColor: AppTheme.whiteColor,
               textSize: 16,
-              onTap: _verifyCode,
+              onTap: (){
+
+              },
             ),
 
             const SizedBox(height: 16),

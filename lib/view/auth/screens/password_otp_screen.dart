@@ -8,6 +8,7 @@ import '../../../constants/custom_button.dart';
 import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
 import '../widget/otp_Input_widget.dart';
+import '../widget/pin_code_input_widget.dart';
 
 class PasswordOTPScreen extends StatefulWidget {
   const PasswordOTPScreen({super.key});
@@ -17,7 +18,7 @@ class PasswordOTPScreen extends StatefulWidget {
 }
 
 class PasswordOTPScreenState extends State<PasswordOTPScreen> {
-  final GlobalKey<OtpInputFieldState> _otpFieldKey = GlobalKey();
+  // final GlobalKey<OtpInputFieldState> _otpFieldKey = GlobalKey();
 
   int _secondsRemaining = 53;
   Timer? _timer;
@@ -56,13 +57,6 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
   }
 
   void _verifyCode() {
-    final otpFieldState = _otpFieldKey.currentState;
-
-    // if (otpFieldState != null && otpFieldState.validateOtp()) {
-      final otp = otpFieldState?.currentOtp;
-      debugPrint("Entered OTP: $otp");
-
-      // Proceed with backend verification or navigation
       Get.toNamed(AppRoutes.createNewPasswordScreen);
     // }
   }
@@ -97,13 +91,27 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
             const SizedBox(height: 32),
 
             // OTP Input Fields
-            OtpInputField(
-              key: _otpFieldKey,
-              otpLength: 5,
-              onCompleted: (otp) {
-                debugPrint("OTP Completed: $otp");
-              },
+
+            PinCodeInputWidget(
+              // key: otpKey,
+                length: 5,
+                onChanged: (value){
+
+                },
+                onCompleted: (value){
+                  debugPrint("Entered OTP: $value");
+
+                }
             ),
+
+
+            // OtpInputField(
+            //   key: _otpFieldKey,
+            //   otpLength: 5,
+            //   onCompleted: (otp) {
+            //     debugPrint("OTP Completed: $otp");
+            //   },
+            // ),
 
             const SizedBox(height: 24),
 

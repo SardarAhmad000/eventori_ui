@@ -27,12 +27,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     super.dispose();
   }
 
+  // void _sendEmailCode() {
+  //   final email = _emailController.text.trim();
+  //   if (email.isNotEmpty) {
+  //     Get.toNamed(AppRoutes.verifyOTPScreen, arguments: {'email': email});
+  //   }
+  // }
+
+
   void _sendEmailCode() {
     // if (_formKey.currentState!.validate())
-    {
+    // {
       print('Email: ${_emailController.text}');
       Get.toNamed(AppRoutes.verifyOTPScreen);
-    }
+    // }
   }
 
   @override
@@ -86,7 +94,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 buttonColor: AppTheme.buttonCyanColor,
                 textColor: Colors.white,
                 textSize: 16,
-                onTap: _sendEmailCode,
+                onTap: (){
+
+                  print('Email: ${_emailController.text}');
+                  Get.toNamed(AppRoutes.verifyOTPScreen);
+
+                },
+                // onTap: _sendEmailCode,
               ),
             ],
           ),

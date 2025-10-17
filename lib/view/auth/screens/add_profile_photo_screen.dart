@@ -143,7 +143,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                         child: Divider(
                           color: AppTheme.dividerColor,
                           thickness: 1,
-                        ),
+                          ),
                       ),
                     ],
                   ),

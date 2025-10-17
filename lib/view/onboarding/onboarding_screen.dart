@@ -56,11 +56,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     GestureDetector(
                       onTap: () {
-
+                        Get.toNamed(AppRoutes.loginScreen);
                       },
                       child: Text(
                         'Login',
-                        style: AppTextStyle.cyanColorStyle
+                          style: AppTextStyle.cyanColorStyle
                       ),
                     ),
                   ],
