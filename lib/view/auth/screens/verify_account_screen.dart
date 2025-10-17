@@ -70,7 +70,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
         SnackBar(content: Text('OTP Verified: $otp')),
       );
 
-      // 🔹 Proceed with backend verification or navigation here
     } else {
       debugPrint('❌ OTP invalid or empty');
     }

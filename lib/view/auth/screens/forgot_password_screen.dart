@@ -28,7 +28,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
   void _sendEmailCode() {
-    if (_formKey.currentState!.validate()) {
+    // if (_formKey.currentState!.validate())
+    {
       print('Email: ${_emailController.text}');
       Get.toNamed(AppRoutes.verifyOTPScreen);
     }

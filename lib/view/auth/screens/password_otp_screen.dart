@@ -58,13 +58,13 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
   void _verifyCode() {
     final otpFieldState = _otpFieldKey.currentState;
 
-    if (otpFieldState != null && otpFieldState.validateOtp()) {
-      final otp = otpFieldState.currentOtp;
+    // if (otpFieldState != null && otpFieldState.validateOtp()) {
+      final otp = otpFieldState?.currentOtp;
       debugPrint("Entered OTP: $otp");
 
       // Proceed with backend verification or navigation
       Get.toNamed(AppRoutes.createNewPasswordScreen);
-    }
+    // }
   }
 
   @override
