@@ -389,6 +389,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.dispose();
   }
 
+
+
+  /// Check if all text fields are filled
+  bool areAllFieldsFilled() {
+    return firstNameController.text.trim().isNotEmpty &&
+        lastNameController.text.trim().isNotEmpty &&
+        emailController.text.trim().isNotEmpty &&
+        passwordSignUpController.text.trim().isNotEmpty &&
+        confirmPasswordController.text.trim().isNotEmpty;
+  }
+
+  /// Print user information
+  void printUserInformation() {
+    print('========== User Sign Up Information ==========');
+    print('First Name: ${firstNameController.text}');
+    print('Last Name: ${lastNameController.text}');
+    print('Email: ${emailController.text}');
+    print('Password: ${passwordSignUpController.text}');
+    print('Confirm Password: ${confirmPasswordController.text}');
+    print('=============================================');
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -546,12 +570,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {
+
                           if (formKey.currentState!.validate()) {
                             if (authController.areSignUpPasswordRequirementsMet()) {
-                              // Call your signup API here
+                              printUserInformation();
+                              // Get.toNamed(AppRoutes.homeScreen);
                             } else {
-                              Get.snackbar(
-                                  "Error", "Please meet all password requirements");
+
                             }
                           }
                         },

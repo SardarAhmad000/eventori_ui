@@ -6,7 +6,6 @@ import 'package:eventori/AppTheme/widgets/app_theme.dart';
 import '../../../constants/app_text_style.dart';
 import '../../../constants/custom_button.dart';
 import '../../onboarding/widgets/build_header.dart';
-import '../widget/otp_Input_widget.dart'; // Your updated OTP widget file
 
 class VerifyAccountScreen extends StatefulWidget {
   const VerifyAccountScreen({super.key});

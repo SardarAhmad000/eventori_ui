@@ -7,7 +7,6 @@ import '../../../constants/app_text_style.dart';
 import '../../../constants/custom_button.dart';
 import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
-import '../widget/otp_Input_widget.dart';
 import '../widget/pin_code_input_widget.dart';
 
 class PasswordOTPScreen extends StatefulWidget {
