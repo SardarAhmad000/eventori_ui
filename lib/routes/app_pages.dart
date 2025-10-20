@@ -1,4 +1,5 @@
 import 'package:eventori/view/auth/screens/add_profile_photo_screen.dart';
+import 'package:eventori/view/bottom_nav_bar/nav_bar_screen.dart';
 import 'package:get/get.dart';
 import '../view/auth/screens/create_new_password_screen.dart';
 import '../view/auth/screens/forgot_password_screen.dart';
@@ -23,6 +24,7 @@ class AppPages {
     GetPage(name: AppRoutes.forgotPasswordScreen, page: () =>  ForgotPasswordScreen()),
     GetPage(name: AppRoutes.verifyOTPScreen, page: () =>  PasswordOTPScreen()),
     GetPage(name: AppRoutes.createNewPasswordScreen, page: () =>  CreateNewPasswordScreen()),
+    GetPage(name: AppRoutes.navBarScreen, page: () =>  NavBarScreen()),
 
   ];
 }

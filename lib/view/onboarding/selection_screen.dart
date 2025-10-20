@@ -95,7 +95,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                               shape: BoxShape.circle,
                               border: Border.all(
                                 color: isSelected
-                                    ? AppTheme.radioButtonColour
+                                    ? AppTheme.purplishColor
                                     : AppTheme.whiteColor,
                                 width: 1,
                               ),
@@ -107,7 +107,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                 height: 16,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AppTheme.radioButtonColour,
+                                  color: AppTheme.purplishColor,
                                 ),
                               ),
                             )

@@ -2,6 +2,7 @@ import 'dart:ui';
 
 class AppTheme{
   //Background COLOR
+
   static Color splashBackgroundScreen=Color(0xFF1B2638);
   static Color darkpurpleColor=Color(0xFF1B2638);
   static Color blackColor=Color(0xFF000000);
@@ -18,7 +19,7 @@ class AppTheme{
   static Color buttonColor=Color(0xFF00B4DB);
   static Color primaryColor=Color(0xFFFCFCFD);
   static Color cyanColor=Color(0xFF009CBE);
-  static Color radioButtonColour=Color(0xFF7B2CBF);
+  static Color purplishColor=Color(0xFF7B2CBF);
   static Color backArrowBorderColor=Color(0xFFD6DFE9);
 
 
@@ -54,6 +55,12 @@ class AppTheme{
   //Forgot Password
   static Color passwordStrenghtTextColor=Color(0xFF121212);
   static Color progressIndicatorColor=Color(0xFFD0D5DD);
+
+
+  //Bottom Navigation Bar
+  static Color pagebackground=Color(0xFFF1F2F6);
+
+
 
 
 

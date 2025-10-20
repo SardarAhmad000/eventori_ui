@@ -9,5 +9,6 @@ abstract class AppRoutes {
   static const forgotPasswordScreen = '/forgotPasswordScreen';
   static const verifyOTPScreen = '/verifyOTPScreen';
   static const createNewPasswordScreen = '/createNewPasswordScreen';
+  static const navBarScreen = '/navBarScreen';
 
 }

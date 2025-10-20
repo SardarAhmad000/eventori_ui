@@ -2,9 +2,11 @@ import 'dart:async';
 import 'package:eventori/view/auth/widget/pin_code_input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:eventori/AppTheme/widgets/app_theme.dart';
+import 'package:get/get.dart';
 
 import '../../../constants/app_text_style.dart';
 import '../../../constants/custom_button.dart';
+import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
 
 class VerifyAccountScreen extends StatefulWidget {
@@ -118,7 +120,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
               textColor: AppTheme.whiteColor,
               textSize: 16,
               onTap: (){
-
+                Get.toNamed(AppRoutes.navBarScreen);
               },
             ),
 

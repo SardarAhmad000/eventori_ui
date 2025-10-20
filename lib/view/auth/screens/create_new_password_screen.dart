@@ -513,17 +513,17 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                   textColor: Colors.white,
                   textSize: 16,
                   onTap: () {
-                    // Check if all fields are filled
-                    if (!areAllPasswordFieldsFilled()) {
-                      Get.snackbar(
-                        "Validation Error",
-                        "Please fill all password fields",
-                        snackPosition: SnackPosition.BOTTOM,
-                        backgroundColor: Colors.red,
-                        colorText: Colors.white,
-                      );
-                      return;
-                    }
+                    // // Check if all fields are filled
+                    // if (!areAllPasswordFieldsFilled()) {
+                    //   Get.snackbar(
+                    //     "Validation Error",
+                    //     "Please fill all password fields",
+                    //     snackPosition: SnackPosition.BOTTOM,
+                    //     backgroundColor: AppTheme.redColor,
+                    //     colorText: AppTheme.whiteColor,
+                    //   );
+                    //   return;
+                    // }
 
                     // Validate form
                     if (formKey.currentState!.validate()) {

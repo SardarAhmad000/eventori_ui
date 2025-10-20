@@ -11,6 +11,10 @@ class AppAssets{
   static String tickPassIcon = 'assets/app_icons/tick_pass_icon.png';
   // static String tickIconPass= 'assets/app_icons/tick_icon.png';
   // static String tickIcon= 'assets/app_icons/tick_icon.png';
-
+  static String homeSmileIcon= 'assets/app_icons/home_smile_icon.png';
+  static String searchIcon= 'assets/app_icons/search_icon.png';
+  static String messageChatIcon= 'assets/app_icons/message_chat_icon.png';
+  static String gridIcon= 'assets/app_icons/grid_icon.png';
+  static String plusIcon= 'assets/app_icons/plus_icon.png';
 
 }
