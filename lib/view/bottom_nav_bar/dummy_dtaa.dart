@@ -460,3 +460,273 @@
 // // // //     );
 // // // //   }
 // // // // }
+
+
+
+
+import 'package:flutter/material.dart';
+import 'package:eventori/constants/custom_button.dart';
+import 'package:eventori/constants/custom_textfield.dart';
+import '../../AppTheme/widgets/app_theme.dart';
+
+class CreateEventScreen extends StatefulWidget {
+  const CreateEventScreen({super.key});
+
+  @override
+  State<CreateEventScreen> createState() => _CreateEventScreenState();
+}
+
+class _CreateEventScreenState extends State<CreateEventScreen> {
+  final TextEditingController eventNameController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final TextEditingController dateController = TextEditingController();
+
+  String? selectedCategory;
+  String? selectedCountry;
+  bool notSureLocation = false;
+  bool notSureDate = false;
+  bool sendReminder = true;
+
+  final List<String> eventCategories = [
+    "Conference",
+    "Workshop",
+    "Meetup",
+    "Concert",
+    "Party"
+  ];
+
+  final List<String> countries = [
+    "Pakistan",
+    "USA",
+    "UK",
+    "Canada",
+    "France"
+  ];
+
+  Future<void> _selectDate(BuildContext context) async {
+    if (notSureDate) return;
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2023),
+      lastDate: DateTime(2030),
+    );
+    if (picked != null) {
+      dateController.text = "${picked.day}/${picked.month}/${picked.year}";
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppTheme.whiteColor,
+      appBar: AppBar(
+        backgroundColor: AppTheme.whiteColor,
+        elevation: 0,
+        title: const Text(
+          "Create a New Event",
+          style: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Section Title
+            Text(
+              "My event details",
+              style: TextStyle(
+                color: AppTheme.darkpurpleColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 18),
+
+            // Event name field
+            CustomTextField(
+              fieldName: "What's the name of your event?",
+              hintText: "Event name *",
+              controller: eventNameController,
+            ),
+            const SizedBox(height: 16),
+
+            // Event category
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              decoration: BoxDecoration(
+                color: AppTheme.greyColor,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: AppTheme.textfieldBorderColor.withOpacity(0.3),
+                ),
+              ),
+              child: DropdownButtonFormField<String>(
+                value: selectedCategory,
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  labelText: "What type of event are you planning?",
+                ),
+                hint: const Text("Event Category *"),
+                items: eventCategories
+                    .map((item) =>
+                    DropdownMenuItem(value: item, child: Text(item)))
+                    .toList(),
+                onChanged: (value) {
+                  setState(() => selectedCategory = value);
+                },
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Country + City
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: AppTheme.greyColor,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: AppTheme.textfieldBorderColor.withOpacity(0.3),
+                      ),
+                    ),
+                    child: DropdownButtonFormField<String>(
+                      value: selectedCountry,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        labelText: "Where will your event be held?",
+                      ),
+                      hint: const Text("Country *"),
+                      items: countries
+                          .map((item) => DropdownMenuItem(
+                          value: item, child: Text(item)))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() => selectedCountry = value);
+                      },
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  flex: 1,
+                  child: CustomTextField(
+                    hintText: "City *",
+                    controller: cityController,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Checkbox(
+                  value: notSureLocation,
+                  onChanged: (val) =>
+                      setState(() => notSureLocation = val ?? false),
+                ),
+                const Text("Not sure"),
+              ],
+            ),
+            const SizedBox(height: 8),
+
+            // Date picker
+            GestureDetector(
+              onTap: () => _selectDate(context),
+              child: AbsorbPointer(
+                child: CustomTextField(
+                  hintText: "Date",
+                  controller: dateController,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Checkbox(
+                  value: notSureDate,
+                  onChanged: (val) =>
+                      setState(() => notSureDate = val ?? false),
+                ),
+                const Text("Not sure"),
+              ],
+            ),
+            const SizedBox(height: 16),
+
+            // Reminder email
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Send me an automated reminder email 1 day before event",
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: AppTheme.silverColor,
+                    ),
+                  ),
+                ),
+                Switch(
+                  value: sendReminder,
+                  onChanged: (value) => setState(() => sendReminder = value),
+                  activeColor: AppTheme.cyanColor,
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+
+            // Upload image
+            Container(
+              height: 120,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(
+                  color: AppTheme.textfieldBorderColor.withOpacity(0.3),
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.cloud_upload_outlined,
+                        color: AppTheme.silverColor, size: 36),
+                    const SizedBox(height: 8),
+                    Text(
+                      "Upload image",
+                      style: TextStyle(
+                        color: AppTheme.silverColor,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Create Event Button
+            CustomButton(
+              Text: "Create Event",
+              width: double.infinity,
+              height: 52,
+              textColor: AppTheme.whiteColor,
+              buttonColor: AppTheme.cyanColor,
+              onTap: () {
+                // Handle create event logic
+              },
+            ),
+            const SizedBox(height: 40),
+          ],
+        ),
+      ),
+    );
+  }
+}

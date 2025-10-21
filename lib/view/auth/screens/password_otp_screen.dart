@@ -74,7 +74,7 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
               backgroundColor: AppTheme.whiteColor,
               arrowColor: AppTheme.blackColor,
               containerBackgroundColor: AppTheme.whiteColor,
-              borderColor: AppTheme.backArrowBorderColor,
+              borderColor: AppTheme.lightGrayishColor,
               showLogo: true,
             ),
             const SizedBox(height: 20),
@@ -119,7 +119,7 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
               Text: 'Verify code',
               width: double.infinity,
               height: 48,
-              buttonColor: AppTheme.buttonCyanColor,
+              buttonColor: AppTheme.lightCyanColor,
               textColor: AppTheme.whiteColor,
               textSize: 16,
               onTap: _verifyCode,
@@ -139,8 +139,8 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
                         text: 'Resend code ',
                         style: TextStyle(
                           color: _secondsRemaining == 0
-                              ? AppTheme.buttonCyanColor
-                              : AppTheme.textGreyColor,
+                              ? AppTheme.lightCyanColor
+                              : AppTheme.silverColor,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

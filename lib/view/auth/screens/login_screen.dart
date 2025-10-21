@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
               backgroundColor: AppTheme.whiteColor,
               arrowColor: AppTheme.blackColor,
               containerBackgroundColor: AppTheme.whiteColor,
-              borderColor: AppTheme.backArrowBorderColor,
+              borderColor: AppTheme.lightGrayishColor,
               showLogo: true,
             ),
             const SizedBox(height: 20),
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: 'Email Address',
                         prefixIcon: Image.asset(
                           AppAssets.mailIcon,
-                          color: AppTheme.iconGreyColor,
+                          color: AppTheme.silverColor,
                         ),
                         keyboardType: TextInputType.emailAddress,
                         validator: CustomValidator.email,
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: 'Password',
                         prefixIcon: Image.asset(
                           AppAssets.lockIcon,
-                          color: AppTheme.iconGreyColor,
+                          color: AppTheme.silverColor,
                         ),
                         isObscure: _obscurePassword,
                         suffixIcon: IconButton(
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             _obscurePassword
                                 ? Icons.visibility_off_outlined
                                 : Icons.visibility_outlined,
-                            color: AppTheme.iconGreyColor,
+                            color: AppTheme.silverColor,
                           ),
                           onPressed: () {
                             setState(() {
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Text: 'Login',
                         width: double.infinity,
                         height: 48,
-                        buttonColor: AppTheme.buttonCyanColor,
+                        buttonColor: AppTheme.lightCyanColor,
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {

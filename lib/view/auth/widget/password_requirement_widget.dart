@@ -22,7 +22,7 @@ class PasswordRequirementWidget extends StatelessWidget {
             AppAssets.tickPassIcon,
             width: 16,
             height: 16,
-            color: isValid ? AppTheme.buttonColor : AppTheme.iconGreyColor,
+            color: isValid ? AppTheme.lightCyanColor : AppTheme.silverColor,
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -30,7 +30,7 @@ class PasswordRequirementWidget extends StatelessWidget {
               text,
               style: TextStyle(
                 fontFamily: "Outfit",
-                color: isValid ? AppTheme.buttonColor : AppTheme.textGreyColor,
+                color: isValid ? AppTheme.lightCyanColor : AppTheme.silverColor,
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
               ),

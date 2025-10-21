@@ -16,5 +16,15 @@ class AppAssets{
   static String messageChatIcon= 'assets/app_icons/message_chat_icon.png';
   static String gridIcon= 'assets/app_icons/grid_icon.png';
   static String plusIcon= 'assets/app_icons/plus_icon.png';
+  static String uploadCloudIcon= 'assets/app_icons/upload_cloud_icon.png';
+
+
+  //Images
+
+  static String eventImage1 = 'assets/app_images/event_1.jpg';
+  static String eventImage2 = 'assets/app_images/event_2.jpg';
+
+
+
 
 }

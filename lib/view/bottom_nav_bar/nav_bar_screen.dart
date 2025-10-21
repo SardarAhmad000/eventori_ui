@@ -4,6 +4,8 @@ import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:flutter/material.dart';
 import '../../AppTheme/widgets/app_theme.dart';
+import '../roles/customer/event/create_event_screen.dart';
+import '../roles/customer/event/my_event_screeen.dart';
 
 class NavBarScreen extends StatefulWidget {
   const NavBarScreen({Key? key}) : super(key: key);
@@ -17,7 +19,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   final List<Widget> _screens = [
     const Center(child: Text('Home Screen', style: TextStyle(fontSize: 18))),
     const Center(child: Text('Search Screen', style: TextStyle(fontSize: 18))),
-    const Center(child: Text('Create Screen', style: TextStyle(fontSize: 18))),
+    const CreateEventScreen(),
     const Center(child: Text('Chat Screen', style: TextStyle(fontSize: 18))),
     const Center(child: Text('Dashboard Screen', style: TextStyle(fontSize: 18))),
   ];
@@ -82,12 +84,9 @@ class _NavBarScreenState extends State<NavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-
-
     return CurvedNavBar(
       actionButton: CurvedActionBar(
         onTab: (value) {
-
         },
         activeIcon: _buildActionButton(isActive: true),
         inActiveIcon: _buildActionButton(isActive: false),

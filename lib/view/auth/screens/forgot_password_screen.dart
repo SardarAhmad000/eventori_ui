@@ -59,7 +59,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 backgroundColor: AppTheme.whiteColor,
                 arrowColor: AppTheme.blackColor,
                 containerBackgroundColor: AppTheme.whiteColor,
-                borderColor: AppTheme.backArrowBorderColor,
+                borderColor: AppTheme.lightGrayishColor,
                 showLogo: true,
               ),
               const SizedBox(height: 20),
@@ -80,7 +80,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 hintText: 'Email Address',
                 prefixIcon: Image.asset(
                   AppAssets.mailIcon,
-                  color: AppTheme.iconGreyColor,
+                  color: AppTheme.silverColor,
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: CustomValidator.email,
@@ -91,8 +91,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 Text: 'Send email code',
                 width: double.infinity,
                 height: 48,
-                buttonColor: AppTheme.buttonCyanColor,
-                textColor: Colors.white,
+                buttonColor: AppTheme.lightCyanColor,
+                textColor: AppTheme.whiteColor,
                 textSize: 16,
                 onTap: (){
 

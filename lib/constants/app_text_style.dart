@@ -10,7 +10,7 @@ class AppTextStyle{
 
   static  TextStyle titleStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.textTitle,
+    color: AppTheme.lightCyanColor,
     fontSize: 32,
     fontWeight: FontWeight.w600,
   );
@@ -101,7 +101,7 @@ class AppTextStyle{
 
   static  TextStyle skipStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.skipTextColor,
+    color: AppTheme.silverColor,
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
@@ -131,12 +131,6 @@ class AppTextStyle{
   );
 
   //SIGNUP SCREEN
-  // static  TextStyle passwordRequirmentTextStyle = TextStyle(
-  //   fontFamily: fontFamily,
-  //   color: isValid ? AppTheme.buttonColor : AppTheme.textGreyColor,
-  //   fontSize: 12,
-  //   fontWeight: FontWeight.w400,
-  // );
 
 
 // VERIFY ACCOUNT SCREEN
@@ -151,9 +145,82 @@ class AppTextStyle{
   //Forgot Password Screen
   static  TextStyle strenghtTextStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.passwordStrenghtTextColor,
+    color: AppTheme.shadowColor,
     fontSize: 14,
     fontWeight: FontWeight.w500,
+  );
+
+
+
+
+// CreateEventScreen
+
+  static  TextStyle createEventTitle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.shadowColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+
+  static  TextStyle createEventSubtitleStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.createEventSubTitle,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
+  static  TextStyle createEventQuestions = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.blackColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
+  static  TextStyle createEventUpload = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.silverColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
+
+
+  static  TextStyle NotSureStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.blackColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  //MY EVENT SCREEN
+
+  static  TextStyle myEventTitle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.shadowColor,
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+
+  static  TextStyle myEventdate = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.greyColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
+
+
+  static  TextStyle myEventmonth = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.myEventMonth,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  static  TextStyle myEventName = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.myEventNameColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
   );
 
 

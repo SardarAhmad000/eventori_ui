@@ -47,7 +47,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
                   'Password Strength',
                   style: TextStyle(
                     fontSize: 13,
-                    color: AppTheme.textGreyColor,
+                    color: AppTheme.silverColor,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -73,7 +73,7 @@ class PasswordStrengthIndicator extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: index < strengthLevel
                       ? strengthColor
-                      : AppTheme.textGreyColor.withOpacity(0.2),
+                      : AppTheme.silverColor.withOpacity(0.2),
                   borderRadius: BorderRadius.circular(3),
                 ),
               ),

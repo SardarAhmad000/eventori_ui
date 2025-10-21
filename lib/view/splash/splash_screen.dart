@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
   SplashController splashController=Get.find();
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.splashBackgroundScreen,
+      backgroundColor: AppTheme.darkpurpleColor,
       body:  Center(
       child: Column(
       mainAxisAlignment: MainAxisAlignment.center,

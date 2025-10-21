@@ -77,7 +77,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
               backgroundColor: AppTheme.whiteColor,
               arrowColor: AppTheme.blackColor,
               containerBackgroundColor: AppTheme.whiteColor,
-              borderColor: AppTheme.backArrowBorderColor,
+              borderColor: AppTheme.lightGrayishColor,
               showLogo: true,
             ),
 
@@ -116,7 +116,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
               Text: 'Verify code',
               width: double.infinity,
               height: 48,
-              buttonColor: AppTheme.buttonCyanColor,
+              buttonColor: AppTheme.lightCyanColor,
               textColor: AppTheme.whiteColor,
               textSize: 16,
               onTap: (){
@@ -138,8 +138,8 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                         text: 'Resend code ',
                         style: TextStyle(
                           color: _secondsRemaining == 0
-                              ? AppTheme.buttonCyanColor
-                              : AppTheme.textGreyColor,
+                              ? AppTheme.lightCyanColor
+                              : AppTheme.silverColor,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

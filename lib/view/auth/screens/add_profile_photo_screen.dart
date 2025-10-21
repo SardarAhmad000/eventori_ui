@@ -25,7 +25,7 @@ class AddProfilePhotoPage extends StatelessWidget {
 
             CustomHeader(
               showLogo: false,
-              arrowColor: AppTheme.arrowColor,
+              arrowColor: AppTheme.midnightGrayColor,
               containerBackgroundColor: AppTheme.whiteColor,
             ),
 
@@ -53,7 +53,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                       color: AppTheme.uploadContainerColor,
                       borderRadius: BorderRadius.circular(99999),
                       border: Border.all(
-                        color: AppTheme.backArrowBorderColor,
+                        color: AppTheme.lightGrayishColor,
                         width: 1,
                       ),
                     ),
@@ -81,10 +81,10 @@ class AddProfilePhotoPage extends StatelessWidget {
                         child: CustomButton(
                           Text: "Upload a photo",
                           onTap: () {},
-                          buttonColor: AppTheme.buttonCyanColor,
+                          buttonColor: AppTheme.lightCyanColor,
                           textColor: AppTheme.whiteColor,
                           height: 48,
-                          borderColor: AppTheme.buttonCyanColor,
+                          borderColor: AppTheme.lightCyanColor,
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -95,7 +95,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                           buttonColor: AppTheme.whiteColor,
                           textColor: AppTheme.blackColor,
                           height: 48,
-                          borderColor: AppTheme.buttonCyanColor,
+                          borderColor: AppTheme.lightCyanColor,
                         ),
                       ),
                     ],
@@ -109,7 +109,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                       onTap: () {
                         Get.toNamed(AppRoutes.signUpScreen);
                       },
-                      buttonColor: AppTheme.buttonCyanColor,
+                      buttonColor: AppTheme.lightCyanColor,
                       textColor: AppTheme.whiteColor,
                       height: 48,
                       width: double.infinity,

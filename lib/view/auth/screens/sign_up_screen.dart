@@ -426,7 +426,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               backgroundColor: AppTheme.whiteColor,
               arrowColor: AppTheme.blackColor,
               containerBackgroundColor: AppTheme.whiteColor,
-              borderColor: AppTheme.backArrowBorderColor,
+              borderColor: AppTheme.lightGrayishColor,
               showLogo: true,
             ),
             const SizedBox(height: 20),
@@ -451,7 +451,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintText: 'First Name',
                         prefixIcon: Image.asset(
                           AppAssets.userIcon,
-                          color: AppTheme.iconGreyColor,
+                          color: AppTheme.silverColor,
                         ),
                         validator: CustomValidator.firstName,
                       ),
@@ -463,7 +463,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintText: 'Last Name',
                         prefixIcon: Image.asset(
                           AppAssets.userIcon,
-                          color: AppTheme.iconGreyColor,
+                          color: AppTheme.silverColor,
                         ),
                         validator: CustomValidator.lastName,
                       ),
@@ -475,7 +475,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         hintText: 'Email Address',
                         prefixIcon: Image.asset(
                           AppAssets.mailIcon,
-                          color: AppTheme.iconGreyColor,
+                          color: AppTheme.silverColor,
                         ),
                         validator: CustomValidator.email,
                       ),
@@ -488,7 +488,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'Password',
                           prefixIcon: Image.asset(
                             AppAssets.lockIcon,
-                            color: AppTheme.iconGreyColor,
+                            color: AppTheme.silverColor,
                           ),
                           isObscure: authController.obscurePassword.value,
                           suffixIcon: IconButton(
@@ -496,7 +496,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               authController.obscurePassword.value
                                   ? Icons.visibility_off_outlined
                                   : Icons.visibility_outlined,
-                              color: AppTheme.iconGreyColor,
+                              color: AppTheme.silverColor,
                             ),
                             onPressed: authController.togglePasswordVisibility,
                           ),
@@ -512,7 +512,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           hintText: 'Confirm Password',
                           prefixIcon: Image.asset(
                             AppAssets.lockIcon,
-                            color: AppTheme.iconGreyColor,
+                            color: AppTheme.silverColor,
                           ),
                           isObscure: authController.obscureConfirmPassword.value,
                           suffixIcon: IconButton(
@@ -520,7 +520,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               authController.obscureConfirmPassword.value
                                   ? Icons.visibility_off_outlined
                                   : Icons.visibility_outlined,
-                              color: AppTheme.iconGreyColor,
+                              color: AppTheme.silverColor,
                             ),
                             onPressed:
                             authController.toggleConfirmPasswordVisibility,
@@ -566,7 +566,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Text: 'Sign Up',
                         height: 48,
                         width: double.infinity,
-                        buttonColor: AppTheme.buttonColor,
+                        buttonColor: AppTheme.lightCyanColor,
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {

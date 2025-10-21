@@ -259,6 +259,7 @@
 //     );
 //   }
 // }
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../AppTheme/widgets/app_theme.dart';
@@ -386,7 +387,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         decoration: InputDecoration(
           constraints: const BoxConstraints(minHeight: 48, minWidth: 90),
-          fillColor: widget.fillColor ?? AppTheme.primaryColor,
+          fillColor: widget.fillColor ?? AppTheme.greyColor,
           filled: true,
           suffixText: widget.suffixText ?? '',
           prefixText: widget.prefixText ?? '',
@@ -463,11 +464,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontWeight: FontWeight.w400,
             fontSize: 14,
             fontFamily: AppFonts.medium,
-            color: widget.hintTextColor ?? AppTheme.textGreyColor,
+            color: widget.hintTextColor ?? AppTheme.silverColor,
           ),
 
           suffixIcon: widget.suffixIcon,
-          suffixIconColor: widget.suffixIconColor ?? AppTheme.textGreyColor,
+          suffixIconColor: widget.suffixIconColor ?? AppTheme.silverColor,
 
           prefixIcon: widget.prefixIcon == null
               ? const SizedBox()
@@ -489,7 +490,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontWeight: FontWeight.w400,
             color: _focusNode?.hasFocus == true
                 ? AppTheme.cyanColor
-                : (widget.hintTextColor ?? AppTheme.textGreyColor),
+                : (widget.hintTextColor ?? AppTheme.silverColor),
             fontFamily: AppFonts.medium,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,

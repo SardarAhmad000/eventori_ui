@@ -365,7 +365,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                   backgroundColor: AppTheme.whiteColor,
                   arrowColor: AppTheme.blackColor,
                   containerBackgroundColor: AppTheme.whiteColor,
-                  borderColor: AppTheme.backArrowBorderColor,
+                  borderColor: AppTheme.lightGrayishColor,
                   showLogo: true,
                 ),
                 const SizedBox(height: 20),
@@ -387,7 +387,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     hintText: 'Password',
                     prefixIcon: Image.asset(
                       AppAssets.lockIcon,
-                      color: AppTheme.iconGreyColor,
+                      color: AppTheme.silverColor,
                     ),
                     isObscure: obscurePassword.value,
                     suffixIcon: IconButton(
@@ -395,7 +395,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                         obscurePassword.value
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
-                        color: AppTheme.iconGreyColor,
+                        color: AppTheme.silverColor,
                       ),
                       onPressed: togglePasswordVisibility,
                     ),
@@ -484,7 +484,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     hintText: 'Confirm Password',
                     prefixIcon: Image.asset(
                       AppAssets.lockIcon,
-                      color: AppTheme.iconGreyColor,
+                      color: AppTheme.silverColor,
                     ),
                     isObscure: obscureConfirmPassword.value,
                     suffixIcon: IconButton(
@@ -492,7 +492,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                         obscureConfirmPassword.value
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
-                        color: AppTheme.iconGreyColor,
+                        color: AppTheme.silverColor,
                       ),
                       onPressed: toggleConfirmPasswordVisibility,
                     ),
@@ -509,7 +509,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                   Text: 'Update Password',
                   width: double.infinity,
                   height: 48,
-                  buttonColor: AppTheme.buttonCyanColor,
+                  buttonColor: AppTheme.lightCyanColor,
                   textColor: Colors.white,
                   textSize: 16,
                   onTap: () {

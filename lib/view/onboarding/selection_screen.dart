@@ -48,8 +48,8 @@ class _SelectionScreenState extends State<SelectionScreen> {
             CustomHeader(
               backgroundColor: AppTheme.blackColor,
               arrowColor: AppTheme.whiteColor,
-              containerBackgroundColor: AppTheme.onboardingArrowColor,
-              borderColor: AppTheme.backArrowBorderColor,
+              containerBackgroundColor: AppTheme.duskColor,
+              borderColor: AppTheme.lightGrayishColor,
               showLogo: true,
             ),
             // HeaderWidget(onBackPressed: () => Navigator.of(context).maybePop()),
@@ -76,11 +76,11 @@ class _SelectionScreenState extends State<SelectionScreen> {
                       height: 78,
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: AppTheme.cardColour,
+                        color: AppTheme.duskColor,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: isSelected
-                              ? AppTheme.cardBorder
+                              ? AppTheme.purplishColor
                               : Colors.transparent,
                           width: 1,
                         ),

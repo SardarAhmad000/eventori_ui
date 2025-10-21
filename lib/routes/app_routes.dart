@@ -10,5 +10,8 @@ abstract class AppRoutes {
   static const verifyOTPScreen = '/verifyOTPScreen';
   static const createNewPasswordScreen = '/createNewPasswordScreen';
   static const navBarScreen = '/navBarScreen';
+  static const createEventScreen = '/createEventScreen';
+  // static const createEventScreen = '/createEventScreen';
+  static const myEventScreeen = '/myEventScreeen';
 
 }

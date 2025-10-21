@@ -42,6 +42,10 @@ dependencies:
   pin_code_fields: ^8.0.1
 
   curved_nav_bar: ^0.0.2
+  cached_network_image: ^3.4.1
+  dotted_border: ^2.1.0
+  csc_picker: ^0.2.7
+
 
 #  image_picker: ^1.1.1
 
@@ -70,6 +74,7 @@ flutter:
 
   assets:
     - assets/app_icons/
+    - assets/app_images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
