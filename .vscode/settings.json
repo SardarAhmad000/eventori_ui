@@ -1,0 +1,71 @@
+{
+  // Flutter SDK path (update if needed)
+  "dart.flutterSdkPath": "/Users/macbookpro/development/flutter",
+
+  // ✅ Automatically format Dart code on save
+  "editor.formatOnSave": true,
+
+  // ✅ Apply Dart/Flutter fixes automatically (including auto 'const')
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "terminal.integrated.inheritEnv": true,
+  "terminal.integrated.profiles.osx": {
+    "zsh": {
+      "path": "/bin/zsh",
+      "args": ["-l"]
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
+
+
+  // ✅ Enable linting and recommended analysis
+  "dart.analysisExcludedFolders": [
+    "build",
+    ".dart_tool"
+  ],
+
+  // ✅ Set Dart line length guideline (100 is common for Flutter)
+  "dart.lineLength": 100,
+
+  // ✅ Enable Flutter outline and UI guides
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+
+  // ✅ Automatically add missing imports when using a class
+  "dart.imports.insertTypes": "always",
+
+  // ✅ Exclude unnecessary files from search/explorer
+  "files.exclude": {
+    "/build": true,
+    "/.dart_tool": true,
+    "/.idea": true,
+    "/.vscode": false
+  },
+
+  // ✅ Associate Dart files correctly
+  "files.associations": {
+    "*.dart": "dart"
+  },
+
+  // ✅ Improve code editing experience
+  "editor.defaultFormatter": "Dart-Code.dart-code",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+
+  // ✅ Enable error lens to highlight errors inline
+  "errorLens.enabled": true,
+  "errorLens.fontWeight": "bold",
+  "errorLens.gutterIconsEnabled": true,
+
+  // ✅ Automatically show Flutter performance overlays in debug (optional)
+  "dart.flutterShowPerformanceOverlay": false,
+
+  // ✅ Enable widget rename refactor preview
+  "dart.previewFlutterRename": true
+
+
+
+}
