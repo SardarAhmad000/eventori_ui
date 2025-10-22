@@ -81,7 +81,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                       ),
                       const SizedBox(height: 8),
                       CustomTextField(
-                        hintText: "Event Category ",
+                        hintText: "Event Category",
+                        hintTextPadding: EdgeInsets.only(left: 90), // Adds 10px left padding to hint text
                         controller: eventCategoryController,
                         suffixIcon: Icon(
                           Icons.keyboard_arrow_down,

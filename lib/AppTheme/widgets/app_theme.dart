@@ -19,6 +19,7 @@ class AppTheme{
   static Color slateGreyColor =Color(0xFF667085);
   static Color ashGreyColor =Color(0xFFD9D9D9);
   static Color blueColor =Color(0xFF335CFF);
+  static Color charcoalColor =Color(0xFF1E1E1E);
 
 
 //Upload Photo Screen

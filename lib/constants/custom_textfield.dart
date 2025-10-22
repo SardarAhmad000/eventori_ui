@@ -296,6 +296,7 @@ class CustomTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final void Function(String)? onFieldSubmitted;
   final TextAlign? textAlign;
+  final EdgeInsetsGeometry? hintTextPadding; // New parameter
 
   const CustomTextField({
     super.key,
@@ -328,6 +329,7 @@ class CustomTextField extends StatefulWidget {
     this.fieldBorderColor,
     this.suffixIconColor,
     this.isEditProfileInfoScreen = false,
+    this.hintTextPadding, // New parameter
   });
 
   @override
@@ -352,12 +354,33 @@ class _CustomTextFieldState extends State<CustomTextField> {
     super.dispose();
   }
 
+  EdgeInsetsGeometry _getContentPadding() {
+    // Add left padding by default when no prefix icon is present
+    if (widget.prefixIcon == null) {
+      return const EdgeInsets.only(left: 30, right: 20, top: 15, bottom: 15);
+    }
+    
+    const defaultPadding = EdgeInsets.symmetric(horizontal: 20, vertical: 15);
+
+    if (widget.hintTextPadding == null) {
+      return defaultPadding;
+    }
+
+    // Extract padding values from hintTextPadding
+    final hintPadding = widget.hintTextPadding!.resolve(TextDirection.ltr);
+
+    return EdgeInsets.symmetric(
+      horizontal: 20 + hintPadding.left,
+      vertical: 15,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
         textSelectionTheme: TextSelectionThemeData(
-          cursorColor: AppTheme.cyanColor, // Always cyan
+          cursorColor: AppTheme.cyanColor,
           selectionColor: AppTheme.cyanColor,
           selectionHandleColor: AppTheme.cyanColor,
         ),
@@ -374,8 +397,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: widget.isObscure ?? false,
         obscuringCharacter: "*",
         controller: widget.controller,
-        cursorColor: AppTheme.cyanColor, // ✅ stays cyan even on error
-        cursorErrorColor: AppTheme.cyanColor, // ✅ ensures error state doesn’t change it
+        cursorColor: AppTheme.cyanColor,
+        cursorErrorColor: AppTheme.cyanColor,
         cursorWidth: 1.3,
         onChanged: widget.onChanged,
         inputFormatters: widget.inputFormatters ?? [],
@@ -396,7 +419,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontWeight: FontWeight.bold,
             fontSize: 15,
           ),
-          contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          contentPadding: _getContentPadding(),
 
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
@@ -448,7 +471,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.3,
-              color: AppTheme.cyanColor, // ✅ cyan even in error
+              color: AppTheme.cyanColor,
             ),
           ),
 
@@ -471,7 +494,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
           suffixIconColor: widget.suffixIconColor ?? AppTheme.silverColor,
 
           prefixIcon: widget.prefixIcon == null
-              ? const SizedBox()
+              ? const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: SizedBox(width: 0, height: 0),
+                )
               : Padding(
             padding: const EdgeInsets.only(left: 8, right: 8),
             child: SizedBox(
