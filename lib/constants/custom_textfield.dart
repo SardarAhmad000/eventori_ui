@@ -262,6 +262,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../AppTheme/widgets/app_theme.dart';
 import 'app_fonts.dart';
 
@@ -359,7 +360,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     if (widget.prefixIcon == null) {
       return const EdgeInsets.only(left: 30, right: 20, top: 15, bottom: 15);
     }
-    
+
     const defaultPadding = EdgeInsets.symmetric(horizontal: 20, vertical: 15);
 
     if (widget.hintTextPadding == null) {
@@ -420,45 +421,36 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontSize: 15,
           ),
           contentPadding: _getContentPadding(),
-
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.3,
-              color: widget.fieldBorderColor ??
-                  AppTheme.textfieldBorderColor.withOpacity(.3),
+              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
             ),
           ),
-
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.8,
               color: _focusNode?.hasFocus == true
                   ? AppTheme.cyanColor
-                  : (widget.fieldBorderColor ??
-                  AppTheme.textfieldBorderColor.withOpacity(.3)),
+                  : (widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3)),
             ),
           ),
-
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.3,
-              color: widget.fieldBorderColor ??
-                  AppTheme.textfieldBorderColor.withOpacity(.3),
+              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
             ),
           ),
-
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.3,
-              color: widget.fieldBorderColor ??
-                  AppTheme.textfieldBorderColor.withOpacity(.3),
+              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
             ),
           ),
-
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
@@ -466,7 +458,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
               width: 1.3,
             ),
           ),
-
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
@@ -474,7 +465,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
               color: AppTheme.cyanColor,
             ),
           ),
-
           hintText: widget.hintText,
           errorStyle: TextStyle(
             fontSize: widget.isChangeErrorFont == true ? 8 : 12,
@@ -482,34 +472,28 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontWeight: FontWeight.bold,
           ),
           errorMaxLines: 3,
-
           hintStyle: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,
             fontFamily: AppFonts.medium,
             color: widget.hintTextColor ?? AppTheme.silverColor,
           ),
-
           suffixIcon: widget.suffixIcon,
           suffixIconColor: widget.suffixIconColor ?? AppTheme.silverColor,
-
           prefixIcon: widget.prefixIcon == null
               ? const Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: SizedBox(width: 0, height: 0),
                 )
               : Padding(
-            padding: const EdgeInsets.only(left: 8, right: 8),
-            child: SizedBox(
-              width: 20,
-              height: 20,
-              child: widget.prefixIcon!,
-            ),
-          ),
-
-          prefixIconConstraints:
-          const BoxConstraints(maxHeight: 30, minHeight: 30),
-
+                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  child: SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: widget.prefixIcon!,
+                  ),
+                ),
+          prefixIconConstraints: const BoxConstraints(maxHeight: 30, minHeight: 30),
           labelText: widget.fieldName,
           labelStyle: TextStyle(
             fontSize: 16,
@@ -525,6 +509,3 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 }
-
-
-

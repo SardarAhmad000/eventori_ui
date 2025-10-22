@@ -4,19 +4,18 @@ import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
+
 import '../../AppTheme/widgets/app_theme.dart';
 import '../roles/customer/event/create_event_screen.dart';
-import '../roles/customer/event/my_event_screeen.dart';
 
 class NavBarScreen extends StatefulWidget {
-  const NavBarScreen({Key? key}) : super(key: key);
+  const NavBarScreen({super.key});
 
   @override
   State<NavBarScreen> createState() => _NavBarScreenState();
 }
 
 class _NavBarScreenState extends State<NavBarScreen> {
-
   final List<Widget> _screens = [
     const Center(child: Text('Home Screen', style: TextStyle(fontSize: 18))),
     const Center(child: Text('Search Screen', style: TextStyle(fontSize: 18))),
@@ -24,7 +23,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
     const Center(child: Text('Chat Screen', style: TextStyle(fontSize: 18))),
     const Center(child: Text('Dashboard Screen', style: TextStyle(fontSize: 18))),
   ];
-
 
   Widget _buildActionButton({required bool isActive}) {
     return Container(
@@ -80,7 +78,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
         color: inActiveColor,
       ),
       text: label,
-      textStyle: AppTextStyle.navBarText,
+      // textStyle: AppTextStyle.navBarText,
     );
   }
 
@@ -88,13 +86,11 @@ class _NavBarScreenState extends State<NavBarScreen> {
   Widget build(BuildContext context) {
     return CurvedNavBar(
       actionButton: CurvedActionBar(
-        onTab: (value) {
-        },
+        onTab: (value) {},
         activeIcon: _buildActionButton(isActive: true),
         inActiveIcon: _buildActionButton(isActive: false),
         // text: "Create",
       ),
-
 
       activeColor: AppTheme.purplishColor,
       inActiveColor: AppTheme.blackColor,
@@ -122,12 +118,11 @@ class _NavBarScreenState extends State<NavBarScreen> {
         ),
         _buildNavBarItem(
           assetIcon: AppAssets.gridIcon,
-          label: 'Dashboard',
+          label: 'Dashboar ',
           activeColor: AppTheme.purplishColor,
           inActiveColor: AppTheme.blackColor,
         ),
       ],
-
 
       bodyItems: [
         _screens[0],
@@ -136,9 +131,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
         _screens[4],
       ],
 
-
       actionBarView: _screens[2],
-
 
       extendBody: true,
     );

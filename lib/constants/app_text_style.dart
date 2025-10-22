@@ -213,6 +213,7 @@ class AppTextStyle {
 
   static TextStyle navBarText = TextStyle(
     fontFamily: fontFamily,
+    fontSize: 8,
     color: AppTheme.charcoalColor,
     fontWeight: FontWeight.w400,
   );

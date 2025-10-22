@@ -25,257 +25,261 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.whiteColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Image.asset(
-                  AppAssets.appLogo,
-                  width: 38,
-                  height: 32,
-                ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Image.asset(
+                AppAssets.appLogo,
+                width: 38,
+                height: 32,
               ),
-              const SizedBox(height: 16),
-              Text(
-                'Create a New Event',
-                style: AppTextStyle.createEventTitle,
-              ),
-              const SizedBox(height: 12),
-              Text(
-                'My event details',
-                style: AppTextStyle.createEventSubtitleStyle,
-              ),
-              const SizedBox(height: 16),
-              Container(
-                width: 100.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: AppTheme.lightGrayishColor,
-                    width: 1,
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'What’s the name of your event?',
-                      style: AppTextStyle.createEventQuestions,
-                      ),
-                      const SizedBox(height: 8),
-                      CustomTextField(
-                        hintText: "Event name ",
-                        controller: eventNameController,
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'What type of event are you planning?',
-                        style: AppTextStyle.createEventQuestions,
-                      ),
-                      const SizedBox(height: 8),
-                      CustomTextField(
-                        hintText: "Event Category",
-                        hintTextPadding: EdgeInsets.only(left: 90), // Adds 10px left padding to hint text
-                        controller: eventCategoryController,
-                        suffixIcon: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: AppTheme.slateGreyColor,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Create a New Event',
+              style: AppTextStyle.createEventTitle,
+            ),
+            const SizedBox(height: 12),
+            Text(
+              'My event details',
+              style: AppTextStyle.createEventSubtitleStyle,
+            ),
+            const SizedBox(height: 16),
+
+            // Scrollable section starts here
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Container(
+                      width: 100.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: AppTheme.lightGrayishColor,
+                          width: 1,
                         ),
                       ),
-                      const SizedBox(height: 12),
-
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Where will your event be held?',
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'What’s the name of your event?',
                             style: AppTextStyle.createEventQuestions,
-                          ),
-                          Container(
-                            width: 67,
-                            height: 17,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
                             ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 14,
-                                  height: 14,
-
-                                  decoration: BoxDecoration(
-                                    color: AppTheme.ashGreyColor,
-                                    borderRadius: BorderRadius.circular(2),
-                                  ),
-                                ),
-                                const SizedBox(width: 5),
-                                Text(
-                                  'Not sure',
-                                style: AppTextStyle.NotSureStyle,
-                                )
-                              ],
-                            )
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: CustomTextField(
-                              hintText: "Country",
-                              controller: countryController,
-                              suffixIcon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: AppTheme.slateGreyColor,
-                              ),
+                            const SizedBox(height: 8),
+                            CustomTextField(
+                              hintText: "Event name ",
+                              controller: eventNameController,
                             ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: CustomTextField(
-                              hintText: "City",
-                              controller: cityController,
-                              suffixIcon: Icon(
-                                Icons.keyboard_arrow_down,
-                                color: AppTheme.slateGreyColor,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-
-                      // Date Section
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'When is your event taking place?',
-                            style: AppTextStyle.createEventQuestions,
-                          ),
-                          Container(
-                              width: 67,
-                              height: 17,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 14,
-                                    height: 14,
-
-                                    decoration: BoxDecoration(
-                                        color: AppTheme.ashGreyColor,
-                                      borderRadius: BorderRadius.circular(2),
-                                    ),
-                                  ),
-                                  SizedBox(width: 5),
-                                  Text(
-                                    'Not sure',
-                                    style: AppTextStyle.NotSureStyle,
-                                  )
-                                ],
-                              )
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      CustomTextField(
-                        hintText: "Date",
-                        controller: dateController,
-                        suffixIcon: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: AppTheme.slateGreyColor,
-                          size: 20,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Send me an automated reminder email 1 day before event',
+                            const SizedBox(height: 12),
+                            Text(
+                              'What type of event are you planning?',
                               style: AppTextStyle.createEventQuestions,
                             ),
-                          ),
-                          Container(
-                            width: 36,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: AppTheme.blueColor,
-                              borderRadius: BorderRadius.circular(12),
+                            const SizedBox(height: 8),
+                            CustomTextField(
+                              hintText: "Event Category",
+                              hintTextPadding: EdgeInsets.only(left: 90),
+                              controller: eventCategoryController,
+                              suffixIcon: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: AppTheme.slateGreyColor,
+                              ),
                             ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'Upload image',
-                        style: AppTextStyle.createEventQuestions,
-                      ),
-                      const SizedBox(height: 12),
+                            const SizedBox(height: 12),
 
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Where will your event be held?',
+                                  style: AppTextStyle.createEventQuestions,
+                                ),
+                                Container(
+                                    width: 67,
+                                    height: 17,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 14,
+                                          height: 14,
+                                          decoration: BoxDecoration(
+                                            color: AppTheme.ashGreyColor,
+                                            borderRadius: BorderRadius.circular(2),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          'Not sure',
+                                          style: AppTextStyle.NotSureStyle,
+                                        )
+                                      ],
+                                    )
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: CustomTextField(
+                                    hintText: "Country",
+                                    controller: countryController,
+                                    suffixIcon: Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: AppTheme.slateGreyColor,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: CustomTextField(
+                                    hintText: "City",
+                                    controller: cityController,
+                                    suffixIcon: Icon(
+                                      Icons.keyboard_arrow_down,
+                                      color: AppTheme.slateGreyColor,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
 
-                      DottedBorder(
-                        color: AppTheme.textfieldBorderColor,
-                        strokeWidth: 1,
-                        dashPattern: [5, 3],
-                        borderType: BorderType.RRect,
-                        radius: const Radius.circular(8),
-                        child: Container(
-                          height: 72,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                AppAssets.uploadCloudIcon,
-                                height: 24,
-                                width: 24,
+                            // Date Section
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'When is your event taking place?',
+                                  style: AppTextStyle.createEventQuestions,
+                                ),
+                                Container(
+                                    width: 67,
+                                    height: 17,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 14,
+                                          height: 14,
+                                          decoration: BoxDecoration(
+                                            color: AppTheme.ashGreyColor,
+                                            borderRadius: BorderRadius.circular(2),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          'Not sure',
+                                          style: AppTextStyle.NotSureStyle,
+                                        )
+                                      ],
+                                    )
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            CustomTextField(
+                              hintText: "Date",
+                              controller: dateController,
+                              suffixIcon: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: AppTheme.slateGreyColor,
+                                size: 20,
                               ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Upload',
-                                style: AppTextStyle.createEventUpload,
+                            ),
+                            const SizedBox(height: 12),
+
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Send me an automated reminder email 1 day before event',
+                                    style: AppTextStyle.createEventQuestions,
+                                  ),
+                                ),
+                                Container(
+                                  width: 36,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    color: AppTheme.blueColor,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                )
+                              ],
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              'Upload image',
+                              style: AppTextStyle.createEventQuestions,
+                            ),
+                            const SizedBox(height: 12),
+
+                            DottedBorder(
+                              color: AppTheme.textfieldBorderColor,
+                              strokeWidth: 1,
+                              dashPattern: [5, 3],
+                              borderType: BorderType.RRect,
+                              radius: const Radius.circular(8),
+                              child: Container(
+                                height: 72,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      AppAssets.uploadCloudIcon,
+                                      height: 24,
+                                      width: 24,
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      'Upload',
+                                      style: AppTextStyle.createEventUpload,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 24),
+
+                    CustomButton(
+                      Text: 'Create Event',
+                      width: double.infinity,
+                      height: 48,
+                      buttonColor: AppTheme.lightCyanColor,
+                      textColor: AppTheme.whiteColor,
+                      onTap: () {
+
+                      },
+                    ),
+                    const SizedBox(height: 98),
+                  ],
                 ),
               ),
-              const SizedBox(height: 24),
-
-
-              CustomButton(
-                Text: 'Create Event',
-                width: double.infinity,
-                height: 48,
-                buttonColor: AppTheme.lightCyanColor,
-                textColor: AppTheme.whiteColor,
-                onTap: () {
-
-                },
-              ),
-              const SizedBox(height: 98),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

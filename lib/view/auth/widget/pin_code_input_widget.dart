@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:eventori/AppTheme/widgets/app_theme.dart';
-import '../../../constants/app_text_style.dart';
 
 class PinCodeInputWidget extends StatefulWidget {
   final int length;

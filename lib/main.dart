@@ -1,5 +1,4 @@
 import 'package:eventori/routes/app_routes.dart';
-import 'package:eventori/view/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
