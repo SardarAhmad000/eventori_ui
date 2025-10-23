@@ -2,10 +2,9 @@ import 'package:curved_nav_bar/curved_bar/curved_action_bar.dart';
 import 'package:curved_nav_bar/fab_bar/fab_bottom_app_bar_item.dart';
 import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:eventori/constants/aap_assets.dart';
-import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
-
 import '../../AppTheme/widgets/app_theme.dart';
+import '../../constants/app_text_style.dart';
 import '../roles/customer/event/create_event_screen.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -70,12 +69,14 @@ class _NavBarScreenState extends State<NavBarScreen> {
         width: 18,
         height: 18,
         color: activeColor,
+        fit: BoxFit.contain,
       ),
       inActiveIcon: Image.asset(
         assetIcon,
         width: 18,
         height: 18,
         color: inActiveColor,
+        fit: BoxFit.contain,
       ),
       text: label,
       // textStyle: AppTextStyle.navBarText,
@@ -118,7 +119,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
         ),
         _buildNavBarItem(
           assetIcon: AppAssets.gridIcon,
-          label: 'Dashboar ',
+          label: 'Dashboard',
           activeColor: AppTheme.purplishColor,
           inActiveColor: AppTheme.blackColor,
         ),

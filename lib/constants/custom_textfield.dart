@@ -1,23 +1,25 @@
+//
 // import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
+//
 // import '../AppTheme/widgets/app_theme.dart';
 // import 'app_fonts.dart';
 //
-// /// Text Field
+// /// Custom Text Field Widget
 // class CustomTextField extends StatefulWidget {
 //   final String? hintText;
 //   final Widget? suffixIcon;
-//   // final String? prefixIcon;
 //   final Widget? prefixIcon;
 //   final bool? isObscure;
 //   final bool? isChangeErrorFont;
 //   final TextEditingController? controller;
 //   final TextInputType? keyboardType;
 //   final FormFieldValidator<String>? validator;
-//   final onChanged;
+//   final Function(String)? onChanged;
 //   final String? suffixText;
 //   final String? prefixText;
 //   final String? fieldName;
-//   final inputFormatters;
+//   final List<TextInputFormatter>? inputFormatters;
 //   final bool? enabled;
 //   final String? heading;
 //   final int? maxLines;
@@ -26,6 +28,9 @@
 //   final Color? hintTextColor;
 //   final Color? fieldBorderColor;
 //   final Color? fillColor;
+//   final Color? activeFillColor;      // New parameter
+//   final Color? inactiveFillColor;    // New parameter
+//   final Color? selectedFillColor;    // New parameter
 //   final Color? inputTextColor;
 //   final double? scale;
 //   final Function()? onTap;
@@ -34,6 +39,7 @@
 //   final FocusNode? focusNode;
 //   final void Function(String)? onFieldSubmitted;
 //   final TextAlign? textAlign;
+//   final EdgeInsetsGeometry? hintTextPadding;
 //
 //   const CustomTextField({
 //     super.key,
@@ -62,10 +68,14 @@
 //     this.fieldName,
 //     this.hintTextColor,
 //     this.fillColor,
+//     this.activeFillColor,      // New parameter
+//     this.inactiveFillColor,    // New parameter
+//     this.selectedFillColor,    // New parameter
 //     this.inputTextColor,
 //     this.fieldBorderColor,
 //     this.suffixIconColor,
 //     this.isEditProfileInfoScreen = false,
+//     this.hintTextPadding,
 //   });
 //
 //   @override
@@ -73,193 +83,197 @@
 // }
 //
 // class _CustomTextFieldState extends State<CustomTextField> {
-//   bool showPassword = false;
-//   late FocusNode _focusNode;
+//   FocusNode? _focusNode;
 //
 //   @override
 //   void initState() {
 //     super.initState();
 //     _focusNode = widget.focusNode ?? FocusNode();
-//     _focusNode.addListener(() {
-//       setState(() {}); // rebuild to reflect focus change
+//     _focusNode!.addListener(() {
+//       if (mounted) setState(() {});
 //     });
 //   }
 //
-//
 //   @override
 //   void dispose() {
-//     if (widget.focusNode == null) {
-//       _focusNode.dispose();
-//     }
+//     if (widget.focusNode == null) _focusNode?.dispose();
 //     super.dispose();
+//   }
+//
+//   EdgeInsetsGeometry _getContentPadding() {
+//     if (widget.prefixIcon == null) {
+//       return const EdgeInsets.only(left: 30, right: 20, top: 15, bottom: 15);
+//     }
+//
+//     const defaultPadding = EdgeInsets.symmetric(horizontal: 20, vertical: 15);
+//
+//     if (widget.hintTextPadding == null) {
+//       return defaultPadding;
+//     }
+//
+//     final hintPadding = widget.hintTextPadding!.resolve(TextDirection.ltr);
+//
+//     return EdgeInsets.symmetric(
+//       horizontal: 20 + hintPadding.left,
+//       vertical: 15,
+//     );
+//   }
+//
+//   Color _getFillColor() {
+//     // Check if field has focus (active/selected)
+//     if (_focusNode?.hasFocus == true) {
+//       return widget.activeFillColor ??
+//           widget.selectedFillColor ??
+//           widget.fillColor ??
+//           AppTheme.greyColor;
+//     }
+//
+//     // Check if field has text (selected state)
+//     if (widget.controller?.text.isNotEmpty == true) {
+//       return widget.selectedFillColor ??
+//           widget.fillColor ??
+//           AppTheme.greyColor;
+//     }
+//
+//     // Inactive state
+//     return widget.inactiveFillColor ??
+//         widget.fillColor ??
+//         AppTheme.greyColor;
 //   }
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return TextFormField(
-//       textAlign: widget.textAlign ?? TextAlign.start,
-//       onFieldSubmitted: widget.onFieldSubmitted,
-//       focusNode: _focusNode,
-//       readOnly: widget.enabled ?? false,
-//       keyboardType: widget.keyboardType,
-//       validator: widget.validator,
-//       maxLines: widget.maxLines ?? 1,
-//       onTap: widget.onTap,
-//       obscureText: widget.isObscure ?? false,
-//       obscuringCharacter: "*",
-//       controller: widget.controller,
-//       cursorColor:AppTheme.cyanColor,
-//       cursorErrorColor: AppTheme.cyanColor,
-//       onChanged: widget.onChanged,
-//       inputFormatters: widget.inputFormatters ?? [],
-//       autovalidateMode: AutovalidateMode.onUserInteraction,
-//       style: TextStyle(
-//         fontSize: 16,
-//         fontFamily: AppFonts.medium,
-//
-//
-//         color: widget.inputTextColor ?? AppTheme.darkpurpleColor,
-//
-//
+//     return Theme(
+//       data: Theme.of(context).copyWith(
+//         textSelectionTheme: TextSelectionThemeData(
+//           cursorColor: AppTheme.cyanColor,
+//           selectionColor: AppTheme.cyanColor,
+//           selectionHandleColor: AppTheme.cyanColor,
+//         ),
 //       ),
-//       decoration: InputDecoration(
-//         constraints: const BoxConstraints(minHeight: 48, minWidth: 90),
-//         fillColor: widget.fillColor ?? AppTheme.primaryColor,
-//         filled: true,
-//         suffixText: widget.suffixText ?? '',
-//         prefixText: widget.prefixText ?? '',
-//         prefixStyle: const TextStyle(
-//           color: Colors.black,
-//           fontWeight: FontWeight.bold,
-//           fontSize: 15,
-//         ),
-//         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-//         border: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8),
-//           borderSide: BorderSide(
-//             width: 1.3,
-//             color: widget.fieldBorderColor ??
-//                 AppTheme.textfieldBorderColor.withOpacity(.3),
-//           ),
-//         ),
-//         focusedBorder: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8),
-//           borderSide: BorderSide(
-//             width: 1.3,
-//             color: widget.fieldBorderColor ??
-//                 AppTheme.textfieldBorderColor.withOpacity(.3),
-//           ),
-//         ),
-//         enabledBorder: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8),
-//           borderSide: BorderSide(
-//             width: 1.3,
-//             color: widget.fieldBorderColor ??
-//                 AppTheme.textfieldBorderColor.withOpacity(.3),
-//           ),
-//         ),
-//         disabledBorder: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8),
-//           borderSide: BorderSide(
-//             width: 1.3,
-//             color: widget.fieldBorderColor ??
-//                 AppTheme.textfieldBorderColor.withOpacity(.3),
-//           ),
-//         ),
-//         errorBorder: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8),
-//           borderSide: BorderSide(
-//             color: widget.isEditProfileInfoScreen
-//                 ? AppTheme.textfieldBorderColor.withOpacity(.3)
-//                 : AppTheme.textfieldBorderColor.withOpacity(.3),
-//             width: 1.3,
-//           ),
-//         ),
-//         focusedErrorBorder: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8),
-//           borderSide: BorderSide(
-//             width: 1.3,
-//             color: widget.isEditProfileInfoScreen
-//                 ? AppTheme.darkpurpleColor
-//                 : AppTheme.darkpurpleColor,
-//           ),
-//         ),
-//         hintText: widget.hintText,
-//         errorStyle: TextStyle(
-//           fontSize: widget.isChangeErrorFont == true ? 8 : 12,
-//           color: Colors.red,
-//           fontWeight: FontWeight.bold,
-//         ),
-//         errorMaxLines: 3,
-//
-//         hintStyle: TextStyle(
-//           fontWeight: FontWeight.w400,
-//           fontSize: 14,
-//           fontFamily: AppFonts.medium,
-//           color: widget.hintTextColor ?? AppTheme.textGreyColor,
-//         ),
-//
-//         suffixIcon: widget.suffixIcon,
-//         suffixIconColor: widget.suffixIconColor ?? AppTheme.textGreyColor,
-//         prefixIcon: widget.prefixIcon == null
-//             ? const SizedBox()
-//             : Padding(
-//           padding: const EdgeInsets.only(left: 8, right: 8),
-//           child: SizedBox(
-//             width: 20,
-//             height: 20,
-//             child: widget.prefixIcon!,
-//           ),
-//         ),
-//
-//         // prefixIcon: widget.prefixIcon == null
-//         //     ? const Padding(
-//         //   padding: EdgeInsets.only(left: 20.0),
-//         //   child: SizedBox(),
-//         // )
-//         //     : Padding(
-//         //   padding: const EdgeInsets.only(left: 20.0, right: 10),
-//         //   child: SizedBox(
-//         //     width: 20,
-//         //     height: 20,
-//         //     child: Image.asset(
-//         //       widget.prefixIcon!,
-//         //       width: 18,
-//         //       height: 18,
-//         //       color: widget.prefixIconColor ?? AppTheme.blackColor,
-//         //       scale: widget.scale,
-//         //     ),
-//         //   ),
-//         // ),
-//         prefixIconConstraints: const BoxConstraints(
-//           maxHeight: 30,
-//           minHeight: 30,
-//         ),
-//         labelText: widget.fieldName,
-//         labelStyle: TextStyle(
+//       child: TextFormField(
+//         textAlign: widget.textAlign ?? TextAlign.start,
+//         onFieldSubmitted: widget.onFieldSubmitted,
+//         focusNode: _focusNode,
+//         readOnly: widget.enabled ?? false,
+//         keyboardType: widget.keyboardType,
+//         validator: widget.validator,
+//         maxLines: widget.maxLines ?? 1,
+//         onTap: widget.onTap,
+//         obscureText: widget.isObscure ?? false,
+//         obscuringCharacter: "*",
+//         controller: widget.controller,
+//         cursorColor: AppTheme.cyanColor,
+//         cursorErrorColor: AppTheme.cyanColor,
+//         cursorWidth: 1.3,
+//         onChanged: widget.onChanged,
+//         inputFormatters: widget.inputFormatters ?? [],
+//         autovalidateMode: AutovalidateMode.onUserInteraction,
+//         style: TextStyle(
 //           fontSize: 16,
-//           fontWeight: FontWeight.w400,
-//           color: widget.hintTextColor ?? AppTheme.textGreyColor,
 //           fontFamily: AppFonts.medium,
+//           color: widget.inputTextColor ?? AppTheme.darkpurpleColor,
 //         ),
-//         floatingLabelBehavior: FloatingLabelBehavior.always,
-//
-//         // focusedBorder: OutlineInputBorder(
-//         //   borderRadius: BorderRadius.circular(8),
-//         //   borderSide: BorderSide(
-//         //     width: 1.8,
-//         //     color: _focusNode.hasFocus
-//         //         ? AppTheme.cyanColor
-//         //         : (widget.fieldBorderColor ??
-//         //         AppTheme.textfieldBorderColor.withOpacity(.3)),
-//         //   ),
-//         // ),
-//
+//         decoration: InputDecoration(
+//           constraints: const BoxConstraints(minHeight: 48, minWidth: 90),
+//           fillColor: _getFillColor(),
+//           filled: true,
+//           suffixText: widget.suffixText ?? '',
+//           prefixText: widget.prefixText ?? '',
+//           prefixStyle: const TextStyle(
+//             color: Colors.black,
+//             fontWeight: FontWeight.bold,
+//             fontSize: 15,
+//           ),
+//           contentPadding: _getContentPadding(),
+//           border: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(8),
+//             borderSide: BorderSide(
+//               width: 1.3,
+//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+//             ),
+//           ),
+//           focusedBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(8),
+//             borderSide: BorderSide(
+//               width: 1.8,
+//               color: _focusNode?.hasFocus == true
+//                   ? AppTheme.cyanColor
+//                   : (widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3)),
+//             ),
+//           ),
+//           enabledBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(8),
+//             borderSide: BorderSide(
+//               width: 1.3,
+//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+//             ),
+//           ),
+//           disabledBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(8),
+//             borderSide: BorderSide(
+//               width: 1.3,
+//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+//             ),
+//           ),
+//           errorBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(8),
+//             borderSide: BorderSide(
+//               color: AppTheme.textfieldBorderColor.withOpacity(.3),
+//               width: 1.3,
+//             ),
+//           ),
+//           focusedErrorBorder: OutlineInputBorder(
+//             borderRadius: BorderRadius.circular(8),
+//             borderSide: BorderSide(
+//               width: 1.3,
+//               color: AppTheme.cyanColor,
+//             ),
+//           ),
+//           hintText: widget.hintText,
+//           errorStyle: TextStyle(
+//             fontSize: widget.isChangeErrorFont == true ? 8 : 12,
+//             color: AppTheme.redColor,
+//             fontWeight: FontWeight.bold,
+//           ),
+//           errorMaxLines: 3,
+//           hintStyle: TextStyle(
+//             fontWeight: FontWeight.w400,
+//             fontSize: 14,
+//             fontFamily: AppFonts.medium,
+//             color: widget.hintTextColor ?? AppTheme.silverColor,
+//           ),
+//           suffixIcon: widget.suffixIcon,
+//           suffixIconColor: widget.suffixIconColor ?? AppTheme.silverColor,
+//           prefixIcon: widget.prefixIcon == null
+//               ? const Padding(
+//             padding: EdgeInsets.only(left: 10),
+//             child: SizedBox(width: 0, height: 0),
+//           )
+//               : Padding(
+//             padding: const EdgeInsets.only(left: 8, right: 8),
+//             child: SizedBox(
+//               width: 20,
+//               height: 20,
+//               child: widget.prefixIcon!,
+//             ),
+//           ),
+//           prefixIconConstraints: const BoxConstraints(maxHeight: 30, minHeight: 30),
+//           labelText: widget.fieldName,
+//           labelStyle: TextStyle(
+//             fontSize: 16,
+//             fontWeight: FontWeight.w400,
+//             color: _focusNode?.hasFocus == true
+//                 ? AppTheme.cyanColor
+//                 : (widget.hintTextColor ?? AppTheme.silverColor),
+//             fontFamily: AppFonts.medium,
+//           ),
+//           floatingLabelBehavior: FloatingLabelBehavior.always,
+//         ),
 //       ),
 //     );
 //   }
 // }
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -289,6 +303,12 @@ class CustomTextField extends StatefulWidget {
   final Color? hintTextColor;
   final Color? fieldBorderColor;
   final Color? fillColor;
+
+  // Defaulted to white
+  final Color? activeFillColor;
+  final Color? inactiveFillColor;
+  final Color? selectedFillColor;
+
   final Color? inputTextColor;
   final double? scale;
   final Function()? onTap;
@@ -297,7 +317,7 @@ class CustomTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final void Function(String)? onFieldSubmitted;
   final TextAlign? textAlign;
-  final EdgeInsetsGeometry? hintTextPadding; // New parameter
+  final EdgeInsetsGeometry? hintTextPadding;
 
   const CustomTextField({
     super.key,
@@ -326,11 +346,14 @@ class CustomTextField extends StatefulWidget {
     this.fieldName,
     this.hintTextColor,
     this.fillColor,
+    this.activeFillColor = Colors.white,
+    this.inactiveFillColor = Colors.white,
+    this.selectedFillColor = Colors.white,
     this.inputTextColor,
     this.fieldBorderColor,
     this.suffixIconColor,
     this.isEditProfileInfoScreen = false,
-    this.hintTextPadding, // New parameter
+    this.hintTextPadding,
   });
 
   @override
@@ -356,7 +379,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
   }
 
   EdgeInsetsGeometry _getContentPadding() {
-    // Add left padding by default when no prefix icon is present
     if (widget.prefixIcon == null) {
       return const EdgeInsets.only(left: 30, right: 20, top: 15, bottom: 15);
     }
@@ -367,13 +389,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
       return defaultPadding;
     }
 
-    // Extract padding values from hintTextPadding
     final hintPadding = widget.hintTextPadding!.resolve(TextDirection.ltr);
 
     return EdgeInsets.symmetric(
       horizontal: 20 + hintPadding.left,
       vertical: 15,
     );
+  }
+
+  Color _getFillColor() {
+    // Check if field has focus (active/selected)
+    if (_focusNode?.hasFocus == true) {
+      return widget.activeFillColor ?? widget.selectedFillColor ?? widget.fillColor ?? AppTheme.greyColor;
+    }
+
+    // Check if field has text (selected state)
+    if (widget.controller?.text.isNotEmpty == true) {
+      return widget.selectedFillColor ?? widget.fillColor ?? AppTheme.greyColor;
+    }
+
+    // Inactive state
+    return widget.inactiveFillColor ?? widget.fillColor ?? AppTheme.greyColor;
   }
 
   @override
@@ -411,7 +447,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         decoration: InputDecoration(
           constraints: const BoxConstraints(minHeight: 48, minWidth: 90),
-          fillColor: widget.fillColor ?? AppTheme.greyColor,
+          fillColor: _getFillColor(),
           filled: true,
           suffixText: widget.suffixText ?? '',
           prefixText: widget.prefixText ?? '',
@@ -460,7 +496,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
           focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(
+            borderSide:  BorderSide(
               width: 1.3,
               color: AppTheme.cyanColor,
             ),
@@ -482,17 +518,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
           suffixIconColor: widget.suffixIconColor ?? AppTheme.silverColor,
           prefixIcon: widget.prefixIcon == null
               ? const Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: SizedBox(width: 0, height: 0),
-                )
+            padding: EdgeInsets.only(left: 10),
+            child: SizedBox(width: 0, height: 0),
+          )
               : Padding(
-                  padding: const EdgeInsets.only(left: 8, right: 8),
-                  child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: widget.prefixIcon!,
-                  ),
-                ),
+            padding: const EdgeInsets.only(left: 8, right: 8),
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: widget.prefixIcon!,
+            ),
+          ),
           prefixIconConstraints: const BoxConstraints(maxHeight: 30, minHeight: 30),
           labelText: widget.fieldName,
           labelStyle: TextStyle(
