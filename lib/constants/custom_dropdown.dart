@@ -62,21 +62,21 @@ class CustomDropdownField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             width: 1.3,
-            color: fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+            color: fieldBorderColor ?? AppTheme.textfieldBorderColor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             width: 1.3,
-            color: fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+            color: fieldBorderColor ?? AppTheme.textfieldBorderColor,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             width: 1.3,
-            color: fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+            color: fieldBorderColor ?? AppTheme.textfieldBorderColor,
           ),
         ),
         errorBorder: OutlineInputBorder(
@@ -127,7 +127,7 @@ class CustomDropdownField extends StatelessWidget {
       ),
       validator: validator,
       buttonStyleData: ButtonStyleData(
-        height: 27, // Set your desired dropdown field height here
+        height: 27,
         padding: const EdgeInsets.symmetric(horizontal: 0),
       ),
     );

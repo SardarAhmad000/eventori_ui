@@ -4,7 +4,6 @@ import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:flutter/material.dart';
 import '../../AppTheme/widgets/app_theme.dart';
-import '../../constants/app_text_style.dart';
 import '../roles/customer/event/create_event_screen.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -66,20 +65,19 @@ class _NavBarScreenState extends State<NavBarScreen> {
     return FABBottomAppBarItem(
       activeIcon: Image.asset(
         assetIcon,
-        width: 18,
+        width: 16,
         height: 18,
         color: activeColor,
         fit: BoxFit.contain,
       ),
       inActiveIcon: Image.asset(
         assetIcon,
-        width: 18,
+        width: 16,
         height: 18,
         color: inActiveColor,
         fit: BoxFit.contain,
       ),
       text: label,
-      // textStyle: AppTextStyle.navBarText,
     );
   }
 

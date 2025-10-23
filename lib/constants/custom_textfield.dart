@@ -461,7 +461,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.3,
-              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
@@ -470,27 +470,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
               width: 1.8,
               color: _focusNode?.hasFocus == true
                   ? AppTheme.cyanColor
-                  : (widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3)),
+                  : (widget.fieldBorderColor ?? AppTheme.textfieldBorderColor),
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.3,
-              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
             ),
           ),
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
               width: 1.3,
-              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+              color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
             ),
           ),
           errorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(
-              color: AppTheme.textfieldBorderColor.withOpacity(.3),
+              color: AppTheme.textfieldBorderColor,
               width: 1.3,
             ),
           ),

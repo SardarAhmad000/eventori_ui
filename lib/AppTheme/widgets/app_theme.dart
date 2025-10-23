@@ -28,10 +28,6 @@ class AppTheme{
   static Color uploadContainerColor=Color(0xFFD4DDEA);
   static Color dividerColor=Color(0xFFE3E8EF);
 
-
-
-
-
   //TextField
   static Color textfieldBorderColor=Color(0xFFEEF2F6);
 
