@@ -106,12 +106,12 @@ class CustomDropdownField extends StatelessWidget {
             fontSize:fontSize?? 14,  fontFamily: AppFonts.medium,color: hintTextColor??AppTheme.silverColor),
       ),
       style: TextStyle(
-        fontSize:fontSize?? 16,
+        fontSize:fontSize?? 14,
         fontFamily: "medium",
         color: inputTextColor ?? AppTheme.silverColor,
       ),
       iconStyleData: IconStyleData(
-        icon:showSuffixIcon==false?Container(): Icon(Icons.keyboard_arrow_down, size: 30, color: dropdownIconColor ?? AppTheme.slateGreyColor),
+        icon:showSuffixIcon==false?Container(): Icon(Icons.keyboard_arrow_down, size: 20, color: dropdownIconColor ?? AppTheme.slateGreyColor),
         iconSize: 30,
         iconEnabledColor: dropdownIconColor ?? AppTheme.slateGreyColor,
         iconDisabledColor: Colors.grey,

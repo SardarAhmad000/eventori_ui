@@ -90,7 +90,7 @@ class AppTextStyle {
 
   static TextStyle SubtitleStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.textSubTitleColor,
+    color: AppTheme.stormyIndigoColor,
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
@@ -197,14 +197,14 @@ class AppTextStyle {
 
   static TextStyle myEventmonth = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.myEventMonth,
+    color: AppTheme.paleGrayBlueColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
   static TextStyle myEventName = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.myEventNameColor,
+    color: AppTheme.paperWhiteColor,
     fontSize: 20,
     fontWeight: FontWeight.w600,
   );
@@ -217,4 +217,79 @@ class AppTextStyle {
     color: AppTheme.charcoalColor,
     fontWeight: FontWeight.w400,
   );
+
+  static TextStyle dailogeTitle = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
+    color: AppTheme.blackColor,
+  );
+
+  static TextStyle  dailogeSubTitle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.blackColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle  homeWelcomeTitleStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.ashBlueColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle  welcomeBackStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.greyColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle homeAppBarTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.ashBlueColor,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle myEventsTitle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.darkpurpleColor,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle viewAllText= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.brightCyanColor,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle newsEventTitle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.whiteColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle newEventSubTitle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.greyColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle eventTitle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.blackColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle eventSubTitle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.slateGreyColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+
 }

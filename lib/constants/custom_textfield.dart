@@ -28,9 +28,12 @@
 //   final Color? hintTextColor;
 //   final Color? fieldBorderColor;
 //   final Color? fillColor;
-//   final Color? activeFillColor;      // New parameter
-//   final Color? inactiveFillColor;    // New parameter
-//   final Color? selectedFillColor;    // New parameter
+//
+//   // Defaulted to white
+//   final Color? activeFillColor;
+//   final Color? inactiveFillColor;
+//   final Color? selectedFillColor;
+//
 //   final Color? inputTextColor;
 //   final double? scale;
 //   final Function()? onTap;
@@ -68,9 +71,9 @@
 //     this.fieldName,
 //     this.hintTextColor,
 //     this.fillColor,
-//     this.activeFillColor,      // New parameter
-//     this.inactiveFillColor,    // New parameter
-//     this.selectedFillColor,    // New parameter
+//     this.activeFillColor = Colors.white,
+//     this.inactiveFillColor = Colors.white,
+//     this.selectedFillColor = Colors.white,
 //     this.inputTextColor,
 //     this.fieldBorderColor,
 //     this.suffixIconColor,
@@ -122,23 +125,16 @@
 //   Color _getFillColor() {
 //     // Check if field has focus (active/selected)
 //     if (_focusNode?.hasFocus == true) {
-//       return widget.activeFillColor ??
-//           widget.selectedFillColor ??
-//           widget.fillColor ??
-//           AppTheme.greyColor;
+//       return widget.activeFillColor ?? widget.selectedFillColor ?? widget.fillColor ?? AppTheme.greyColor;
 //     }
 //
 //     // Check if field has text (selected state)
 //     if (widget.controller?.text.isNotEmpty == true) {
-//       return widget.selectedFillColor ??
-//           widget.fillColor ??
-//           AppTheme.greyColor;
+//       return widget.selectedFillColor ?? widget.fillColor ?? AppTheme.greyColor;
 //     }
 //
 //     // Inactive state
-//     return widget.inactiveFillColor ??
-//         widget.fillColor ??
-//         AppTheme.greyColor;
+//     return widget.inactiveFillColor ?? widget.fillColor ?? AppTheme.greyColor;
 //   }
 //
 //   @override
@@ -190,7 +186,7 @@
 //             borderRadius: BorderRadius.circular(8),
 //             borderSide: BorderSide(
 //               width: 1.3,
-//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
 //             ),
 //           ),
 //           focusedBorder: OutlineInputBorder(
@@ -199,33 +195,33 @@
 //               width: 1.8,
 //               color: _focusNode?.hasFocus == true
 //                   ? AppTheme.cyanColor
-//                   : (widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3)),
+//                   : (widget.fieldBorderColor ?? AppTheme.textfieldBorderColor),
 //             ),
 //           ),
 //           enabledBorder: OutlineInputBorder(
 //             borderRadius: BorderRadius.circular(8),
 //             borderSide: BorderSide(
 //               width: 1.3,
-//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
 //             ),
 //           ),
 //           disabledBorder: OutlineInputBorder(
 //             borderRadius: BorderRadius.circular(8),
 //             borderSide: BorderSide(
 //               width: 1.3,
-//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor.withOpacity(.3),
+//               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
 //             ),
 //           ),
 //           errorBorder: OutlineInputBorder(
 //             borderRadius: BorderRadius.circular(8),
 //             borderSide: BorderSide(
-//               color: AppTheme.textfieldBorderColor.withOpacity(.3),
+//               color: AppTheme.textfieldBorderColor,
 //               width: 1.3,
 //             ),
 //           ),
 //           focusedErrorBorder: OutlineInputBorder(
 //             borderRadius: BorderRadius.circular(8),
-//             borderSide: BorderSide(
+//             borderSide:  BorderSide(
 //               width: 1.3,
 //               color: AppTheme.cyanColor,
 //             ),
@@ -319,6 +315,9 @@ class CustomTextField extends StatefulWidget {
   final TextAlign? textAlign;
   final EdgeInsetsGeometry? hintTextPadding;
 
+  // NEW: Border radius parameter
+  final double? borderRadius;
+
   const CustomTextField({
     super.key,
     this.isChangeErrorFont,
@@ -354,6 +353,7 @@ class CustomTextField extends StatefulWidget {
     this.suffixIconColor,
     this.isEditProfileInfoScreen = false,
     this.hintTextPadding,
+    this.borderRadius = 8.0, // Default value is 8
   });
 
   @override
@@ -414,6 +414,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
+    // Use the borderRadius parameter
+    final radius = widget.borderRadius ?? 8.0;
+
     return Theme(
       data: Theme.of(context).copyWith(
         textSelectionTheme: TextSelectionThemeData(
@@ -458,14 +461,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
           ),
           contentPadding: _getContentPadding(),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               width: 1.3,
               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               width: 1.8,
               color: _focusNode?.hasFocus == true
@@ -474,29 +477,29 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               width: 1.3,
               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               width: 1.3,
               color: widget.fieldBorderColor ?? AppTheme.textfieldBorderColor,
             ),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               color: AppTheme.textfieldBorderColor,
               width: 1.3,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide:  BorderSide(
+            borderRadius: BorderRadius.circular(radius),
+            borderSide: BorderSide(
               width: 1.3,
               color: AppTheme.cyanColor,
             ),

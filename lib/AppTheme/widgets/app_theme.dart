@@ -20,11 +20,18 @@ class AppTheme{
   static Color ashGreyColor =Color(0xFFD9D9D9);
   static Color blueColor =Color(0xFF335CFF);
   static Color charcoalColor =Color(0xFF1E1E1E);
+  static Color greenColor =Color(0xFF16B364);
+  static Color stormyIndigoColor=Color(0xFF304363);
+  static Color ashBlueColor=Color(0xFFD0D5DD);
+  static Color paleGrayBlueColor=Color(0xFFF2F4F7);
+  static Color glacierGrayColor=Color(0xFFEAECF0);
+  static Color paperWhiteColor=Color(0xFFF2F5F8);
+  static Color brightCyanColor=Color(0xFF14D5FF);
 
 
 //Upload Photo Screen
 
-  static Color textSubTitleColor=Color(0xFF304363);
+
   static Color uploadContainerColor=Color(0xFFD4DDEA);
   static Color dividerColor=Color(0xFFE3E8EF);
 
@@ -37,7 +44,7 @@ class AppTheme{
 
 
   //Forgot Password
-  static Color progressIndicatorColor=Color(0xFFD0D5DD);
+
 
 
   //Bottom Navigation Bar
@@ -49,8 +56,8 @@ class AppTheme{
   static Color createEventSubTitle=Color(0xFF141C29);
 
   //MY EVENT SCREEN
-  static Color myEventMonth=Color(0xFFF2F4F7);
-  static Color myEventNameColor=Color(0xFFF2F5F8);
+
+
 
 
 }

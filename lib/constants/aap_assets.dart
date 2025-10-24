@@ -17,12 +17,21 @@ class AppAssets{
   static String gridIcon= 'assets/app_icons/grid_icon.png';
   static String plusIcon= 'assets/app_icons/plus_icon.png';
   static String uploadCloudIcon= 'assets/app_icons/upload_cloud_icon.png';
+  static String vectorIcon= 'assets/app_icons/vector_icon.png';
+  static String bellIcon= 'assets/app_icons/bell_icon.png';
+  static String heartIcon= 'assets/app_icons/heart_icon.png';
+  static String settingsIcon= 'assets/app_icons/settings_icon.png';
+  static String filterIcon= 'assets/app_icons/filter_icon.png';
+
 
 
   //Images
 
   static String eventImage1 = 'assets/app_images/event_1.jpg';
   static String eventImage2 = 'assets/app_images/event_2.jpg';
+  static String myEventImage = 'assets/app_images/my_event_image.png';
+  static String vendor1Image = 'assets/app_images/vendor1.png';
+  static String vendor2Image = 'assets/app_images/vendor2.png';
 
 
 

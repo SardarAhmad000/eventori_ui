@@ -164,7 +164,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     borderRadius: BorderRadius.circular(4),
                     child: LinearProgressIndicator(
                       value: authController.getPasswordStrength(),
-                      backgroundColor: AppTheme.progressIndicatorColor,
+                      backgroundColor: AppTheme.ashBlueColor,
                       valueColor: AlwaysStoppedAnimation<Color>(
                         authController.getPasswordStrengthColor(),
                       ),

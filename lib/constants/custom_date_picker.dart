@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../AppTheme/widgets/app_theme.dart';
+import 'app_fonts.dart';
 
 class CustomDatePicker {
   // Default date format for the app
@@ -11,7 +12,6 @@ class CustomDatePicker {
   static String longDateFormat = 'MMMM dd, yyyy';
   static String shortDateFormat = 'dd-MM-yy';
   static String apiDateFormat = 'yyyy-MM-dd';
-
 
   static Future<String?> showCustomDatePicker({
     required BuildContext context,
@@ -110,75 +110,209 @@ class CustomDatePicker {
 }
 
 /// Custom Date TextField Widget for easy integration
-class CustomDateTextField extends StatelessWidget {
+class CustomDateTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final Color? fieldBorderColor;
+  final Color? fillColor;
+  final Color? activeFillColor;
+  final Color? inactiveFillColor;
+  final Color? selectedFillColor;
+  final Color? hintTextColor;
+  final Color? inputTextColor;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final DateTime? initialDate;
   final DateTime? firstDate;
   final DateTime? lastDate;
   final String? dateFormat;
   final Color? primaryColor;
   final ValueChanged<String?>? onDateSelected;
+  final FormFieldValidator<String>? validator;
+  final bool enabled;
 
   const CustomDateTextField({
     super.key,
     required this.controller,
     this.hintText = 'Select Date',
     this.fieldBorderColor,
+    this.fillColor,
+    this.activeFillColor,
+    this.inactiveFillColor,
+    this.selectedFillColor,
+    this.hintTextColor,
+    this.inputTextColor,
     this.suffixIcon,
+    this.prefixIcon,
     this.initialDate,
     this.firstDate,
     this.lastDate,
     this.dateFormat,
     this.primaryColor,
     this.onDateSelected,
+    this.validator,
+    this.enabled = true,
   });
 
   @override
+  State<CustomDateTextField> createState() => _CustomDateTextFieldState();
+}
+
+class _CustomDateTextFieldState extends State<CustomDateTextField> {
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _focusNode.addListener(() {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  Color _getFillColor() {
+    // Check if field has focus (active/selected)
+    if (_focusNode.hasFocus) {
+      return widget.activeFillColor ??
+          widget.selectedFillColor ??
+          widget.fillColor ??
+          AppTheme.whiteColor;
+    }
+
+    // Check if field has text (selected state)
+    if (widget.controller.text.isNotEmpty) {
+      return widget.selectedFillColor ??
+          widget.fillColor ??
+          AppTheme.whiteColor;
+    }
+
+    // Inactive state
+    return widget.inactiveFillColor ??
+        widget.fillColor ??
+        AppTheme.whiteColor;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
+    return TextFormField(
+      controller: widget.controller,
+      focusNode: _focusNode,
       readOnly: true,
+      enabled: widget.enabled,
+      validator: widget.validator,
+      style: TextStyle(
+        fontSize: 16,
+        fontFamily: AppFonts.medium,
+        color: widget.inputTextColor ?? AppTheme.darkpurpleColor,
+      ),
       decoration: InputDecoration(
-        hintText: hintText,
-        suffixIcon: suffixIcon ?? Icon(
-          Icons.calendar_today,
-          color: AppTheme.slateGreyColor,
-          size: 20,
+        constraints: const BoxConstraints(minHeight: 48, minWidth: 90),
+        fillColor: _getFillColor(),
+        filled: true,
+        hintText: widget.hintText,
+        hintStyle: TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 16,
+          fontFamily: AppFonts.medium,
+          color: widget.hintTextColor ?? AppTheme.silverColor,
+        ),
+        suffixIcon: widget.suffixIcon ??
+            Icon(
+              Icons.calendar_today,
+              color: AppTheme.silverColor,
+              size: 20,
+            ),
+        prefixIcon: widget.prefixIcon == null
+            ? null
+            : Padding(
+          padding: const EdgeInsets.only(left: 12, right: 8),
+          child: widget.prefixIcon!,
+        ),
+        prefixIconConstraints: const BoxConstraints(
+          maxHeight: 24,
+          minHeight: 24,
+          maxWidth: 44,
+          minWidth: 44,
+        ),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            width: 1.3,
+            color: widget.fieldBorderColor ??
+                AppTheme.textfieldBorderColor.withOpacity(.3),
+          ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color: (fieldBorderColor ?? AppTheme.textfieldBorderColor).withOpacity(0.3),
+            color: widget.fieldBorderColor ??
+                AppTheme.textfieldBorderColor.withOpacity(0.3),
             width: 1.3,
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
-            color: fieldBorderColor ?? AppTheme.textfieldBorderColor,
+            width: 1.8,
+            color: _focusNode.hasFocus
+                ? AppTheme.cyanColor
+                : (widget.fieldBorderColor ??
+                AppTheme.textfieldBorderColor.withOpacity(.3)),
+          ),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            width: 1.3,
+            color: widget.fieldBorderColor ??
+                AppTheme.textfieldBorderColor.withOpacity(.3),
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            color: AppTheme.textfieldBorderColor.withOpacity(.3),
             width: 1.3,
           ),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            width: 1.3,
+            color: AppTheme.cyanColor,
+          ),
+        ),
+        errorStyle: TextStyle(
+          fontSize: 12,
+          color: AppTheme.redColor,
+          fontWeight: FontWeight.bold,
+        ),
+        errorMaxLines: 3,
       ),
-      onTap: () async {
+      onTap: widget.enabled
+          ? () async {
         final selectedDate = await CustomDatePicker.showCustomDatePicker(
           context: context,
-          initialDate: initialDate,
-          firstDate: firstDate,
-          lastDate: lastDate,
-          dateFormat: dateFormat,
-          primaryColor: primaryColor,
+          initialDate: widget.initialDate,
+          firstDate: widget.firstDate,
+          lastDate: widget.lastDate,
+          dateFormat: widget.dateFormat,
+          primaryColor: widget.primaryColor,
         );
 
         if (selectedDate != null) {
-          controller.text = selectedDate;
-          onDateSelected?.call(selectedDate);
+          widget.controller.text = selectedDate;
+          widget.onDateSelected?.call(selectedDate);
         }
-      },
+      }
+          : null,
     );
   }
 }

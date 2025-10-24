@@ -71,6 +71,78 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     });
   }
 
+  // Show success dialog
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          backgroundColor: AppTheme.whiteColor,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Success Icon
+                Container(
+                    width: 40,
+                    height: 40,
+                    decoration:  BoxDecoration(
+                      color: AppTheme.greenColor,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset(
+                          AppAssets.vectorIcon,
+                          fit: BoxFit.contain
+                      ),
+                    )
+                ),
+
+                SizedBox(height: 3.h),
+
+                // Title
+                Text(
+                    'Event created\nsuccessfully',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.dailogeTitle
+                ),
+
+                SizedBox(height: 1.5.h),
+                // Subtitle
+                Text(
+                  'Event created — let the planning begin.',
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.dailogeSubTitle,
+                ),
+
+                SizedBox(height: 3.h),
+
+                // Next Button
+                CustomButton(
+                  Text: 'Next',
+                  width: double.infinity,
+                  borderColor: AppTheme.greenColor,
+                  height: 48,
+                  buttonColor: AppTheme.greenColor,
+                  textColor: AppTheme.whiteColor,
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,7 +196,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           children: [
                             Text(
                               'What’s the name of your event?',
-                            style: AppTextStyle.createEventQuestions,
+                              style: AppTextStyle.createEventQuestions,
                             ),
 
                             const SizedBox(height: 8),
@@ -238,7 +310,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
-                                          Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 24),
+                                          Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 20),
                                         ],
                                       ),
                                     ),
@@ -286,7 +358,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                             ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
-                                          Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 24),
+                                          Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 20),
                                         ],
                                       ),
                                     ),
@@ -329,16 +401,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               ],
                             ),
                             const SizedBox(height: 8),
-                            // CustomTextField(
+
                             CustomDateTextField(
                               controller: eventdateController,
                               hintText: "Date",
                               fieldBorderColor: AppTheme.textfieldBorderColor,
                               suffixIcon: Icon(
-                                    Icons.keyboard_arrow_down,
-                                    color: AppTheme.slateGreyColor,
-                                    size: 20,
-                                  ),
+                                Icons.keyboard_arrow_down,
+                                color: AppTheme.slateGreyColor,
+                                size: 20 ,
+                              ),
                             ),
                             // CustomTextField(
                             //   fieldBorderColor: AppTheme.textfieldBorderColor,
@@ -377,7 +449,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             //     size: 20,
                             //   ),
                             // ),
-
+                            // //
 
                             const SizedBox(height: 12),
 
@@ -461,6 +533,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                         print('Country: $selectedCountry');
                         print('City: $selectedCity');
                         print('Date: ${eventdateController.text}');
+                        _showSuccessDialog();
                       },
                     ),
                     const SizedBox(height: 98),

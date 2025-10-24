@@ -1,11 +1,8 @@
-import 'package:intl/intl.dart';
-
 class CustomValidator {
   static String? email(String? value) {
     if (value!.isEmpty) {
       return ' Email address is required';
-    } else if (!RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+    } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value)) {
       return ' Please enter valid email';
     }
@@ -39,12 +36,19 @@ class CustomValidator {
     }
     return null;
   }
-  static String? venue(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Enter venue';
+
+  static String? eventCategory(String? value) {
+    if (value!.isEmpty) {
+      return ' Enter event Category';
     }
     return null;
   }
+  // static String? venue(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return 'Enter venue';
+  //   }
+  //   return null;
+  // }
 
   static String? reason(String? value) {
     if (value == null || value.isEmpty) {
@@ -67,11 +71,9 @@ class CustomValidator {
     return null;
   }
 
-
-
-  static String? dateAndTime(String? value) {
+  static String? dateEvent(String? value) {
     if (value!.isEmpty) {
-      return ' Please select date and Time';
+      return ' Please select date ';
     }
     return null;
   }
@@ -83,9 +85,9 @@ class CustomValidator {
     return null;
   }
 
-  static String? gameData(String? value) {
+  static String? dateValidtor(String? value) {
     if (value == null || value.isEmpty) {
-      return "Please select game date";
+      return "Please select date";
     }
     return null;
   }
@@ -111,7 +113,6 @@ class CustomValidator {
     return null;
   }
 
-
   static String? attendee(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please select attendee';
@@ -133,16 +134,12 @@ class CustomValidator {
     return null;
   }
 
-
   static String? score(String? value) {
     if (value == null || value.isEmpty) {
       return 'Add score';
     }
     return null;
   }
-
-
-
 
   static String? location(String? value) {
     if (value!.isEmpty) {
@@ -153,7 +150,7 @@ class CustomValidator {
 
   static String? group(String? value) {
     if (value!.isEmpty) {
-      return ' Enter group name';
+      return ' Enter City name';
     }
     return null;
   }
@@ -183,7 +180,6 @@ class CustomValidator {
 
     return null;
   }
-
 
   static String? oldPassword(String? value) {
     if (value!.isEmpty) {
@@ -218,7 +214,7 @@ class CustomValidator {
     if (value!.isEmpty) {
       return 'Please enter otp';
     }
-    if (value.length<4) {
+    if (value.length < 4) {
       return 'Please enter valid otp';
     }
     return null;
@@ -230,6 +226,7 @@ class CustomValidator {
     }
     return null;
   }
+
   static String? isEmptyFirstName(String? value) {
     // Check if the value is empty
     if (value!.isEmpty) {
@@ -238,12 +235,11 @@ class CustomValidator {
 
     // Check if the value contains any digits
     if (RegExp(r'[0-9]').hasMatch(value)) {
-      return "First name cannot contain numbers";  // Add this message in Languages
+      return "First name cannot contain numbers"; // Add this message in Languages
     }
 
     return null;
   }
-
 
   static String? isEmptySubscriptionCode(String? value) {
     if (value!.isEmpty) {
@@ -251,6 +247,7 @@ class CustomValidator {
     }
     return null;
   }
+
   static String? selectGenderRange(String? value) {
     // Ensure value is not null or empty
     if (value == null || value.isEmpty) {
@@ -275,7 +272,4 @@ class CustomValidator {
     }
     return null;
   }
-
-
-
 }

@@ -13,5 +13,6 @@ abstract class AppRoutes {
   static const createEventScreen = '/createEventScreen';
   // static const createEventScreen = '/createEventScreen';
   static const myEventScreeen = '/myEventScreeen';
+  static const homeScreen = '/homeScreen';
 
 }
