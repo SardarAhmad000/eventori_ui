@@ -1,11 +1,15 @@
 import 'package:eventori/constants/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../../AppTheme/widgets/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_fonts.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../constants/custom_button.dart';
 import '../../../../../constants/custom_card.dart';
+import '../../../../../constants/custom_featured_event_card.dart';
+import '../../../../../constants/custom_forum_highlight_card.dart';
+import '../../../../../routes/app_routes.dart';
 import '../widgets/create_event_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -152,6 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: 'My Events',
                             subtitle: 'View and manage your past and upcoming events',
                             onTap: () {
+                              Get.toNamed(AppRoutes.myEventScreeen);
 
                             },
                           )
@@ -212,21 +217,127 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: AppTextStyle.myEventsTitle
                           ),
 
-                          Text(
-                              'View All',
-                              style: AppTextStyle.viewAllText
+                          GestureDetector(
+                            onTap: (){
+
+                            },
+                            child: Text(
+                                'View All',
+                                style: AppTextStyle.viewAllText
+                            ),
                           ),
 
                         ],
                       ),
 
 
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            FeaturedEventCard(
+                              imagePath: AppAssets.featuredImage1,
+                              title: 'Summer Fest 2025',
+                              subtitle: "Here's what's coming up",
+                              date: '21',
+                              month: 'Dec',
+                              onTap: () {
+
+                              },
+                            ),
+                            SizedBox(width: 8),
+                            FeaturedEventCard(
+                              imagePath: AppAssets.featuredImage1,
+                              title: 'Summer Fest 2025',
+                              subtitle: "Here's what's coming up",
+                              date: '21',
+                              month: 'Dec',
+                              onTap: () {
+
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+
+                      const SizedBox(height: 16),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Text(
+                              'Forum Highlights',
+                              style: AppTextStyle.myEventsTitle
+                          ),
+
+                          GestureDetector(
+                            onTap: (){
+
+                            },
+                            child: Text(
+                                'View All',
+                                style: AppTextStyle.viewAllText
+                            ),
+                          ),
 
                         ],
                       ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ForumHighlightCard(
+                            title: 'Best decor vendors for weddings',
+                            description: 'Looking for top-rated decorators who can transform a wedding venue beautifully.',
+                            avatarImages: [
+                              AppAssets.eventImage1,
+                              AppAssets.eventImage2,
+                            ],
+                            commentCount: '34',
+                            timeAgo: '5hr Ago',
+                            onTap: () {
+                            },
+                          ),
+
+                          const SizedBox(width: 16),
+                          ForumHighlightCard(
+                            title: 'How to choose the right photographer',
+                            description: 'What should we look for when hiring a wedding photographer?',
+                            avatarImages: [
+                              AppAssets.eventImage1,
+                              AppAssets.eventImage2,
+                            ],
+                            commentCount: '60',
+                            timeAgo: '7hr Ago',
+                            onTap: () {
+                            },
+                          ),
+                        ],
+                      ),
+
+                      // Row(
+                      //   children: [
+                      //     ForumHighlightCard(
+                      //       title: 'Best decor vendors for weddings',
+                      //       description: 'Looking for top-rated decorators who can transform a wedding venue beautifully.',
+                      //       avatarImages: [
+                      //         AppAssets.plusIcon, // Add your avatar images to assets
+                      //         AppAssets.searchIcon,
+                      //       ],
+                      //       commentCount: '34',
+                      //       timeAgo: '5hr Ago',
+                      //       onTap: () {
+                      //         // Navigate to forum post details
+                      //       },
+                      //     ),
+                      //   ],
+                      // ),
+
+
+
+                      // SizedBox(height: 109,),
+
 
 
                       SizedBox(height: 109,),
@@ -236,12 +347,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-
-            // const SizedBox(height: 108),
           ],
-        )
-
-
+        ),
     );
   }
 }

@@ -51,7 +51,7 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
                 );
               }),
             ),
-            const SizedBox(height: 65),
+            // const SizedBox(height: 65),
           ],
         ),
       ),

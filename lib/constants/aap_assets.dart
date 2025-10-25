@@ -22,6 +22,7 @@ class AppAssets{
   static String heartIcon= 'assets/app_icons/heart_icon.png';
   static String settingsIcon= 'assets/app_icons/settings_icon.png';
   static String filterIcon= 'assets/app_icons/filter_icon.png';
+  static String clockIcon= 'assets/app_icons/clock_icon.png';
 
 
 
@@ -32,6 +33,7 @@ class AppAssets{
   static String myEventImage = 'assets/app_images/my_event_image.png';
   static String vendor1Image = 'assets/app_images/vendor1.png';
   static String vendor2Image = 'assets/app_images/vendor2.png';
+  static String featuredImage1 = 'assets/app_images/featured_image1.jpg';
 
 
 

@@ -158,7 +158,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle createEventQuestions = TextStyle(
+  static TextStyle blackTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 14,
@@ -288,6 +288,26 @@ class AppTextStyle {
     fontFamily: fontFamily,
     color: AppTheme.slateGreyColor,
     fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle featuredEventTitle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.whiteColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle featuredEventSubTitle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.ashBlueColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle forumHighLightDescp = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.slateGreyColor,
+    fontSize: 14,
     fontWeight: FontWeight.w400,
   );
 

@@ -196,7 +196,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           children: [
                             Text(
                               'What’s the name of your event?',
-                              style: AppTextStyle.createEventQuestions,
+                              style: AppTextStyle.blackTextStyle,
                             ),
 
                             const SizedBox(height: 8),
@@ -211,7 +211,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
                             Text(
                               'What type of event are you planning?',
-                              style: AppTextStyle.createEventQuestions,
+                              style: AppTextStyle.blackTextStyle,
                             ),
 
                             const SizedBox(height: 8),
@@ -242,7 +242,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               children: [
                                 Text(
                                   'Where will your event be held?',
-                                  style: AppTextStyle.createEventQuestions,
+                                  style: AppTextStyle.blackTextStyle,
                                 ),
                                 Container(
                                   width: 67,
@@ -375,7 +375,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               children: [
                                 Text(
                                   'When is your event taking place?',
-                                  style: AppTextStyle.createEventQuestions,
+                                  style: AppTextStyle.blackTextStyle,
                                 ),
                                 Container(
                                   width: 67,
@@ -459,7 +459,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 Expanded(
                                   child: Text(
                                     'Send me an automated reminder email 1 day before event',
-                                    style: AppTextStyle.createEventQuestions,
+                                    style: AppTextStyle.blackTextStyle,
                                   ),
                                 ),
                                 CustomToggleSwitch(
@@ -482,7 +482,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
                             Text(
                               'Upload image',
-                              style: AppTextStyle.createEventQuestions,
+                              style: AppTextStyle.blackTextStyle,
                             ),
 
                             const SizedBox(height: 12),
