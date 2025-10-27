@@ -1,8 +1,8 @@
 import 'package:eventori/AppTheme/widgets/app_theme.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
-import 'package:eventori/constants/custom_button.dart';
-import 'package:eventori/constants/custom_textfield.dart';
+import 'package:eventori/app_widgets/custom_button.dart';
+import 'package:eventori/app_widgets/custom_textfield.dart';
 import 'package:eventori/view/onboarding/widgets/build_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.whiteColor,
+      backgroundColor: AppTheme.paperWhiteColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(

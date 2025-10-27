@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../AppTheme/widgets/app_theme.dart';
-import '../../constants/custom_button.dart';
+import '../../app_widgets/custom_button.dart';
 import '../../routes/app_routes.dart';
 
 class OnboardingScreen extends StatefulWidget {

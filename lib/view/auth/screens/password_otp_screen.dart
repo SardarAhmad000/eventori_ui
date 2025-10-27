@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'dart:async';
 
 import '../../../constants/app_text_style.dart';
-import '../../../constants/custom_button.dart';
+import '../../../app_widgets/custom_button.dart';
 import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
 import '../widget/pin_code_input_widget.dart';
@@ -63,7 +63,7 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.whiteColor,
+      backgroundColor: AppTheme.paperWhiteColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(

@@ -274,7 +274,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../AppTheme/widgets/app_theme.dart';
-import 'app_fonts.dart';
+import '../constants/app_fonts.dart';
 
 /// Custom Text Field Widget
 class CustomTextField extends StatefulWidget {

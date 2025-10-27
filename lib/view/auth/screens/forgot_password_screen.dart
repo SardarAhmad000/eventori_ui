@@ -3,8 +3,8 @@ import 'package:eventori/AppTheme/widgets/app_theme.dart';
 import 'package:get/get.dart';
 import '../../../constants/aap_assets.dart';
 import '../../../constants/app_text_style.dart';
-import '../../../constants/custom_button.dart';
-import '../../../constants/custom_textfield.dart';
+import '../../../app_widgets/custom_button.dart';
+import '../../../app_widgets/custom_textfield.dart';
 import '../../../constants/custom_validators.dart';
 import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
@@ -46,7 +46,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.whiteColor,
+      backgroundColor: AppTheme.paperWhiteColor,
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Form(

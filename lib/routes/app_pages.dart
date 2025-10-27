@@ -10,7 +10,7 @@ import '../view/auth/screens/verify_account_screen.dart';
 import '../view/auth/screens/password_otp_screen.dart';
 import '../view/onboarding/onboarding_screen.dart';
 import '../view/onboarding/selection_screen.dart';
-import '../view/roles/customer/home/screens/home_screen.dart';
+import '../view/roles/customer/home/screens/dashboard_screen.dart';
 import '../view/splash/splash_screen.dart';
 import 'app_routes.dart';
 
@@ -29,7 +29,7 @@ class AppPages {
     GetPage(name: AppRoutes.navBarScreen, page: () =>  NavBarScreen()),
     // GetPage(name: AppRoutes.createEventScreen, page: () =>  CreateEventScreen()),
     GetPage(name: AppRoutes.myEventScreeen, page: () =>  MyEventsScreen()),
-    GetPage(name: AppRoutes.homeScreen, page: () =>  HomeScreen()),
+    GetPage(name: AppRoutes.homeScreen, page: () =>  DashboardScreen()),
 
   ];
 }

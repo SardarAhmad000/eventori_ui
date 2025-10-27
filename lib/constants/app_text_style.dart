@@ -9,6 +9,7 @@ class AppTextStyle {
 
   static TextStyle titleStyle = TextStyle(
     fontFamily: fontFamily,
+    // fontFamily:"Outfit",
     color: AppTheme.lightCyanColor,
     fontSize: 32,
     fontWeight: FontWeight.w600,
@@ -310,6 +311,42 @@ class AppTextStyle {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle vendorSponsStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.lightIndigoColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
 
+
+  static TextStyle vendorTitle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.shadowColor,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle vendorLocatioStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.charcoalBlueColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+
+  static TextStyle badgeTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.ghostWhiteColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+
+  static TextStyle vendorEventsTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.shadowColor,
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+  );
 
 }

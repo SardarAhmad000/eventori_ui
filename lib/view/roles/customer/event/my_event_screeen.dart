@@ -3,6 +3,7 @@ import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/roles/customer/event/widgets/event_card.dart';
 import 'package:flutter/material.dart';
 import '../../../../AppTheme/widgets/app_theme.dart';
+import '../../../onboarding/widgets/build_header.dart';
 
 class MyEventsScreen extends StatefulWidget {
   const MyEventsScreen({Key? key}) : super(key: key);
@@ -22,15 +23,14 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: Image.asset(
-                AppAssets.appLogo,
-                width: 38,
-                height: 32,
-              ),
+            CustomHeader(
+              backgroundColor: AppTheme.whiteColor,
+              arrowColor: AppTheme.blackColor,
+              containerBackgroundColor: AppTheme.whiteColor,
+              borderColor: AppTheme.lightGrayishColor,
+              showLogo: true,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
             Text(
               'My events',
               style: AppTextStyle.myEventTitle,

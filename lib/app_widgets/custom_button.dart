@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 import '../AppTheme/widgets/app_theme.dart';
-import 'app_fonts.dart';
+import '../constants/app_fonts.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton({

@@ -27,6 +27,14 @@ class AppTheme{
   static Color glacierGrayColor=Color(0xFFEAECF0);
   static Color paperWhiteColor=Color(0xFFF2F5F8);
   static Color brightCyanColor=Color(0xFF14D5FF);
+  static Color denimBlueColor=Color(0xFF4C6A9D);
+  static Color violetColor=Color(0xFFF5EEFB);
+  static Color lightIndigoColor=Color(0xFF7F56D9);
+  static Color charcoalBlueColor=Color(0xFF344054);
+  static Color heatherVioletColor=Color(0xFF8F40D3);
+  static Color ghostWhiteColor=Color(0xFFF1F2F6);
+  static Color steelBlueColor=Color(0xFF7E97C1);
+  // static Color prussianBlueColor=Color(0xFF253343);
 
 
 //Upload Photo Screen
@@ -48,7 +56,7 @@ class AppTheme{
 
 
   //Bottom Navigation Bar
-  static Color pagebackground=Color(0xFFF1F2F6);
+
 
 
   //Create Event Screen

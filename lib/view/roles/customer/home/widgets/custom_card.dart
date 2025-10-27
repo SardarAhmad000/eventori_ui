@@ -1,9 +1,8 @@
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-
-import '../AppTheme/widgets/app_theme.dart';
-import 'custom_image_handler.dart';
+import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../app_widgets/custom_image_handler.dart';
 
 class CustomCard extends StatelessWidget {
   final String? imagePath;
@@ -25,9 +24,9 @@ class CustomCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 30.h,
-        width: 43.w,
+        width: 44.w,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppTheme.whiteColor,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: AppTheme.textfieldBorderColor,

@@ -3,7 +3,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/widgets/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
-import '../../../../../constants/custom_image_handler.dart';
+import '../../../../../app_widgets/custom_image_handler.dart';
 
 class EventCard extends StatelessWidget {
   final String date;

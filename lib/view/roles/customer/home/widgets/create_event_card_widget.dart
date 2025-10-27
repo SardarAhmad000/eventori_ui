@@ -16,7 +16,7 @@ class CreateEventCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 30.h,
-        width: 40.w,
+        width: 44.w,
         decoration: BoxDecoration(
           color: AppTheme.lightCyanColor,
           borderRadius: BorderRadius.circular(12),
