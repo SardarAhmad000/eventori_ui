@@ -56,7 +56,7 @@ class ForumHighlightCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               description,
-              style: AppTextStyle.forumHighLightDescp,
+              style: AppTextStyle.DescpTextStyle,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
             ),
@@ -113,7 +113,7 @@ class ForumHighlightCard extends StatelessWidget {
                 const SizedBox(width: 2),
                 Text(
                   commentCount,
-                  style: AppTextStyle.forumHighLightDescp,
+                  style: AppTextStyle.DescpTextStyle,
                 ),
                 const SizedBox(width: 8),
                 Image.asset(
@@ -125,7 +125,7 @@ class ForumHighlightCard extends StatelessWidget {
                 const SizedBox(width: 2),
                 Text(
                   timeAgo,
-                  style: AppTextStyle.forumHighLightDescp,
+                  style: AppTextStyle.DescpTextStyle,
                 ),
               ],
             ),

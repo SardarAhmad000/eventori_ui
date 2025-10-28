@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import '../view/auth/controller/auth_controller.dart';
 import '../view/onboarding/controller/Onboarding_controller.dart';
+import '../view/roles/customer/home/controller/event_controller.dart';
+import '../view/roles/customer/home/controller/vendor_controller.dart';
 import '../view/splash/controller/splash_controller.dart';
 
 class LazyController extends Bindings{
@@ -10,6 +12,8 @@ class LazyController extends Bindings{
     Get.put(SplashController());
     Get.put(OnboardingController());
     Get.put(AuthController());
+    Get.put(VendorController());
+    Get.put(EventController());
     // Get.put(CreateNewPasswordController());
     // Get.put(AddProfilePhotoPageController());
     // Get.lazyPut<AddProfilePhotoPageController>(() => AddProfilePhotoPageController());

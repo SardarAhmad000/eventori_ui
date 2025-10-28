@@ -27,7 +27,7 @@ class AppAssets{
   static String topRatedBadgeIcon= 'assets/app_icons/top_rated_badge_icon.png';
   static String starIcon= 'assets/app_icons/star_icon.png';
   static String verifiedIcon= 'assets/app_icons/verified_icon.png';
-
+  static String copyIcon= 'assets/app_icons/copy_icon.png';
 
 
 

@@ -47,24 +47,49 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 Text('Browse Vendors', style: AppTextStyle.myEventsTitle),
                 const SizedBox(height: 12),
-                Row(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomCard(
-                      imagePath: AppAssets.vendor1Image,
-                      title: 'Surprise Birthday Dinner',
-                      subtitle: 'Cozy gathering at restaurant/venue',
-                      onTap: () {},
+                SizedBox(
+                  height: 235,
+                  child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 0.7,
                     ),
-                    const SizedBox(width: 8),
-                    CustomCard(
-                      imagePath: AppAssets.vendor2Image,
-                      title: 'Milestone Birthday Party',
-                      subtitle: 'For 30th, 40th, 50th birthdays',
-                      onTap: () {},
-                    ),
-                  ],
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 2,
+                    itemBuilder: (context, index) {
+                      return CustomCard(
+                        imagePath: AppAssets.vendor2Image,
+                        title: 'Surprise Birthday Dinner',
+                        subtitle: 'Cozy gathering at restaurant/venue',
+                        onTap: () {
+                          print('Tapped on Surprise Birthday Dinner');
+                        },
+                      );
+                    },
+                  ),
                 ),
+                // Row(
+                //   // mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     CustomCard(
+                //       imagePath: AppAssets.vendor1Image,
+                //       title: 'Surprise Birthday Dinner',
+                //       subtitle: 'Cozy gathering at restaurant/venue',
+                //       onTap: () {},
+                //     ),
+                //     const SizedBox(width: 8),
+                //     CustomCard(
+                //       imagePath: AppAssets.vendor2Image,
+                //       title: 'Milestone Birthday Party',
+                //       subtitle: 'For 30th, 40th, 50th birthdays',
+                //       onTap: () {},
+                //     ),
+                //   ],
+                // ),
                 const SizedBox(height: 12),
                 CustomButton(
                   Text: 'View all vendors',
@@ -89,28 +114,25 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      FeaturedEventCard(
-                        imagePath: AppAssets.featuredImage1,
-                        title: 'Summer Fest 2025',
-                        subtitle: "Here's what's coming up",
-                        date: '21',
-                        month: 'Dec',
-                        onTap: () {},
-                      ),
-                      const SizedBox(width: 8),
-                      FeaturedEventCard(
-                        imagePath: AppAssets.featuredImage1,
-                        title: 'Winter Concert 2025',
-                        subtitle: "Live music performance",
-                        date: '15',
-                        month: 'Jan',
-                        onTap: () {},
-                      ),
-                    ],
+                SizedBox(
+                  height: 96,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: AlwaysScrollableScrollPhysics(),
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 12.0),
+                        child: FeaturedEventCard(
+                          imagePath: AppAssets.featuredImage1,
+                          title: 'Summer Fest 2025',
+                          subtitle: "Here's what's coming up",
+                          date: '21',
+                          month: 'Dec',
+                          onTap: () {},
+                        ),
+                      );
+                    },
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -125,35 +147,36 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Row(
-                  children: [
-                    ForumHighlightCard(
-                      title: 'Best decor vendors for weddings',
-                      description:
-                      'Looking for top-rated decorators who can transform a wedding venue beautifully.',
-                      avatarImages: [
-                        AppAssets.eventImage1,
-                        AppAssets.eventImage2,
-                        AppAssets.eventImage2,
-                      ],
-                      commentCount: '34',
-                      timeAgo: '5hr Ago',
-                      onTap: () {},
+
+                SizedBox(
+                  height: 240,
+                  child: GridView.builder(
+                    padding: EdgeInsets.zero,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 0.68,
                     ),
-                    const SizedBox(width: 12),
-                    ForumHighlightCard(
-                      title: 'How to choose the right photographer',
-                      description:
-                      'What should we look for when hiring a wedding photographer?',
-                      avatarImages: [
-                        AppAssets.eventImage1,
-                        AppAssets.eventImage2,
-                      ],
-                      commentCount: '60',
-                      timeAgo: '7hr Ago',
-                      onTap: () {},
-                    ),
-                  ],
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: 2,
+                    itemBuilder: (context, index) {
+                      return ForumHighlightCard(
+                              title: 'Best decor vendors for weddings',
+                              description:
+                              'Looking for top-rated decorators who can transform a wedding venue beautifully.',
+                              avatarImages: [
+                                AppAssets.eventImage1,
+                                AppAssets.eventImage2,
+                                AppAssets.eventImage2,
+                              ],
+                              commentCount: '34',
+                              timeAgo: '5hr Ago',
+                              onTap: () {},
+                            );
+                    },
+                  ),
                 ),
                 const SizedBox(height: 98),
               ],

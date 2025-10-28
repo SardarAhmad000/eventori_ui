@@ -32,13 +32,6 @@ class FeaturedEventCard extends StatelessWidget {
         height: 96,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: AppTheme.blackColor.withOpacity(0.2),
-          //     blurRadius: 12,
-          //     // offset: const Offset(0, 4),
-          //   ),
-          // ],
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(16),

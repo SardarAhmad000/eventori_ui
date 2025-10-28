@@ -164,7 +164,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
             const SizedBox(height: 16),
             Text(
               'Create a New Event',
-              style: AppTextStyle.createEventTitle,
+              style: AppTextStyle.titleTextStyle,
             ),
 
             const SizedBox(height: 12),

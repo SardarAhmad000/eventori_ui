@@ -145,7 +145,7 @@ class AppTextStyle {
 
 // CreateEventScreen
 
-  static TextStyle createEventTitle = TextStyle(
+  static TextStyle titleTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.shadowColor,
     fontSize: 20,
@@ -305,7 +305,7 @@ class AppTextStyle {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle forumHighLightDescp = TextStyle(
+  static TextStyle DescpTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.slateGreyColor,
     fontSize: 14,
@@ -347,6 +347,19 @@ class AppTextStyle {
     color: AppTheme.shadowColor,
     fontSize: 10,
     fontWeight: FontWeight.w400,
+  );
+  static TextStyle textsStyleEvent = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.shadowColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle eventAboutTextsStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.shadowColor,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
   );
 
 }
