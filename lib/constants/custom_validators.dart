@@ -38,17 +38,33 @@ class CustomValidator {
   }
 
   static String? eventCategory(String? value) {
-    if (value!.isEmpty) {
-      return ' Enter event Category';
+    if (value == null || value.isEmpty) {
+      return '          Select event category';
     }
     return null;
   }
-  // static String? venue(String? value) {
-  //   if (value == null || value.isEmpty) {
-  //     return 'Enter venue';
-  //   }
-  //   return null;
-  // }
+
+  // New validators for Create Event Screen
+  static String? country(String? value) {
+    if (value == null || value.isEmpty) {
+      return ' Select country';
+    }
+    return null;
+  }
+
+  static String? city(String? value) {
+    if (value == null || value.isEmpty) {
+      return ' Select city';
+    }
+    return null;
+  }
+
+  static String? eventDate(String? value) {
+    if (value == null || value.isEmpty) {
+      return ' Select event date';
+    }
+    return null;
+  }
 
   static String? reason(String? value) {
     if (value == null || value.isEmpty) {

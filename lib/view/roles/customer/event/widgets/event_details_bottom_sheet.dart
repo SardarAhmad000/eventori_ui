@@ -83,7 +83,6 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
             ),
           ),
 
-
           SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Column(
@@ -167,12 +166,8 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                       ),
                     ),
                     const SizedBox(height: 12),
-
                   ],
                 ),
-
-
-
               ],
             ),
           ),
@@ -180,13 +175,6 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
       ),
     );
   }
-
-
-
-
-
-
-
 // void _copyUrlToClipboard() {
 //   if (_eventUrlController.text.isNotEmpty) {
 //     Clipboard.setData(ClipboardData(text: _eventUrlController.text));
@@ -202,6 +190,4 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
 //     );
 //   }
 // }
-
-
 }

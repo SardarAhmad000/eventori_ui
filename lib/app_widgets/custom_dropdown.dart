@@ -83,7 +83,7 @@ class CustomDropdownField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             width: 1.3,
-            color:AppTheme.textfieldBorderColor.withOpacity(.3),
+            color:AppTheme.textfieldBorderColor,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
