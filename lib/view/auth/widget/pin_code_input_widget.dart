@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:eventori/AppTheme/widgets/app_theme.dart';
+import 'package:eventori/AppTheme/app_theme.dart';
 
 class PinCodeInputWidget extends StatefulWidget {
   final int length;

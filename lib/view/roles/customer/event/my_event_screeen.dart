@@ -62,7 +62,7 @@ import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/roles/customer/event/widgets/event_card.dart';
 import 'package:flutter/material.dart';
-import '../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../AppTheme/app_theme.dart';
 import '../../../onboarding/widgets/build_header.dart';
 
 class MyEventsScreen extends StatefulWidget {

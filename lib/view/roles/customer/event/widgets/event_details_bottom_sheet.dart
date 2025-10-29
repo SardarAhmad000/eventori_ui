@@ -1,15 +1,13 @@
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
+import 'package:eventori/view/roles/customer/event/widgets/feature_event.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:eventori/AppTheme/widgets/app_theme.dart';
-import 'package:eventori/constants/app_fonts.dart';
+import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/app_widgets/custom_button.dart';
 import 'package:eventori/app_widgets/custom_image_handler.dart';
 
 import '../../../../../app_widgets/custom_textfield.dart';
 
-/// Shows event details in a bottom sheet
 void showEventDetailsBottomSheet({
   required BuildContext context,
   required String eventImage,
@@ -67,6 +65,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+
         color: AppTheme.whiteColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -119,7 +118,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                     const SizedBox(height: 8),
                     Text(
                         widget.eventDescription!,
-                        style: AppTextStyle.DescpTextStyle
+                        style: AppTextStyle.font14W400SGColorTextStyle
                     ),
                   ],
                 ),
@@ -127,10 +126,9 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                 CustomButton(
                   Text: 'Feature this event',
                   width: double.infinity,
-                  fontFamily: AppFonts.bold,
                   fontWeight: FontWeight.w700,
                   height: 48,
-                  buttonColor: Colors.white,
+                  buttonColor: AppTheme.whiteColor,
                   textColor: AppTheme.silverColor,
                   borderColor: AppTheme.glacierGrayColor,
                   textSize: 16,
@@ -139,7 +137,13 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                   iconPath: AppAssets.starIcon,
                   // iconColor: _isFeatured ? AppTheme.amber : AppTheme.silverColor,
                   iconHeight: 20,
-                  onTap: (){},
+                  onTap: (){
+                      featureEventBottomSheet(
+                        context: context,
+                        eventTitle: widget.eventTitle,
+                        eventDate: widget.eventDate,
+                      );
+                  },
                 ),
 
                 const SizedBox(height: 12),
@@ -151,17 +155,19 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                         style:AppTextStyle.textsStyleEvent
                     ),
                     const SizedBox(height: 8),
-                    CustomTextField(
-                      controller: _eventUrlController,
-                      hintText: 'Enter event URL',
-                      fillColor: AppTheme.whiteColor,
-                      fieldBorderColor: AppTheme.glacierGrayColor,
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Image.asset(
-                            AppAssets.copyIcon,
-                          width: 20,
-                          height: 20,
+                    AbsorbPointer(
+                      child: CustomTextField(
+                        controller: _eventUrlController,
+                        hintText: 'Enter event URL',
+                        fillColor: AppTheme.whiteColor,
+                        fieldBorderColor: AppTheme.glacierGrayColor,
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Image.asset(
+                              AppAssets.copyIcon,
+                            width: 20,
+                            height: 20,
+                          ),
                         ),
                       ),
                     ),

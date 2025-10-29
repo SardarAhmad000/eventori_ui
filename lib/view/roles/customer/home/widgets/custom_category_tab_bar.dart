@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 
 class CustomCategoryTabBar extends StatefulWidget {
   final List<String> categories;

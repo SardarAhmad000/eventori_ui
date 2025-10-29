@@ -1,4 +1,4 @@
-import 'package:eventori/AppTheme/widgets/app_theme.dart';
+import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/app_widgets/custom_button.dart';
@@ -139,16 +139,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         children: [
                            Expanded(
-                              child: Divider(color: AppTheme.dividerColor)),
+                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
                               'Or Sign in with',
-                              style: AppTextStyle.btwDividerTextStyle,
+                              style: AppTextStyle.font14W400SGColorTextStyle,
                             ),
                           ),
                           Expanded(
-                              child: Divider(color: AppTheme.dividerColor)),
+                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
                         ],
                       ),
 

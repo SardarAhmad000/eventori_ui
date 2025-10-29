@@ -4,7 +4,7 @@ import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/view/roles/customer/home/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
-import '../../AppTheme/widgets/app_theme.dart';
+import '../../AppTheme/app_theme.dart';
 import '../roles/customer/event/create_event_screen.dart';
 
 class NavBarScreen extends StatefulWidget {

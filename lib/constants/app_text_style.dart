@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../AppTheme/widgets/app_theme.dart';
+import '../AppTheme/app_theme.dart';
 
 class AppTextStyle {
   static const String fontFamily = "Outfit";
@@ -24,19 +24,13 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle onBoardingSubTitleStyle = TextStyle(
+  static TextStyle font16W400WhiteColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.whiteColor,
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle onBoardingitleStyle = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.whiteColor,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  );
 
   static TextStyle AlreadyTextStyle = TextStyle(
     fontFamily: fontFamily,
@@ -55,16 +49,9 @@ class AppTextStyle {
 
   static TextStyle selectionTitleStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.greyColor,
+    color: AppTheme.whiteColor,
     fontSize: 32,
     fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle selectionSubtitleStyle = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.whiteColor,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
   );
 
   static TextStyle cardTitle = TextStyle(
@@ -74,7 +61,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle cardDescp = TextStyle(
+  static TextStyle font12W400WhiteColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.whiteColor,
     fontSize: 12,
@@ -104,12 +91,6 @@ class AppTextStyle {
   );
 
   //Login Screen
-  static TextStyle btwDividerTextStyle = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.btwDividerTextColor,
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-  );
 
   static TextStyle bottomtextStyle = TextStyle(
     fontFamily: fontFamily,
@@ -138,7 +119,7 @@ class AppTextStyle {
   //Forgot Password Screen
   static TextStyle strenghtTextStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.shadowColor,
+    color: AppTheme.blackColor,
     fontSize: 14,
     fontWeight: FontWeight.w500,
   );
@@ -147,14 +128,14 @@ class AppTextStyle {
 
   static TextStyle titleTextStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.shadowColor,
+    color: AppTheme.blackColor,
     fontSize: 20,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle createEventSubtitleStyle = TextStyle(
+  static TextStyle font16titlesubtitleStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.createEventSubTitle,
+    color: AppTheme.midnightBlueColor,
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
@@ -184,21 +165,15 @@ class AppTextStyle {
 
   static TextStyle myEventTitle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.shadowColor,
+    color: AppTheme.blackColor,
     fontSize: 24,
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle myEventdate = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.greyColor,
-    fontSize: 20,
-    fontWeight: FontWeight.w500,
-  );
 
   static TextStyle myEventmonth = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.paleGrayBlueColor,
+    color: AppTheme.paleGreyBlueColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
@@ -212,12 +187,6 @@ class AppTextStyle {
 
 //Nav Bar
 
-  static TextStyle navBarText = TextStyle(
-    fontFamily: fontFamily,
-    fontSize: 8,
-    color: AppTheme.charcoalColor,
-    fontWeight: FontWeight.w400,
-  );
 
   static TextStyle dailogeTitle = TextStyle(
     fontFamily: fontFamily,
@@ -226,7 +195,7 @@ class AppTextStyle {
     color: AppTheme.blackColor,
   );
 
-  static TextStyle  dailogeSubTitle= TextStyle(
+  static TextStyle  font16W400BColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 16,
@@ -239,12 +208,7 @@ class AppTextStyle {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle  welcomeBackStyle= TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.greyColor,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-  );
+
   static TextStyle homeAppBarTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.ashBlueColor,
@@ -272,12 +236,6 @@ class AppTextStyle {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
-  static TextStyle newEventSubTitle= TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.greyColor,
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-  );
 
   static TextStyle eventTitle= TextStyle(
     fontFamily: fontFamily,
@@ -292,7 +250,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle featuredEventTitle = TextStyle(
+  static TextStyle font20w500TextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.whiteColor,
     fontSize: 20,
@@ -305,7 +263,7 @@ class AppTextStyle {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle DescpTextStyle = TextStyle(
+  static TextStyle font14W400SGColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.slateGreyColor,
     fontSize: 14,
@@ -321,7 +279,7 @@ class AppTextStyle {
 
   static TextStyle vendorTitle= TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.shadowColor,
+    color: AppTheme.blackColor,
     fontSize: 18,
     fontWeight: FontWeight.w500,
   );
@@ -344,22 +302,29 @@ class AppTextStyle {
 
   static TextStyle vendorEventsTextStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.shadowColor,
+    color: AppTheme.blackColor,
     fontSize: 10,
     fontWeight: FontWeight.w400,
   );
   static TextStyle textsStyleEvent = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.shadowColor,
+    color: AppTheme.blackColor,
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
 
   static TextStyle eventAboutTextsStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.shadowColor,
+    color: AppTheme.blackColor,
     fontSize: 18,
     fontWeight: FontWeight.w600,
+  );
+
+  static TextStyle eventPlanPriceTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.deepSpaceBlueColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
   );
 
 }

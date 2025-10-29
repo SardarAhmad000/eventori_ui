@@ -3,7 +3,7 @@ import 'package:eventori/view/onboarding/widgets/build_header.dart';
 import 'package:eventori/view/onboarding/widgets/selection_tittle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../AppTheme/widgets/app_theme.dart';
+import '../../AppTheme/app_theme.dart';
 import '../../app_widgets/custom_button.dart';
 import 'controller/Onboarding_controller.dart';
 
@@ -48,7 +48,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
             CustomHeader(
               backgroundColor: AppTheme.blackColor,
               arrowColor: AppTheme.whiteColor,
-              containerBackgroundColor: AppTheme.duskColor,
+              containerBackgroundColor: AppTheme.midnightBlueColor,
               borderColor: AppTheme.lightGrayishColor,
               showLogo: true,
             ),
@@ -76,7 +76,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                       height: 78,
                       padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        color: AppTheme.duskColor,
+                        color: AppTheme.midnightBlueColor,
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: isSelected
@@ -125,7 +125,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                 ),
                                 Text(
                                   accountType['description']!,
-                                  style: AppTextStyle.cardDescp,
+                                  style: AppTextStyle.font12W400WhiteColorTextStyle,
                                 ),
                               ],
                             ),

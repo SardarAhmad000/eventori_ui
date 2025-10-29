@@ -3,7 +3,7 @@ import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/splash/controller/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../AppTheme/widgets/app_theme.dart';
+import '../../AppTheme/app_theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

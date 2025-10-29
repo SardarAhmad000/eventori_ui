@@ -4,7 +4,7 @@ import 'package:eventori/view/roles/customer/home/screens/home_screen.dart';
 import 'package:eventori/view/roles/customer/home/screens/vendors_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../widgets/custom_tab_bar.dart';
@@ -69,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       style: AppTextStyle.AlreadyTextStyle),
                                   const SizedBox(height: 2),
                                   Text('Welcome Back!',
-                                      style: AppTextStyle.welcomeBackStyle),
+                                      style: AppTextStyle.font16W400WhiteColorTextStyle),
                                 ],
                               ),
                             ],
@@ -95,32 +95,35 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       'Would you like to create a new event or explore vendors first?',
                       style: AppTextStyle.homeAppBarTextStyle),
                   const SizedBox(height: 16),
-                  CustomTextField(
-                    borderRadius: 99,
-                    hintText: "Search Vendors",
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Image.asset(
-                        AppAssets.searchIcon,
-                        color: AppTheme.slateGreyColor,
-                        width: 45,
-                        height: 45,
-                      ),
-                    ),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          color: AppTheme.paleGrayBlueColor,
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        padding: const EdgeInsets.all(8),
+                  AbsorbPointer(
+                    absorbing: true,
+                    child: CustomTextField(
+                      borderRadius: 99,
+                      hintText: "Search Vendors",
+                      prefixIcon: Padding(
+                        padding: const EdgeInsets.only(left: 5),
                         child: Image.asset(
-                          AppAssets.filterIcon,
-                          width: 16,
-                          height: 16,
+                          AppAssets.searchIcon,
+                          color: AppTheme.slateGreyColor,
+                          width: 45,
+                          height: 45,
+                        ),
+                      ),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 36,
+                          height: 36,
+                          decoration: BoxDecoration(
+                            color: AppTheme.paleGreyBlueColor,
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Image.asset(
+                            AppAssets.filterIcon,
+                            width: 16,
+                            height: 16,
+                          ),
                         ),
                       ),
                     ),

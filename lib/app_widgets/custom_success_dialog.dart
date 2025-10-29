@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../AppTheme/widgets/app_theme.dart';
+import '../AppTheme/app_theme.dart';
 import '../constants/aap_assets.dart';
 import '../constants/app_text_style.dart';
 import 'custom_button.dart';
@@ -73,7 +73,7 @@ class CustomSuccessDialog extends StatelessWidget {
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: AppTextStyle.dailogeSubTitle,
+              style: AppTextStyle.font16W400BColorTextStyle,
             ),
 
             SizedBox(height: 3.h),

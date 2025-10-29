@@ -5,7 +5,7 @@ import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/constants/custom_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../AppTheme/app_theme.dart';
 import '../../../../app_widgets/custom_success_dialog.dart';
 import '../../../../constants/aap_assets.dart';
 import '../../../../app_widgets/custom_button.dart';
@@ -15,7 +15,7 @@ import '../../../../app_widgets/custom_dropdown.dart';
 import '../../../../app_widgets/custom_textfield.dart';
 import '../../../../app_widgets/custom_toggle.dart';
 
-class CreateEventScreen extends StatefulWidget { 
+class CreateEventScreen extends StatefulWidget {
   const CreateEventScreen({super.key});
 
   @override
@@ -164,7 +164,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
             Text(
               'My event details',
-              style: AppTextStyle.createEventSubtitleStyle,
+              style: AppTextStyle.font16titlesubtitleStyle,
             ),
 
             const SizedBox(height: 16),

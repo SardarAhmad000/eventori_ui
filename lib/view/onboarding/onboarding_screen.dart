@@ -3,7 +3,7 @@ import 'package:eventori/view/onboarding/selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../AppTheme/widgets/app_theme.dart';
+import '../../AppTheme/app_theme.dart';
 import '../../app_widgets/custom_button.dart';
 import '../../routes/app_routes.dart';
 
@@ -33,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const SizedBox(height: 12),
               Text(
                 'You create the moments. We connect the people.',
-                style: AppTextStyle.onBoardingSubTitleStyle,
+                style: AppTextStyle.font16W400WhiteColorTextStyle,
               ),
               const SizedBox(height: 12),
               CustomButton(

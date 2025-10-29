@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../AppTheme/widgets/app_theme.dart';
+import '../AppTheme/app_theme.dart';
 
 class CustomToggleSwitch extends StatefulWidget {
   final bool initialValue;

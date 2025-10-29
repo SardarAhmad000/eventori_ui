@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../widgets/custom_category_tab_bar.dart';
 import '../widgets/custom_vendor_card.dart';

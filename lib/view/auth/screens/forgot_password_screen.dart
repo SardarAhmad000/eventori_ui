@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:eventori/AppTheme/widgets/app_theme.dart';
+import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:get/get.dart';
 import '../../../constants/aap_assets.dart';
 import '../../../constants/app_text_style.dart';

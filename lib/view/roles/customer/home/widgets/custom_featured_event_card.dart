@@ -2,7 +2,7 @@ import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_image_handler.dart';
 
 class FeaturedEventCard extends StatelessWidget {
@@ -74,7 +74,7 @@ class FeaturedEventCard extends StatelessWidget {
                         children: [
                           Text(
                             title,
-                            style:AppTextStyle.featuredEventTitle,
+                            style:AppTextStyle.font20w500TextStyle,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -110,7 +110,7 @@ class FeaturedEventCard extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 date,
-                                style: AppTextStyle.myEventdate,
+                                style: AppTextStyle.font20w500TextStyle,
                               ),
                             ),
                           ),

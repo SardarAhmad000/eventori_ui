@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../AppTheme/widgets/app_theme.dart';
+import '../../../AppTheme/app_theme.dart';
 import '../../../constants/aap_assets.dart';
 import '../../../constants/app_text_style.dart';
 import '../../../routes/app_routes.dart';
@@ -25,7 +25,7 @@ class AddProfilePhotoPage extends StatelessWidget {
 
             CustomHeader(
               showLogo: false,
-              arrowColor: AppTheme.midnightGrayColor,
+              arrowColor: AppTheme.midnightBlueColor,
               containerBackgroundColor: AppTheme.whiteColor,
             ),
 
@@ -70,7 +70,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                   Divider(
                     thickness: 1,
                     height: 1,
-                    color: AppTheme.dividerColor,
+                    color: AppTheme.lightGrayishBlueColor,
                   ),
                   const SizedBox(height: 15),
 
@@ -134,14 +134,14 @@ class AddProfilePhotoPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Divider(
-                          color: AppTheme.dividerColor,
+                          color: AppTheme.lightGrayishBlueColor,
                           thickness: 1,
                         ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Divider(
-                          color: AppTheme.dividerColor,
+                          color: AppTheme.lightGrayishBlueColor,
                           thickness: 1,
                           ),
                       ),

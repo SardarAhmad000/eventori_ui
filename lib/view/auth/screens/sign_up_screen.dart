@@ -323,7 +323,7 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../AppTheme/widgets/app_theme.dart';
+import '../../../AppTheme/app_theme.dart';
 import '../../../constants/aap_assets.dart';
 import '../../../constants/app_text_style.dart';
 import '../../../app_widgets/custom_button.dart';
@@ -587,16 +587,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Row(
                         children: [
                           Expanded(
-                              child: Divider(color: AppTheme.dividerColor)),
+                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
                               'Or Sign Up with',
-                              style: AppTextStyle.btwDividerTextStyle,
+                              style: AppTextStyle.font14W400SGColorTextStyle,
                             ),
                           ),
                           Expanded(
-                              child: Divider(color: AppTheme.dividerColor)),
+                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
                         ],
                       ),
                       const SizedBox(height: 16),

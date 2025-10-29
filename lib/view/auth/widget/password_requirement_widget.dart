@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../AppTheme/widgets/app_theme.dart';
+import '../../../AppTheme/app_theme.dart';
 import '../../../constants/aap_assets.dart';
 
 class PasswordRequirementWidget extends StatelessWidget {

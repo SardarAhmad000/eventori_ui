@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../AppTheme/widgets/app_theme.dart';
+import '../AppTheme/app_theme.dart';
 
 class CustomCheckbox extends StatefulWidget {
   final bool initialValue;

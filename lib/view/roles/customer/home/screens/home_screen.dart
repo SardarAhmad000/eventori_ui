@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_fonts.dart';
 import '../../../../../constants/app_text_style.dart';
@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   height: 48,
                   buttonColor: Colors.white,
-                  textColor: AppTheme.shadowColor,
+                  textColor: AppTheme.blackColor,
                   borderColor: AppTheme.cyanColor,
                   textSize: 16,
                   fontFamily: AppFonts.medium,

@@ -2,7 +2,7 @@ import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_image_handler.dart';
 
 class ForumHighlightCard extends StatelessWidget {
@@ -56,7 +56,7 @@ class ForumHighlightCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               description,
-              style: AppTextStyle.DescpTextStyle,
+              style: AppTextStyle.font14W400SGColorTextStyle,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
             ),
@@ -113,7 +113,7 @@ class ForumHighlightCard extends StatelessWidget {
                 const SizedBox(width: 2),
                 Text(
                   commentCount,
-                  style: AppTextStyle.DescpTextStyle,
+                  style: AppTextStyle.font14W400SGColorTextStyle,
                 ),
                 const SizedBox(width: 8),
                 Image.asset(
@@ -125,7 +125,7 @@ class ForumHighlightCard extends StatelessWidget {
                 const SizedBox(width: 2),
                 Text(
                   timeAgo,
-                  style: AppTextStyle.DescpTextStyle,
+                  style: AppTextStyle.font14W400SGColorTextStyle,
                 ),
               ],
             ),

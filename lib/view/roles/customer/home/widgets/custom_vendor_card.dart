@@ -3,7 +3,7 @@ import 'package:eventori/app_widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import '../../../../../../../../constants/app_text_style.dart';
 import '../../../../../app_widgets/custom_image_handler.dart';
-import '../../../../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../../../../constants/app_fonts.dart';
 
 class CustomVendorCard extends StatelessWidget {
@@ -127,7 +127,7 @@ class CustomVendorCard extends StatelessWidget {
                               vertical: 3,
                             ),
                             decoration: BoxDecoration(
-                              color: AppTheme.heatherVioletColor,
+                              color: AppTheme.purplishColor,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
@@ -154,7 +154,7 @@ class CustomVendorCard extends StatelessWidget {
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
-                            color: AppTheme.heatherVioletColor,
+                            color: AppTheme.purplishColor,
                             borderRadius: BorderRadius.circular(99),
                           ),
                           child: Row(
@@ -180,7 +180,7 @@ class CustomVendorCard extends StatelessWidget {
                               vertical: 3,
                             ),
                             decoration: BoxDecoration(
-                              color: AppTheme.heatherVioletColor,
+                              color: AppTheme.purplishColor,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(

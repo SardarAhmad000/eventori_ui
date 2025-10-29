@@ -1,7 +1,7 @@
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_image_handler.dart';
 
 class CustomCard extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/app_text_style.dart';
 
 class CreateEventCard extends StatelessWidget {
@@ -60,7 +60,7 @@ class CreateEventCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
                 'Plan and organize your next event',
-                style: AppTextStyle.newEventSubTitle,
+                style: AppTextStyle.font12W400WhiteColorTextStyle,
                 textAlign: TextAlign.start,
               ),
             ),

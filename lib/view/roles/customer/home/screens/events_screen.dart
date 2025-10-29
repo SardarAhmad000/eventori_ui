@@ -1,4 +1,4 @@
-import 'package:eventori/AppTheme/widgets/app_theme.dart';
+import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

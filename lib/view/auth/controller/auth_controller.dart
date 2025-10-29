@@ -140,7 +140,7 @@
 
 import 'dart:ui';
 import 'package:get/get.dart';
-import '../../../AppTheme/widgets/app_theme.dart';
+import '../../../AppTheme/app_theme.dart';
 
 class AuthController extends GetxController {
   // SignUp Screen States

@@ -126,7 +126,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../AppTheme/widgets/app_theme.dart';
+import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../app_widgets/custom_image_handler.dart';
@@ -233,7 +233,7 @@ class EventCard extends StatelessWidget {
                               ),
                             ),
                             child: Center(
-                              child: Text(date, style: AppTextStyle.myEventdate),
+                              child: Text(date, style: AppTextStyle.font20w500TextStyle),
                             ),
                           ),
                           const SizedBox(height: 5),

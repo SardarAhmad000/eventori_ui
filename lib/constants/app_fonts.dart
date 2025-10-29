@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../AppTheme/widgets/app_theme.dart';
+import '../AppTheme/app_theme.dart';
 
 
 class AppFonts{
