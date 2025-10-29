@@ -32,13 +32,13 @@ class CustomDatePicker {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: ColorScheme.light(
-              primary: primaryColor ?? AppTheme.cyanColor,
+              primary: primaryColor ?? AppTheme.lightCyanColor,
               onPrimary: onPrimary ?? AppTheme.whiteColor,
               onSurface: onSurface ?? AppTheme.darkpurpleColor,
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: primaryColor ?? AppTheme.cyanColor,
+                foregroundColor: primaryColor ?? AppTheme.lightCyanColor,
               ),
             ),
           ),
@@ -262,7 +262,7 @@ class _CustomDateTextFieldState extends State<CustomDateTextField> {
           borderSide: BorderSide(
             width: 1.8,
             color: _focusNode.hasFocus
-                ? AppTheme.cyanColor
+                ? AppTheme.lightCyanColor
                 : (widget.fieldBorderColor ??
                 AppTheme.textfieldBorderColor.withOpacity(.3)),
           ),
@@ -286,7 +286,7 @@ class _CustomDateTextFieldState extends State<CustomDateTextField> {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             width: 1.3,
-            color: AppTheme.cyanColor,
+            color: AppTheme.lightCyanColor,
           ),
         ),
         errorStyle: TextStyle(

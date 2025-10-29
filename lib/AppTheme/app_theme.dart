@@ -13,9 +13,7 @@ class AppTheme{
 
   static Color lightGrayishColor=Color(0xFFD6DFE9);
   static Color ashBlueColor=Color(0xFFD0D5DD);
-  static Color glacierGrayColor=Color(0xFFEAECF0);
   static Color violetColor=Color(0xFFF5EEFB);
-  static Color ghostWhiteColor=Color(0xFFF1F2F6);
   static Color lightGrayishBlueColor=Color(0xFFE3E8EF);
   static Color uploadContainerColor=Color(0xFFD4DDEA);
   static Color textfieldBorderColor=Color(0xFFEEF2F6);
@@ -23,20 +21,21 @@ class AppTheme{
 
   static Color ashGreyColor =Color(0xFFD9D9D9);
   static Color paleGreyBlueColor=Color(0xFFF2F4F7);
+  static Color glacierGrayColor=Color(0xFFEAECF0);
 
 
 
 
 
   static Color lightCyanColor=Color(0xFF00B4DB);
-  static Color cyanColor=Color(0xFF009CBE);
-  static Color brightCyanColor=Color(0xFF14D5FF);
+  // static Color brightCyanColor=Color(0xFF14D5FF);
+  // static Color cyanColor=Color(0xFF009CBE);
 
 
 
   static Color charcoalBlueColor=Color(0xFF344054);
-  static Color stormyGrayColor=Color(0xFF475467);
   static Color stormyIndigoColor=Color(0xFF304363);
+  static Color stormyGrayColor=Color(0xFF475467);
 
 
 
@@ -44,8 +43,7 @@ class AppTheme{
   static Color blueColor =Color(0xFF335CFF);
   static Color greenColor =Color(0xFF16B364);
   static Color denimBlueColor=Color(0xFF4C6A9D);
-
-  static Color steelBlueColor=Color(0xFF7E97C1);
+  // static Color steelBlueColor=Color(0xFF7E97C1);
   static Color deepSpaceBlueColor=Color(0xFF1D2939);
   static Color charcoalVioletColor=Color(0xFF1D1B20);
 

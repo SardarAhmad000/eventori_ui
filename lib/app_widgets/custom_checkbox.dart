@@ -46,7 +46,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
             width: 14,
             height: 14,
             decoration: BoxDecoration(
-              color: isChecked ? AppTheme.cyanColor : AppTheme.ashGreyColor,
+              color: isChecked ? AppTheme.lightCyanColor : AppTheme.ashGreyColor,
               borderRadius: BorderRadius.circular(3),
               border: Border.all(
                 color: isChecked ? Colors.cyan : AppTheme.ashGreyColor,

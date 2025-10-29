@@ -60,7 +60,7 @@ class PinCodeInputWidgetState extends State<PinCodeInputWidget> {
       length: widget.length,
       obscureText: widget.obscureText,
       animationType: AnimationType.none,
-      cursorColor: AppTheme.cyanColor,
+      cursorColor: AppTheme.lightCyanColor,
       keyboardType: widget.keyboardType,
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
@@ -73,7 +73,7 @@ class PinCodeInputWidgetState extends State<PinCodeInputWidget> {
         borderWidth: 1,
         activeColor: AppTheme.textfieldBorderColor,
         inactiveColor: AppTheme.textfieldBorderColor,
-        selectedColor: AppTheme.cyanColor,
+        selectedColor: AppTheme.lightCyanColor,
         activeFillColor: AppTheme.whiteColor,
         inactiveFillColor: AppTheme.whiteColor,
         selectedFillColor: AppTheme.whiteColor,

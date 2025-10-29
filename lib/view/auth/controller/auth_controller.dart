@@ -256,7 +256,7 @@ class AuthController extends GetxController {
 
   /// Get strength color based on criteria met
   Color getPasswordStrengthColor() {
-    return AppTheme.cyanColor;
+    return AppTheme.lightCyanColor;
   }
 
   /// Clear all SignUp form fields

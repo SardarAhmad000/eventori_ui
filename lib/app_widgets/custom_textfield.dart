@@ -148,9 +148,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return Theme(
       data: Theme.of(context).copyWith(
         textSelectionTheme: TextSelectionThemeData(
-          cursorColor: AppTheme.cyanColor,
-          selectionColor: AppTheme.cyanColor,
-          selectionHandleColor: AppTheme.cyanColor,
+          cursorColor: AppTheme.lightCyanColor,
+          selectionColor: AppTheme.lightCyanColor,
+          selectionHandleColor: AppTheme.lightCyanColor,
         ),
       ),
       child: TextFormField(
@@ -165,8 +165,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
         obscureText: widget.isObscure ?? false,
         obscuringCharacter: "*",
         controller: widget.controller,
-        cursorColor: AppTheme.cyanColor,
-        cursorErrorColor: AppTheme.cyanColor,
+        cursorColor: AppTheme.lightCyanColor,
+        cursorErrorColor: AppTheme.lightCyanColor,
         cursorWidth: 1.3,
         onChanged: widget.onChanged,
         inputFormatters: widget.inputFormatters ?? [],
@@ -200,7 +200,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderSide: BorderSide(
               width: 1.8,
               color: _focusNode?.hasFocus == true
-                  ? AppTheme.cyanColor
+                  ? AppTheme.lightCyanColor
                   : (widget.fieldBorderColor ?? AppTheme.textfieldBorderColor),
             ),
           ),
@@ -229,7 +229,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide(
               width: 1.3,
-              color: AppTheme.cyanColor,
+              color: AppTheme.lightCyanColor,
             ),
           ),
           hintText: widget.hintText,
@@ -266,7 +266,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: _focusNode?.hasFocus == true
-                ? AppTheme.cyanColor
+                ? AppTheme.lightCyanColor
                 : (widget.hintTextColor ?? AppTheme.silverColor),
             fontFamily: AppFonts.medium,
           ),

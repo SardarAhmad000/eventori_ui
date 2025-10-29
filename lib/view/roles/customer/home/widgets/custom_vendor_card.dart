@@ -140,7 +140,7 @@ class CustomVendorCard extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Text(
                                   'Tope rated',
-                                  style: AppTextStyle.badgeTextStyle,
+                                  style: AppTextStyle.font12W400WhiteColorTextStyle,
                                 ),
                               ],
                             ),
@@ -167,7 +167,7 @@ class CustomVendorCard extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 rating.toString(),
-                                style: AppTextStyle.badgeTextStyle
+                                style: AppTextStyle.font12W400WhiteColorTextStyle
                               ),
                             ],
                           ),
@@ -193,7 +193,7 @@ class CustomVendorCard extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Text(
                                   'Verified Id',
-                                  style: AppTextStyle.badgeTextStyle,
+                                  style: AppTextStyle.font12W400WhiteColorTextStyle,
                                 ),
                               ],
                             ),
@@ -248,9 +248,9 @@ class CustomVendorCard extends StatelessWidget {
                             Text: "Contact",
                             onTap: () {},
                             buttonColor: AppTheme.whiteColor,
-                            textColor: AppTheme.brightCyanColor,
+                            textColor: AppTheme.lightCyanColor,
                             height: 48,
-                            borderColor: AppTheme.brightCyanColor,
+                            borderColor: AppTheme.lightCyanColor,
                           ),
                         ),
                       ],

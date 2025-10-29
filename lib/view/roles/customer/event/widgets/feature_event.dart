@@ -199,7 +199,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                           height: 48,
                           buttonColor: AppTheme.whiteColor,
                           textColor: AppTheme.blackColor,
-                          borderColor: AppTheme.brightCyanColor,
+                          borderColor: AppTheme.lightCyanColor,
                           textSize: 16,
                           onTap: () => Navigator.pop(context),
                         ),

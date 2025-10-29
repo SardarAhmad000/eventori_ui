@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                   height: 48,
                   buttonColor: Colors.white,
                   textColor: AppTheme.blackColor,
-                  borderColor: AppTheme.cyanColor,
+                  borderColor: AppTheme.lightCyanColor,
                   textSize: 16,
                   fontFamily: AppFonts.medium,
                   onTap: () {},

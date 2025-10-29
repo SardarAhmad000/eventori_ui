@@ -40,7 +40,7 @@ class AppTextStyle {
   );
   static TextStyle cyanColorStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.cyanColor,
+    color: AppTheme.lightCyanColor,
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
@@ -100,7 +100,7 @@ class AppTextStyle {
   );
   static TextStyle bottomSignUptextStyle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.cyanColor,
+    color: AppTheme.lightCyanColor,
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
@@ -201,14 +201,7 @@ class AppTextStyle {
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
-
-  static TextStyle  homeWelcomeTitleStyle= TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.ashBlueColor,
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-  );
-
+  
   static TextStyle homeAppBarTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.ashBlueColor,
@@ -225,7 +218,7 @@ class AppTextStyle {
 
   static TextStyle viewAllText= TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.brightCyanColor,
+    color: AppTheme.lightCyanColor,
     fontSize: 18,
     fontWeight: FontWeight.w500,
   );
@@ -291,13 +284,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-
-  static TextStyle badgeTextStyle = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.ghostWhiteColor,
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-  );
 
 
   static TextStyle vendorEventsTextStyle = TextStyle(
