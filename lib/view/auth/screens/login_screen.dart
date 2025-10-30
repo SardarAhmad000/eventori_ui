@@ -206,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Text(
                                   "Don't have an account? ",
-                                  style: AppTextStyle.bottomtextStyle),
+                                  style: AppTextStyle.font16W400DPColorStyle),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(AppRoutes.signUpScreen);

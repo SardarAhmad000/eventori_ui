@@ -33,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const SizedBox(height: 12),
               Text(
                 'You create the moments. We connect the people.',
-                style: AppTextStyle.font16W400WhiteColorTextStyle,
+                style: AppTextStyle.font18W700BColorTextStyle,
               ),
               const SizedBox(height: 12),
               CustomButton(

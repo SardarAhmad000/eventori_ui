@@ -148,7 +148,7 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
                         text: _secondsRemaining > 0
                             ? '$_secondsRemaining seconds'
                             : '',
-                        style: AppTextStyle.secondtextStyle,
+                        style: AppTextStyle.font16W400DPColorStyle,
                       ),
                     ],
                   ),

@@ -5,6 +5,7 @@ import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/view/roles/customer/home/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import '../../AppTheme/app_theme.dart';
+import '../roles/customer/chat/screen/chat_screen.dart';
 import '../roles/customer/event/create_event_screen.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -20,7 +21,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
     // const HomePage(),
     const Center(child: Text('Search Screen', style: TextStyle(fontSize: 18))),
     const CreateEventScreen(),
-    const Center(child: Text('Chat Screen', style: TextStyle(fontSize: 18))),
+    const ChatScreen(),
     const Center(child: Text('Dashboard Screen', style: TextStyle(fontSize: 18))),
   ];
 

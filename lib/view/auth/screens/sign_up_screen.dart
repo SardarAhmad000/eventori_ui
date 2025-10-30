@@ -649,7 +649,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Already have an account? ",
-                                  style: AppTextStyle.bottomtextStyle),
+                                  style: AppTextStyle.font16W400DPColorStyle),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(AppRoutes.loginScreen);

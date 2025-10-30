@@ -28,6 +28,9 @@ class AppAssets{
   static String starIcon= 'assets/app_icons/star_icon.png';
   static String verifiedIcon= 'assets/app_icons/verified_icon.png';
   static String copyIcon= 'assets/app_icons/copy_icon.png';
+  static String addIcon= 'assets/app_icons/add_icon.png';
+  static String filterFunnelIcon= 'assets/app_icons/filter_funnel_icon.png';
+  static String moreHorizIcon= 'assets/app_icons/more_horiz_icon.png';
 
 
 
