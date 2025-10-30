@@ -50,7 +50,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                     width: 169,
                     height: 169,
                     decoration: BoxDecoration(
-                      color: AppTheme.uploadContainerColor,
+                      color: AppTheme.dividerColor,
                       borderRadius: BorderRadius.circular(99999),
                       border: Border.all(
                         color: AppTheme.lightGrayishColor,
@@ -70,7 +70,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                   Divider(
                     thickness: 1,
                     height: 1,
-                    color: AppTheme.lightGrayishBlueColor,
+                    color: AppTheme.dividerColor,
                   ),
                   const SizedBox(height: 15),
 
@@ -134,14 +134,14 @@ class AddProfilePhotoPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Divider(
-                          color: AppTheme.lightGrayishBlueColor,
+                          color: AppTheme.dividerColor,
                           thickness: 1,
                         ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Divider(
-                          color: AppTheme.lightGrayishBlueColor,
+                          color: AppTheme.dividerColor,
                           thickness: 1,
                           ),
                       ),

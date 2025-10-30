@@ -217,7 +217,7 @@ class CustomVendorCard extends StatelessWidget {
                             color: AppTheme.whiteColor,
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
-                              color: AppTheme.glacierGrayColor,
+                              color: AppTheme.textfieldBorderColor,
                               width: 1,
                             ),
                           ),

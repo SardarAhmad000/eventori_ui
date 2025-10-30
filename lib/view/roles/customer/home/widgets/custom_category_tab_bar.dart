@@ -54,7 +54,7 @@ class _CustomCategoryTabBarState extends State<CustomCategoryTabBar> {
                   border: Border.all(
                     color: isSelected
                         ? AppTheme.denimBlueColor
-                        : AppTheme.glacierGrayColor,
+                        : AppTheme.textfieldBorderColor,
                     width: 1,
                   ),
                 ),

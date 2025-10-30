@@ -130,7 +130,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                   height: 48,
                   buttonColor: AppTheme.whiteColor,
                   textColor: AppTheme.silverColor,
-                  borderColor: AppTheme.glacierGrayColor,
+                  borderColor: AppTheme.textfieldBorderColor,
                   textSize: 16,
                   isAuth: true,
                   iconOnRight: true,
@@ -160,7 +160,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                         controller: _eventUrlController,
                         hintText: 'Enter event URL',
                         fillColor: AppTheme.whiteColor,
-                        fieldBorderColor: AppTheme.glacierGrayColor,
+                        fieldBorderColor: AppTheme.textfieldBorderColor,
                         suffixIcon: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: Image.asset(

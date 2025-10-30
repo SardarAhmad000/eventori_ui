@@ -105,7 +105,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  //SIGNUP SCREEN
 
 // VERIFY ACCOUNT SCREEN
 
@@ -116,13 +115,6 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  //Forgot Password Screen
-  static TextStyle strenghtTextStyle = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.blackColor,
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-  );
 
 // CreateEventScreen
 
@@ -137,13 +129,6 @@ class AppTextStyle {
     fontFamily: fontFamily,
     color: AppTheme.midnightBlueColor,
     fontSize: 16,
-    fontWeight: FontWeight.w500,
-  );
-
-  static TextStyle blackTextStyle = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.blackColor,
-    fontSize: 14,
     fontWeight: FontWeight.w500,
   );
 
@@ -173,7 +158,7 @@ class AppTextStyle {
 
   static TextStyle myEventmonth = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.paleGreyBlueColor,
+    color: AppTheme.paperWhiteColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
@@ -204,7 +189,7 @@ class AppTextStyle {
   
   static TextStyle homeAppBarTextStyle= TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.ashBlueColor,
+    color: AppTheme.lightGrayishColor,
     fontSize: 18,
     fontWeight: FontWeight.w500,
   );
@@ -252,7 +237,7 @@ class AppTextStyle {
 
   static TextStyle featuredEventSubTitle = TextStyle(
     fontFamily: fontFamily,
-    color: AppTheme.ashBlueColor,
+    color: AppTheme.lightGrayishColor,
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
@@ -312,5 +297,12 @@ class AppTextStyle {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle font14W500BColorTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppTheme.blackColor,
+  );
+
 
 }

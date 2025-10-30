@@ -21,7 +21,7 @@ class CreateEventCard extends StatelessWidget {
           color: AppTheme.lightCyanColor,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: AppTheme.glacierGrayColor,
+            color: AppTheme.textfieldBorderColor,
             width: 1,
           ),
         ),

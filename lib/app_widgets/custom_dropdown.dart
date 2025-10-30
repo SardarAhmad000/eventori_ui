@@ -51,7 +51,7 @@ class CustomDropdownField extends StatelessWidget {
           fontSize: 16,
           fontWeight: FontWeight.w400,
           color: hintTextColor ?? AppTheme.silverColor,
-          fontFamily: AppFonts.medium,
+          fontFamily: AppFonts.regular,
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         constraints: BoxConstraints(minHeight: 48, minWidth: 90.w),

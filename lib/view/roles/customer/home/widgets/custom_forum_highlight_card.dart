@@ -49,7 +49,7 @@ class ForumHighlightCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: AppTextStyle.blackTextStyle,
+              style: AppTextStyle.font14W500BColorTextStyle,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

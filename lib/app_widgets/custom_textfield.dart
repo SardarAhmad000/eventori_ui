@@ -173,7 +173,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         style: TextStyle(
           fontSize: 16,
-          fontFamily: AppFonts.medium,
+          fontFamily: AppFonts.regular,
           color: widget.inputTextColor ?? AppTheme.darkpurpleColor,
         ),
         decoration: InputDecoration(
@@ -242,7 +242,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           hintStyle: TextStyle(
             fontWeight: FontWeight.w400,
             fontSize: 14,
-            fontFamily: AppFonts.medium,
+            fontFamily: AppFonts.regular,
             color: widget.hintTextColor ?? AppTheme.silverColor,
           ),
           suffixIcon: widget.suffixIcon,
@@ -268,7 +268,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             color: _focusNode?.hasFocus == true
                 ? AppTheme.lightCyanColor
                 : (widget.hintTextColor ?? AppTheme.silverColor),
-            fontFamily: AppFonts.medium,
+            fontFamily: AppFonts.regular,
           ),
           floatingLabelBehavior: FloatingLabelBehavior.always,
         ),

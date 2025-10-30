@@ -153,12 +153,23 @@ flutter:
     - assets/app_icons/
     - assets/app_images/
 
+#  fonts:
+#    - family: Outfit
+#      fonts:
+#        - asset:
+#          weight: 700
+#        - asset:
+#          weight: 500
+#        - asset:
+#          weight: 400
+
   fonts:
-    - family: Outfit
-      fonts:
-        - asset: assets/app_fonts/Outfit-Bold.ttf
-          weight: 700
-        - asset: assets/app_fonts/Outfit-Medium.ttf
-          weight: 500
-        - asset: assets/app_fonts/Outfit-Regular.ttf
-          weight: 400
+      - family: bold
+        fonts:
+          - asset: assets/app_fonts/Outfit-Bold.ttf
+      - family: medium
+        fonts:
+          - asset: assets/app_fonts/Outfit-Medium.ttf
+      - family: regular
+        fonts:
+          - asset: assets/app_fonts/Outfit-Regular.ttf

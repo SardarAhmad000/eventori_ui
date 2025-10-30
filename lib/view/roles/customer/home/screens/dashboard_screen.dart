@@ -1,5 +1,6 @@
 import 'package:eventori/app_widgets/custom_textfield.dart';
 import 'package:eventori/view/roles/customer/home/screens/events_screen.dart';
+import 'package:eventori/view/roles/customer/home/screens/forum_screen.dart';
 import 'package:eventori/view/roles/customer/home/screens/home_screen.dart';
 import 'package:eventori/view/roles/customer/home/screens/vendors_screen.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +116,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           width: 36,
                           height: 36,
                           decoration: BoxDecoration(
-                            color: AppTheme.paleGreyBlueColor,
+                            color: AppTheme.paperWhiteColor,
                             borderRadius: BorderRadius.circular(999),
                           ),
                           padding: const EdgeInsets.all(8),
@@ -143,14 +144,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
 
           Expanded(
-            child: _buildTabContent(),
+            child: buildTabContent(),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildTabContent() {
+  Widget buildTabContent() {
     switch (_selectedTabIndex) {
       case 0:
         return HomeScreen();
@@ -159,22 +160,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       case 2:
         return EventsScreen();
       case 3:
-        return _buildForumsContent();
+        return ForumScreen();
       default:
         return HomeScreen();
     }
-  }
-
-
-
-
-  // Forums Tab Content
-  Widget _buildForumsContent() {
-    return Center(
-      child: Text(
-        'Forums Content',
-        style: AppTextStyle.myEventsTitle,
-      ),
-    );
   }
 }

@@ -208,7 +208,7 @@ class _CustomDateTextFieldState extends State<CustomDateTextField> {
       validator: widget.validator,
       style: TextStyle(
         fontSize: 16,
-        fontFamily: AppFonts.medium,
+        fontFamily: AppFonts.regular,
         color: widget.inputTextColor ?? AppTheme.darkpurpleColor,
       ),
       decoration: InputDecoration(
@@ -219,7 +219,7 @@ class _CustomDateTextFieldState extends State<CustomDateTextField> {
         hintStyle: TextStyle(
           fontWeight: FontWeight.w400,
           fontSize: 16,
-          fontFamily: AppFonts.medium,
+          fontFamily: AppFonts.regular,
           color: widget.hintTextColor ?? AppTheme.silverColor,
         ),
         suffixIcon: widget.suffixIcon ??

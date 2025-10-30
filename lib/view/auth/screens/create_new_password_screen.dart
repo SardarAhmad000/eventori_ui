@@ -147,11 +147,11 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     children: [
                       Text(
                         'Password Strength: ',
-                        style: AppTextStyle.strenghtTextStyle,
+                        style: AppTextStyle.font14W500BColorTextStyle,
                       ),
                       Text(
                         authController.getCreateNewPasswordStrengthText(),
-                        style: AppTextStyle.strenghtTextStyle,
+                        style: AppTextStyle.font14W500BColorTextStyle,
                       ),
                     ],
                   ),
@@ -164,7 +164,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     borderRadius: BorderRadius.circular(4),
                     child: LinearProgressIndicator(
                       value: authController.getPasswordStrength(),
-                      backgroundColor: AppTheme.ashBlueColor,
+                      backgroundColor: AppTheme.lightGrayishColor,
                       valueColor: AlwaysStoppedAnimation<Color>(
                         authController.getPasswordStrengthColor(),
                       ),

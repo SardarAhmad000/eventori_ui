@@ -34,7 +34,7 @@ class CustomCard extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: AppTheme.glacierGrayColor,
+              color: AppTheme.textfieldBorderColor,
               blurRadius: 8,
               offset: const Offset(0, 2),
             ),

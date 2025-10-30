@@ -48,7 +48,7 @@ class CustomTabBar extends StatelessWidget {
                           : AppTheme.denimBlueColor,
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      fontFamily: AppFonts.medium,
+                      fontFamily: AppFonts.regular,
                     ),
                   ),
                   const SizedBox(height: 4),

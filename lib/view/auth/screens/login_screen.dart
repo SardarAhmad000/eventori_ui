@@ -139,7 +139,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         children: [
                            Expanded(
-                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
+                              child: Divider(color: AppTheme.dividerColor)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Expanded(
-                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
+                              child: Divider(color: AppTheme.dividerColor)),
                         ],
                       ),
 

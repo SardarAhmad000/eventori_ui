@@ -6,12 +6,12 @@ import '../AppTheme/app_theme.dart';
 
 class AppFonts{
   static const bold = 'bold'; // use regular
-  static const light = 'bold';
-  static const medium = 'bold';
-  static const regular = 'bold';
+  // static const light = 'bold';
+  static const medium = 'medium';
+  static const regular = 'regular';
 
 //FontFamily
-  static const String fontFamily = "Plus Jakarta Sans";
+  static const String fontFamily = "Outfit";
 
   // Text Styles
   static TextStyle StylePara({double fontSize = 14, Color? color,FontWeight fontWeight = FontWeight.w400,}) {

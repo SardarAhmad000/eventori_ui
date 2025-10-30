@@ -99,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                   textColor: AppTheme.blackColor,
                   borderColor: AppTheme.lightCyanColor,
                   textSize: 16,
-                  fontFamily: AppFonts.medium,
+                  fontFamily: AppFonts.regular,
                   onTap: () {},
                 ),
                 const SizedBox(height: 16),

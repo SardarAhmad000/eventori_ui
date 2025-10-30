@@ -587,7 +587,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       Row(
                         children: [
                           Expanded(
-                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
+                              child: Divider(color: AppTheme.dividerColor)),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
@@ -596,7 +596,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                           ),
                           Expanded(
-                              child: Divider(color: AppTheme.lightGrayishBlueColor)),
+                              child: Divider(color: AppTheme.dividerColor)),
                         ],
                       ),
                       const SizedBox(height: 16),
