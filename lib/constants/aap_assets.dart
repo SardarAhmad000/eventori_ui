@@ -31,6 +31,8 @@ class AppAssets{
   static String addIcon= 'assets/app_icons/add_icon.png';
   static String filterFunnelIcon= 'assets/app_icons/filter_funnel_icon.png';
   static String moreHorizIcon= 'assets/app_icons/more_horiz_icon.png';
+  static String moreVerticalIcon= 'assets/app_icons/more_vertical_icon.png';
+  static String closeIcon= 'assets/app_icons/close_icon.png';
 
 
 

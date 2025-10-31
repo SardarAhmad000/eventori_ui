@@ -95,7 +95,7 @@ class CustomVendorCard extends StatelessWidget {
                   children: [
                     Text(
                       vendorName,
-                      style: AppTextStyle.vendorTitle,
+                      style: AppTextStyle.font18W500BColorTextStyle,
                     ),
                     const SizedBox(height: 8),
 

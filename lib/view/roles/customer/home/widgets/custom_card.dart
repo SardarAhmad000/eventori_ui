@@ -73,7 +73,7 @@ class CustomCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: AppTextStyle.eventTitle,
+                      style: AppTextStyle.font14W600BColorTextStyle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),

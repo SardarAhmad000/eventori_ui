@@ -49,7 +49,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
               backgroundColor: AppTheme.blackColor,
               arrowColor: AppTheme.whiteColor,
               containerBackgroundColor: AppTheme.midnightBlueColor,
-              borderColor: AppTheme.lightGrayishColor,
+              borderColor: AppTheme.midnightBlueColor,
               showLogo: true,
             ),
             // HeaderWidget(onBackPressed: () => Navigator.of(context).maybePop()),
@@ -95,7 +95,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                               shape: BoxShape.circle,
                               border: Border.all(
                                 color: isSelected
-                                    ? AppTheme.purplishColor
+                                    ? AppTheme.whiteColor
                                     : AppTheme.whiteColor,
                                 width: 1,
                               ),

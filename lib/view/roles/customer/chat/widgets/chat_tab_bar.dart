@@ -17,23 +17,26 @@ class ChatTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        height: 32,
-        decoration: BoxDecoration(
-          color: isSelected ? AppTheme.whiteColor : Colors.transparent,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            width: 1,
-            color: AppTheme.textfieldBorderColor ?? AppTheme.whiteColor,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Container(
+          height: 32,
+          decoration: BoxDecoration(
+            color: isSelected ? AppTheme.whiteColor : Colors.transparent,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(
+              width: 1,
+              color: isSelected ? AppTheme.textfieldBorderColor : AppTheme.whiteColor,
+            ),
           ),
-        ),
-        child: Center(
-          child: Text(
-            title,
-            style: TextStyle(
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
-              color: isSelected ? AppTheme.blackColor : AppTheme.slateGreyColor,
+          child: Center(
+            child: Text(
+              title,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+                color: isSelected ? AppTheme.blackColor : AppTheme.slateGreyColor,
+              ),
             ),
           ),
         ),

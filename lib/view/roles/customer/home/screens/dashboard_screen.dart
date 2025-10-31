@@ -70,7 +70,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                       style: AppTextStyle.AlreadyTextStyle),
                                   const SizedBox(height: 2),
                                   Text('Welcome Back!',
-                                      style: AppTextStyle.font18W700BColorTextStyle),
+                                      style: AppTextStyle.font16W400WhiteColorTextStyle),
                                 ],
                               ),
                             ],

@@ -78,7 +78,6 @@ class CustomSuccessDialog extends StatelessWidget {
 
             SizedBox(height: 3.h),
 
-            // Button
             CustomButton(
               Text: buttonText,
               width: double.infinity,

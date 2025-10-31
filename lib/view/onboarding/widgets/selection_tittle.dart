@@ -16,7 +16,7 @@ class SelectionTitle extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           'Tell us who you are so we can tailor your Eventori experience.',
-          style: AppTextStyle.font18W700BColorTextStyle,
+          style: AppTextStyle.font16W400WhiteColorTextStyle,
         ),
       ],
     );

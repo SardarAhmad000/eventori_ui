@@ -106,7 +106,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle vendorTitle= TextStyle(
+  static TextStyle font18W500BColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 18,
@@ -170,6 +170,14 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
+
+  static TextStyle  font16W400LGColorTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.lightGrayishColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle textsStyleEvent = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
@@ -206,7 +214,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle eventTitle= TextStyle(
+  static TextStyle font14W600BColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 14,
@@ -234,7 +242,26 @@ class AppTextStyle {
     color: AppTheme.blackColor,
   );
 
+  static TextStyle vendorSponsStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.lightIndigoColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
 
+  static TextStyle font12W500SGColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.slateGreyColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle font12W500WColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.whiteColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
 
   static TextStyle font12W400WhiteColorTextStyle = TextStyle(
     fontFamily: fontFamily,
@@ -264,12 +291,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle vendorSponsStyle = TextStyle(
-    fontFamily: fontFamily,
-    color: AppTheme.lightIndigoColor,
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-  );
+
 
   static TextStyle vendorLocatioStyle= TextStyle(
     fontFamily: fontFamily,

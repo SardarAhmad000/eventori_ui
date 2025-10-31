@@ -81,8 +81,8 @@ class CustomHeader extends StatelessWidget {
           GestureDetector(
             onTap: onBackPressed ?? Get.back,
             child: Container(
-              width: 36,
-              height: 36,
+              width: 40,
+              height: 40,
               decoration: BoxDecoration(
                 color: containerBackgroundColor,
                 borderRadius: BorderRadius.circular(12),
