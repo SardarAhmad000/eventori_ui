@@ -124,7 +124,7 @@ class AddProfilePhotoPage extends StatelessWidget {
                     },
                     child: Text(
                       'Skip',
-                    style: AppTextStyle.skipStyle,
+                    style: AppTextStyle.f16W400SColorTextStyle,
                     ),
                   ),
 

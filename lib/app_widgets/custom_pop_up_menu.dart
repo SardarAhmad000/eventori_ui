@@ -18,12 +18,14 @@ class CustomPopupMenu extends StatelessWidget {
   final List<PopupMenuOption> options;
   final GlobalKey menuKey;
   final Widget child;
+  final double horizontalOffset;
 
   const CustomPopupMenu({
     Key? key,
     required this.options,
     required this.menuKey,
     required this.child,
+    this.horizontalOffset = -160,
   }) : super(key: key);
 
   void _showMenu(BuildContext context) {
@@ -42,7 +44,7 @@ class CustomPopupMenu extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       position: RelativeRect.fromLTRB(
-        offset.dx - 150,
+        offset.dx + horizontalOffset, // Use the parameter here
         offset.dy + size.height,
         offset.dx + size.width,
         offset.dy,

@@ -33,6 +33,8 @@ class AppAssets{
   static String moreHorizIcon= 'assets/app_icons/more_horiz_icon.png';
   static String moreVerticalIcon= 'assets/app_icons/more_vertical_icon.png';
   static String closeIcon= 'assets/app_icons/close_icon.png';
+  static String cameraIcon= 'assets/app_icons/camera_icon.png';
+  static String sendMessageIcon= 'assets/app_icons/send_message_icon.png';
 
 
 

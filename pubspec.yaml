@@ -139,6 +139,7 @@ dependencies:
   dotted_border: ^2.1.0
   dropdown_button2: ^2.3.9
   country_picker_bkb: ^1.0.14
+  flutter_chat_ui: ^1.6.15
 #  country_picker_bkb: ^1.0.14
 
 dev_dependencies:

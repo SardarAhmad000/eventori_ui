@@ -94,7 +94,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                   const SizedBox(height: 24),
                   Text(
                     'Featured your event',
-                    style: AppTextStyle.textsStyleEvent,
+                    style: AppTextStyle.f16W500BColorTextStyle,
                   ),
                   const SizedBox(height: 8),
                   Text(

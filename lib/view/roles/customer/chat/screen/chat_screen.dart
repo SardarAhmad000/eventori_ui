@@ -1,25 +1,20 @@
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
+import 'package:eventori/view/roles/customer/chat/screen/chat_detailed_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
+import '../controller/chat_detailed_controller.dart';
 import '../widgets/chat_item.dart';
 import '../widgets/chat_tab_bar.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key}) : super(key: key);
 
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  final vendorsController = TextEditingController();
-  String selectedTab = 'All';
-
-  void _handleClearChat(int index) {
+  void _handleClearChat(int index, BuildContext context) {
     CustomClearChatDialog.show(
       context: context,
       title: 'Clear Chat',
@@ -35,9 +30,9 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<ChatDetailedController>();
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: SafeArea(
@@ -65,7 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   AbsorbPointer(
                     absorbing: true,
                     child: CustomTextField(
-                      controller: vendorsController,
+                      controller: controller.vendorsController,
                       hintText: "Search Vendors",
                       prefixIcon: Padding(
                         padding: const EdgeInsets.only(left: 5),
@@ -79,7 +74,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Container(
+                  Obx(() => Container(
                     height: 40,
                     decoration: BoxDecoration(
                       color: AppTheme.whiteColor,
@@ -90,28 +85,24 @@ class _ChatScreenState extends State<ChatScreen> {
                         Expanded(
                           child: ChatTabBar(
                             title: 'All',
-                            isSelected: selectedTab == 'All',
+                            isSelected: controller.selectedTab.value == 'All',
                             onTap: () {
-                              setState(() {
-                                selectedTab = 'All';
-                              });
+                              controller.updateSelectedTab('All');
                             },
                           ),
                         ),
                         Expanded(
                           child: ChatTabBar(
                             title: 'Saved',
-                            isSelected: selectedTab == 'Saved',
+                            isSelected: controller.selectedTab.value == 'Saved',
                             onTap: () {
-                              setState(() {
-                                selectedTab = 'Saved';
-                              });
+                              controller.updateSelectedTab('Saved');
                             },
                           ),
                         ),
                       ],
                     ),
-                  ),
+                  )),
                 ],
               ),
             ),
@@ -119,20 +110,35 @@ class _ChatScreenState extends State<ChatScreen> {
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.only(top: 12),
-                itemCount: 5,
+                itemCount: 4,
                 itemBuilder: (context, index) {
                   return ChatItem(
                     avatarUrl: AppAssets.featuredImage1,
                     name: 'Noraiz Raja',
                     lastMessage: 'Ok Done!',
-                    messageCount: 4,
+                    messageCount: 3,
                     onTap: () {
-                      // Navigate to chat detail screen
+                      Get.to(
+                            () => const ChatDetailedScreen(),
+                        arguments: {
+                          'name': 'Noraiz Raja',
+                          'avatarUrl':  AppAssets.featuredImage1,
+                          'isSaved': true,
+                        },
+                      );
+                      // Get.to(
+                      //       () => const TeamChatScreen(),
+                      //   arguments: {
+                      //     'name': 'Noraiz Raja',
+                      //     'avatarUrl': AppAssets.featuredImage1,
+                      //     'isSaved': false,
+                      //   },
+                      // );
                     },
                     menuOptions: [
                       PopupMenuOption(
                         title: 'Delete chat',
-                        onTap: () => _handleClearChat(index),
+                        onTap: () => _handleClearChat(index, context),
                       ),
                       PopupMenuOption(
                         title: 'Mute Notification',

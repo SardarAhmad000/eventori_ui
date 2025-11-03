@@ -23,13 +23,13 @@ class PasswordStrengthIndicator extends StatelessWidget {
   }
 
   Color get strengthColor {
-    if (strengthLevel == 0) return Colors.red;
-    if (strengthLevel == 1) return Colors.red;
+    if (strengthLevel == 0) return AppTheme.redColor;
+    if (strengthLevel == 1) return AppTheme.redColor;
     if (strengthLevel == 2) return Colors.orange;
     if (strengthLevel == 3) return Colors.yellow.shade700;
     if (strengthLevel == 4) return Colors.lightGreen;
     if (strengthLevel == 5) return Colors.green;
-    return Colors.red;
+    return AppTheme.redColor;
   }
 
   @override

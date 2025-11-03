@@ -95,7 +95,7 @@ class HomeScreen extends StatelessWidget {
                   Text: 'View all vendors',
                   width: double.infinity,
                   height: 48,
-                  buttonColor: Colors.white,
+                  buttonColor: AppTheme.whiteColor,
                   textColor: AppTheme.blackColor,
                   borderColor: AppTheme.lightCyanColor,
                   textSize: 16,

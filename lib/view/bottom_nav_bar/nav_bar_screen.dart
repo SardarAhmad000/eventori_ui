@@ -2,6 +2,7 @@ import 'package:curved_nav_bar/curved_bar/curved_action_bar.dart';
 import 'package:curved_nav_bar/fab_bar/fab_bottom_app_bar_item.dart';
 import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:eventori/constants/aap_assets.dart';
+import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/roles/customer/home/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import '../../AppTheme/app_theme.dart';
@@ -19,10 +20,10 @@ class _NavBarScreenState extends State<NavBarScreen> {
   final List<Widget> _screens = [
     const DashboardScreen(),
     // const HomePage(),
-    const Center(child: Text('Search Screen', style: TextStyle(fontSize: 18))),
+    Center(child: Text('Search Screen', style: AppTextStyle.f16W400SColorTextStyle)),
     const CreateEventScreen(),
     const ChatScreen(),
-    const Center(child: Text('Dashboard Screen', style: TextStyle(fontSize: 18))),
+    Center(child: Text('Dashboard Screen',style: AppTextStyle.f16W400SColorTextStyle)),
   ];
 
   Widget _buildActionButton({required bool isActive}) {

@@ -136,7 +136,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle skipStyle = TextStyle(
+  static TextStyle f16W400SColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.silverColor,
     fontSize: 16,
@@ -178,7 +178,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle textsStyleEvent = TextStyle(
+  static TextStyle f16W500BColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 16,
@@ -200,11 +200,32 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle createEventUpload = TextStyle(
+  static TextStyle f14W500SColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.silverColor,
     fontSize: 14,
     fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle f14W400SColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.silverColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle f14W40BColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.blackColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle f14W40RColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.redColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle newsEventTitle= TextStyle(
@@ -270,7 +291,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle NotSureStyle = TextStyle(
+  static TextStyle font12W400BColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 12,
@@ -303,6 +324,13 @@ class AppTextStyle {
   static TextStyle eventPlanPriceTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.deepSpaceBlueColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle f12W400RColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.redColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );

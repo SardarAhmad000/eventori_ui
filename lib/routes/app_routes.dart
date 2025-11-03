@@ -19,5 +19,6 @@ abstract class AppRoutes {
   static const eventsScreen = '/eventsScreen';
   static const vendorsScreen = '/vendorsScreen';
   static const forumScreen = '/forumScreen';
+  static const teamChatScreen = '/teamChatScreen';
 
 }

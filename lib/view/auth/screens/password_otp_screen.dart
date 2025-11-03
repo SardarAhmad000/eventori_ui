@@ -137,12 +137,17 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
                     children: [
                       TextSpan(
                         text: 'Resend code ',
-                        style: TextStyle(
+                        style: AppTextStyle.f16W400SColorTextStyle.copyWith(
                           color: _secondsRemaining == 0
                               ? AppTheme.lightCyanColor
                               : AppTheme.silverColor,
-                          fontWeight: FontWeight.w500,
                         ),
+                        // style: TextStyle(
+                        //   color: _secondsRemaining == 0
+                        //       ? AppTheme.lightCyanColor
+                        //       : AppTheme.silverColor,
+                        //   fontWeight: FontWeight.w500,
+                        // ),
                       ),
                       TextSpan(
                         text: _secondsRemaining > 0

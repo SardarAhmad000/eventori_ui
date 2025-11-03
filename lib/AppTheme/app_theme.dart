@@ -47,6 +47,8 @@ class AppTheme{
 
   static Color purplishColor=Color(0xFF7B2CBF);
   static Color lightIndigoColor=Color(0xFF7F56D9);
+  static Color purpleColor=Color(0xFFA463DB);
+  // static Color lightPeachColor=Color(0xFFCCA9EB);
   // static Color heatherVioletColor=Color(0xFF8F40D3);
   // static Color darkLavenderColor=Color(0xFF6750A4);
 }

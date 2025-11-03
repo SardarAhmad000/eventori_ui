@@ -252,7 +252,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                         CustomCheckbox(
                                           initialValue: isNotSureChecked,
                                           label: 'Not sure',
-                                          labelStyle: AppTextStyle.NotSureStyle,
+                                          labelStyle: AppTextStyle.font12W400BColorTextStyle,
                                           onChanged: (value) {
                                             setState(() {
                                               isNotSureChecked = value;
@@ -311,10 +311,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                               children: [
                                                 Text(
                                                   selectedCountry ?? 'Country',
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: selectedCountry == null ? AppTheme.silverColor : AppTheme.darkpurpleColor,
-                                                  ),
+                                                  style: AppTextStyle.f16W400SColorTextStyle.copyWith(color: selectedCountry == null ? AppTheme.silverColor : AppTheme.darkpurpleColor),
+
+                                                  // TextStyle(
+                                                  //   fontSize: 14,
+                                                  //   color: selectedCountry == null ? AppTheme.silverColor : AppTheme.darkpurpleColor,
+                                                  // ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
                                                 Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 20),
@@ -327,11 +329,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                             padding: const EdgeInsets.only(top: 4, left: 4),
                                             child: Text(
                                               countryError!,
-                                              style:  TextStyle(
-                                                fontSize: 12,
-                                                color: AppTheme.redColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
+                                              style: AppTextStyle.f12W400RColorTextStyle.copyWith(fontWeight: FontWeight.bold),
+                                              // TextStyle(
+                                              //   fontSize: 12,
+                                              //   color: AppTheme.redColor,
+                                              //   fontWeight: FontWeight.bold,
+                                              // ),
                                             ),
                                           ),
                                       ],
@@ -428,7 +431,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                         CustomCheckbox(
                                           initialValue: isNotSureDate,
                                           label: 'Not sure',
-                                          labelStyle: AppTextStyle.NotSureStyle,
+                                          labelStyle: AppTextStyle.font12W400BColorTextStyle,
                                           onChanged: (value) {
                                             setState(() {
                                               isNotSureDate = value;
@@ -513,7 +516,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                       const SizedBox(height: 8),
                                       Text(
                                         'Upload',
-                                        style: AppTextStyle.createEventUpload,
+                                        style: AppTextStyle.f14W500SColorTextStyle,
                                       ),
                                     ],
                                   ),

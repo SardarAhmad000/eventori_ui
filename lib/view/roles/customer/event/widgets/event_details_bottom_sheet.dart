@@ -104,7 +104,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                 const SizedBox(height: 12),
                 Text(
                     widget.eventDate,
-                    style: AppTextStyle.textsStyleEvent,
+                    style: AppTextStyle.f16W500BColorTextStyle,
                 ),
                 const SizedBox(height: 12),
                 Column(
@@ -152,7 +152,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                   children: [
                     Text(
                         'Event URL',
-                        style:AppTextStyle.textsStyleEvent
+                        style:AppTextStyle.f16W500BColorTextStyle
                     ),
                     const SizedBox(height: 8),
                     AbsorbPointer(
