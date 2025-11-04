@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/splash/controller/splash_controller.dart';
 import 'package:flutter/material.dart';
@@ -28,10 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-         Icon(
-           Icons.calendar_month_outlined,
-           size: 80,
-         ),
+        Image.asset(
+            AppAssets.onlyAppLogo,
+          width: 80,
+          height: 80,
+        ),
         Text(
           'eventori',
           style: AppTextStyle.f32W600LCColorTextStyle,

@@ -1,6 +1,7 @@
 class AppAssets{
   static String arrowIcon= 'assets/app_icons/arrow_icon.png';
   static String appLogo= 'assets/app_icons/app_logo.png';
+  static String onlyAppLogo= 'assets/app_icons/only_app_logo.png';
   static String uploadImageIcon= 'assets/app_icons/upload_icon.png';
   static String mailIcon= 'assets/app_icons/mail_icon.png';
   static String lockIcon= 'assets/app_icons/lock_icon.png';

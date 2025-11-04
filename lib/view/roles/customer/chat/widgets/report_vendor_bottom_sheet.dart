@@ -57,6 +57,7 @@ class ReportVendorBottomSheet {
                 height: 124,
                 decoration: BoxDecoration(
                   color: AppTheme.dividerColor,
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
