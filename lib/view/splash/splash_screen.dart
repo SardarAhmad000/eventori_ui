@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
          ),
         Text(
           'eventori',
-          style: AppTextStyle.titleStyle,
+          style: AppTextStyle.f32W600LCColorTextStyle,
         ),
       ],
     ),

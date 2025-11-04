@@ -108,36 +108,37 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                 const SizedBox(height: 20),
                 Text(
                   'Create new password',
-                  style: AppTextStyle.TitleStyle,
+                  style: AppTextStyle.f32W600DPColorTextStyle,
                 ),
                 const SizedBox(height: 8),
                 Text(
                   'Create a strong new password to secure your account.',
-                  style: AppTextStyle.SubtitleStyle,
+                  style: AppTextStyle.f16W400SIColorTextStyle,
                 ),
                 const SizedBox(height: 32),
 
                 // Password Field
                 Obx(
                       () => CustomTextField(
-                    controller: newPasswordController,
-                    hintText: 'Password',
-                    prefixIcon: Image.asset(
-                      AppAssets.lockIcon,
-                      color: AppTheme.silverColor,
-                    ),
-                    isObscure: obscurePassword.value,
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        obscurePassword.value
-                            ? Icons.visibility_off_outlined
-                            : Icons.visibility_outlined,
-                        color: AppTheme.silverColor,
+                        controller: newPasswordController,
+                        hintText: 'Password',
+                        isRequired: true,
+                        prefixIcon: Image.asset(
+                          AppAssets.lockIcon,
+                          color: AppTheme.silverColor,
+                        ),
+                        isObscure: obscurePassword.value,
+                        suffixIcon: IconButton(
+                          icon: Icon(
+                            obscurePassword.value
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            color: AppTheme.silverColor,
+                          ),
+                          onPressed: togglePasswordVisibility,
+                        ),
+                        validator: CustomValidator.password,
                       ),
-                      onPressed: togglePasswordVisibility,
-                    ),
-                    validator: CustomValidator.password,
-                  ),
                 ),
                 const SizedBox(height: 16),
 
@@ -217,23 +218,24 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                 // Confirm Password Field
                 Obx(
                       () => CustomTextField(
-                    controller: newConfirmPasswordController,
-                    hintText: 'Confirm Password',
-                    prefixIcon: Image.asset(
-                      AppAssets.lockIcon,
-                      color: AppTheme.silverColor,
-                    ),
-                    isObscure: obscureConfirmPassword.value,
-                    suffixIcon: IconButton(
-                      icon: Icon(
+                        controller: newConfirmPasswordController,
+                        hintText: 'Confirm Password',
+                        isRequired: true,
+                        prefixIcon: Image.asset(
+                          AppAssets.lockIcon,
+                          color: AppTheme.silverColor,
+                        ),
+                        isObscure: obscureConfirmPassword.value,
+                        suffixIcon: IconButton(
+                          icon: Icon(
                         obscureConfirmPassword.value
                             ? Icons.visibility_off_outlined
                             : Icons.visibility_outlined,
                         color: AppTheme.silverColor,
                       ),
-                      onPressed: toggleConfirmPasswordVisibility,
-                    ),
-                    validator: (value) => CustomValidator.confirmPassword(
+                          onPressed: toggleConfirmPasswordVisibility,
+                        ),
+                        validator: (value) => CustomValidator.confirmPassword(
                       value,
                       newPasswordController.text,
                     ),

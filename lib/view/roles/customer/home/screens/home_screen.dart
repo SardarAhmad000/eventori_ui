@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                Text('My Events', style: AppTextStyle.myEventsTitle),
+                Text('My Events', style: AppTextStyle.f18W500DPColorTextStyle),
                 const SizedBox(height: 12),
                 Row(
                   // mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text('Browse Vendors', style: AppTextStyle.myEventsTitle),
+                Text('Browse Vendors', style: AppTextStyle.f18W500DPColorTextStyle),
                 const SizedBox(height: 12),
                 SizedBox(
                   height: 235,
@@ -106,10 +106,10 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Featured events', style: AppTextStyle.myEventsTitle),
+                    Text('Featured events', style: AppTextStyle.f18W500DPColorTextStyle),
                     GestureDetector(
                       onTap: () {},
-                      child: Text('View All', style: AppTextStyle.viewAllText),
+                      child: Text('View All', style: AppTextStyle.f18W500LCColorTextStyle),
                     ),
                   ],
                 ),
@@ -139,10 +139,10 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Forum Highlights', style: AppTextStyle.myEventsTitle),
+                    Text('Forum Highlights', style: AppTextStyle.f18W500DPColorTextStyle),
                     GestureDetector(
                       onTap: () {},
-                      child: Text('View All', style: AppTextStyle.viewAllText),
+                      child: Text('View All', style: AppTextStyle.f18W500LCColorTextStyle),
                     ),
                   ],
                 ),

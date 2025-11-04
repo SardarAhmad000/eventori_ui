@@ -437,11 +437,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Create your account', style: AppTextStyle.TitleStyle),
+                      Text('Create your account', style: AppTextStyle.f32W600DPColorTextStyle),
                       const SizedBox(height: 8),
                       Text(
                         'Create your Eventori account to start planning, booking, or offering services.',
-                        style: AppTextStyle.SubtitleStyle,
+                        style: AppTextStyle.f16W400SIColorTextStyle,
                       ),
                       const SizedBox(height: 20),
 
@@ -449,6 +449,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextField(
                         controller: firstNameController,
                         hintText: 'First Name',
+                        isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.userIcon,
                           color: AppTheme.silverColor,
@@ -461,6 +462,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextField(
                         controller: lastNameController,
                         hintText: 'Last Name',
+                        isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.userIcon,
                           color: AppTheme.silverColor,
@@ -473,6 +475,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextField(
                         controller: emailController,
                         hintText: 'Email Address',
+                        isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.mailIcon,
                           color: AppTheme.silverColor,
@@ -484,55 +487,54 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       // Password
                       Obx(
                             () => CustomTextField(
-                          controller: passwordSignUpController,
-                          hintText: 'Password',
-                          prefixIcon: Image.asset(
-                            AppAssets.lockIcon,
-                            color: AppTheme.silverColor,
-                          ),
-                          isObscure: authController.obscurePassword.value,
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              authController.obscurePassword.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-                              color: AppTheme.silverColor,
+                              controller: passwordSignUpController,
+                              hintText: 'Password',
+                              isRequired: true,
+                              prefixIcon: Image.asset(
+                                AppAssets.lockIcon,
+                                color: AppTheme.silverColor,
+                              ),
+                              isObscure: authController.obscurePassword.value,
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  authController.obscurePassword.value
+                                      ? Icons.visibility_off_outlined
+                                      : Icons.visibility_outlined,
+                                  color: AppTheme.silverColor,
+                                ),
+                                onPressed: authController.togglePasswordVisibility,
+                              ),
+                              validator: CustomValidator.password,
                             ),
-                            onPressed: authController.togglePasswordVisibility,
-                          ),
-                          validator: CustomValidator.password,
-                        ),
                       ),
                       const SizedBox(height: 12),
-
                       // Confirm Password
                       Obx(
                             () => CustomTextField(
-                          controller: confirmPasswordController,
-                          hintText: 'Confirm Password',
-                          prefixIcon: Image.asset(
-                            AppAssets.lockIcon,
-                            color: AppTheme.silverColor,
-                          ),
-                          isObscure: authController.obscureConfirmPassword.value,
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              authController.obscureConfirmPassword.value
-                                  ? Icons.visibility_off_outlined
-                                  : Icons.visibility_outlined,
-                              color: AppTheme.silverColor,
+                              controller: confirmPasswordController,
+                              hintText: 'Confirm Password',
+                              isRequired: true,
+                              prefixIcon: Image.asset(
+                                AppAssets.lockIcon,
+                                color: AppTheme.silverColor,
+                              ),
+                              isObscure: authController.obscureConfirmPassword.value, suffixIcon: IconButton(
+                              icon: Icon(
+                                authController.obscureConfirmPassword.value
+                                    ? Icons.visibility_off_outlined
+                                    : Icons.visibility_outlined,
+                                color: AppTheme.silverColor,
+                              ),
+                              onPressed:
+                              authController.toggleConfirmPasswordVisibility,
                             ),
-                            onPressed:
-                            authController.toggleConfirmPasswordVisibility,
-                          ),
-                          validator: (value) => CustomValidator.confirmPassword(
-                            value,
-                            passwordSignUpController.text,
-                          ),
-                        ),
+                              validator: (value) => CustomValidator.confirmPassword(
+                                value,
+                                passwordSignUpController.text,
+                              ),
+                            ),
                       ),
                       const SizedBox(height: 12),
-
                       // Password Requirements
                       Obx(
                             () => Column(
@@ -649,14 +651,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Already have an account? ",
-                                  style: AppTextStyle.font16W400DPColorStyle),
+                                  style: AppTextStyle.font16W400DPColorTextStyle),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(AppRoutes.loginScreen);
                                 },
                                 child: Text(
                                   'Login',
-                                  style: AppTextStyle.bottomSignUptextStyle,
+                                  style: AppTextStyle.f16W400LCColorTextStyle,
                                 ),
                               ),
                             ],

@@ -66,18 +66,19 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
               Text(
                 'Forgot Password',
-                style: AppTextStyle.TitleStyle,
+                style: AppTextStyle.f32W600DPColorTextStyle,
               ),
               const SizedBox(height: 8),
               Text(
                 'Enter your email address to receive reset instructions.',
-                style: AppTextStyle.SubtitleStyle,
+                style: AppTextStyle.f16W400SIColorTextStyle,
               ),
               const SizedBox(height: 32),
 
               CustomTextField(
                 controller: _emailController,
                 hintText: 'Email Address',
+                isRequired: true,
                 prefixIcon: Image.asset(
                   AppAssets.mailIcon,
                   color: AppTheme.silverColor,

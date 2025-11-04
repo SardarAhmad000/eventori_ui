@@ -82,11 +82,11 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
             ),
 
             const SizedBox(height: 20),
-            Text('Verify your account', style: AppTextStyle.TitleStyle),
+            Text('Verify your account', style: AppTextStyle.f32W600DPColorTextStyle),
             const SizedBox(height: 8),
             Text(
               'We\'ve sent a 5-digit code to your email. Please enter it below to reset your password.',
-              style: AppTextStyle.SubtitleStyle,
+              style: AppTextStyle.f16W400SIColorTextStyle,
             ),
             const SizedBox(height: 32),
 
@@ -132,7 +132,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                 onTap: _secondsRemaining == 0 ? _resendCode : null,
                 child: RichText(
                   text: TextSpan(
-                    style: AppTextStyle.SubtitleStyle,
+                    style: AppTextStyle.f16W400SIColorTextStyle,
                     children: [
                       TextSpan(
                         text: 'Resend code ',
@@ -150,7 +150,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                       ),
                       TextSpan(
                         text: '$_secondsRemaining seconds',
-                        style: AppTextStyle.font16W400DPColorStyle,
+                        style: AppTextStyle.font16W400DPColorTextStyle,
                       ),
                     ],
                   ),

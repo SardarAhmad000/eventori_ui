@@ -51,7 +51,7 @@ class CustomRadioButton extends StatelessWidget {
           Expanded(
             child: Text(
               label,
-              style: AppTextStyle.eventPlanPriceTextStyle,
+              style: AppTextStyle.font12W400DSBColorTextStyle,
             ),
           ),
           // if (value != null) ...[

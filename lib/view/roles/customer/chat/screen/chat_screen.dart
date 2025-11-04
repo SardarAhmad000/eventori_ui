@@ -32,7 +32,7 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<ChatDetailedController>();
+    final controller = Get.find<ChatController>();
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: SafeArea(
@@ -47,7 +47,7 @@ class ChatScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Chats',
-                        style: AppTextStyle.font18W700BColorTextStyle,
+                        style: AppTextStyle.f18W700BColorTextStyle,
                       ),
                       Image.asset(
                         AppAssets.filterFunnelIcon,
@@ -110,7 +110,7 @@ class ChatScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 padding: const EdgeInsets.only(top: 12),
-                itemCount: 4,
+                itemCount: 2,
                 itemBuilder: (context, index) {
                   return ChatItem(
                     avatarUrl: AppAssets.featuredImage1,

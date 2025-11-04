@@ -35,6 +35,9 @@ class AppAssets{
   static String closeIcon= 'assets/app_icons/close_icon.png';
   static String cameraIcon= 'assets/app_icons/camera_icon.png';
   static String sendMessageIcon= 'assets/app_icons/send_message_icon.png';
+  static String reportIcon= 'assets/app_icons/report_slash_icon.png';
+  static String blockIcon= 'assets/app_icons/block_icon.png';
+
 
 
 

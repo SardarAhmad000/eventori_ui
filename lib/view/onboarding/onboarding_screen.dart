@@ -28,7 +28,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const Spacer(),
               Text(
                 'Welcome to Eventori',
-                style: AppTextStyle.onBoardingTitleStyle,
+                style: AppTextStyle.f32W600WColorTextStyle,
               ),
               const SizedBox(height: 12),
               Text(
@@ -52,7 +52,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   children: [
                     Text(
                       'Already have an account? ',
-                      style: AppTextStyle.AlreadyTextStyle,
+                      style: AppTextStyle.f14W400WColorTextStyle,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -60,7 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       child: Text(
                         'Login',
-                          style: AppTextStyle.cyanColorStyle
+                          style: AppTextStyle.f14W400LCColorTextStyle
                       ),
                     ),
                   ],

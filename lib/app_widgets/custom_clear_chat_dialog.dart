@@ -51,7 +51,7 @@ class CustomClearChatDialog extends StatelessWidget {
                 SizedBox(width: 8),
                 Text(
                   title,
-                  style: AppTextStyle.font18W500BColorTextStyle,
+                  style: AppTextStyle.f18W500BColorTextStyle,
                 ),
                 const Spacer(),
                 GestureDetector(

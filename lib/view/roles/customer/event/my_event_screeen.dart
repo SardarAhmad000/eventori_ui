@@ -91,7 +91,7 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
               showLogo: true,
             ),
             const SizedBox(height: 20),
-            Text('My events', style: AppTextStyle.myEventTitle),
+            Text('My events', style: AppTextStyle.f24W600BColorTextStyle),
             const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(

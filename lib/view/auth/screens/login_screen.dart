@@ -57,18 +57,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         'Log in',
-                        style: AppTextStyle.TitleStyle,
+                        style: AppTextStyle.f32W600DPColorTextStyle,
                       ),
                       const SizedBox(height: 8),
                       Text(
                         'Welcome back! Please sign in to continue.',
-                        style: AppTextStyle.SubtitleStyle,
+                        style: AppTextStyle.f16W400SIColorTextStyle,
                       ),
                       const SizedBox(height: 12),
 
                       CustomTextField(
                         controller: loginEmailController,
                         hintText: 'Email Address',
+                        isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.mailIcon,
                           color: AppTheme.silverColor,
@@ -81,6 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomTextField(
                         controller: loginPasswordController,
                         hintText: 'Password',
+                        isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.lockIcon,
                           color: AppTheme.silverColor,
@@ -111,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text(
                             'Forgot password',
-                            style: AppTextStyle.cyanColorStyle,
+                            style: AppTextStyle.f14W400LCColorTextStyle,
                           ),
                         ),
                       ),
@@ -206,14 +208,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Text(
                                   "Don't have an account? ",
-                                  style: AppTextStyle.font16W400DPColorStyle),
+                                  style: AppTextStyle.font16W400DPColorTextStyle),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(AppRoutes.signUpScreen);
                                 },
                                 child: Text(
                                   'Sign up',
-                                  style: AppTextStyle.bottomSignUptextStyle,
+                                  style: AppTextStyle.f16W400LCColorTextStyle,
                                 ),
                               ),
                             ],

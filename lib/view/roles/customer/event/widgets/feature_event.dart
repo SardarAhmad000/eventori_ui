@@ -52,7 +52,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                 children: [
                   Text(
                     'Payment method',
-                    style: AppTextStyle.font16titlesubtitleStyle,
+                    style: AppTextStyle.f16W500MBColorTextStyle,
                   ),
                   GestureDetector(
                     onTap: () => Navigator.pop(context),
@@ -84,7 +84,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                 children: [
                   Text(
                     eventTitle,
-                    style: AppTextStyle.titleTextStyle.copyWith(fontSize: 18),
+                    style: AppTextStyle.f20W600BColorTextStyle.copyWith(fontSize: 18),
                   ),
                   const SizedBox(height: 4),
                   Text(
@@ -163,7 +163,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                             const SizedBox(width: 4),
                             Text(
                               'Add new method',
-                              style: AppTextStyle.eventPlanPriceTextStyle,
+                              style: AppTextStyle.font12W400DSBColorTextStyle,
                             ),
                           ],
                         ),
@@ -178,17 +178,17 @@ class FeatureEventBottomSheet extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     'Premotion plan \$15.00',
-                    style: AppTextStyle.eventPlanPriceTextStyle,
+                    style: AppTextStyle.font12W400DSBColorTextStyle,
                   ),
                   const SizedBox(height: 12),
                   Text(
                     'Service fee \$02',
-                    style: AppTextStyle.eventPlanPriceTextStyle,
+                    style: AppTextStyle.font12W400DSBColorTextStyle,
                   ),
                   const SizedBox(height: 12),
                   Text(
                     'Total \$17.00',
-                    style: AppTextStyle.eventPlanPriceTextStyle,
+                    style: AppTextStyle.font12W400DSBColorTextStyle,
                   ),
                   const SizedBox(height: 24),
                   Row(

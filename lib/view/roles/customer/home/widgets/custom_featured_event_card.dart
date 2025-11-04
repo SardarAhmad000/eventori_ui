@@ -74,14 +74,14 @@ class FeaturedEventCard extends StatelessWidget {
                         children: [
                           Text(
                             title,
-                            style:AppTextStyle.font20w500TextStyle,
+                            style:AppTextStyle.font20w500WColorTextStyle,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
                           const SizedBox(height: 8),
                           Text(
                             subtitle,
-                            style:AppTextStyle.featuredEventSubTitle,
+                            style:AppTextStyle.f14W400LGColorTextStyle,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -110,14 +110,14 @@ class FeaturedEventCard extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 date,
-                                style: AppTextStyle.font20w500TextStyle,
+                                style: AppTextStyle.font20w500WColorTextStyle,
                               ),
                             ),
                           ),
                           const SizedBox(height: 5),
                           Text(
                             month,
-                            style: AppTextStyle.myEventmonth,
+                            style: AppTextStyle.font12W400PWColorTextStyle,
                           ),
                         ],
                       ),

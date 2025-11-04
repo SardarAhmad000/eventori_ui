@@ -121,11 +121,11 @@ class _SelectionScreenState extends State<SelectionScreen> {
                               children: [
                                 Text(
                                   accountType['title']!,
-                                  style: AppTextStyle.cardTitle,
+                                  style: AppTextStyle.f16W600WColorTextStyle,
                                 ),
                                 Text(
                                   accountType['description']!,
-                                  style: AppTextStyle.font12W400WhiteColorTextStyle,
+                                  style: AppTextStyle.font12W400WColorTextStyle,
                                 ),
                               ],
                             ),

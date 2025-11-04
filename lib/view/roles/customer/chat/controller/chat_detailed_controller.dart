@@ -205,7 +205,7 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../constants/aap_assets.dart';
 
-class ChatDetailedController extends GetxController {
+class ChatController extends GetxController {
 
   final vendorsController = TextEditingController();
   final selectedTab = 'All'.obs;
@@ -334,7 +334,7 @@ class ChatDetailedController extends GetxController {
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: AppTheme.whiteColor,
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(20),
             topRight: Radius.circular(20),
@@ -383,147 +383,6 @@ class ChatDetailedController extends GetxController {
   void handleFavorite() {
     print('Favorite pressed');
   }
-
-  void handleBlock() {
-    print('Block pressed');
-
-    showModalBottomSheet(
-      context: Get.context!,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (BuildContext context) {
-        return Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Block this vendor?',
-                    style: AppTextStyle.f16W500BColorTextStyle
-                  ),
-                  Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppTheme.dividerColor,
-                    ),
-
-                    child: GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          AppAssets.closeIcon,
-                          color: AppTheme.blackColor,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 16),
-             Container(
-               width: double.infinity,
-               height: 124,
-               decoration: BoxDecoration(
-                 color: AppTheme.dividerColor,
-               ),
-
-               child:  Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: Column(
-                   children: [
-                     Text(
-                         'This person won\'t be able to message or call you. They won\'t know you blocked or reported them',
-                         style: AppTextStyle.font14W400SGColorTextStyle
-                     ),
-                     const SizedBox(height: 8),
-                     Text(
-                         'If you block and report, the last 5 messages in this chat will also be sent to WhatsApp.***',
-                         style: AppTextStyle.font14W400SGColorTextStyle
-                     ),
-                   ],
-                 ),
-               ),
-             ),
-              const SizedBox(height: 16 ),
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  height: 44,
-                  decoration: BoxDecoration(
-                    color: AppTheme.blueColor,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(8),
-                      topRight: Radius.circular(8),
-                    ),
-                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Block and report',
-                        style: AppTextStyle.f14W40RColorTextStyle
-                      ),
-                      const Spacer(),
-                      Icon(
-                        Icons.block,
-                        color: Colors.red.withOpacity(0.7),
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              InkWell(
-                onTap: () {
-                  print('Block pressed');
-                },
-                child: Container(
-                  height: 44,
-                  decoration: BoxDecoration(
-                      color: AppTheme.blackColor,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(8),
-                      bottomRight: Radius.circular(8),
-                    ),                  ),
-                  child: Row(
-                    children: [
-                      Text(
-                        'Block',
-                          style: AppTextStyle.f14W40RColorTextStyle
-                      ),
-                      const Spacer(),
-                      Icon(
-                        Icons.block,
-                        color: Colors.red.withOpacity(0.7),
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  void handleReport() {
-    print('Report pressed');
-  }
-
-
-
-
 
 
   void handleAddVendor() {

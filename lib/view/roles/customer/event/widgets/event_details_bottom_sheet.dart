@@ -99,7 +99,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                 const SizedBox(height: 8),
                 Text(
                     widget.eventTitle,
-                    style: AppTextStyle.titleTextStyle
+                    style: AppTextStyle.f20W600BColorTextStyle
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -113,7 +113,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
 
                     Text(
                         'About',
-                        style: AppTextStyle.eventAboutTextsStyle
+                        style: AppTextStyle.f18W600BColorTextStyle
                     ),
                     const SizedBox(height: 8),
                     Text(

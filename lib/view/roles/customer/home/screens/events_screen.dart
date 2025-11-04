@@ -71,10 +71,10 @@ class EventsScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Featured events', style: AppTextStyle.myEventsTitle),
+                        Text('Featured events', style: AppTextStyle.f18W500DPColorTextStyle),
                         GestureDetector(
                           onTap: () {},
-                          child: Text('View All', style: AppTextStyle.viewAllText),
+                          child: Text('View All', style: AppTextStyle.f18W500LCColorTextStyle),
                         ),
                       ],
                     ),

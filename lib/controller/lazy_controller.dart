@@ -17,7 +17,7 @@ class LazyController extends Bindings{
     Get.put(VendorController());
     Get.put(EventController());
     Get.put(FeatureEventController());
-    Get.put(ChatDetailedController());
+    Get.put(ChatController());
 
   }
 }

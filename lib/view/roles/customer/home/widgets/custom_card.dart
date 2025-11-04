@@ -80,7 +80,7 @@ class CustomCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       subtitle,
-                      style: AppTextStyle.eventSubTitle,
+                      style: AppTextStyle.font12W400SGColorTextStyle,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),

@@ -11,12 +11,12 @@ class SelectionTitle extends StatelessWidget {
       children: [
         Text(
           'Select your account type',
-          style: AppTextStyle.selectionTitleStyle,
+          style: AppTextStyle.f32W500WColorTextStyle,
         ),
         const SizedBox(height: 8),
         Text(
           'Tell us who you are so we can tailor your Eventori experience.',
-          style: AppTextStyle.font16W400WhiteColorTextStyle,
+          style: AppTextStyle.f16W400WColorTextStyle,
         ),
       ],
     );

@@ -67,10 +67,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text('Hi Noraiz',
-                                      style: AppTextStyle.AlreadyTextStyle),
+                                      style: AppTextStyle.f14W400WColorTextStyle),
                                   const SizedBox(height: 2),
                                   Text('Welcome Back!',
-                                      style: AppTextStyle.font16W400WhiteColorTextStyle),
+                                      style: AppTextStyle.f16W400WColorTextStyle),
                                 ],
                               ),
                             ],
@@ -94,7 +94,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   const SizedBox(height: 16),
                   Text(
                       'Would you like to create a new event or explore vendors first?',
-                      style: AppTextStyle.homeAppBarTextStyle),
+                      style: AppTextStyle.f18W500LGColorTextStyle),
                   const SizedBox(height: 16),
                   AbsorbPointer(
                     absorbing: true,
