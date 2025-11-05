@@ -50,5 +50,5 @@ class AppTheme{
   static Color purpleColor=Color(0xFFA463DB);
   // static Color lightPeachColor=Color(0xFFCCA9EB);
   // static Color heatherVioletColor=Color(0xFF8F40D3);
-  // static Color darkLavenderColor=Color(0xFF6750A4);
+  // static Color darkLavenderColor=Color(0xFF6750A4);0xFF415A77
 }

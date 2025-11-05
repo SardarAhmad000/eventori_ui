@@ -35,14 +35,15 @@ class ChatScreen extends StatelessWidget {
     final controller = Get.find<ChatController>();
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              child: Column(
-                children: [
-                  Row(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
@@ -56,101 +57,101 @@ class ChatScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  AbsorbPointer(
-                    absorbing: true,
-                    child: CustomTextField(
-                      controller: controller.vendorsController,
-                      hintText: "Search Vendors",
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Image.asset(
-                          AppAssets.searchIcon,
-                          color: AppTheme.slateGreyColor,
-                          width: 45,
-                          height: 45,
-                        ),
+                ),
+                const SizedBox(height: 16),
+                AbsorbPointer(
+                  absorbing: true,
+                  child: CustomTextField(
+                    controller: controller.vendorsController,
+                    hintText: "Search Vendors",
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Image.asset(
+                        AppAssets.searchIcon,
+                        color: AppTheme.slateGreyColor,
+                        width: 45,
+                        height: 45,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 12),
-                  Obx(() => Container(
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: AppTheme.whiteColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ChatTabBar(
-                            title: 'All',
-                            isSelected: controller.selectedTab.value == 'All',
-                            onTap: () {
-                              controller.updateSelectedTab('All');
-                            },
-                          ),
+                ),
+                const SizedBox(height: 12),
+                Obx(() => Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: AppTheme.whiteColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: ChatTabBar(
+                          title: 'All',
+                          isSelected: controller.selectedTab.value == 'All',
+                          onTap: () {
+                            controller.updateSelectedTab('All');
+                          },
                         ),
-                        Expanded(
-                          child: ChatTabBar(
-                            title: 'Saved',
-                            isSelected: controller.selectedTab.value == 'Saved',
-                            onTap: () {
-                              controller.updateSelectedTab('Saved');
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  )),
-                ],
-              ),
-            ),
-
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.only(top: 12),
-                itemCount: 2,
-                itemBuilder: (context, index) {
-                  return ChatItem(
-                    avatarUrl: AppAssets.featuredImage1,
-                    name: 'Noraiz Raja',
-                    lastMessage: 'Ok Done!',
-                    messageCount: 3,
-                    onTap: () {
-                      Get.to(
-                            () => const ChatDetailedScreen(),
-                        arguments: {
-                          'name': 'Noraiz Raja',
-                          'avatarUrl':  AppAssets.featuredImage1,
-                          'isSaved': true,
-                        },
-                      );
-                      // Get.to(
-                      //       () => const TeamChatScreen(),
-                      //   arguments: {
-                      //     'name': 'Noraiz Raja',
-                      //     'avatarUrl': AppAssets.featuredImage1,
-                      //     'isSaved': false,
-                      //   },
-                      // );
-                    },
-                    menuOptions: [
-                      PopupMenuOption(
-                        title: 'Delete chat',
-                        onTap: () => _handleClearChat(index, context),
                       ),
-                      PopupMenuOption(
-                        title: 'Mute Notification',
-                        onTap: () {},
+                      Expanded(
+                        child: ChatTabBar(
+                          title: 'Saved',
+                          isSelected: controller.selectedTab.value == 'Saved',
+                          onTap: () {
+                            controller.updateSelectedTab('Saved');
+                          },
+                        ),
                       ),
                     ],
-                  );
-                },
-              ),
+                  ),
+                )),
+              ],
             ),
-          ],
-        ),
+          ),
+
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.only(top: 12),
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return ChatItem(
+                  avatarUrl: AppAssets.featuredImage1,
+                  name: 'Noraiz Raja',
+                  lastMessage: 'Ok Done!',
+                  messageCount: 3,
+                  onTap: () {
+                    Get.to(
+                          () => const ChatDetailedScreen(),
+                      arguments: {
+                        'name': 'Noraiz Raja',
+                        'avatarUrl':  AppAssets.featuredImage1,
+                        'isSaved': true,
+                      },
+                    );
+                    // Get.to(
+                    //       () => const TeamChatScreen(),
+                    //   arguments: {
+                    //     'name': 'Noraiz Raja',
+                    //     'avatarUrl': AppAssets.featuredImage1,
+                    //     'isSaved': false,
+                    //   },
+                    // );
+                  },
+                  menuOptions: [
+                    PopupMenuOption(
+                      title: 'Delete chat',
+                      onTap: () => _handleClearChat(index, context),
+                    ),
+                    PopupMenuOption(
+                      title: 'Mute Notification',
+                      onTap: () {},
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

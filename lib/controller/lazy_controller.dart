@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import '../view/auth/controller/auth_controller.dart';
 import '../view/onboarding/controller/Onboarding_controller.dart';
+import '../view/profile/controller/profile_controller.dart';
 import '../view/roles/customer/chat/controller/chat_detailed_controller.dart';
 import '../view/roles/customer/event/controller/feature_event_controller.dart';
 import '../view/roles/customer/home/controller/event_controller.dart';
@@ -18,6 +19,7 @@ class LazyController extends Bindings{
     Get.put(EventController());
     Get.put(FeatureEventController());
     Get.put(ChatController());
+    Get.put(ProfileController());
 
   }
 }

@@ -214,7 +214,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle f14W40BColorTextStyle = TextStyle(
+  static TextStyle f14W400BColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 14,

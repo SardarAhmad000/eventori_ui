@@ -19,6 +19,7 @@ class CustomDropdownField extends StatelessWidget {
   final Color? inputTextColor;
   final Color? dropdownIconColor;
   final bool isEditProfileInfoScreen;
+  final String? prefixIcon;
 
   const CustomDropdownField({
     Key? key,
@@ -35,7 +36,8 @@ class CustomDropdownField extends StatelessWidget {
     this.inputTextColor,
     this.dropdownIconColor,
     this.isEditProfileInfoScreen = false,
-    this.fontSize
+    this.fontSize,
+    this.prefixIcon,
   }) : super(key: key);
 
   @override
@@ -57,7 +59,30 @@ class CustomDropdownField extends StatelessWidget {
         constraints: BoxConstraints(minHeight: 48, minWidth: 90.w),
         fillColor: fillColor ?? AppTheme.whiteColor,
         filled: true,
-        contentPadding: const EdgeInsets.only(left: 0, top: 15, bottom: 15, right: 10),
+        contentPadding: EdgeInsets.only(
+          left: prefixIcon != null ? 0 : 0,
+          top: 15,
+          bottom: 15,
+          right: 10,
+        ),
+        prefixIcon: prefixIcon != null
+            ? Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: Image.asset(
+            prefixIcon!,
+            width: 20,
+            height: 20,
+            fit: BoxFit.contain,
+          ),
+        )
+            : null,
+        prefixIconConstraints: prefixIcon != null
+            ? const BoxConstraints(
+          minWidth: 0,
+          maxWidth: 40,
+          minHeight: 20,
+        )
+            : null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
@@ -83,7 +108,7 @@ class CustomDropdownField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(
             width: 1.3,
-            color:AppTheme.textfieldBorderColor,
+            color: AppTheme.textfieldBorderColor,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
@@ -95,23 +120,28 @@ class CustomDropdownField extends StatelessWidget {
         ),
         errorStyle: TextStyle(
           fontSize: 12,
-          color:  AppTheme.redColor,
+          color: AppTheme.redColor,
           fontWeight: FontWeight.bold,
         ),
       ),
       hint: Text(
         hintText ?? '',
-        style:  TextStyle(
+        style: TextStyle(
             fontWeight: FontWeight.w400,
-            fontSize:fontSize?? 14,  fontFamily: AppFonts.medium,color: hintTextColor??AppTheme.silverColor),
+            fontSize: fontSize ?? 16,
+            fontFamily: AppFonts.regular,
+            color: hintTextColor ?? AppTheme.silverColor),
       ),
       style: TextStyle(
-        fontSize:fontSize?? 14,
-        fontFamily: "medium",
-        color: inputTextColor ?? AppTheme.silverColor,
+        fontSize: fontSize ?? 14,
+        fontFamily: AppFonts.fontFamily,
+        color: inputTextColor ?? AppTheme.blackColor,
       ),
       iconStyleData: IconStyleData(
-        icon:showSuffixIcon==false?Container(): Icon(Icons.keyboard_arrow_down, size: 20, color: dropdownIconColor ?? AppTheme.slateGreyColor),
+        icon: showSuffixIcon == false
+            ? Container()
+            : Icon(Icons.keyboard_arrow_down,
+            size: 20, color: dropdownIconColor ?? AppTheme.slateGreyColor),
         iconSize: 30,
         iconEnabledColor: dropdownIconColor ?? AppTheme.slateGreyColor,
         iconDisabledColor: Colors.grey,

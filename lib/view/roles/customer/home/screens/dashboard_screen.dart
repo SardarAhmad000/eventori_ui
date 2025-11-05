@@ -4,10 +4,12 @@ import 'package:eventori/view/roles/customer/home/screens/forum_screen.dart';
 import 'package:eventori/view/roles/customer/home/screens/home_screen.dart';
 import 'package:eventori/view/roles/customer/home/screens/vendors_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
+import '../../../../../routes/app_routes.dart';
 import '../widgets/custom_tab_bar.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -57,9 +59,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         children: [
                           Row(
                             children: [
-                              CircleAvatar(
-                                radius: 20,
-                                backgroundColor: AppTheme.whiteColor,
+                              GestureDetector(
+                                onTap: (){
+                                  Get.toNamed(AppRoutes.profileScreen);
+                                },
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: AppTheme.whiteColor,
+                                ),
                               ),
                               const SizedBox(width: 8),
                               Column(

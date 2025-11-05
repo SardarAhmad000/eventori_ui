@@ -38,6 +38,11 @@ class AppAssets{
   static String sendMessageIcon= 'assets/app_icons/send_message_icon.png';
   static String reportIcon= 'assets/app_icons/report_slash_icon.png';
   static String blockIcon= 'assets/app_icons/block_icon.png';
+  static String arrowLeftIcon= 'assets/app_icons/arrow_left_icon.png';
+  static String logoutIcon= 'assets/app_icons/logout_icon.png';
+  static String phoneIcon= 'assets/app_icons/phone_icon.png';
+  static String chevronIcon= 'assets/app_icons/chevron_right_icon.png';
+  static String loactionIcon= 'assets/app_icons/loaction_icon.png';
 
 
 

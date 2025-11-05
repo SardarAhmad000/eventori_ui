@@ -311,7 +311,7 @@ class ChatDetailedScreen extends StatelessWidget {
                                       vertical: 12,
                                     ),
                                   ),
-                                  style: AppTextStyle.f14W40BColorTextStyle,
+                                  style: AppTextStyle.f14W400BColorTextStyle,
                                   maxLines: null,
                                   textCapitalization: TextCapitalization.sentences,
                                   onSubmitted: (_) => controller.sendMessage(),
