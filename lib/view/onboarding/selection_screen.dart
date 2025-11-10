@@ -125,7 +125,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                                 ),
                                 Text(
                                   accountType['description']!,
-                                  style: AppTextStyle.font12W400WColorTextStyle,
+                                  style: AppTextStyle.f12W400WColorTextStyle,
                                 ),
                               ],
                             ),

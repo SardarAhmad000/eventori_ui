@@ -73,7 +73,7 @@ class CustomSuccessDialog extends StatelessWidget {
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: AppTextStyle.font16W400BColorTextStyle,
+              style: AppTextStyle.f16W400BColorTextStyle,
             ),
 
             SizedBox(height: 3.h),

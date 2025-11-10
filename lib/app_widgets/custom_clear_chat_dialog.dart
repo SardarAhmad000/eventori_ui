@@ -68,7 +68,7 @@ class CustomClearChatDialog extends StatelessWidget {
 
             Text(
               subtitle,
-              style: AppTextStyle.font14W400SGColorTextStyle,
+              style: AppTextStyle.f14W400SGColorTextStyle,
             ),
             SizedBox(height: 3.h),
             CustomButton(

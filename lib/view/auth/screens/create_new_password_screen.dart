@@ -148,11 +148,11 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                     children: [
                       Text(
                         'Password Strength: ',
-                        style: AppTextStyle.font14W500BColorTextStyle,
+                        style: AppTextStyle.f14W500BColorTextStyle,
                       ),
                       Text(
                         authController.getCreateNewPasswordStrengthText(),
-                        style: AppTextStyle.font14W500BColorTextStyle,
+                        style: AppTextStyle.f14W500BColorTextStyle,
                       ),
                     ],
                   ),

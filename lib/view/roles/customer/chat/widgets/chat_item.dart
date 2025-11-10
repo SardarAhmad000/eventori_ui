@@ -202,12 +202,12 @@ class ChatItem extends StatelessWidget {
                   children: [
                     Text(
                       name,
-                      style: AppTextStyle.font14W600BColorTextStyle,
+                      style: AppTextStyle.f14W600BColorTextStyle,
                     ),
                     const SizedBox(height: 4),
                     Text(
                       lastMessage,
-                      style: AppTextStyle.font12W500SGColorTextStyle,
+                      style: AppTextStyle.f12W500SGColorTextStyle,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -227,7 +227,7 @@ class ChatItem extends StatelessWidget {
                       child: Center(
                         child: Text(
                           messageCount.toString(),
-                          style: AppTextStyle.font12W500WColorTextStyle,
+                          style: AppTextStyle.f12W500WColorTextStyle,
                         ),
                       ),
                     ),

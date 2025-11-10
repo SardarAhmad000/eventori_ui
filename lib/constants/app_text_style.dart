@@ -92,6 +92,13 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
   );
 
+  static TextStyle f18W400WColorTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.whiteColor,
+    fontSize: 18,
+    fontWeight: FontWeight.w400,
+  );
+
   static TextStyle f18W600BColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
@@ -143,7 +150,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font16W400DPColorTextStyle = TextStyle(
+  static TextStyle f16W400DPColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.darkpurpleColor,
     fontSize: 16,
@@ -163,7 +170,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle  font16W400BColorTextStyle= TextStyle(
+  static TextStyle  f16W400BColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 16,
@@ -171,7 +178,7 @@ class AppTextStyle {
   );
 
 
-  static TextStyle  font16W400LGColorTextStyle= TextStyle(
+  static TextStyle  f16W400LGColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.lightGrayishColor,
     fontSize: 16,
@@ -235,7 +242,7 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
   );
 
-  static TextStyle font14W600BColorTextStyle= TextStyle(
+  static TextStyle f14W600BColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 14,
@@ -249,63 +256,87 @@ class AppTextStyle {
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
-  static TextStyle font14W400SGColorTextStyle = TextStyle(
+  static TextStyle f14W400SGColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.slateGreyColor,
     fontSize: 14,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font14W500BColorTextStyle= TextStyle(
+  static TextStyle f14W500BColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppTheme.blackColor,
   );
 
-  static TextStyle font12W500LIColorTextStyle = TextStyle(
+  static TextStyle f14W500DPColorTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppTheme.darkpurpleColor,
+  );
+
+  static TextStyle f14W500LCColorTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.lightCyanColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
+
+
+  static TextStyle f13W400BColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.blackColor,
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+  );
+
+
+  static TextStyle f12W500LIColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.lightIndigoColor,
     fontSize: 12,
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle font12W500SGColorTextStyle = TextStyle(
+  static TextStyle f12W500SGColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.slateGreyColor,
     fontSize: 12,
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle font12W500WColorTextStyle = TextStyle(
+  static TextStyle f12W500WColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.whiteColor,
     fontSize: 12,
     fontWeight: FontWeight.w500,
   );
 
-  static TextStyle font12W400WColorTextStyle = TextStyle(
+  static TextStyle f12W400WColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.whiteColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font12W400BColorTextStyle = TextStyle(
+  static TextStyle f12W400BColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font12W400PWColorTextStyle = TextStyle(
+  static TextStyle f12W400PWColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.paperWhiteColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font12W400SGColorTextStyle= TextStyle(
+  static TextStyle f12W400SGColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.slateGreyColor,
     fontSize: 12,
@@ -314,14 +345,14 @@ class AppTextStyle {
 
 
 
-  static TextStyle font12W400CBColorTextStyle= TextStyle(
+  static TextStyle f12W400CBColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.charcoalBlueColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font12W400DSBColorTextStyle= TextStyle(
+  static TextStyle f12W400DSBColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.deepSpaceBlueColor,
     fontSize: 12,
@@ -335,9 +366,22 @@ class AppTextStyle {
     fontWeight: FontWeight.w400,
   );
 
-  static TextStyle font10W400BColorTextStyle = TextStyle(
+  static TextStyle f10W400BColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle f10W50GColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.greenColor,
+    fontSize: 10,
+    fontWeight: FontWeight.w400,
+  );
+  static TextStyle f10W400SGColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.slateGreyColor,
     fontSize: 10,
     fontWeight: FontWeight.w400,
   );

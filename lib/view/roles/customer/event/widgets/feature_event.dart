@@ -89,7 +89,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                   const SizedBox(height: 4),
                   Text(
                     eventDate,
-                    style: AppTextStyle.font14W400SGColorTextStyle,
+                    style: AppTextStyle.f14W400SGColorTextStyle,
                   ),
                   const SizedBox(height: 24),
                   Text(
@@ -99,12 +99,12 @@ class FeatureEventBottomSheet extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     'Your event will be prominently featured at the top of search results and category pages for the duration of your plan, helping you reach more attendees',
-                    style: AppTextStyle.font14W400SGColorTextStyle,
+                    style: AppTextStyle.f14W400SGColorTextStyle,
                   ),
                   const SizedBox(height: 20),
                   Text(
                     'Select a promotion plan',
-                    style: AppTextStyle.font16W400BColorTextStyle,
+                    style: AppTextStyle.f16W400BColorTextStyle,
                   ),
                   const SizedBox(height: 12),
                   Obx(() => Row(
@@ -130,7 +130,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                   const SizedBox(height: 20),
                   Text(
                     'Select payment method',
-                    style: AppTextStyle.font16W400BColorTextStyle,
+                    style: AppTextStyle.f16W400BColorTextStyle,
                   ),
                   const SizedBox(height: 12),
                   Obx(() => Row(
@@ -163,7 +163,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
                             const SizedBox(width: 4),
                             Text(
                               'Add new method',
-                              style: AppTextStyle.font12W400DSBColorTextStyle,
+                              style: AppTextStyle.f12W400DSBColorTextStyle,
                             ),
                           ],
                         ),
@@ -173,22 +173,22 @@ class FeatureEventBottomSheet extends StatelessWidget {
                   const SizedBox(height: 20),
                   Text(
                     'Promotion',
-                    style: AppTextStyle.font16W400BColorTextStyle,
+                    style: AppTextStyle.f16W400BColorTextStyle,
                   ),
                   const SizedBox(height: 12),
                   Text(
                     'Premotion plan \$15.00',
-                    style: AppTextStyle.font12W400DSBColorTextStyle,
+                    style: AppTextStyle.f12W400DSBColorTextStyle,
                   ),
                   const SizedBox(height: 12),
                   Text(
                     'Service fee \$02',
-                    style: AppTextStyle.font12W400DSBColorTextStyle,
+                    style: AppTextStyle.f12W400DSBColorTextStyle,
                   ),
                   const SizedBox(height: 12),
                   Text(
                     'Total \$17.00',
-                    style: AppTextStyle.font12W400DSBColorTextStyle,
+                    style: AppTextStyle.f12W400DSBColorTextStyle,
                   ),
                   const SizedBox(height: 24),
                   Row(

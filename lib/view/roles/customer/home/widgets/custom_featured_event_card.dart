@@ -117,7 +117,7 @@ class FeaturedEventCard extends StatelessWidget {
                           const SizedBox(height: 5),
                           Text(
                             month,
-                            style: AppTextStyle.font12W400PWColorTextStyle,
+                            style: AppTextStyle.f12W400PWColorTextStyle,
                           ),
                         ],
                       ),

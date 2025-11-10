@@ -80,7 +80,7 @@ class CustomVendorCard extends StatelessWidget {
                         ),
                         child: Text(
                           'Sponsored',
-                          style: AppTextStyle.font12W500LIColorTextStyle
+                          style: AppTextStyle.f12W500LIColorTextStyle
                         ),
                       ),
                     ),
@@ -110,7 +110,7 @@ class CustomVendorCard extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           location,
-                          style: AppTextStyle.font12W400CBColorTextStyle,
+                          style: AppTextStyle.f12W400CBColorTextStyle,
                         ),
                       ],
                     ),
@@ -140,7 +140,7 @@ class CustomVendorCard extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Text(
                                   'Tope rated',
-                                  style: AppTextStyle.font12W400WColorTextStyle,
+                                  style: AppTextStyle.f12W400WColorTextStyle,
                                 ),
                               ],
                             ),
@@ -167,7 +167,7 @@ class CustomVendorCard extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 rating.toString(),
-                                style: AppTextStyle.font12W400WColorTextStyle
+                                style: AppTextStyle.f12W400WColorTextStyle
                               ),
                             ],
                           ),
@@ -193,7 +193,7 @@ class CustomVendorCard extends StatelessWidget {
                                 const SizedBox(width: 4),
                                 Text(
                                   'Verified Id',
-                                  style: AppTextStyle.font12W400WColorTextStyle,
+                                  style: AppTextStyle.f12W400WColorTextStyle,
                                 ),
                               ],
                             ),
@@ -223,7 +223,7 @@ class CustomVendorCard extends StatelessWidget {
                           ),
                           child: Text(
                             category,
-                            style: AppTextStyle.font10W400BColorTextStyle,
+                            style: AppTextStyle.f10W400BColorTextStyle,
                           ),
                         );
                       }).toList(),

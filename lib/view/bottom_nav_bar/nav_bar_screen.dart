@@ -6,8 +6,9 @@ import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/roles/customer/home/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import '../../AppTheme/app_theme.dart';
+import '../roles/customer/Dashboard/screen/event_dashboard_screen.dart';
 import '../roles/customer/chat/screen/chat_screen.dart';
-import '../roles/customer/event/create_event_screen.dart';
+import '../roles/customer/event/screen/create_event_screen.dart';
 
 class NavBarScreen extends StatefulWidget {
   const NavBarScreen({super.key});
@@ -23,7 +24,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
     Center(child: Text('Search Screen', style: AppTextStyle.f16W400SColorTextStyle)),
     const CreateEventScreen(),
     const ChatScreen(),
-    Center(child: Text('Dashboard Screen',style: AppTextStyle.f16W400SColorTextStyle)),
+    const EventDashboardScreen(),
+    // Center(child: Text('Dashboard Screen',style: AppTextStyle.f16W400SColorTextStyle)),
   ];
 
   Widget _buildActionButton({required bool isActive}) {

@@ -115,7 +115,7 @@ class ChatDetailedScreen extends StatelessWidget {
             // Saved vendor status
             Text(
               controller.isSaved ? 'Saved vendor' : 'Not a saved vendor',
-              style: AppTextStyle.font14W400SGColorTextStyle,
+              style: AppTextStyle.f14W400SGColorTextStyle,
             ),
 
             const SizedBox(height: 24),
@@ -155,7 +155,7 @@ class ChatDetailedScreen extends StatelessWidget {
 
             Text(
               'TODAY',
-              style: AppTextStyle.font12W400BColorTextStyle,
+              style: AppTextStyle.f12W400BColorTextStyle,
             ),
 
             // Chat Messages
@@ -178,8 +178,8 @@ class ChatDetailedScreen extends StatelessWidget {
                     backgroundColor: AppTheme.paperWhiteColor,
                     primaryColor: AppTheme.purpleColor,
                     secondaryColor: AppTheme.whiteColor,
-                    receivedMessageBodyTextStyle: AppTextStyle.font12W400BColorTextStyle,
-                    sentMessageBodyTextStyle: AppTextStyle.font12W500WColorTextStyle,
+                    receivedMessageBodyTextStyle: AppTextStyle.f12W400BColorTextStyle,
+                    sentMessageBodyTextStyle: AppTextStyle.f12W500WColorTextStyle,
                     inputBackgroundColor: AppTheme.whiteColor,
                     inputTextColor: AppTheme.blackColor,
                     inputBorderRadius: const BorderRadius.only(
@@ -236,13 +236,13 @@ class ChatDetailedScreen extends StatelessWidget {
                                     children: [
                                       Text(
                                           isOwnMessage ? 'You' : authorName,
-                                          style: AppTextStyle.font12W500WColorTextStyle.copyWith(
+                                          style: AppTextStyle.f12W500WColorTextStyle.copyWith(
                                             color: isOwnMessage ? AppTheme.purpleColor : AppTheme.slateGreyColor,
                                           )),
                                       const SizedBox(height: 4),
                                       Text(
                                         messageText,
-                                        style: AppTextStyle.font14W400SGColorTextStyle,
+                                        style: AppTextStyle.f14W400SGColorTextStyle,
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -370,12 +370,12 @@ class ChatDetailedScreen extends StatelessWidget {
         children: [
           Text(
             isOwnMessage ? 'You' : authorName,
-            style: AppTextStyle.font12W500SGColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.purpleColor : AppTheme.slateGreyColor),
+            style: AppTextStyle.f12W500SGColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.purpleColor : AppTheme.slateGreyColor),
           ),
           const SizedBox(height: 2),
           Text(
             messageText,
-            style: AppTextStyle.font12W500SGColorTextStyle,
+            style: AppTextStyle.f12W500SGColorTextStyle,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
@@ -409,7 +409,7 @@ class ChatDetailedScreen extends StatelessWidget {
           if (showName && !isOwnMessage) ...[
             Text(
               message.author.firstName ?? 'User',
-              style: AppTextStyle.font12W500WColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.whiteColor : AppTheme.blackColor),
+              style: AppTextStyle.f12W500WColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.whiteColor : AppTheme.blackColor),
             ),
             const SizedBox(height: 4),
           ],
@@ -426,14 +426,14 @@ class ChatDetailedScreen extends StatelessWidget {
               Flexible(
                 child: Text(
                   textMessage.text,
-                  style: isOwnMessage ? AppTextStyle.font12W500WColorTextStyle : AppTextStyle.font12W400BColorTextStyle,
+                  style: isOwnMessage ? AppTextStyle.f12W500WColorTextStyle : AppTextStyle.f12W400BColorTextStyle,
                 ),
               ),
               SizedBox(width: 8),
               // Spacer(),
               Text(
                 timeString,
-                style: AppTextStyle.font10W400BColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.whiteColor : AppTheme.slateGreyColor,)
+                style: AppTextStyle.f10W400BColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.whiteColor : AppTheme.slateGreyColor,)
               ),
             ],
           ),

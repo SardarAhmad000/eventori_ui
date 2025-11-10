@@ -594,7 +594,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
                               'Or Sign Up with',
-                              style: AppTextStyle.font14W400SGColorTextStyle,
+                              style: AppTextStyle.f14W400SGColorTextStyle,
                             ),
                           ),
                           Expanded(
@@ -651,7 +651,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Already have an account? ",
-                                  style: AppTextStyle.font16W400DPColorTextStyle),
+                                  style: AppTextStyle.f16W400DPColorTextStyle),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(AppRoutes.loginScreen);

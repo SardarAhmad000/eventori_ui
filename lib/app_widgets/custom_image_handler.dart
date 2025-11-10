@@ -94,8 +94,8 @@ class CustomImageHandler extends StatelessWidget {
 
     return Center(
       child: SizedBox(
-        width: loaderSize ?? 40,
-        height: loaderSize ?? 40,
+        width: loaderSize ?? 24,
+        height: loaderSize ?? 24,
         child: CircularProgressIndicator(
           color: loaderColor ?? AppTheme.lightCyanColor,
           strokeWidth: 2,

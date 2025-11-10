@@ -5,15 +5,15 @@ import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/constants/custom_validators.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../AppTheme/app_theme.dart';
-import '../../../../app_widgets/custom_success_dialog.dart';
-import '../../../../constants/aap_assets.dart';
-import '../../../../app_widgets/custom_button.dart';
-import '../../../../app_widgets/custom_checkbox.dart';
-import '../../../../app_widgets/custom_date_picker.dart';
-import '../../../../app_widgets/custom_dropdown.dart';
-import '../../../../app_widgets/custom_textfield.dart';
-import '../../../../app_widgets/custom_toggle.dart';
+import '../../../../../AppTheme/app_theme.dart';
+import '../../../../../app_widgets/custom_success_dialog.dart';
+import '../../../../../constants/aap_assets.dart';
+import '../../../../../app_widgets/custom_button.dart';
+import '../../../../../app_widgets/custom_checkbox.dart';
+import '../../../../../app_widgets/custom_date_picker.dart';
+import '../../../../../app_widgets/custom_dropdown.dart';
+import '../../../../../app_widgets/custom_textfield.dart';
+import '../../../../../app_widgets/custom_toggle.dart';
 
 class CreateEventScreen extends StatefulWidget {
   const CreateEventScreen({super.key});
@@ -191,7 +191,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             children: [
                               Text(
                                 'What\'s the name of your event?',
-                              style: AppTextStyle.font14W500BColorTextStyle,
+                              style: AppTextStyle.f14W500BColorTextStyle,
                               ),
 
                               const SizedBox(height: 8),
@@ -207,7 +207,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
                               Text(
                                 'What type of event are you planning?',
-                                style: AppTextStyle.font14W500BColorTextStyle,
+                                style: AppTextStyle.f14W500BColorTextStyle,
                               ),
 
                               const SizedBox(height: 8),
@@ -239,7 +239,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 children: [
                                   Text(
                                     'Where will your event be held?',
-                                    style: AppTextStyle.font14W500BColorTextStyle,
+                                    style: AppTextStyle.f14W500BColorTextStyle,
                                   ),
                                   Container(
                                     width: 67,
@@ -252,7 +252,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                         CustomCheckbox(
                                           initialValue: isNotSureChecked,
                                           label: 'Not sure',
-                                          labelStyle: AppTextStyle.font12W400BColorTextStyle,
+                                          labelStyle: AppTextStyle.f12W400BColorTextStyle,
                                           onChanged: (value) {
                                             setState(() {
                                               isNotSureChecked = value;
@@ -418,7 +418,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 children: [
                                   Text(
                                     'When is your event taking place?',
-                                    style: AppTextStyle.font14W500BColorTextStyle,
+                                    style: AppTextStyle.f14W500BColorTextStyle,
                                   ),
                                   Container(
                                     width: 67,
@@ -431,7 +431,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                         CustomCheckbox(
                                           initialValue: isNotSureDate,
                                           label: 'Not sure',
-                                          labelStyle: AppTextStyle.font12W400BColorTextStyle,
+                                          labelStyle: AppTextStyle.f12W400BColorTextStyle,
                                           onChanged: (value) {
                                             setState(() {
                                               isNotSureDate = value;
@@ -465,7 +465,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                   Expanded(
                                     child: Text(
                                       'Send me an automated reminder email 1 day before event',
-                                      style: AppTextStyle.font14W500BColorTextStyle,
+                                      style: AppTextStyle.f14W500BColorTextStyle,
                                     ),
                                   ),
                                   CustomToggleSwitch(
@@ -488,7 +488,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
                               Text(
                                 'Upload image',
-                                style: AppTextStyle.font14W500BColorTextStyle,
+                                style: AppTextStyle.f14W500BColorTextStyle,
                               ),
 
                               const SizedBox(height: 12),

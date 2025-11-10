@@ -37,12 +37,12 @@ class CustomForumCard extends StatelessWidget {
         children: [
           Text(
             title,
-            style: AppTextStyle.font14W500BColorTextStyle,
+            style: AppTextStyle.f14W500BColorTextStyle,
           ),
           const SizedBox(height: 8),
           Text(
             description,
-            style: AppTextStyle.font14W400SGColorTextStyle,
+            style: AppTextStyle.f14W400SGColorTextStyle,
           ),
           const SizedBox(height: 16),
           SizedBox(
@@ -64,7 +64,7 @@ class CustomForumCard extends StatelessWidget {
                   const SizedBox(width: 4),
                   Text(
                     '$commentCount',
-                    style: AppTextStyle.font14W400SGColorTextStyle,
+                    style: AppTextStyle.f14W400SGColorTextStyle,
                   ),
                   const SizedBox(width: 16),
                   Image.asset(
@@ -76,7 +76,7 @@ class CustomForumCard extends StatelessWidget {
                   const SizedBox(width: 4),
                   Text(
                     timeAgo,
-                    style: AppTextStyle.font14W400SGColorTextStyle,
+                    style: AppTextStyle.f14W400SGColorTextStyle,
                   ),
                 ],
               ),

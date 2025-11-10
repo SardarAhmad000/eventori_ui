@@ -65,12 +65,12 @@ class BlockVendorBottomSheet {
                     children: [
                       Text(
                         'This person won\'t be able to message or call you. They won\'t know you blocked or reported them',
-                        style: AppTextStyle.font14W400SGColorTextStyle,
+                        style: AppTextStyle.f14W400SGColorTextStyle,
                       ),
                       const SizedBox(height: 8),
                       Text(
                         'If you block and report, the last 5 messages in this chat will also be sent to WhatsApp.***',
-                        style: AppTextStyle.font14W400SGColorTextStyle,
+                        style: AppTextStyle.f14W400SGColorTextStyle,
                       ),
                     ],
                   ),

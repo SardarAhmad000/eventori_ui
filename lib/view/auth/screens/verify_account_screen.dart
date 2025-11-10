@@ -150,7 +150,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                       ),
                       TextSpan(
                         text: '$_secondsRemaining seconds',
-                        style: AppTextStyle.font16W400DPColorTextStyle,
+                        style: AppTextStyle.f16W400DPColorTextStyle,
                       ),
                     ],
                   ),

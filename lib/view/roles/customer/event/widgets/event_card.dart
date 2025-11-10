@@ -237,7 +237,7 @@ class EventCard extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 5),
-                          Text(month, style: AppTextStyle.font12W400PWColorTextStyle),
+                          Text(month, style: AppTextStyle.f12W400PWColorTextStyle),
                         ],
                       ),
                     ),

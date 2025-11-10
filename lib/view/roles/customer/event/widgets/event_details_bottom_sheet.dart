@@ -118,7 +118,7 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                     const SizedBox(height: 8),
                     Text(
                         widget.eventDescription!,
-                        style: AppTextStyle.font14W400SGColorTextStyle
+                        style: AppTextStyle.f14W400SGColorTextStyle
                     ),
                   ],
                 ),

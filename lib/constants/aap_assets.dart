@@ -43,6 +43,7 @@ class AppAssets{
   static String phoneIcon= 'assets/app_icons/phone_icon.png';
   static String chevronIcon= 'assets/app_icons/chevron_right_icon.png';
   static String loactionIcon= 'assets/app_icons/loaction_icon.png';
+  static String walletIcon= 'assets/app_icons/wallet_icon.png';
 
 
 
@@ -57,6 +58,7 @@ class AppAssets{
   static String vendor2Image = 'assets/app_images/vendor2.png';
   static String featuredImage1 = 'assets/app_images/featured_image1.jpg';
   static String vendorDummyImage = 'assets/app_images/vendor_dummy_image.jpg';
+  static String picImage = 'assets/app_images/pic.png';
 
 
 

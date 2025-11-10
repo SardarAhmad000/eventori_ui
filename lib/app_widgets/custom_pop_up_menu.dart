@@ -64,7 +64,7 @@ class CustomPopupMenu extends StatelessWidget {
               ],
               Text(
                 option.title,
-                style: AppTextStyle.font14W400SGColorTextStyle,
+                style: AppTextStyle.f14W400SGColorTextStyle,
               ),
             ],
           ),

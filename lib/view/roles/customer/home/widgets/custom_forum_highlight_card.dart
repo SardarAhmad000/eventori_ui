@@ -49,14 +49,14 @@ class ForumHighlightCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: AppTextStyle.font14W500BColorTextStyle,
+              style: AppTextStyle.f14W500BColorTextStyle,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 8),
             Text(
               description,
-              style: AppTextStyle.font14W400SGColorTextStyle,
+              style: AppTextStyle.f14W400SGColorTextStyle,
               maxLines: 4,
               overflow: TextOverflow.ellipsis,
             ),
@@ -113,7 +113,7 @@ class ForumHighlightCard extends StatelessWidget {
                 const SizedBox(width: 2),
                 Text(
                   commentCount,
-                  style: AppTextStyle.font14W400SGColorTextStyle,
+                  style: AppTextStyle.f14W400SGColorTextStyle,
                 ),
                 const SizedBox(width: 8),
                 Image.asset(
@@ -125,7 +125,7 @@ class ForumHighlightCard extends StatelessWidget {
                 const SizedBox(width: 2),
                 Text(
                   timeAgo,
-                  style: AppTextStyle.font14W400SGColorTextStyle,
+                  style: AppTextStyle.f14W400SGColorTextStyle,
                 ),
               ],
             ),

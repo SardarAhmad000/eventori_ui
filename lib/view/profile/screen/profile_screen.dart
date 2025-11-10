@@ -210,9 +210,14 @@ class ProfileScreen extends StatelessWidget {
                             inputDecoration: InputDecoration(
                               hintText: 'Location',
                               hintStyle: AppTextStyle.f14W400SColorTextStyle,
-                              prefixIcon: Image.asset(
-                                AppAssets.loactionIcon,
-                                color: AppTheme.darkpurpleColor,
+                              prefixIcon: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Image.asset(
+                                  AppAssets.loactionIcon,
+                                  width: 20,
+                                  height: 20,
+                                  color: AppTheme.silverColor,
+                                ),
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -363,7 +368,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
 
-          // Buttons (Fixed at bottom)
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
             child: Column(

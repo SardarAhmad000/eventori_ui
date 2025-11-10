@@ -146,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Text(
                               'Or Sign in with',
-                              style: AppTextStyle.font14W400SGColorTextStyle,
+                              style: AppTextStyle.f14W400SGColorTextStyle,
                             ),
                           ),
                           Expanded(
@@ -208,7 +208,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               Text(
                                   "Don't have an account? ",
-                                  style: AppTextStyle.font16W400DPColorTextStyle),
+                                  style: AppTextStyle.f16W400DPColorTextStyle),
                               GestureDetector(
                                 onTap: () {
                                   Get.toNamed(AppRoutes.signUpScreen);

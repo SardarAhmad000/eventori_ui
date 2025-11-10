@@ -60,7 +60,7 @@ class CreateEventCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
                 'Plan and organize your next event',
-                style: AppTextStyle.font12W400WColorTextStyle,
+                style: AppTextStyle.f12W400WColorTextStyle,
                 textAlign: TextAlign.start,
               ),
             ),
