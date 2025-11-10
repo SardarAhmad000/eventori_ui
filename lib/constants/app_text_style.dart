@@ -64,6 +64,13 @@ class AppTextStyle {
     fontWeight: FontWeight.w600,
   );
 
+  static TextStyle f20W600DPColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.darkpurpleColor,
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+  );
+
   static TextStyle f20W600PWColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.paperWhiteColor,
@@ -299,6 +306,13 @@ class AppTextStyle {
     color: AppTheme.lightIndigoColor,
     fontSize: 12,
     fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle f12W400LGColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.lightGrayishColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
   );
 
   static TextStyle f12W500SGColorTextStyle = TextStyle(

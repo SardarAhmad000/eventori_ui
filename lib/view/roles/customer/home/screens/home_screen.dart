@@ -25,7 +25,10 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                Text('My Events', style: AppTextStyle.f18W500DPColorTextStyle),
+                Text(
+                    'My Events',
+                    style: AppTextStyle.f20W600DPColorTextStyle,
+                ),
                 const SizedBox(height: 12),
                 Row(
                   // mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +48,10 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text('Browse Vendors', style: AppTextStyle.f18W500DPColorTextStyle),
+                Text(
+                    'Browse Vendors',
+                    style: AppTextStyle.f20W600DPColorTextStyle,
+                ),
                 const SizedBox(height: 12),
                 SizedBox(
                   height: 235,
@@ -72,24 +78,6 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                // Row(
-                //   // mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     CustomCard(
-                //       imagePath: AppAssets.vendor1Image,
-                //       title: 'Surprise Birthday Dinner',
-                //       subtitle: 'Cozy gathering at restaurant/venue',
-                //       onTap: () {},
-                //     ),
-                //     const SizedBox(width: 8),
-                //     CustomCard(
-                //       imagePath: AppAssets.vendor2Image,
-                //       title: 'Milestone Birthday Party',
-                //       subtitle: 'For 30th, 40th, 50th birthdays',
-                //       onTap: () {},
-                //     ),
-                //   ],
-                // ),
                 const SizedBox(height: 12),
                 CustomButton(
                   Text: 'View all vendors',
@@ -106,10 +94,10 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Featured events', style: AppTextStyle.f18W500DPColorTextStyle),
+                    Text('Featured events', style: AppTextStyle.f20W600DPColorTextStyle),
                     GestureDetector(
                       onTap: () {},
-                      child: Text('View All', style: AppTextStyle.f18W500LCColorTextStyle),
+                      child: Text('View All', style: AppTextStyle.f14W500LCColorTextStyle),
                     ),
                   ],
                 ),
@@ -139,10 +127,10 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Forum Highlights', style: AppTextStyle.f18W500DPColorTextStyle),
+                    Text('Forum Highlights', style: AppTextStyle.f20W600DPColorTextStyle),
                     GestureDetector(
                       onTap: () {},
-                      child: Text('View All', style: AppTextStyle.f18W500LCColorTextStyle),
+                      child: Text('View All', style: AppTextStyle.f14W500LCColorTextStyle),
                     ),
                   ],
                 ),
