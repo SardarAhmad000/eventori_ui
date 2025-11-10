@@ -49,11 +49,11 @@ class _CustomCategoryTabBarState extends State<CustomCategoryTabBar> {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.denimBlueColor : AppTheme.whiteColor,
+                  color: isSelected ? AppTheme.steelBlueColor : AppTheme.whiteColor,
                   borderRadius: BorderRadius.circular(90),
                   border: Border.all(
                     color: isSelected
-                        ? AppTheme.denimBlueColor
+                        ? AppTheme.steelBlueColor
                         : AppTheme.textfieldBorderColor,
                     width: 1,
                   ),

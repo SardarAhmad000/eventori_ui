@@ -2,9 +2,8 @@ import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
 import '../../../../../constants/app_text_style.dart';
-import '../controller/event_controller.dart';
+import '../controller/home_controller.dart';
 import '../widgets/custom_category_tab_bar.dart';
 import '../widgets/custom_card.dart';
 import '../widgets/custom_featured_event_card.dart';
@@ -14,7 +13,7 @@ class EventsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final EventController controller = Get.find<EventController>();
+    final HomeController controller = Get.find<HomeController>();
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -24,10 +23,10 @@ class EventsScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 16.0, bottom: 8),
             child: Obx(
                   () => CustomCategoryTabBar(
-                categories: controller.categories,
+                categories: controller.eventCategories,
                 initialIndex: controller.selectedCategoryIndex.value,
                 onCategorySelected: (index) {
-                  controller.selectCategory(index);
+                  controller.selectEventCategory(index);
                 },
               ),
             ),
@@ -71,10 +70,10 @@ class EventsScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Featured events', style: AppTextStyle.f18W500DPColorTextStyle),
+                        Text('Featured events', style: AppTextStyle.f20W600DPColorTextStyle),
                         GestureDetector(
                           onTap: () {},
-                          child: Text('View All', style: AppTextStyle.f18W500LCColorTextStyle),
+                          child: Text('View All', style: AppTextStyle.f14W500LCColorTextStyle),
                         ),
                       ],
                     ),
@@ -104,7 +103,7 @@ class EventsScreen extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 98),
+                  const SizedBox(height: 110),
 
                 ],
               ),

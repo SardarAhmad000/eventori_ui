@@ -38,11 +38,12 @@ class AppTheme{
   static Color silverColor=Color(0xFF98A2B3);
   static Color blueColor =Color(0xFF335CFF);
   static Color greenColor =Color(0xFF16B364);
-  static Color denimBlueColor=Color(0xFF4C6A9D);
   static Color deepSpaceBlueColor=Color(0xFF1D2939);
   static Color charcoalVioletColor=Color(0xFF1D1B20);
-// static Color steelBlueColor=Color(0xFF7E97C1);
 
+  static Color steelBlueColor=Color(0xFF7E97C1);
+  static Color denimBlueColor=Color(0xFF4C6A9D);
+  static Color blueGrayColor=Color(0xFF6180B3);
 
 
   static Color purplishColor=Color(0xFF7B2CBF);

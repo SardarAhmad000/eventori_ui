@@ -37,7 +37,7 @@ class CustomVendorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:12, bottom: 12.0),
+      padding: const EdgeInsets.only(top:12),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -127,13 +127,14 @@ class CustomVendorCard extends StatelessWidget {
                               vertical: 3,
                             ),
                             decoration: BoxDecoration(
-                              color: AppTheme.purplishColor,
+                              color: AppTheme.blueGrayColor,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
                               children: [
                                 Image.asset(
                                   AppAssets.topRatedBadgeIcon,
+                                  color: AppTheme.whiteColor,
                                   width: 14,
                                   height: 14,
                                 ),
@@ -154,13 +155,14 @@ class CustomVendorCard extends StatelessWidget {
                             vertical: 3,
                           ),
                           decoration: BoxDecoration(
-                            color: AppTheme.purplishColor,
+                            color: AppTheme.steelBlueColor,
                             borderRadius: BorderRadius.circular(99),
                           ),
                           child: Row(
                             children: [
                               Image.asset(
                                 AppAssets.starIcon,
+                                color: AppTheme.whiteColor,
                                 width: 14,
                                 height: 14,
                               ),
@@ -180,13 +182,14 @@ class CustomVendorCard extends StatelessWidget {
                               vertical: 3,
                             ),
                             decoration: BoxDecoration(
-                              color: AppTheme.purplishColor,
+                              color: AppTheme.blueGrayColor.withOpacity(.5),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Row(
                               children: [
                                 Image.asset(
                                   AppAssets.verifiedIcon,
+                                  color: AppTheme.whiteColor,
                                   width: 14,
                                   height: 14,
                                 ),
