@@ -12,6 +12,7 @@ import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../routes/app_routes.dart';
 import '../widgets/custom_tab_bar.dart';
+import '../widgets/filter_bottom_sheet.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -22,6 +23,27 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedTabIndex = 0;
+
+  // Get hint text based on selected tab
+  String getHintText() {
+    switch (_selectedTabIndex) {
+      case 0:
+        return "Search";
+      case 1:
+        return "Search Vendor";
+      case 2:
+        return "Search Event";
+      case 3:
+        return "Search Forum";
+      default:
+        return "Search";
+    }
+  }
+
+  // Check if suffix icon should be shown
+  bool shouldShowSuffixIcon() {
+    return _selectedTabIndex == 1; // Only show for VendorsScreen
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +89,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           GestureDetector(
                             onTap: (){
                               Get.toNamed(AppRoutes.profileScreen);
-                              },
+                            },
                             child: Container(
                               decoration: BoxDecoration(
                                 color: AppTheme.denimBlueColor,
@@ -118,21 +140,46 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  AbsorbPointer(
-                    absorbing: true,
-                    child: CustomTextField(
-                      borderRadius: 99,
-                      hintText: "Search",
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Image.asset(
-                          AppAssets.searchIcon,
-                          color: AppTheme.slateGreyColor,
-                          width: 45,
-                          height: 45,
-                        ),
+                  CustomTextField(
+                    borderRadius: 99,
+                    hintText: getHintText(),
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Image.asset(
+                        AppAssets.searchIcon,
+                        color: AppTheme.slateGreyColor,
+                        width: 45,
+                        height: 45,
                       ),
-                      suffixIcon: Padding(
+                    ),
+                    suffixIcon: shouldShowSuffixIcon() ? GestureDetector(
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) => DraggableScrollableSheet(
+                            initialChildSize: 0.9,
+                            minChildSize: 0.5,
+                            maxChildSize: 0.95,
+                            builder: (_, controller) => FilterBottomSheet(),
+                          ),
+                        ).then((filters) {
+                          if (filters != null) {
+                            print('Country: ${filters['country']}');
+                            print('City: ${filters['city']}');
+                            print('Notice: ${filters['notice']}');
+                            print('Rating: ${filters['rating']}');
+                            print('Travel Availability: ${filters['travelAvailability']}');
+                            print('Catering: ${filters['catering']}');
+                            print('DJ: ${filters['dj']}');
+                            print('Photography: ${filters['photography']}');
+                            print('Floral: ${filters['floral']}');
+                            print('Verified ID: ${filters['verifiedId']}');
+                          }
+                        });
+                      },
+                      child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                           width: 36,
@@ -149,7 +196,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           ),
                         ),
                       ),
-                    ),
+                    ) : null,
                   ),
                 ],
               ),

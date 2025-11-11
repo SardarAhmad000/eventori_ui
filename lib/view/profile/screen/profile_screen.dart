@@ -52,6 +52,7 @@ class ProfileScreen extends StatelessWidget {
                           AppAssets.appLogo,
                         ),
                       ),
+                      const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

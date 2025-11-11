@@ -221,6 +221,14 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
   );
 
+  static TextStyle f14W500SGColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.slateGreyColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
+
   static TextStyle f14W400SColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.silverColor,

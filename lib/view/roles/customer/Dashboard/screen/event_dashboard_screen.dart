@@ -35,14 +35,14 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                    AppAssets.appLogo,
                  ),
                ),
-               SizedBox(height: 4,),
-               SizedBox(
-                 height: 47,
-                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   crossAxisAlignment: CrossAxisAlignment.center,
-                   children: [
-                     Row(
+               SizedBox(height: 8),
+
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 crossAxisAlignment: CrossAxisAlignment.center,
+                 children: [
+                   Expanded(
+                     child: Row(
                        children: [
                          GestureDetector(
                            onTap: (){
@@ -53,35 +53,34 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                            ),
                          ),
                          const SizedBox(width: 8),
-                         Column(
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                             Text('Hi Noraiz',
-                                 style: AppTextStyle.f12W400SGColorTextStyle),
-                             const SizedBox(height: 2),
-                             Text('Every detail, right  at your fingertips ',
-                                 style: AppTextStyle.f13W400BColorTextStyle),
-                           ],
+                         Expanded(
+                           child: Column(
+                             crossAxisAlignment: CrossAxisAlignment.start,
+                             mainAxisAlignment: MainAxisAlignment.center,
+                             children: [
+                               Text('Hi Noraiz',
+                                   style: AppTextStyle.f12W400SGColorTextStyle),
+                               const SizedBox(height: 2),
+                               Text('Every detail, right  at your fingertip',
+                                   style: AppTextStyle.f13W400BColorTextStyle),
+                             ],
+                           ),
                          ),
                        ],
                      ),
-                     Row(
-                       crossAxisAlignment: CrossAxisAlignment.start,
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         Image.asset(AppAssets.bellIcon, color: AppTheme.charcoalBlueColor,
-                             width: 18, height: 18),
-                         SizedBox(width: 1.w),
-                         Image.asset(AppAssets.heartIcon, color: AppTheme.charcoalBlueColor,
-                             width: 18, height: 18),
-                         SizedBox(width: 1.w),
-                         Image.asset(AppAssets.settingsIcon, color: AppTheme.charcoalBlueColor,
-                             width: 18, height: 18),
-                       ],
-                     ),
-                   ],
-                 ),
+                   ),
+                   Row(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Image.asset(AppAssets.bellIcon, color: AppTheme.charcoalBlueColor, width: 18, height: 18),
+                       SizedBox(width: 1.w),
+                       Image.asset(AppAssets.heartIcon, color: AppTheme.charcoalBlueColor, width: 18, height: 18),
+                       SizedBox(width: 1.w),
+                       Image.asset(AppAssets.settingsIcon, color: AppTheme.charcoalBlueColor, width: 18, height: 18),
+                     ],
+                   ),
+                 ],
                ),
 
                SizedBox(
@@ -109,7 +108,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                CountdownCard(
                  title: "Sarah's 34th Birthday Dinner",
                  backgroundImage: AppAssets.featuredImage1,
-                 targetDate: DateTime(2025, 11, 11, 12, 00),
+                 targetDate: DateTime(2025, 12, 11, 12, 00),
                ),
 
                const SizedBox(height: 20),
@@ -175,29 +174,30 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                  ),
                  child: Padding(
                    padding: const EdgeInsets.all(12.0),
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                           Text(
-                             'Vendor',
-                             style: AppTextStyle.f18W500BColorTextStyle,
-                           ),
-                           Text(
-                             'Price',
-                             style: AppTextStyle.f18W500BColorTextStyle,
-                           ),
-                         ],
-                       ),
-                       Divider(color: AppTheme.dividerColor,),
-                       SizedBox(
-                         height: 27.h,
-                         child: ListView.builder(
-                           physics: const AlwaysScrollableScrollPhysics(),
+                   child: SizedBox(
+                     width: 100.w,
+                     child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.start,
+                       children: [
+                         Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Text(
+                               'Vendor',
+                               style: AppTextStyle.f18W500BColorTextStyle,
+                             ),
+                             Text(
+                               'Price',
+                               style: AppTextStyle.f18W500BColorTextStyle,
+                             ),
+                           ],
+                         ),
+                         Divider(color: AppTheme.dividerColor,),
+                         ListView.builder(
+                           shrinkWrap: true,
+                           physics: const NeverScrollableScrollPhysics(),
                            padding: EdgeInsets.zero,
-                           itemCount: 5,
+                           itemCount: 3,
                            itemBuilder: (context, index) {
                              return VendorCard(
                                imageUrl: AppAssets.picImage,
@@ -211,8 +211,8 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                              );
                            },
                          ),
-                       ),
-                     ],
+                       ],
+                     ),
                    ),
                  ),
                ),
@@ -232,15 +232,17 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                const SizedBox(height: 12),
 
                Container(
-                 height: 30.h,
+                 width: 100.w,
+                 // height: 30.h,
                  decoration: BoxDecoration(
                    color: AppTheme.whiteColor,
                    borderRadius: BorderRadius.circular(12),
                  ),
                  child: ListView.builder(
                    padding: EdgeInsets.zero,
-                   physics: const AlwaysScrollableScrollPhysics(),
-                   itemCount: 5,
+                   shrinkWrap: true,
+                   physics: const NeverScrollableScrollPhysics(),
+                   itemCount: 3,
                    itemBuilder: (context, index) {
                      return Padding(
                        padding: const EdgeInsets.all(8.0),

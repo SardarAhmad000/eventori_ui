@@ -43,14 +43,14 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 14,
-            height: 14,
+            width: 16,
+            height: 16,
             decoration: BoxDecoration(
-              color: isChecked ? AppTheme.lightCyanColor : AppTheme.lightGrayishColor,
-              borderRadius: BorderRadius.circular(3),
+              color: isChecked ? AppTheme.lightCyanColor : AppTheme.paperWhiteColor,
+              borderRadius: BorderRadius.circular(6),
               border: Border.all(
                 color: isChecked ? Colors.cyan : AppTheme.lightGrayishColor,
-                width: 1.2,
+                width: 1,
               ),
             ),
             child: isChecked
@@ -62,7 +62,7 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
                 : null,
           ),
           if (widget.label != null) ...[
-            SizedBox(width: 5),
+            const SizedBox(width: 8),
             Text(
               widget.label!,
               style: widget.labelStyle,

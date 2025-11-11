@@ -63,7 +63,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     _countryVN.addListener(() {
       setState(() {
         selectedCountry = _countryVN.value.name;
-        countryError = null; // Clear error when country is selected
+        countryError = null;
         // Reset city when country changes
         selectedCity = null;
         _cityVN.value = CityModel();
@@ -73,7 +73,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     _cityVN.addListener(() {
       setState(() {
         selectedCity = _cityVN.value.name;
-        cityError = null; // Clear error when city is selected
+        cityError = null;
       });
     });
   }
@@ -242,8 +242,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     style: AppTextStyle.f14W500BColorTextStyle,
                                   ),
                                   Container(
-                                    width: 67,
-                                    height: 17,
+                                    height: 2.h,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
                                     ),
@@ -257,7 +256,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                             setState(() {
                                               isNotSureChecked = value;
                                               if (value) {
-                                                // Clear errors when "Not sure" is checked
                                                 countryError = null;
                                                 cityError = null;
                                               }
@@ -421,8 +419,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     style: AppTextStyle.f14W500BColorTextStyle,
                                   ),
                                   Container(
-                                    width: 67,
-                                    height: 17,
+                                    height: 2.h,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(4),
                                     ),
