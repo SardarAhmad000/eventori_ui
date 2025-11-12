@@ -1,9 +1,9 @@
 import 'package:country_picker_bkb/country_picker_bkb.dart';
-import 'package:country_picker_bkb/model/country_model.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/constants/custom_validators.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_success_dialog.dart';
@@ -14,71 +14,12 @@ import '../../../../../app_widgets/custom_date_picker.dart';
 import '../../../../../app_widgets/custom_dropdown.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../app_widgets/custom_toggle.dart';
+import '../controller/event_controller.dart';
 
-class CreateEventScreen extends StatefulWidget {
+class CreateEventScreen extends StatelessWidget {
   const CreateEventScreen({super.key});
 
-  @override
-  State<CreateEventScreen> createState() => _CreateEventScreenState();
-}
-
-class _CreateEventScreenState extends State<CreateEventScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController eventNameController = TextEditingController();
-  final TextEditingController eventdateController = TextEditingController();
-
-  String? selectedCategory;
-  String? selectedCountry;
-  String? selectedCity;
-  final ValueNotifier<CountryModel> _countryVN = ValueNotifier(CountryModel());
-  final ValueNotifier<CityModel> _cityVN = ValueNotifier(CityModel());
-  final GlobalKey _countryKey = GlobalKey();
-  final GlobalKey _cityKey = GlobalKey();
-  bool isNotSureChecked = false;
-  bool isNotSureDate = false;
-  bool isReminderEnabled = false;
-
-  // Validation error messages
-  String? countryError;
-  String? cityError;
-
-  // Event categories list
-  final List<String> eventCategories = [
-    'Conference',
-    'Workshop',
-    'Seminar',
-    'Meeting',
-    'Concert',
-    'Exhibition',
-    'Party',
-    'Sports',
-    'Other',
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    loadCountryData();
-
-    _countryVN.addListener(() {
-      setState(() {
-        selectedCountry = _countryVN.value.name;
-        countryError = null;
-        // Reset city when country changes
-        selectedCity = null;
-        _cityVN.value = CityModel();
-      });
-    });
-
-    _cityVN.addListener(() {
-      setState(() {
-        selectedCity = _cityVN.value.name;
-        cityError = null;
-      });
-    });
-  }
-
-  void _showSuccessDialog() {
+  void _showSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -100,44 +41,10 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
     );
   }
 
-  bool _validateForm() {
-    bool isValid = true;
-
-    // Validate form fields
-    if (!_formKey.currentState!.validate()) {
-      isValid = false;
-    }
-
-    // Validate country if "Not sure" is not checked
-    if (!isNotSureChecked) {
-      final countryValidation = CustomValidator.country(selectedCountry);
-      if (countryValidation != null) {
-        setState(() {
-          countryError = countryValidation;
-        });
-        isValid = false;
-      }
-
-      // Validate city if "Not sure" is not checked
-      final cityValidation = CustomValidator.city(selectedCity);
-      if (cityValidation != null) {
-        setState(() {
-          cityError = cityValidation;
-        });
-        isValid = false;
-      }
-    }
-
-    // Validate date if "Not sure" is not checked
-    if (!isNotSureDate && eventdateController.text.isEmpty) {
-      isValid = false;
-    }
-
-    return isValid;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final EventController eventcontroller = Get.put(EventController());
+
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: Padding(
@@ -145,7 +52,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.only(top: 20.0),
               child: Image.asset(
@@ -159,20 +65,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
               'Create a New Event',
               style: AppTextStyle.f20W600BColorTextStyle,
             ),
-
             const SizedBox(height: 12),
-
             Text(
               'My event details',
               style: AppTextStyle.f16W500MBColorTextStyle,
             ),
-
             const SizedBox(height: 16),
-
             Expanded(
               child: SingleChildScrollView(
                 child: Form(
-                  key: _formKey,
+                  key: eventcontroller.formKey,
                   child: Column(
                     children: [
                       Container(
@@ -191,49 +93,39 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             children: [
                               Text(
                                 'What\'s the name of your event?',
-                              style: AppTextStyle.f14W500BColorTextStyle,
+                                style: AppTextStyle.f14W500BColorTextStyle,
                               ),
-
                               const SizedBox(height: 8),
-
                               CustomTextField(
                                 fieldBorderColor: AppTheme.textfieldBorderColor,
                                 hintText: "Event name",
-                                controller: eventNameController,
+                                controller: eventcontroller.eventNameController,
                                 validator: CustomValidator.event,
                               ),
-
                               const SizedBox(height: 12),
-
                               Text(
                                 'What type of event are you planning?',
                                 style: AppTextStyle.f14W500BColorTextStyle,
                               ),
-
                               const SizedBox(height: 8),
-
-                              CustomDropdownField(
+                              Obx(() => CustomDropdownField(
                                 hintText: "Event Category",
-                                value: selectedCategory,
-                                items: eventCategories.map((category) {
+                                value: eventcontroller.selectedCategory.value,
+                                items: eventcontroller.eventCategories.map((category) {
                                   return DropdownMenuItem<String>(
                                     value: category,
                                     child: Text(category),
                                   );
                                 }).toList(),
                                 onChanged: (value) {
-                                  setState(() {
-                                    selectedCategory = value;
-                                  });
+                                  eventcontroller.updateCategory(value);
                                 },
                                 hintTextColor: AppTheme.silverColor,
                                 inputTextColor: AppTheme.darkpurpleColor,
                                 dropdownIconColor: AppTheme.slateGreyColor,
                                 validator: CustomValidator.eventCategory,
-                              ),
-
+                              )),
                               const SizedBox(height: 12),
-
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -248,28 +140,20 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     ),
                                     child: Row(
                                       children: [
-                                        CustomCheckbox(
-                                          initialValue: isNotSureChecked,
+                                        Obx(() => CustomCheckbox(
+                                          initialValue: eventcontroller.isNotSureChecked.value,
                                           label: 'Not sure',
                                           labelStyle: AppTextStyle.f12W400BColorTextStyle,
                                           onChanged: (value) {
-                                            setState(() {
-                                              isNotSureChecked = value;
-                                              if (value) {
-                                                countryError = null;
-                                                cityError = null;
-                                              }
-                                            });
+                                            eventcontroller.toggleNotSureLocation(value);
                                           },
-                                        ),
+                                        )),
                                       ],
                                     ),
                                   ),
                                 ],
                               ),
-
                               const SizedBox(height: 12),
-
                               Row(
                                 children: [
                                   Expanded(
@@ -277,9 +161,10 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         GestureDetector(
-                                          key: _countryKey,
+                                          key: eventcontroller.countryKey,
                                           onTap: () async {
-                                            final renderBox = _countryKey.currentContext!.findRenderObject() as RenderBox;
+                                            final renderBox = eventcontroller.countryKey.currentContext!
+                                                .findRenderObject() as RenderBox;
                                             final position = renderBox.localToGlobal(Offset.zero);
                                             final size = renderBox.size;
                                             await loadCountryData();
@@ -287,16 +172,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                               context,
                                               position,
                                               size,
-                                              _countryVN,
+                                              eventcontroller.countryVN,
                                             );
                                           },
-                                          child: Container(
+                                          child: Obx(() => Container(
                                             height: 48,
                                             decoration: BoxDecoration(
                                               color: AppTheme.whiteColor,
                                               borderRadius: BorderRadius.circular(8),
                                               border: Border.all(
-                                                color: countryError != null
+                                                color: eventcontroller.countryError.value != null
                                                     ? AppTheme.textfieldBorderColor
                                                     : AppTheme.textfieldBorderColor,
                                                 width: 1.3,
@@ -307,34 +192,36 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Text(
-                                                  selectedCountry ?? 'Country',
-                                                  style: AppTextStyle.f16W400SColorTextStyle.copyWith(color: selectedCountry == null ? AppTheme.silverColor : AppTheme.darkpurpleColor),
-
-                                                  // TextStyle(
-                                                  //   fontSize: 14,
-                                                  //   color: selectedCountry == null ? AppTheme.silverColor : AppTheme.darkpurpleColor,
-                                                  // ),
-                                                  overflow: TextOverflow.ellipsis,
+                                                Expanded(
+                                                  child: Text(
+                                                    eventcontroller.selectedCountry.value ?? 'Country',
+                                                    style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                                                        color: eventcontroller.selectedCountry.value == null
+                                                            ? AppTheme.silverColor
+                                                            : AppTheme.darkpurpleColor),
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
                                                 ),
-                                                Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 20),
+                                                Icon(Icons.keyboard_arrow_down,
+                                                    color: AppTheme.slateGreyColor, size: 20),
                                               ],
                                             ),
-                                          ),
+                                          )),
                                         ),
-                                        if (countryError != null && !isNotSureChecked)
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 4, left: 4),
-                                            child: Text(
-                                              countryError!,
-                                              style: AppTextStyle.f12W400RColorTextStyle.copyWith(fontWeight: FontWeight.bold),
-                                              // TextStyle(
-                                              //   fontSize: 12,
-                                              //   color: AppTheme.redColor,
-                                              //   fontWeight: FontWeight.bold,
-                                              // ),
-                                            ),
-                                          ),
+                                        Obx(() {
+                                          if (eventcontroller.countryError.value != null &&
+                                              !eventcontroller.isNotSureChecked.value) {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(top: 4, left: 4),
+                                              child: Text(
+                                                eventcontroller.countryError.value!,
+                                                style: AppTextStyle.f12W400RColorTextStyle
+                                                    .copyWith(fontWeight: FontWeight.bold),
+                                              ),
+                                            );
+                                          }
+                                          return const SizedBox.shrink();
+                                        }),
                                       ],
                                     ),
                                   ),
@@ -343,21 +230,22 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        GestureDetector(
-                                          key: _cityKey,
-                                          onTap: selectedCountry == null
+                                        Obx(() => GestureDetector(
+                                          key: eventcontroller.cityKey,
+                                          onTap: eventcontroller.selectedCountry.value == null
                                               ? null
                                               : () async {
-                                            final renderBox = _cityKey.currentContext!.findRenderObject() as RenderBox;
+                                            final renderBox = eventcontroller.cityKey.currentContext!
+                                                .findRenderObject() as RenderBox;
                                             final position = renderBox.localToGlobal(Offset.zero);
                                             final size = renderBox.size;
-                                            await loadCityData(country: _countryVN);
+                                            await loadCityData(country: eventcontroller.countryVN);
                                             citySelect(
                                               context,
                                               position,
                                               size,
-                                              _cityVN,
-                                              country: _countryVN,
+                                              eventcontroller.cityVN,
+                                              country: eventcontroller.countryVN,
                                             );
                                           },
                                           child: Container(
@@ -366,7 +254,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                               color: AppTheme.whiteColor,
                                               borderRadius: BorderRadius.circular(8),
                                               border: Border.all(
-                                                color: cityError != null
+                                                color: eventcontroller.cityError.value != null
                                                     ? AppTheme.textfieldBorderColor
                                                     : AppTheme.textfieldBorderColor,
                                                 width: 1.3,
@@ -378,39 +266,44 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 Text(
-                                                  selectedCity ?? 'City',
+                                                  eventcontroller.selectedCity.value ?? 'City',
                                                   style: TextStyle(
                                                     fontSize: 14,
-                                                    color: selectedCity == null ? AppTheme.silverColor : AppTheme.darkpurpleColor,
+                                                    color: eventcontroller.selectedCity.value == null
+                                                        ? AppTheme.silverColor
+                                                        : AppTheme.darkpurpleColor,
                                                   ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
-                                                Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 20),
+                                                Icon(Icons.keyboard_arrow_down,
+                                                    color: AppTheme.slateGreyColor, size: 20),
                                               ],
                                             ),
                                           ),
-                                        ),
-                                        if (cityError != null && !isNotSureChecked)
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 4, left: 4),
-                                            child: Text(
-                                              cityError!,
-                                              style:  TextStyle(
-                                                fontSize: 12,
-                                                color: AppTheme.redColor,
-                                                fontWeight: FontWeight.bold,
+                                        )),
+                                        Obx(() {
+                                          if (eventcontroller.cityError.value != null &&
+                                              !eventcontroller.isNotSureChecked.value) {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(top: 4, left: 4),
+                                              child: Text(
+                                                eventcontroller.cityError.value!,
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: AppTheme.redColor,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ),
-                                          ),
+                                            );
+                                          }
+                                          return const SizedBox.shrink();
+                                        }),
                                       ],
                                     ),
                                   ),
                                 ],
                               ),
-
                               const SizedBox(height: 20),
-
-                              // Date Section
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -425,37 +318,33 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     ),
                                     child: Row(
                                       children: [
-                                        CustomCheckbox(
-                                          initialValue: isNotSureDate,
+                                        Obx(() => CustomCheckbox(
+                                          initialValue: eventcontroller.isNotSureDate.value,
                                           label: 'Not sure',
                                           labelStyle: AppTextStyle.f12W400BColorTextStyle,
                                           onChanged: (value) {
-                                            setState(() {
-                                              isNotSureDate = value;
-                                            });
+                                            eventcontroller.toggleNotSureDate(value);
                                           },
-                                        ),
+                                        )),
                                       ],
                                     ),
                                   ),
                                 ],
                               ),
                               const SizedBox(height: 8),
-
-                              CustomDateTextField(
-                                controller: eventdateController,
+                              Obx(() => CustomDateTextField(
+                                controller: eventcontroller.eventdateController,
                                 hintText: "Date",
                                 fieldBorderColor: AppTheme.textfieldBorderColor,
-                                validator: isNotSureDate ? null : CustomValidator.eventDate,
+                                validator:
+                                eventcontroller.isNotSureDate.value ? null : CustomValidator.eventDate,
                                 suffixIcon: Icon(
                                   Icons.keyboard_arrow_down,
                                   color: AppTheme.slateGreyColor,
-                                  size: 20 ,
+                                  size: 20,
                                 ),
-                              ),
-
+                              )),
                               const SizedBox(height: 12),
-
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -465,31 +354,24 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                       style: AppTextStyle.f14W500BColorTextStyle,
                                     ),
                                   ),
-                                  CustomToggleSwitch(
-                                    initialValue: isReminderEnabled,
+                                  Obx(() => CustomToggleSwitch(
+                                    initialValue: eventcontroller.isReminderEnabled.value,
                                     onChanged: (value) {
-                                      setState(() {
-                                        isReminderEnabled = value;
-                                      });
-                                      print('Toggle changed: $value');
+                                      eventcontroller.toggleReminder(value);
                                     },
                                     activeColor: AppTheme.blueColor,
-                                    inactiveColor:AppTheme.textfieldBorderColor,
+                                    inactiveColor: AppTheme.textfieldBorderColor,
                                     width: 36,
                                     height: 20,
-                                  ),
+                                  )),
                                 ],
                               ),
-
                               const SizedBox(height: 12),
-
                               Text(
                                 'Upload image',
                                 style: AppTextStyle.f14W500BColorTextStyle,
                               ),
-
                               const SizedBox(height: 12),
-
                               DottedBorder(
                                 color: AppTheme.textfieldBorderColor,
                                 strokeWidth: 1,
@@ -531,18 +413,9 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                         buttonColor: AppTheme.lightCyanColor,
                         textColor: AppTheme.whiteColor,
                         onTap: () {
-                          if (_validateForm()) {
-                            print('Event Name: ${eventNameController.text}');
-                            print('Category: $selectedCategory');
-                            print('Country: $selectedCountry');
-                            print('City: $selectedCity');
-                            print('Date: ${eventdateController.text}');
-                            print('Not Sure Location: $isNotSureChecked');
-                            print('Not Sure Date: $isNotSureDate');
-                            print('Reminder: $isReminderEnabled');
-                            _showSuccessDialog();
-                          } else {
-                            print('Form validation failed');
+                          eventcontroller.createEvent();
+                          if (eventcontroller.validateForm()) {
+                            _showSuccessDialog(context);
                           }
                         },
                       ),

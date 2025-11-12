@@ -36,7 +36,7 @@ class BlockVendorBottomSheet {
                     height: 32,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppTheme.dividerColor,
+                      color: AppTheme.textfieldBorderColor,
                     ),
                     child: GestureDetector(
                       onTap: () => Navigator.pop(context),
@@ -56,7 +56,7 @@ class BlockVendorBottomSheet {
                 width: double.infinity,
                 height: 124,
                 decoration: BoxDecoration(
-                  color: AppTheme.dividerColor,
+                  color: AppTheme.textfieldBorderColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
@@ -80,13 +80,12 @@ class BlockVendorBottomSheet {
               InkWell(
                 onTap: () {
                   print('Block and report pressed');
-                  // Add your block and report logic here
                   Navigator.pop(context);
                 },
                 child: Container(
                   height: 44,
                   decoration: BoxDecoration(
-                    color: AppTheme.whiteColor,
+                    color: AppTheme.textfieldBorderColor,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(8),
@@ -97,7 +96,7 @@ class BlockVendorBottomSheet {
                     child: Row(
                       children: [
                         Text(
-                          'Block and report',
+                          'Yes, Block Vendor',
                           style: AppTextStyle.f14W400RColorTextStyle,
                         ),
                         const Spacer(),
@@ -115,13 +114,12 @@ class BlockVendorBottomSheet {
               InkWell(
                 onTap: () {
                   print('Block pressed');
-                  // Add your block logic here
                   Navigator.pop(context);
                 },
                 child: Container(
                   height: 44,
                   decoration: BoxDecoration(
-                    color: AppTheme.whiteColor,
+                    color: AppTheme.textfieldBorderColor,
                     borderRadius: const BorderRadius.only(
                       bottomLeft: Radius.circular(8),
                       bottomRight: Radius.circular(8),
@@ -132,7 +130,7 @@ class BlockVendorBottomSheet {
                     child: Row(
                       children: [
                         Text(
-                          'Block',
+                          'Cancel',
                           style: AppTextStyle.f14W400RColorTextStyle,
                         ),
                         const Spacer(),

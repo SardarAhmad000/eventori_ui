@@ -11,6 +11,7 @@ import '../view/auth/screens/password_otp_screen.dart';
 import '../view/onboarding/onboarding_screen.dart';
 import '../view/onboarding/selection_screen.dart';
 import '../view/profile/screen/profile_screen.dart';
+import '../view/roles/customer/Dashboard/screen/add_collaborators_screen.dart';
 import '../view/roles/customer/chat/screen/chat_detailed_screen.dart';
 import '../view/roles/customer/home/screens/dashboard_screen.dart';
 import '../view/roles/customer/home/screens/events_screen.dart';
@@ -43,6 +44,8 @@ class AppPages {
     GetPage(name: AppRoutes.forumScreen, page: () =>  ForumScreen()),
     GetPage(name: AppRoutes.teamChatScreen, page: () =>  ChatDetailedScreen()),
     GetPage(name: AppRoutes.profileScreen, page: () =>  ProfileScreen()),
+    GetPage(name: AppRoutes.addCollaboratorsScreen, page: () =>  AddCollaboratorsScreen()),
+    // GetPage(name: AppRoutes.newChatBottomSheet, page: () =>  NewChatBottomSheet()),
 
   ];
 }

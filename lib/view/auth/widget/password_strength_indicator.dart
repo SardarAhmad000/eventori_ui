@@ -1,3 +1,4 @@
+import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 import '../../../AppTheme/app_theme.dart';
@@ -45,19 +46,11 @@ class PasswordStrengthIndicator extends StatelessWidget {
               children: [
                 Text(
                   'Password Strength',
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: AppTheme.silverColor,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: AppTextStyle.f13W400SColorTextStyle
                 ),
                 Text(
-                  strengthText,
-                  style: TextStyle(
-                    fontSize: 13,
-                    color: strengthColor,
-                    fontWeight: FontWeight.w600,
-                  ),
+                    strengthText,
+                    style: AppTextStyle.f13W400SColorTextStyle
                 ),
               ],
             ),

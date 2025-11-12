@@ -8,6 +8,7 @@ class StatsCard extends StatelessWidget {
   final Color iconColor;
   final String value;
   final String label;
+  final VoidCallback? onTap;
 
   const StatsCard({
     super.key,
@@ -15,25 +16,28 @@ class StatsCard extends StatelessWidget {
     required this.iconColor,
     required this.value,
     required this.label,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 8.0,top: 16),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
       child: Container(
-        height: 14.h,
-        padding: const EdgeInsets.all(8),
+        height: 91,
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         decoration: BoxDecoration(
           color: AppTheme.whiteColor,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
             if (iconPath != null)
               Container(
-                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                 ),
@@ -44,12 +48,10 @@ class StatsCard extends StatelessWidget {
                   color: iconColor,
                 ),
               ),
-            // const SizedBox(height: 4),
             Text(
               value,
-              style: AppTextStyle.f16W400BColorTextStyle,
+              style: AppTextStyle.f12W500BColorTextStyle,
             ),
-            const SizedBox(height: 2),
             Text(
               label,
               style: AppTextStyle.f12W400SGColorTextStyle,
@@ -60,3 +62,27 @@ class StatsCard extends StatelessWidget {
     );
   }
 }
+
+// Example Usage:
+/*
+
+StatsCard(
+  iconPath: AppAssets.usersIcon,
+  iconColor: AppTheme.blueColor,
+  value: '245',
+  label: 'Total Attendees',
+  onTap: () {
+    print('Stats card tapped');
+    // Navigate or perform action
+  },
+)
+
+// Without onTap (non-interactive)
+StatsCard(
+  iconPath: AppAssets.calendarIcon,
+  iconColor: AppTheme.greenColor,
+  value: '12',
+  label: 'Events',
+)
+
+*/

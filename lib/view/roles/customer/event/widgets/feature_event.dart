@@ -4,7 +4,7 @@ import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/app_widgets/custom_button.dart';
 import 'package:get/get.dart';
 import '../../../../../app_widgets/custom_radio_button.dart';
-import '../controller/feature_event_controller.dart';
+import '../controller/event_controller.dart';
 
 void featureEventBottomSheet({
   required BuildContext context,
@@ -34,7 +34,7 @@ class FeatureEventBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<FeatureEventController>();
+    final controller = Get.find<EventController>();
 
     return SingleChildScrollView(
       child: Container(

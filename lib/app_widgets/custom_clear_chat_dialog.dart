@@ -75,7 +75,7 @@ class CustomClearChatDialog extends StatelessWidget {
               Text: buttonText,
               width: double.infinity,
               borderColor: buttonColor ?? AppTheme.redColor,
-              height: 48,
+              height: 40,
               buttonColor: buttonColor ?? AppTheme.redColor,
               textColor: buttonTextColor ?? AppTheme.whiteColor,
               onTap: () {

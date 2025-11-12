@@ -21,5 +21,7 @@ abstract class AppRoutes {
   static const vendorsScreen = '/vendorsScreen';
   static const forumScreen = '/forumScreen';
   static const teamChatScreen = '/teamChatScreen';
+  static const addCollaboratorsScreen = '/addCollaboratorsScreen';
+  // static const newChatBottomSheet = '/newChatBottomSheet';
 
 }

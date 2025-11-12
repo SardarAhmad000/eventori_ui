@@ -102,10 +102,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
                                 child: CustomImageHandler(
-                                  imagePath: AppAssets.picImage,
+                                  imagePath: AppAssets.homeProfileImage,
                                   width: 40,
                                   height: 40,
-                                  fit: BoxFit.cover,
+                                  // fit: BoxFit.cover,
                                 ),
                               ),
                             ),

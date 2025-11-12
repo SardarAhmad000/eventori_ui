@@ -6,7 +6,7 @@ import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/roles/customer/home/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import '../../AppTheme/app_theme.dart';
-import '../roles/customer/Dashboard/screen/event_dashboard_screen.dart';
+import '../roles/customer/Dashboard/screen/customer_dashboard_screen.dart';
 import '../roles/customer/chat/screen/chat_screen.dart';
 import '../roles/customer/event/screen/create_event_screen.dart';
 

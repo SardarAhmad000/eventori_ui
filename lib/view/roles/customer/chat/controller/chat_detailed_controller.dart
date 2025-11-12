@@ -195,9 +195,7 @@
 //     Get.snackbar('Block', 'Vendor blocked');
 //   }
 // }
-
 import 'package:eventori/AppTheme/app_theme.dart';
-import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
@@ -380,8 +378,8 @@ class ChatController extends GetxController {
     replyingTo.value = null;
   }
 
-  void handleFavorite() {
-    print('Favorite pressed');
+  void handleSaveChat() {
+    print('Save Chat pressed');
   }
 
 

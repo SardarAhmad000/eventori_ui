@@ -1,12 +1,14 @@
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/roles/customer/chat/screen/chat_detailed_screen.dart';
+import 'package:eventori/view/roles/customer/chat/widgets/new_chat_bottom_Sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
+import '../../../../../routes/app_routes.dart';
 import '../controller/chat_detailed_controller.dart';
 import '../widgets/chat_item.dart';
 import '../widgets/chat_tab_bar.dart';
@@ -17,9 +19,9 @@ class ChatScreen extends StatelessWidget {
   void _handleClearChat(int index, BuildContext context) {
     CustomClearChatDialog.show(
       context: context,
-      title: 'Clear Chat',
+      title: 'Delete',
       subtitle: 'Are you sure you want to clear the chat? This action cannot be reversed.',
-      buttonText: 'Yes, Clear',
+      buttonText: 'Delete',
       icon: Icons.close,
       iconColor: AppTheme.redColor,
       buttonColor: AppTheme.redColor,
@@ -28,6 +30,10 @@ class ChatScreen extends StatelessWidget {
 
       },
     );
+  }
+
+  void _showNewChatBottomSheet(BuildContext context) {
+    NewChatBottomSheet.show(context);
   }
 
   @override
@@ -40,23 +46,35 @@ class ChatScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Chats',
-                        style: AppTextStyle.f18W700BColorTextStyle,
-                      ),
-                      Image.asset(
-                        AppAssets.filterFunnelIcon,
+                  child: Image.asset(
+                    width: 38,
+                    height: 32,
+                    AppAssets.appLogo,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Chats',
+                      style: AppTextStyle.f18W700BColorTextStyle,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _showNewChatBottomSheet(context);
+                      },
+                      child: Image.asset(
+                        AppAssets.addIcon,
                         width: 24,
                         height: 24,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16),
                 AbsorbPointer(
@@ -115,36 +133,35 @@ class ChatScreen extends StatelessWidget {
               itemCount: 2,
               itemBuilder: (context, index) {
                 return ChatItem(
-                  avatarUrl: AppAssets.featuredImage1,
+                  avatarUrl: AppAssets.homeProfileImage,
                   name: 'Noraiz Raja',
                   lastMessage: 'Ok Done!',
                   messageCount: 3,
                   onTap: () {
-                    Get.to(
-                          () => const ChatDetailedScreen(),
+                    Get.to(() => const ChatDetailedScreen(),
                       arguments: {
-                        'name': 'Noraiz Raja',
-                        'avatarUrl':  AppAssets.featuredImage1,
-                        'isSaved': true,
+                        // 'name': 'Noraiz Raja',
+                        // 'avatarUrl':  AppAssets.featuredImage1,
+                        // 'isSaved': true,
                       },
                     );
-                    // Get.to(
-                    //       () => const TeamChatScreen(),
-                    //   arguments: {
-                    //     'name': 'Noraiz Raja',
-                    //     'avatarUrl': AppAssets.featuredImage1,
-                    //     'isSaved': false,
-                    //   },
-                    // );
                   },
                   menuOptions: [
                     PopupMenuOption(
-                      title: 'Delete chat',
-                      onTap: () => _handleClearChat(index, context),
+                      title: 'Save',
+                      onTap: () {},
                     ),
                     PopupMenuOption(
-                      title: 'Mute Notification',
+                      title: 'Block',
                       onTap: () {},
+                    ),
+                    PopupMenuOption(
+                      title: 'Report',
+                      onTap: () {},
+                    ),
+                    PopupMenuOption(
+                      title: 'Delete chat',
+                      onTap: () => _handleClearChat(index, context),
                     ),
                   ],
                 );

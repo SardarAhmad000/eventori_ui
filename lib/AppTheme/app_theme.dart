@@ -11,11 +11,12 @@ class AppTheme{
   static Color midnightBlueColor=Color(0xFF141C29);
   static Color textfieldBorderColor=Color(0xFFEEF2F6);
   static Color dividerColor=Color(0xFFE3E8EF);
+  // static Color divideraColor=Color(0xFFF1F4F8);
   static Color whiteColor=Color(0xFFFFFFFF);
 
   static Color lightGrayishColor=Color(0xFFD6DFE9);
   static Color violetColor=Color(0xFFF5EEFB);
-  // static Color ashBlueColor=Color(0xFFD0D5DD);
+  // static Color ashBlueColor=Color(0xFFD0D5DD);#F1F4F8
   // static Color ashGreyColor =Color(0xFFD9D9D9);
   // static Color uploadContainerColor=Color(0xFFD4DDEA);
 

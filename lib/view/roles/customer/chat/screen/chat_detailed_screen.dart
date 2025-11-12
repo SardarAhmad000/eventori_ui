@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
+import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../controller/chat_detailed_controller.dart';
 import '../widgets/block_vendor_bottom_sheet.dart';
@@ -15,6 +16,23 @@ import '../widgets/report_vendor_bottom_sheet.dart';
 
 class ChatDetailedScreen extends StatelessWidget {
   const ChatDetailedScreen({Key? key}) : super(key: key);
+
+  void _handleClearChat(BuildContext context) {
+    CustomClearChatDialog.show(
+      context: context,
+      title: 'Delete',
+      subtitle: 'Are you sure you want to clear the chat? This action cannot be reversed.',
+      buttonText: 'Delete',
+      icon: Icons.close,
+      iconColor: AppTheme.redColor,
+      buttonColor: AppTheme.redColor,
+      buttonTextColor: AppTheme.whiteColor,
+      onConfirm: () {
+
+      },
+    );
+  }
+
 
   String _formatTime(int timestamp) {
     final date = DateTime.fromMillisecondsSinceEpoch(timestamp);
@@ -30,7 +48,6 @@ class ChatDetailedScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Header
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               child: Row(
@@ -59,15 +76,15 @@ class ChatDetailedScreen extends StatelessWidget {
                   ),
                   Text(
                     controller.name,
-                    style: AppTextStyle.f18W700BColorTextStyle,
+                    style: AppTextStyle.f14W600BColorTextStyle,
                   ),
                   CustomPopupMenu(
-                    horizontalOffset: -100,
+                    // horizontalOffset: -100,
                     menuKey: controller.menuKey,
                     options: [
                       PopupMenuOption(
-                        title: 'Favorite',
-                        onTap: controller.handleFavorite,
+                        title: 'Save Chat',
+                        onTap: controller.handleSaveChat,
                       ),
                       PopupMenuOption(
                         title: 'Block',
@@ -76,6 +93,10 @@ class ChatDetailedScreen extends StatelessWidget {
                       PopupMenuOption(
                         title: 'Report',
                         onTap: () => ReportVendorBottomSheet.show(context),
+                      ),
+                      PopupMenuOption(
+                        title: 'Delete chat',
+                        onTap: () => _handleClearChat(context),
                       ),
                     ],
                     child: Image.asset(
@@ -87,7 +108,6 @@ class ChatDetailedScreen extends StatelessWidget {
                 ],
               ),
             ),
-
             Container(
               width: 40,
               height: 40,
@@ -110,7 +130,7 @@ class ChatDetailedScreen extends StatelessWidget {
                   : null,
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
             // Saved vendor status
             Text(
@@ -118,7 +138,7 @@ class ChatDetailedScreen extends StatelessWidget {
               style: AppTextStyle.f14W400SGColorTextStyle,
             ),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
             // Add and Block buttons
             Padding(
@@ -132,7 +152,7 @@ class ChatDetailedScreen extends StatelessWidget {
                       onTap: controller.handleAddVendor,
                       buttonColor: AppTheme.whiteColor,
                       textColor: AppTheme.silverColor,
-                      height: 48,
+                      height: 32,
                       borderColor: AppTheme.lightGrayishColor,
                     ),
                   ),
@@ -143,7 +163,7 @@ class ChatDetailedScreen extends StatelessWidget {
                       onTap: controller.handleBlockVendor,
                       buttonColor: AppTheme.whiteColor,
                       textColor: AppTheme.redColor,
-                      height: 48,
+                      height: 32,
                       borderColor: AppTheme.redColor,
                     ),
                   ),
@@ -151,12 +171,12 @@ class ChatDetailedScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
-            Text(
-              'TODAY',
-              style: AppTextStyle.f12W400BColorTextStyle,
-            ),
+            // Text(
+            //   'TODAY',
+            //   style: AppTextStyle.f12W400BColorTextStyle,
+            // ),
 
             // Chat Messages
             Expanded(

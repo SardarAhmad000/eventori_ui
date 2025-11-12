@@ -30,7 +30,7 @@ class AppAssets{
   static String verifiedIcon= 'assets/app_icons/verified_icon.png';
   static String copyIcon= 'assets/app_icons/copy_icon.png';
   static String addIcon= 'assets/app_icons/add_icon.png';
-  static String filterFunnelIcon= 'assets/app_icons/filter_funnel_icon.png';
+  // static String filterFunnelIcon= 'assets/app_icons/filter_funnel_icon.png';
   static String moreHorizIcon= 'assets/app_icons/more_horiz_icon.png';
   static String moreVerticalIcon= 'assets/app_icons/more_vertical_icon.png';
   static String closeIcon= 'assets/app_icons/close_icon.png';
@@ -44,6 +44,9 @@ class AppAssets{
   static String chevronIcon= 'assets/app_icons/chevron_right_icon.png';
   static String loactionIcon= 'assets/app_icons/loaction_icon.png';
   static String walletIcon= 'assets/app_icons/wallet_icon.png';
+  static String pencilIcon= 'assets/app_icons/pencil_icon.png';
+  static String taskIcon= 'assets/app_icons/task_icon.png';
+  static String vendorBookedIcon= 'assets/app_icons/vendor_boked_icon.png';
 
 
 
@@ -59,6 +62,8 @@ class AppAssets{
   static String featuredImage1 = 'assets/app_images/featured_image1.jpg';
   static String vendorDummyImage = 'assets/app_images/vendor_dummy_image.jpg';
   static String picImage = 'assets/app_images/pic.png';
+  static String profileImage = 'assets/app_images/profile_image.png';
+  static String homeProfileImage = 'assets/app_images/home_profile_image.png';
 
 
 

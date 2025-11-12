@@ -3,7 +3,7 @@ import '../view/auth/controller/auth_controller.dart';
 import '../view/onboarding/controller/Onboarding_controller.dart';
 import '../view/profile/controller/profile_controller.dart';
 import '../view/roles/customer/chat/controller/chat_detailed_controller.dart';
-import '../view/roles/customer/event/controller/feature_event_controller.dart';
+import '../view/roles/customer/event/controller/event_controller.dart';
 import '../view/roles/customer/home/controller/home_controller.dart';
 import '../view/splash/controller/splash_controller.dart';
 
@@ -16,7 +16,7 @@ class LazyController extends Bindings{
     Get.put(AuthController());
     // Get.put(VendorController());
     // Get.put(EventController());
-    Get.put(FeatureEventController());
+    Get.put(EventController());
     Get.put(ChatController());
     Get.put(ProfileController());
     Get.put(HomeController());

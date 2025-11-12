@@ -198,6 +198,12 @@ class AppTextStyle {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle f16W500DSBColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.deepSpaceBlueColor,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
 
 
 
@@ -285,6 +291,13 @@ class AppTextStyle {
     color: AppTheme.blackColor,
   );
 
+  static TextStyle f14W500DSBColorTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppTheme.deepSpaceBlueColor,
+  );
+
   static TextStyle f14W500DPColorTextStyle= TextStyle(
     fontFamily: fontFamily,
     fontSize: 14,
@@ -304,6 +317,13 @@ class AppTextStyle {
   static TextStyle f13W400BColorTextStyle = TextStyle(
     fontFamily: fontFamily,
     color: AppTheme.blackColor,
+    fontSize: 13,
+    fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle f13W400SColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.silverColor,
     fontSize: 13,
     fontWeight: FontWeight.w400,
   );
@@ -349,6 +369,13 @@ class AppTextStyle {
     color: AppTheme.blackColor,
     fontSize: 12,
     fontWeight: FontWeight.w400,
+  );
+
+  static TextStyle f12W500BColorTextStyle = TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.blackColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
   );
 
   static TextStyle f12W400PWColorTextStyle = TextStyle(

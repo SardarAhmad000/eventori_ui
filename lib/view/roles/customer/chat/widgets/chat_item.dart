@@ -186,12 +186,32 @@ class ChatItem extends StatelessWidget {
           ),
           child: Row(
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: CustomImageHandler(
-                  imagePath: avatarUrl,
-                  width: 40,
-                  height: 40,
+              // ClipRRect(
+              //   borderRadius: BorderRadius.circular(8),
+              //   child: CustomImageHandler(
+              //     imagePath: avatarUrl,
+              //     width: 40,
+              //     height: 40,
+              //   ),
+              // ),
+
+              Container(
+                decoration: BoxDecoration(
+                  color: AppTheme.lightGrayishColor,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: AppTheme.lightGrayishColor,
+                    width: 1,
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: CustomImageHandler(
+                    imagePath: avatarUrl,
+                    width: 40,
+                    height: 40,
+                    // fit: BoxFit.cover,
+                  ),
                 ),
               ),
               const SizedBox(width: 12),

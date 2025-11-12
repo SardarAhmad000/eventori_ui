@@ -1,6 +1,7 @@
 import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/http/io/file_decoder_io.dart';
 
 class PopupMenuOption {
   final String title;
@@ -44,13 +45,16 @@ class CustomPopupMenu extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       position: RelativeRect.fromLTRB(
-        offset.dx + horizontalOffset, // Use the parameter here
+        // offset.dx + horizontalOffset, // Use the parameter here
+        offset.dx -100,
         offset.dy + size.height,
         offset.dx + size.width,
         offset.dy,
       ),
       items: options.map((option) {
         return PopupMenuItem(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+          height: 36,
           onTap: option.onTap,
           child: Row(
             children: [
@@ -60,11 +64,11 @@ class CustomPopupMenu extends StatelessWidget {
                   size: 18,
                   color: AppTheme.blackColor,
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 8),
               ],
               Text(
                 option.title,
-                style: AppTextStyle.f14W400SGColorTextStyle,
+                style: AppTextStyle.f14W500SGColorTextStyle,
               ),
             ],
           ),

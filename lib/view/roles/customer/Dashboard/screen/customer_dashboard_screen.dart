@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
+import '../../../../../app_widgets/custom_image_handler.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
+import '../../../../../routes/app_routes.dart';
 import '../widgets/collaborator_card.dart';
 import '../widgets/count_down_card.dart';
 import '../widgets/invite_more_card.dart';
@@ -46,10 +49,26 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                        children: [
                          GestureDetector(
                            onTap: (){
+                             // Get.toNamed(AppRoutes.profileScreen);
                            },
-                           child: CircleAvatar(
-                             radius: 20,
-                             backgroundColor: AppTheme.denimBlueColor,
+                           child: Container(
+                             decoration: BoxDecoration(
+                               color: AppTheme.denimBlueColor,
+                               borderRadius: BorderRadius.circular(12),
+                               border: Border.all(
+                                 color: AppTheme.slateGreyColor,
+                                 width: 1,
+                               ),
+                             ),
+                             child: ClipRRect(
+                               borderRadius: BorderRadius.circular(12),
+                               child: CustomImageHandler(
+                                 imagePath: AppAssets.homeProfileImage,
+                                 width: 40,
+                                 height: 40,
+                                 // fit: BoxFit.cover,
+                               ),
+                             ),
                            ),
                          ),
                          const SizedBox(width: 8),
@@ -61,7 +80,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                Text('Hi Noraiz',
                                    style: AppTextStyle.f12W400SGColorTextStyle),
                                const SizedBox(height: 2),
-                               Text('Every detail, right  at your fingertip',
+                               Text('Every detail, right  at your fingertips',
                                    style: AppTextStyle.f13W400BColorTextStyle),
                              ],
                            ),
@@ -83,23 +102,44 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                  ],
                ),
 
-               SizedBox(
-                 height: 16.h,
-                 child: ListView.builder(
-                   scrollDirection: Axis.horizontal,
-                   physics: const AlwaysScrollableScrollPhysics(),
-                   itemCount: 5,
-                   itemBuilder: (context, index) {
-                     return Padding(
-                       padding: const EdgeInsets.only(right: 0),
-                       child: StatsCard(
-                         iconPath: AppAssets.walletIcon,
-                         iconColor: AppTheme.redColor,
-                         value: '£3,500/2000',
-                         label: 'Budget Spent',
+               Padding(
+                 padding: const EdgeInsets.only(top: 16),
+                 child: SizedBox(
+                   width: 100.w,
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                       Expanded(
+                         child: StatsCard(
+                           iconPath: AppAssets.walletIcon,
+                           iconColor: AppTheme.redColor,
+                           value: '£3,500/£5000',
+                           label: 'Budget Spent',
+                           onTap: (){},
+                         ),
                        ),
-                     );
-                   },
+                       const SizedBox(width: 8),
+                       Expanded(
+                         child: StatsCard(
+                           iconPath: AppAssets.vendorBookedIcon,
+                           iconColor: AppTheme.purpleColor,
+                           value: '5/9',
+                           label: 'Vendors Booked',
+                           onTap: (){},
+                         ),
+                       ),
+                       const SizedBox(width: 8),
+                       Expanded(
+                         child: StatsCard(
+                           iconPath: AppAssets.taskIcon,
+                           iconColor: AppTheme.lightCyanColor,
+                           value: '65%',
+                           label: 'Task Progress',
+                           onTap: (){},
+                         ),
+                       ),
+                     ],
+                   ),
                  ),
                ),
 
@@ -135,13 +175,13 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                child: ListView.builder(
                                  scrollDirection: Axis.horizontal,
                                  physics: const AlwaysScrollableScrollPhysics(),
-                                 itemCount: 5,
+                                 itemCount: 1,
                                  itemBuilder: (context, index) {
                                    return Padding(
                                      padding: const EdgeInsets.only(right: 0),
                                      child: CollaboratorCard(
                                        name: 'Just Planned',
-                                       imagePath: AppAssets.vendorDummyImage,
+                                       imagePath: AppAssets.profileImage,
                                        isOnline: false,
                                        lastActive: 'Last active 2hr',
                                        role: 'Event planner (Me)',
@@ -154,6 +194,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                            InviteMoreCard(
                              onTap: () {
                                print('Invite more tapped');
+                               Get.toNamed(AppRoutes.addCollaboratorsScreen);
                              },
                            ),
                          ],
@@ -197,7 +238,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                            shrinkWrap: true,
                            physics: const NeverScrollableScrollPhysics(),
                            padding: EdgeInsets.zero,
-                           itemCount: 3,
+                           itemCount: 2,
                            itemBuilder: (context, index) {
                              return VendorCard(
                                imageUrl: AppAssets.picImage,
@@ -242,7 +283,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                    padding: EdgeInsets.zero,
                    shrinkWrap: true,
                    physics: const NeverScrollableScrollPhysics(),
-                   itemCount: 3,
+                   itemCount: 2,
                    itemBuilder: (context, index) {
                      return Padding(
                        padding: const EdgeInsets.all(8.0),
@@ -258,7 +299,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                  ),
                ),
 
-               SizedBox(height: 100)
+               const SizedBox(height: 100)
              ],
            ),
          ),

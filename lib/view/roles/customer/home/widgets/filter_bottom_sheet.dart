@@ -97,8 +97,7 @@ class FilterBottomSheet extends StatelessWidget {
                                 width: 1,
                               ),
                             ),
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 12),
+                            padding: const EdgeInsets.symmetric(horizontal: 12),
                             alignment: Alignment.centerLeft,
                             child: Row(
                               mainAxisAlignment:
@@ -108,11 +107,8 @@ class FilterBottomSheet extends StatelessWidget {
                                   child: Text(
                                     controller.selectedCountry.value ??
                                         'Country',
-                                    style: AppTextStyle
-                                        .f16W400SColorTextStyle
-                                        .copyWith(
-                                      color: controller.selectedCountry.value ==
-                                          null
+                                    style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                                      color: controller.selectedCountry.value == null
                                           ? AppTheme.silverColor
                                           : AppTheme.darkpurpleColor,
                                     ),
