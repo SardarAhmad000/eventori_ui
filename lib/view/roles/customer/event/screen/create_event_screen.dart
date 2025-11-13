@@ -267,11 +267,9 @@ class CreateEventScreen extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   eventcontroller.selectedCity.value ?? 'City',
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: eventcontroller.selectedCity.value == null
-                                                        ? AppTheme.silverColor
-                                                        : AppTheme.darkpurpleColor,
+                                                  style: AppTextStyle.f16W400SColorTextStyle.copyWith(color: eventcontroller.selectedCity.value == null
+                                                      ? AppTheme.silverColor
+                                                      : AppTheme.darkpurpleColor,
                                                   ),
                                                   overflow: TextOverflow.ellipsis,
                                                 ),
@@ -288,11 +286,8 @@ class CreateEventScreen extends StatelessWidget {
                                               padding: const EdgeInsets.only(top: 4, left: 4),
                                               child: Text(
                                                 eventcontroller.cityError.value!,
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: AppTheme.redColor,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                                style: AppTextStyle.f12W400RColorTextStyle
+                                                    .copyWith(fontWeight: FontWeight.bold),
                                               ),
                                             );
                                           }

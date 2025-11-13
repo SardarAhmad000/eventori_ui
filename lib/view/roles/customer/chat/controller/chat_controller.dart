@@ -201,6 +201,7 @@ import 'package:get/get.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 import '../../../../../app_widgets/custom_button.dart';
+import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
 import '../../../../../constants/aap_assets.dart';
 
 class ChatController extends GetxController {
@@ -222,8 +223,28 @@ class ChatController extends GetxController {
 
   // Parameters from navigation
   String name = 'Noraiz Raja';
-  String avatarUrl = AppAssets.featuredImage1;
+  String avatarUrl = AppAssets.homeProfileImage;
   bool isSaved = false;
+
+  // String name = 'Vendor Name';
+  // String avatarUrl = '';
+  // bool isSaved = false;
+
+  void handleClearChat(BuildContext context) {
+      CustomClearChatDialog.show(
+        context: context,
+        title: 'Delete',
+        subtitle: 'Are you sure you want to clear the chat? This action cannot be reversed.',
+        buttonText: 'Delete',
+        icon: Icons.close,
+        iconColor: AppTheme.redColor,
+        buttonColor: AppTheme.redColor,
+        buttonTextColor: AppTheme.whiteColor,
+        onConfirm: () {
+
+        },
+      );
+  }
 
   void updateSelectedTab(String tab) {
     selectedTab.value = tab;
@@ -268,7 +289,7 @@ class ChatController extends GetxController {
       author: user,
       createdAt: DateTime.now().subtract(const Duration(hours: 1)).millisecondsSinceEpoch,
       id: 'msg-2',
-      text: 'Hello! Yes, I\'m available on that date. ✓',
+      text: 'Hello! Yes, I\'m available on that date.',
     );
 
     final message3 = types.TextMessage(

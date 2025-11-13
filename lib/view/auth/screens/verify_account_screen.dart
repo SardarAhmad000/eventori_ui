@@ -71,7 +71,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 16),
-
             /// Header
             CustomHeader(
               backgroundColor: AppTheme.whiteColor,

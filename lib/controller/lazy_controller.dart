@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import '../view/auth/controller/auth_controller.dart';
 import '../view/onboarding/controller/Onboarding_controller.dart';
 import '../view/profile/controller/profile_controller.dart';
-import '../view/roles/customer/chat/controller/chat_detailed_controller.dart';
+import '../view/roles/customer/chat/controller/chat_controller.dart';
 import '../view/roles/customer/event/controller/event_controller.dart';
 import '../view/roles/customer/home/controller/home_controller.dart';
 import '../view/splash/controller/splash_controller.dart';

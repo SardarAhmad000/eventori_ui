@@ -8,29 +8,12 @@ import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
-import '../../../../../routes/app_routes.dart';
-import '../controller/chat_detailed_controller.dart';
+import '../controller/chat_controller.dart';
 import '../widgets/chat_item.dart';
 import '../widgets/chat_tab_bar.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({Key? key}) : super(key: key);
-
-  void _handleClearChat(int index, BuildContext context) {
-    CustomClearChatDialog.show(
-      context: context,
-      title: 'Delete',
-      subtitle: 'Are you sure you want to clear the chat? This action cannot be reversed.',
-      buttonText: 'Delete',
-      icon: Icons.close,
-      iconColor: AppTheme.redColor,
-      buttonColor: AppTheme.redColor,
-      buttonTextColor: AppTheme.whiteColor,
-      onConfirm: () {
-
-      },
-    );
-  }
 
   void _showNewChatBottomSheet(BuildContext context) {
     NewChatBottomSheet.show(context);
@@ -130,7 +113,7 @@ class ChatScreen extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.only(top: 12),
-              itemCount: 2,
+              itemCount: 1,
               itemBuilder: (context, index) {
                 return ChatItem(
                   avatarUrl: AppAssets.homeProfileImage,
@@ -140,9 +123,9 @@ class ChatScreen extends StatelessWidget {
                   onTap: () {
                     Get.to(() => const ChatDetailedScreen(),
                       arguments: {
-                        // 'name': 'Noraiz Raja',
-                        // 'avatarUrl':  AppAssets.featuredImage1,
-                        // 'isSaved': true,
+                        'name': 'Noraiz Raja',
+                        'avatarUrl':  AppAssets.featuredImage1,
+                        'isSaved': true,
                       },
                     );
                   },
@@ -161,7 +144,7 @@ class ChatScreen extends StatelessWidget {
                     ),
                     PopupMenuOption(
                       title: 'Delete chat',
-                      onTap: () => _handleClearChat(index, context),
+                      onTap: () => controller.handleClearChat(context),
                     ),
                   ],
                 );

@@ -18,7 +18,7 @@ class ForumScreen extends StatelessWidget {
         body: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 8),
+              padding: const EdgeInsets.only(top: 16.0, bottom: 8,left: 16, right: 16),
               child: Obx(
                     () => CustomCategoryTabBar(
                   categories: forumController.forumCategories,

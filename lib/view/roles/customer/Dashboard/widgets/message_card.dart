@@ -9,6 +9,7 @@ class MessageCard extends StatelessWidget {
   final String timeAgo;
   final String imagePath;
   final bool isNetworkImage;
+  final bool isLastItem; // New parameter
 
   const MessageCard({
     Key? key,
@@ -17,6 +18,7 @@ class MessageCard extends StatelessWidget {
     required this.timeAgo,
     required this.imagePath,
     this.isNetworkImage = false,
+    this.isLastItem = false,
   }) : super(key: key);
 
   @override
@@ -30,7 +32,9 @@ class MessageCard extends StatelessWidget {
           topLeft: Radius.circular(12),
           topRight: Radius.circular(12),
         ),
-        border: Border(
+        border: isLastItem
+            ? null
+            : Border(
           bottom: BorderSide(
             color: AppTheme.lightGrayishColor,
             width: 1,

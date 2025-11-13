@@ -1,3 +1,4 @@
+import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import '../../../../../AppTheme/app_theme.dart';
 
@@ -32,11 +33,7 @@ class ChatTabBar extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: isSelected ? AppTheme.blackColor : AppTheme.slateGreyColor,
-              ),
+              style: AppTextStyle.f12W600BColorTextStyle.copyWith( color: isSelected ? AppTheme.blackColor : AppTheme.slateGreyColor,),
             ),
           ),
         ),

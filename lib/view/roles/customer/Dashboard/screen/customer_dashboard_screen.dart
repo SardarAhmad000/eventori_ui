@@ -125,7 +125,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                            iconColor: AppTheme.purpleColor,
                            value: '5/9',
                            label: 'Vendors Booked',
-                           onTap: (){},
+                           onTap: (){
+                             Get.toNamed(AppRoutes.vendorsDashboardScreen);
+                           },
                          ),
                        ),
                        const SizedBox(width: 8),
@@ -135,7 +137,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                            iconColor: AppTheme.lightCyanColor,
                            value: '65%',
                            label: 'Task Progress',
-                           onTap: (){},
+                           onTap: (){
+                             Get.toNamed(AppRoutes.tasksDashboardScreen);
+                           },
                          ),
                        ),
                      ],
@@ -283,7 +287,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                    padding: EdgeInsets.zero,
                    shrinkWrap: true,
                    physics: const NeverScrollableScrollPhysics(),
-                   itemCount: 2,
+                   itemCount: 3,
                    itemBuilder: (context, index) {
                      return Padding(
                        padding: const EdgeInsets.all(8.0),
@@ -291,12 +295,13 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                          name: 'The Sweet Platter',
                          message: 'i have booked your consultation',
                          timeAgo: '1hr ago',
-                         imagePath: AppAssets.featuredImage1,
+                         imagePath: AppAssets.picImage,
                          isNetworkImage: false,
+                         isLastItem: index == 3 - 1,
                        ),
                      );
                    },
-                 ),
+                 )
                ),
 
                const SizedBox(height: 100)

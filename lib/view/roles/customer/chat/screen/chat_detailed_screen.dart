@@ -10,28 +10,12 @@ import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
-import '../controller/chat_detailed_controller.dart';
+import '../controller/chat_controller.dart';
 import '../widgets/block_vendor_bottom_sheet.dart';
 import '../widgets/report_vendor_bottom_sheet.dart';
 
 class ChatDetailedScreen extends StatelessWidget {
   const ChatDetailedScreen({Key? key}) : super(key: key);
-
-  void _handleClearChat(BuildContext context) {
-    CustomClearChatDialog.show(
-      context: context,
-      title: 'Delete',
-      subtitle: 'Are you sure you want to clear the chat? This action cannot be reversed.',
-      buttonText: 'Delete',
-      icon: Icons.close,
-      iconColor: AppTheme.redColor,
-      buttonColor: AppTheme.redColor,
-      buttonTextColor: AppTheme.whiteColor,
-      onConfirm: () {
-
-      },
-    );
-  }
 
 
   String _formatTime(int timestamp) {
@@ -96,7 +80,7 @@ class ChatDetailedScreen extends StatelessWidget {
                       ),
                       PopupMenuOption(
                         title: 'Delete chat',
-                        onTap: () => _handleClearChat(context),
+                        onTap: () => controller.handleClearChat(context),
                       ),
                     ],
                     child: Image.asset(
@@ -452,8 +436,8 @@ class ChatDetailedScreen extends StatelessWidget {
               SizedBox(width: 8),
               // Spacer(),
               Text(
-                timeString,
-                style: AppTextStyle.f10W400BColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.whiteColor : AppTheme.slateGreyColor,)
+                  timeString,
+                  style: AppTextStyle.f10W400BColorTextStyle.copyWith(color: isOwnMessage ? AppTheme.whiteColor : AppTheme.slateGreyColor,)
               ),
             ],
           ),

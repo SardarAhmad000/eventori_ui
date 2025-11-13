@@ -97,7 +97,7 @@ class VendorCard extends StatelessWidget {
                     ),
                     child: Text(
                       status!,
-                      style: AppTextStyle.f10W50GColorTextStyle.copyWith(
+                      style: AppTextStyle.f10W400GColorTextStyle.copyWith(
                         color: _getStatusTextColor(status!),
                       ),
                     ),
