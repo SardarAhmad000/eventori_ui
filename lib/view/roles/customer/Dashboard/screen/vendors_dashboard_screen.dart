@@ -4,6 +4,7 @@ import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../constants/app_text_style.dart';
+import '../../../../onboarding/widgets/build_header.dart';
 import '../widgets/stats_card.dart';
 import '../widgets/vendor_dashboard_card.dart';
 
@@ -27,15 +28,14 @@ class _VendorsDashboardScreenState extends State<VendorsDashboardScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: Image.asset(
-                width: 38,
-                height: 32,
-                AppAssets.appLogo,
-              ),
+            CustomHeader(
+              backgroundColor: AppTheme.whiteColor,
+              arrowColor: AppTheme.blackColor,
+              containerBackgroundColor: AppTheme.whiteColor,
+              borderColor: AppTheme.lightGrayishColor,
+              showLogo: true,
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 16),
             Text(
               'Vendors',
               style: AppTextStyle.f32W600DPColorTextStyle,

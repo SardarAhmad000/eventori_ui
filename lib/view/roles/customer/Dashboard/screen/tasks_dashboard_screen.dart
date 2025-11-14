@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../onboarding/widgets/build_header.dart';
@@ -63,7 +60,7 @@ class _TasksDashboardScreenState extends State<TasksDashboardScreen> {
                       title: 'Confirm venue',
                       deadline: '25 Sept*',
                       completedDate: '20 Sept',
-                      status: 'Confirmed',
+                      status: 'Pending',
                     );
                   },
                 ),

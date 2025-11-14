@@ -287,7 +287,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                    padding: EdgeInsets.zero,
                    shrinkWrap: true,
                    physics: const NeverScrollableScrollPhysics(),
-                   itemCount: 3,
+                   itemCount: 5,
                    itemBuilder: (context, index) {
                      return Padding(
                        padding: const EdgeInsets.all(8.0),
@@ -297,7 +297,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                          timeAgo: '1hr ago',
                          imagePath: AppAssets.picImage,
                          isNetworkImage: false,
-                         isLastItem: index == 3 - 1,
+                         showDivider: true,
                        ),
                      );
                    },

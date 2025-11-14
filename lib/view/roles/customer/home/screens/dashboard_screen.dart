@@ -133,8 +133,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Image.asset(AppAssets.heartIcon,
                               width: 18, height: 18),
                           const SizedBox(width: 12),
-                          Image.asset(AppAssets.settingsIcon,
-                              width: 18, height: 18),
+                          GestureDetector(
+                            onTap: (){
+                              Get.toNamed(AppRoutes.profileScreen);
+                            },
+                            child: Image.asset(AppAssets.settingsIcon,
+                                width: 18, height: 18),
+                          ),
                         ],
                       ),
                     ],

@@ -2,11 +2,16 @@ import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:flutter/services.dart';
 import 'controller/lazy_controller.dart';
 import 'routes/app_pages.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    // DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
 }
 
@@ -33,7 +38,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             // home: SplashScreen()
         );
-
 
         //   GetMaterialApp(
         //   title: 'Flutter Demo',
