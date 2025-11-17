@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Featured events', style: AppTextStyle.f20W600DPColorTextStyle),
+                    Text('Featured Events', style: AppTextStyle.f20W600DPColorTextStyle),
                     GestureDetector(
                       onTap: () {},
                       child: Text('View All', style: AppTextStyle.f14W500LCColorTextStyle),

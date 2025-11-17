@@ -15,7 +15,7 @@ class SplashController extends GetxController {
 
   void splashTimer(){
     Timer(const Duration(seconds: 2), () {
-      // Get.off(() => const OnboardingScreen());u
+      // Get.off(() => const OnboardingScreen());
      Get.toNamed( AppRoutes.onboradingScreen,
      );
     });

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../app_widgets/custom_profile_card.dart';

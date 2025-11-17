@@ -265,13 +265,15 @@ class CreateEventScreen extends StatelessWidget {
                                             child: Row(
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
-                                                Text(
-                                                  eventcontroller.selectedCity.value ?? 'City',
-                                                  style: AppTextStyle.f16W400SColorTextStyle.copyWith(color: eventcontroller.selectedCity.value == null
-                                                      ? AppTheme.silverColor
-                                                      : AppTheme.darkpurpleColor,
+                                                Expanded(
+                                                  child: Text(
+                                                    eventcontroller.selectedCity.value ?? 'City',
+                                                    style: AppTextStyle.f16W400SColorTextStyle.copyWith(color: eventcontroller.selectedCity.value == null
+                                                        ? AppTheme.silverColor
+                                                        : AppTheme.darkpurpleColor,
+                                                    ),
+                                                    overflow: TextOverflow.ellipsis,
                                                   ),
-                                                  overflow: TextOverflow.ellipsis,
                                                 ),
                                                 Icon(Icons.keyboard_arrow_down,
                                                     color: AppTheme.slateGreyColor, size: 20),

@@ -30,24 +30,33 @@ class VendorsScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 110),
-              itemCount: 3,
-              itemBuilder: (context, index) {
-                return CustomVendorCard(
-                  imagePath: AppAssets.vendorDummyImage,
-                  vendorName: 'Royal Events & Catering',
-                  location: 'Lahore, Pakistan',
-                  isTopRated: true,
-                  rating: 4.8,
-                  isVerified: true,
-                  isSponsored: true,
-                  categories: ['WEDDING', 'EVENT', 'CATERING'],
-                  onAddToEvent: () {},
-                  onContact: () {},
-                  onTap: () {},
-                );
-              },
+            child: SingleChildScrollView(
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(left: 16, right: 16, bottom: 110),
+                itemCount: 1,
+                itemBuilder: (context, index) {
+                  return CustomVendorCard(
+                    imagePaths : [
+                      AppAssets.vendorDummyImage,
+                      AppAssets.eventImage1,
+                      AppAssets.featuredImage1,
+                      AppAssets.vendor2Image,
+                    ],
+                    vendorName: 'Royal Events & Catering',
+                    location: 'Jinnah Boulevard sector E DHA phase 3 islamabad',
+                    isTopRated: true,
+                    rating: 4.8,
+                    isVerified: true,
+                    isSponsored: true,
+                    categories: ['WEDDING', 'EVENT', 'CATERING'],
+                    onAddToEvent: () {},
+                    onContact: () {},
+                    onTap: () {},
+                  );
+                },
+              ),
             ),
           ),
         ],

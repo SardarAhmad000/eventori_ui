@@ -199,37 +199,28 @@ import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-
-import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
 import '../../../../../constants/aap_assets.dart';
 
 class ChatController extends GetxController {
-
   final vendorsController = TextEditingController();
   final selectedTab = 'All'.obs;
-
   // Observable variables
   final messages = <types.Message>[].obs;
   final textController = TextEditingController();
   final menuKey = GlobalKey();
-
   // Reply functionality
   final Rx<types.Message?> replyingTo = Rx<types.Message?>(null);
-
   // User instances
   late final types.User user;
   late final types.User vendor;
-
   // Parameters from navigation
   String name = 'Noraiz Raja';
   String avatarUrl = AppAssets.homeProfileImage;
   bool isSaved = false;
-
   // String name = 'Vendor Name';
   // String avatarUrl = '';
   // bool isSaved = false;
-
   void handleClearChat(BuildContext context) {
       CustomClearChatDialog.show(
         context: context,
@@ -245,18 +236,15 @@ class ChatController extends GetxController {
         },
       );
   }
-
   void updateSelectedTab(String tab) {
     selectedTab.value = tab;
   }
-
   @override
   void onClose() {
     vendorsController.dispose();
     textController.dispose();
     super.onClose();
   }
-
   @override
   void onInit() {
     super.onInit();
@@ -275,7 +263,6 @@ class ChatController extends GetxController {
     // Load initial messages
     _loadInitialMessages();
   }
-
   void _loadInitialMessages() {
     // Add initial messages matching the screenshot - NO STATUS to remove tick
     final message1 = types.TextMessage(
@@ -301,7 +288,6 @@ class ChatController extends GetxController {
 
     messages.addAll([message3, message2, message1]);
   }
-
   void handleSendPressed(types.PartialText message) {
     // Create the new message with reply if exists
     types.TextMessage textMessage;
@@ -332,19 +318,16 @@ class ChatController extends GetxController {
       cancelReply();
     }
   }
-
   void handleCameraPressed() {
     print('Camera icon pressed');
     // Add your camera logic here
   }
-
   void sendMessage() {
     if (textController.text.trim().isNotEmpty) {
       handleSendPressed(types.PartialText(text: textController.text));
       textController.clear();
     }
   }
-
   // Reply functionality methods
   void handleMessageLongPress(BuildContext context, types.Message message) {
     // Show bottom sheet with reply option
@@ -384,7 +367,6 @@ class ChatController extends GetxController {
       ),
     );
   }
-
   void replyToMessage(types.Message message) {
     replyingTo.value = message;
     // Focus on text field after selecting reply
@@ -394,20 +376,15 @@ class ChatController extends GetxController {
       );
     });
   }
-
   void cancelReply() {
     replyingTo.value = null;
   }
-
   void handleSaveChat() {
     print('Save Chat pressed');
   }
-
-
   void handleAddVendor() {
     print('Add vendor pressed');
   }
-
   void handleBlockVendor() {
     print('Block vendor pressed');
   }

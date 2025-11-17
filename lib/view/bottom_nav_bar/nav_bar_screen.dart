@@ -4,6 +4,7 @@ import 'package:curved_nav_bar/flutter_curved_bottom_nav_bar.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/roles/customer/home/screens/dashboard_screen.dart';
+import 'package:eventori/view/roles/customer/search/screens/search_screen.dart';
 import 'package:flutter/material.dart';
 import '../../AppTheme/app_theme.dart';
 import '../roles/customer/Dashboard/screen/customer_dashboard_screen.dart';
@@ -21,7 +22,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
   final List<Widget> _screens = [
     const DashboardScreen(),
     // const HomePage(),
-    Center(child: Text('Search Screen', style: AppTextStyle.f16W400SColorTextStyle)),
+    // Center(child: Text('Search Screen', style: AppTextStyle.f16W400SColorTextStyle)),
+    SearchScreen(),
     const CreateEventScreen(),
     const ChatScreen(),
     const EventDashboardScreen(),
