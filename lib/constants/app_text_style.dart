@@ -414,6 +414,12 @@ class AppTextStyle {
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
+  static TextStyle f12W400DMBColorTextStyle= TextStyle(
+    fontFamily: fontFamily,
+    color: AppTheme.midnightBlueColor,
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+  );
 
   static TextStyle f12W400RColorTextStyle = TextStyle(
     fontFamily: fontFamily,

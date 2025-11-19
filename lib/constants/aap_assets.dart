@@ -47,6 +47,7 @@ class AppAssets{
   static String pencilIcon= 'assets/app_icons/pencil_icon.png';
   static String taskIcon= 'assets/app_icons/task_icon.png';
   static String vendorBookedIcon= 'assets/app_icons/vendor_boked_icon.png';
+  static String layoutIcon= 'assets/app_icons/layout_icon.png';
 
 
 

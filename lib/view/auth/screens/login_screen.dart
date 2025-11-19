@@ -39,13 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 16),
-            CustomHeader(
-              backgroundColor: AppTheme.whiteColor,
-              arrowColor: AppTheme.blackColor,
-              containerBackgroundColor: AppTheme.whiteColor,
-              borderColor: AppTheme.lightGrayishColor,
-              showLogo: true,
+            const SizedBox(height: 20),
+            Image.asset(
+              AppAssets.appLogo,
+              width: 38,
+              height: 32,
             ),
             const SizedBox(height: 20),
             Expanded(

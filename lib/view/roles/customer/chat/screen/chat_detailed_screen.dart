@@ -1,3 +1,4 @@
+import 'package:eventori/app_widgets/custom_bottom_sheet.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,11 +9,8 @@ import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
-import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../controller/chat_controller.dart';
-import '../widgets/block_vendor_bottom_sheet.dart';
-import '../widgets/report_vendor_bottom_sheet.dart';
 
 class ChatDetailedScreen extends StatelessWidget {
   const ChatDetailedScreen({Key? key}) : super(key: key);
@@ -72,11 +70,39 @@ class ChatDetailedScreen extends StatelessWidget {
                       ),
                       PopupMenuOption(
                         title: 'Block',
-                        onTap: () => BlockVendorBottomSheet.show(context),
+                        onTap: () => CustomBottomSheet.show(
+                          context: context,
+                          title: 'Block this vendor?',
+                          descriptionTexts: [
+                            'This person won\'t be able to message or call you. They won\'t know you blocked or reported them.',
+                            'If you block and report, the last 5 messages in this chat will also be sent to WhatsApp.***',
+                          ],
+                          primaryActionText: 'Yes, Block Vendor',
+                          primaryActionIcon: AppAssets.reportIcon,
+                          onPrimaryAction: () {
+                            print('Vendor blocked');
+                          },
+                          secondaryActionText: 'Cancel',
+                          secondaryActionIcon: AppAssets.blockIcon,
+                        ),
                       ),
                       PopupMenuOption(
                         title: 'Report',
-                        onTap: () => ReportVendorBottomSheet.show(context),
+                        onTap: () => CustomBottomSheet.show(
+                          context: context,
+                          title: 'Block and Report this Vendor?',
+                          descriptionTexts: [
+                            'Are you sure you want to block and report this vendor? You’ll no longer receive messages or quotes from them.',
+                            'Your report will help us review any suspicious or inappropriate behaviour.',
+                          ],
+                          primaryActionText: 'Yes, Block and Report ',
+                          primaryActionIcon: AppAssets.reportIcon,
+                          onPrimaryAction: () {
+                            print('Vendor blocked');
+                          },
+                          secondaryActionText: 'Cancel',
+                          secondaryActionIcon: AppAssets.blockIcon,
+                        ),
                       ),
                       PopupMenuOption(
                         title: 'Delete chat',

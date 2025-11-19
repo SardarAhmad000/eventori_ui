@@ -20,6 +20,8 @@ import '../view/roles/customer/home/screens/events_screen.dart';
 import '../view/roles/customer/home/screens/forum_screen.dart';
 import '../view/roles/customer/home/screens/home_screen.dart';
 import '../view/roles/customer/home/screens/vendors_screen.dart';
+import '../view/roles/customer/search/screens/report_vendor_screen.dart';
+import '../view/roles/customer/search/screens/vendor_detailed_screen.dart';
 import '../view/splash/splash_screen.dart';
 import 'app_routes.dart';
 
@@ -38,7 +40,6 @@ class AppPages {
     GetPage(name: AppRoutes.navBarScreen, page: () =>  NavBarScreen()),
     // GetPage(name: AppRoutes.createEventScreen, page: () =>  CreateEventScreen()),
     GetPage(name: AppRoutes.myEventScreeen, page: () =>  MyEventsScreen()),
-
     GetPage(name: AppRoutes.dashboardScreen, page: () =>  DashboardScreen()),
     GetPage(name: AppRoutes.homeScreen, page: () =>  HomeScreen()),
     GetPage(name: AppRoutes.eventsScreen, page: () =>  EventsScreen()),
@@ -49,6 +50,8 @@ class AppPages {
     GetPage(name: AppRoutes.addCollaboratorsScreen, page: () =>  AddCollaboratorsScreen()),
     GetPage(name: AppRoutes.vendorsDashboardScreen, page: () =>  VendorsDashboardScreen()),
     GetPage(name: AppRoutes.tasksDashboardScreen, page: () =>  TasksDashboardScreen()),
+    GetPage(name: AppRoutes.vendorDetailedScreen, page: () =>  VendorDetailedScreen()),
+    GetPage(name: AppRoutes.reportVendorScreen, page: () =>  ReportVendorScreen()),
 
   ];
 }

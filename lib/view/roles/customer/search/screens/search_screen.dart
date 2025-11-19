@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../constants/aap_assets.dart';
+import '../../../../../routes/app_routes.dart';
 import '../../home/controller/home_controller.dart';
 import '../../home/widgets/custom_category_tab_bar.dart';
 import '../../home/widgets/custom_vendor_card.dart';
@@ -17,7 +17,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
-      body:  Padding(
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +33,8 @@ class SearchScreen extends StatelessWidget {
             AbsorbPointer(
               absorbing: true,
               child: CustomTextField(
-                  borderRadius: 99,
+                borderRadius: 99,
                 hintText: 'Search Vendors',
-                // controller: searchVendorsController,
                 prefixIcon: Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: Image.asset(
@@ -87,23 +86,49 @@ class SearchScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 90),
                   itemCount: 2,
                   itemBuilder: (context, index) {
-                    return CustomVendorCard(
-                      imagePaths : [
+                    final vendorData = {
+                      'imagePaths': [
                         AppAssets.vendorDummyImage,
                         AppAssets.eventImage1,
                         AppAssets.featuredImage1,
                         AppAssets.vendor2Image,
                       ],
-                      vendorName: 'Royal Events & Catering',
-                      location: 'Lahore,Paksitan',
-                      isTopRated: true,
-                      rating: 4.8,
-                      isVerified: true,
-                      isSponsored: true,
-                      categories: const ['WEDDING', 'EVENT', 'CATERING'],
+                      'vendorName': 'Royal Events & Catering',
+                      // 'vendorName': index == 0
+                      //     ? 'Royal Events & Catering'
+                      //     : 'Elegant Moments Photography',
+                      'location': 'Lahore, Pakistan',
+                      'isTopRated': true,
+                      'rating': 4.8,
+                      'isVerified': true,
+                      'isSponsored': true,
+                      'categories': const ['WEDDING', 'EVENT', 'CATERING'],
+                    };
+                    return CustomVendorCard(
+                      imagePaths: vendorData['imagePaths'] as List<String>,
+                      vendorName: vendorData['vendorName'] as String,
+                      location: vendorData['location'] as String,
+                      isTopRated: vendorData['isTopRated'] as bool,
+                      rating: vendorData['rating'] as double,
+                      isVerified: vendorData['isVerified'] as bool,
+                      isSponsored: vendorData['isSponsored'] as bool,
+                      categories: vendorData['categories'] as List<String>,
                       onAddToEvent: () {},
                       onContact: () {},
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(
+                          AppRoutes.vendorDetailedScreen,
+                          arguments: {
+                            'imagePaths': vendorData['imagePaths'],
+                            'vendorName': vendorData['vendorName'],
+                            'location': vendorData['location'],
+                            'isTopRated': vendorData['isTopRated'],
+                            'rating': vendorData['rating'],
+                            'isVerified': vendorData['isVerified'],
+                            'categories': vendorData['categories'],
+                          },
+                        );
+                      },
                     );
                   },
                 ),

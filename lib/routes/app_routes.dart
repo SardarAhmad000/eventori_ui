@@ -24,5 +24,7 @@ abstract class AppRoutes {
   static const addCollaboratorsScreen = '/addCollaboratorsScreen';
   static const vendorsDashboardScreen = '/vendorsDashboardScreen';
   static const tasksDashboardScreen = '/tasksDashboardScreen';
+  static const vendorDetailedScreen = '/vendorDetailedScreen';
+  static const reportVendorScreen = '/reportVendorScreen';
 
 }

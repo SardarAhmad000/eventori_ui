@@ -3,8 +3,21 @@ import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 
-class ReportVendorBottomSheet {
-  static void show(BuildContext context) {
+class CustomBottomSheet {
+  static void show({
+    required BuildContext context,
+    required String title,
+    required List<String> descriptionTexts,
+    required String primaryActionText,
+    required VoidCallback onPrimaryAction,
+    String secondaryActionText = 'Cancel',
+    VoidCallback? onSecondaryAction,
+    String? primaryActionIcon,
+    String? secondaryActionIcon,
+    Color? primaryActionTextColor,
+    Color? secondaryActionTextColor,
+    Color? primaryActionIconColor,
+  }) {
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -24,12 +37,15 @@ class ReportVendorBottomSheet {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Header with title and close button
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Report to whatsapp',
-                    style: AppTextStyle.f16W500BColorTextStyle,
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: AppTextStyle.f16W500BColorTextStyle,
+                    ),
                   ),
                   Container(
                     width: 32,
@@ -52,34 +68,38 @@ class ReportVendorBottomSheet {
                 ],
               ),
               const SizedBox(height: 16),
+
+              // Description container
               Container(
                 width: double.infinity,
-                height: 124,
                 decoration: BoxDecoration(
                   color: AppTheme.textfieldBorderColor,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: Column(
-                    children: [
-                      Text(
-                        'If you block and report, the last 5 messages in this chat will also be sent to WhatsApp.”**',
-                        style: AppTextStyle.f14W400SGColorTextStyle,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'if you report This person won’t be able to message or call you. They won’t know you blocked or reported them',
-                        style: AppTextStyle.f14W400SGColorTextStyle,
-                      ),
-                    ],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: descriptionTexts.asMap().entries.map((entry) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          bottom: entry.key < descriptionTexts.length - 1 ? 8.0 : 0,
+                        ),
+                        child: Text(
+                          entry.value,
+                          style: AppTextStyle.f14W400SGColorTextStyle,
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
               ),
               const SizedBox(height: 16),
+
+              // Primary action button
               InkWell(
                 onTap: () {
-                  print('Block and report pressed');
+                  onPrimaryAction();
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -92,29 +112,37 @@ class ReportVendorBottomSheet {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                     child: Row(
                       children: [
-                        Text(
-                          'Yes, Block and report',
-                          style: AppTextStyle.f14W400RColorTextStyle,
+                        Expanded(
+                          child: Text(
+                            primaryActionText,
+                            style: (primaryActionTextColor != null
+                                ? AppTextStyle.f14W400RColorTextStyle.copyWith(
+                                color: primaryActionTextColor)
+                                : AppTextStyle.f14W400RColorTextStyle),
+                          ),
                         ),
-                        const Spacer(),
-                        Image.asset(
-                          AppAssets.blockIcon,
-                          color: AppTheme.redColor,
-                          width: 20,
-                          height: 20,
-                        ),
+                        if (primaryActionIcon != null)
+                          Image.asset(
+                            primaryActionIcon,
+                            color: primaryActionIconColor ?? AppTheme.redColor,
+                            width: 18,
+                            height: 18,
+                          ),
                       ],
                     ),
                   ),
                 ),
               ),
+
+              // Secondary action button
               InkWell(
                 onTap: () {
-                  print('Report pressed');
-                  // Add your block logic here
+                  if (onSecondaryAction != null) {
+                    onSecondaryAction();
+                  }
                   Navigator.pop(context);
                 },
                 child: Container(
@@ -127,20 +155,24 @@ class ReportVendorBottomSheet {
                     ),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                     child: Row(
                       children: [
-                        Text(
-                          'Cancel',
-                          style: AppTextStyle.f14W400RColorTextStyle,
+                        Expanded(
+                          child: Text(
+                            secondaryActionText,
+                            style: (secondaryActionTextColor != null
+                                ? AppTextStyle.f14W400RColorTextStyle.copyWith(
+                                color: secondaryActionTextColor)
+                                : AppTextStyle.f14W400RColorTextStyle),
+                          ),
                         ),
-                        const Spacer(),
-                        Image.asset(
-                          AppAssets.reportIcon,
-                          color: AppTheme.redColor,
-                          width: 18,
-                          height: 18,
-                        ),
+                        if (secondaryActionIcon != null)
+                          Image.asset(
+                            secondaryActionIcon,
+                            width: 20,
+                            height: 20,
+                          ),
                       ],
                     ),
                   ),

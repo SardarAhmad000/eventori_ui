@@ -370,7 +370,7 @@ class CreateEventScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 12),
                               DottedBorder(
-                                color: AppTheme.textfieldBorderColor,
+                                color: AppTheme.silverColor,
                                 strokeWidth: 1,
                                 dashPattern: const [5, 3],
                                 borderType: BorderType.RRect,
