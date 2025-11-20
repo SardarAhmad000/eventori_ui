@@ -233,7 +233,7 @@ class EventCard extends StatelessWidget {
                               ),
                             ),
                             child: Center(
-                              child: Text(date, style: AppTextStyle.font20w500WColorTextStyle),
+                              child: Text(date, style: AppTextStyle.f20W500WColorTextStyle),
                             ),
                           ),
                           const SizedBox(height: 5),

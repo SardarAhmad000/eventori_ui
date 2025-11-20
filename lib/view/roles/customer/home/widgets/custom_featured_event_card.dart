@@ -74,7 +74,7 @@ class FeaturedEventCard extends StatelessWidget {
                         children: [
                           Text(
                             title,
-                            style:AppTextStyle.font20w500WColorTextStyle,
+                            style:AppTextStyle.f20W500WColorTextStyle,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -110,7 +110,7 @@ class FeaturedEventCard extends StatelessWidget {
                             child: Center(
                               child: Text(
                                 date,
-                                style: AppTextStyle.font20w500WColorTextStyle,
+                                style: AppTextStyle.f20W500WColorTextStyle,
                               ),
                             ),
                           ),

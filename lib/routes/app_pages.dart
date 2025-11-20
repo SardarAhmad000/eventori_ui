@@ -20,6 +20,7 @@ import '../view/roles/customer/home/screens/events_screen.dart';
 import '../view/roles/customer/home/screens/forum_screen.dart';
 import '../view/roles/customer/home/screens/home_screen.dart';
 import '../view/roles/customer/home/screens/vendors_screen.dart';
+import '../view/roles/customer/search/screens/faviourte_vendors_screen.dart';
 import '../view/roles/customer/search/screens/report_vendor_screen.dart';
 import '../view/roles/customer/search/screens/vendor_detailed_screen.dart';
 import '../view/splash/splash_screen.dart';
@@ -52,6 +53,7 @@ class AppPages {
     GetPage(name: AppRoutes.tasksDashboardScreen, page: () =>  TasksDashboardScreen()),
     GetPage(name: AppRoutes.vendorDetailedScreen, page: () =>  VendorDetailedScreen()),
     GetPage(name: AppRoutes.reportVendorScreen, page: () =>  ReportVendorScreen()),
+    GetPage(name: AppRoutes.faviourteVendorsScreen, page: () =>  FaviourteVendorsScreen()),
 
   ];
 }

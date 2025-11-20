@@ -130,8 +130,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           Image.asset(AppAssets.bellIcon,
                               width: 18, height: 18),
                           const SizedBox(width: 12),
-                          Image.asset(AppAssets.heartIcon,
-                              width: 18, height: 18),
+                          GestureDetector(
+                            onTap: (){
+                              Get.toNamed(AppRoutes.faviourteVendorsScreen);
+                            },
+                            child: Image.asset(AppAssets.heartIcon,
+                                width: 18, height: 18),
+                          ),
                           const SizedBox(width: 12),
                           GestureDetector(
                             onTap: (){

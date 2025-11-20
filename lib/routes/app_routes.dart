@@ -26,5 +26,6 @@ abstract class AppRoutes {
   static const tasksDashboardScreen = '/tasksDashboardScreen';
   static const vendorDetailedScreen = '/vendorDetailedScreen';
   static const reportVendorScreen = '/reportVendorScreen';
+  static const faviourteVendorsScreen = '/faviourteVendorsScreen';
 
 }

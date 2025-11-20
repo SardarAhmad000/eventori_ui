@@ -88,7 +88,7 @@ class _CountdownCardState extends State<CountdownCard> {
             children: [
               Text(
                 widget.title,
-                style: AppTextStyle.font20w500WColorTextStyle,
+                style: AppTextStyle.f20W500WColorTextStyle,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
@@ -114,7 +114,7 @@ class _CountdownCardState extends State<CountdownCard> {
                         child: Center(
                           child: Text(
                             days.toString().padLeft(2, '0'),
-                            style: AppTextStyle.font20w500WColorTextStyle,
+                            style: AppTextStyle.f20W500WColorTextStyle,
                           ),
                         ),
                       ),
@@ -169,7 +169,7 @@ class _CountdownCardState extends State<CountdownCard> {
                         child: Center(
                           child: Text(
                             hours.toString().padLeft(2, '0'),
-                            style: AppTextStyle.font20w500WColorTextStyle,
+                            style: AppTextStyle.f20W500WColorTextStyle,
                           ),
                         ),
                       ),
@@ -224,7 +224,7 @@ class _CountdownCardState extends State<CountdownCard> {
                         child: Center(
                           child: Text(
                             minutes.toString().padLeft(2, '0'),
-                            style: AppTextStyle.font20w500WColorTextStyle,
+                            style: AppTextStyle.f20W500WColorTextStyle,
                           ),
                         ),
                       ),
