@@ -9,9 +9,18 @@ class CustomValidator {
     return null;
   }
 
-  static String? team(String? value) {
+  static String? name(String? value) {
     if (value!.isEmpty) {
-      return ' Enter team name';
+      return ' Enter name';
+    }
+    return null;
+  }
+
+  static String? phone(String? value) {
+    if (value == null || value.isEmpty) {
+      return ' Phone number is required';
+    } else if (value.length < 10) {
+      return ' Please enter valid phone number';
     }
     return null;
   }
@@ -150,9 +159,9 @@ class CustomValidator {
     return null;
   }
 
-  static String? score(String? value) {
+  static String? reasonCategory(String? value) {
     if (value == null || value.isEmpty) {
-      return 'Add score';
+      return ' Select a reason';
     }
     return null;
   }
@@ -172,8 +181,36 @@ class CustomValidator {
   }
 
   static String? description(String? value) {
-    if (value!.isEmpty) {
-      return ' Enter group description';
+    if (value == null || value.isEmpty) {
+      return ' Enter description';
+    }
+    if (value.trim().length < 10) {
+      return ' Description must be at least 10 characters';
+    }
+    return null;
+  }
+
+  // NEW VALIDATOR: Vendor Name Validation
+  static String? vendorName(String? value) {
+    if (value == null || value.isEmpty) {
+      return ' Enter vendor name';
+    }
+    if (value.trim().length < 2) {
+      return ' Vendor name must be at least 2 characters';
+    }
+    return null;
+  }
+
+  // NEW VALIDATOR: Report Description Validation
+  static String? reportDescription(String? value) {
+    if (value == null || value.isEmpty) {
+      return ' Please describe what happened';
+    }
+    if (value.trim().length < 20) {
+      return ' Description must be at least 20 characters';
+    }
+    if (value.trim().length > 500) {
+      return ' Description cannot exceed 500 characters';
     }
     return null;
   }
