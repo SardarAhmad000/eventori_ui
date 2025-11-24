@@ -484,12 +484,12 @@ class _ReportVendorScreenState extends State<ReportVendorScreen> {
                                       child: Container(
                                         padding: const EdgeInsets.all(6),
                                         decoration: BoxDecoration(
-                                          color: Colors.black.withOpacity(0.6),
+                                          color: AppTheme.blackColor.withOpacity(0.6),
                                           shape: BoxShape.circle,
                                         ),
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.close,
-                                          color: Colors.white,
+                                          color: AppTheme.whiteColor,
                                           size: 20,
                                         ),
                                       ),
@@ -518,9 +518,9 @@ class _ReportVendorScreenState extends State<ReportVendorScreen> {
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            const Icon(
+                                            Icon(
                                               Icons.edit,
-                                              color: Colors.white,
+                                              color: AppTheme.whiteColor,
                                               size: 16,
                                             ),
                                             const SizedBox(width: 4),
