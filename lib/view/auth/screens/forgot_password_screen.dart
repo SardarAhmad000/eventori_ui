@@ -78,7 +78,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               CustomTextField(
                 controller: _emailController,
                 hintText: 'Email Address',
-                isRequired: true,
+                // isRequired: true,
                 prefixIcon: Image.asset(
                   AppAssets.mailIcon,
                   color: AppTheme.silverColor,

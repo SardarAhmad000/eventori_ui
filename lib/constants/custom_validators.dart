@@ -1,13 +1,27 @@
 class CustomValidator {
+
+  // static String? email(String? value) {
+  //   if (value!.isEmpty) {
+  //     return ' Email address is required';
+  //   } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+  //       .hasMatch(value)) {
+  //     return ' Please enter valid email';
+  //   }
+  //   return null;
+  // }
+
+  // Booking validators
   static String? email(String? value) {
-    if (value!.isEmpty) {
-      return ' Email address is required';
-    } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(value)) {
-      return ' Please enter valid email';
+    if (value == null || value.trim().isEmpty) {
+      return 'Email address is required';
+    }
+    final emailRegex = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+        if (!emailRegex.hasMatch(value)) {
+    return 'Please enter a valid email';
     }
     return null;
   }
+
 
   static String? name(String? value) {
     if (value!.isEmpty) {
@@ -159,12 +173,6 @@ class CustomValidator {
     return null;
   }
 
-  static String? reasonCategory(String? value) {
-    if (value == null || value.isEmpty) {
-      return ' Select a reason';
-    }
-    return null;
-  }
 
   static String? location(String? value) {
     if (value!.isEmpty) {
@@ -190,27 +198,33 @@ class CustomValidator {
     return null;
   }
 
-  // NEW VALIDATOR: Vendor Name Validation
+    // Existing validators (keeping your existing ones)
   static String? vendorName(String? value) {
-    if (value == null || value.isEmpty) {
-      return ' Enter vendor name';
+    if (value == null || value.trim().isEmpty) {
+      return 'Vendor name is required';
     }
     if (value.trim().length < 2) {
-      return ' Vendor name must be at least 2 characters';
+      return 'Vendor name must be at least 2 characters';
     }
     return null;
   }
 
-  // NEW VALIDATOR: Report Description Validation
-  static String? reportDescription(String? value) {
+  static String? reasonCategory(String? value) {
     if (value == null || value.isEmpty) {
-      return ' Please describe what happened';
+      return 'Please select a reason';
+    }
+    return null;
+  }
+
+  static String? reportDescription(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Please describe what happened';
     }
     if (value.trim().length < 20) {
-      return ' Description must be at least 20 characters';
+      return 'Description must be at least 20 characters';
     }
     if (value.trim().length > 500) {
-      return ' Description cannot exceed 500 characters';
+      return 'Description cannot exceed 500 characters';
     }
     return null;
   }
@@ -325,4 +339,125 @@ class CustomValidator {
     }
     return null;
   }
+
+
+  // Booking form validation (returns true if valid)
+  static bool validateBookingFields({
+    required String name,
+    required String email,
+    required String phone,
+    required Function(String?) onNameError,
+    required Function(String?) onEmailError,
+    required Function(String?) onPhoneError,
+  }) {
+    bool isValid = true;
+
+    // Validate name
+    final nameError = CustomValidator.name(name);
+    onNameError(nameError);
+    if (nameError != null) isValid = false;
+
+    // Validate email
+    final emailError = CustomValidator.email(email);
+    onEmailError(emailError);
+    if (emailError != null) isValid = false;
+
+    // Validate phone
+    final phoneError = CustomValidator.phone(phone);
+    onPhoneError(phoneError);
+    if (phoneError != null) isValid = false;
+
+    return isValid;
+  }
+
+// static String? reasonCategory(String? value) {
+//   if (value == null || value.isEmpty) {
+//     return '           Select a reason';
+//   }
+//   return null;
+// }
+
+
+// static String? vendorName(String? value) {
+//   if (value == null || value.isEmpty) {
+//     return ' Enter vendor name';
+//   }
+//   if (value.trim().length < 2) {
+//     return ' Vendor name must be at least 2 characters';
+//   }
+//   return null;
+// }
+
+// NEW VALIDATOR: Report Description Validation
+// static String? reportDescription(String? value) {
+//   if (value == null || value.isEmpty) {
+//     return ' Please describe what happened';
+//   }
+//   if (value.trim().length < 20) {
+//     return ' Description must be at least 20 characters';
+//   }
+//   if (value.trim().length > 500) {
+//     return ' Description cannot exceed 500 characters';
+//   }
+//   return null;
+// }
+
 }
+
+//class CustomValidator {
+
+//
+//   // Optional: Add more validators as needed
+//   static String? email(String? value) {
+//     if (value == null || value.trim().isEmpty) {
+//       return 'Email is required';
+//     }
+//     final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+//     if (!emailRegex.hasMatch(value)) {
+//       return 'Please enter a valid email';
+//     }
+//     return null;
+//   }
+//
+//   static String? phone(String? value) {
+//     if (value == null || value.trim().isEmpty) {
+//       return 'Phone number is required';
+//     }
+//     if (value.trim().length < 10) {
+//       return 'Phone number must be at least 10 digits';
+//     }
+//     return null;
+//   }
+//
+//   static String? name(String? value) {
+//     if (value == null || value.trim().isEmpty) {
+//       return 'Name is required';
+//     }
+//     if (value.trim().length < 2) {
+//       return 'Name must be at least 2 characters';
+//     }
+//     return null;
+//   }
+// }
+
+
+  // static String? reasonCategory(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return 'Please select a reason';
+  //   }
+  //   return null;
+  // }
+
+  // // New validator for report description
+  // static String? reportDescription(String? value) {
+  //   if (value == null || value.trim().isEmpty) {
+  //     return 'Please describe what happened';
+  //   }
+  //   if (value.trim().length < 20) {
+  //     return 'Description must be at least 20 characters';
+  //   }
+  //   if (value.trim().length > 500) {
+  //     return 'Description cannot exceed 500 characters';
+  //   }
+  //   return null;
+  // }

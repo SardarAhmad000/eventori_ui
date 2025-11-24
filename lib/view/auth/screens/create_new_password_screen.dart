@@ -122,7 +122,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                       () => CustomTextField(
                         controller: newPasswordController,
                         hintText: 'Password',
-                        isRequired: true,
+                        // isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.lockIcon,
                           color: AppTheme.silverColor,
@@ -220,7 +220,7 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                       () => CustomTextField(
                         controller: newConfirmPasswordController,
                         hintText: 'Confirm Password',
-                        isRequired: true,
+                        // isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.lockIcon,
                           color: AppTheme.silverColor,

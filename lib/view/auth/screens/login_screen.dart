@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomTextField(
                         controller: loginEmailController,
                         hintText: 'Email Address',
-                        isRequired: true,
+                        // isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.mailIcon,
                           color: AppTheme.silverColor,
@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomTextField(
                         controller: loginPasswordController,
                         hintText: 'Password',
-                        isRequired: true,
+                        // isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.lockIcon,
                           color: AppTheme.silverColor,

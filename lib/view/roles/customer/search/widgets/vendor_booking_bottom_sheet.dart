@@ -21,7 +21,7 @@ class VendorBookingBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vendorBookingController = Get.put(VendorBookingController(), permanent: false);
-    final _formKey = GlobalKey<FormState>();
+    // final _formKey = GlobalKey<FormState>();
 
     return Container(
       decoration: BoxDecoration(

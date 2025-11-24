@@ -121,7 +121,7 @@ class _AddCollaboratorsScreenState extends State<AddCollaboratorsScreen> {
                     CustomTextField(
                       controller: firstNameVendorController,
                       hintText: 'First Name',
-                      isRequired: true,
+                      // isRequired: true,
                       prefixIcon: Image.asset(
                         AppAssets.userIcon,
                         color: AppTheme.silverColor,
@@ -142,7 +142,7 @@ class _AddCollaboratorsScreenState extends State<AddCollaboratorsScreen> {
                     CustomTextField(
                       controller: emailVendorController,
                       hintText: 'Email Address',
-                      isRequired: true,
+                      // isRequired: true,
                       prefixIcon: Image.asset(
                         AppAssets.mailIcon,
                         color: AppTheme.silverColor,

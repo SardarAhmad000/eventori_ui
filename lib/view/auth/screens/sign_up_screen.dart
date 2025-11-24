@@ -449,7 +449,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextField(
                         controller: firstNameController,
                         hintText: 'First Name',
-                        isRequired: true,
+                        // isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.userIcon,
                           color: AppTheme.silverColor,
@@ -462,7 +462,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextField(
                         controller: lastNameController,
                         hintText: 'Last Name',
-                        isRequired: true,
+                        // isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.userIcon,
                           color: AppTheme.silverColor,
@@ -475,7 +475,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       CustomTextField(
                         controller: emailController,
                         hintText: 'Email Address',
-                        isRequired: true,
+                        // isRequired: true,
                         prefixIcon: Image.asset(
                           AppAssets.mailIcon,
                           color: AppTheme.silverColor,
@@ -489,7 +489,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             () => CustomTextField(
                               controller: passwordSignUpController,
                               hintText: 'Password',
-                              isRequired: true,
+                              // isRequired: true,
                               prefixIcon: Image.asset(
                                 AppAssets.lockIcon,
                                 color: AppTheme.silverColor,
@@ -513,7 +513,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             () => CustomTextField(
                               controller: confirmPasswordController,
                               hintText: 'Confirm Password',
-                              isRequired: true,
+                              // isRequired: true,
                               prefixIcon: Image.asset(
                                 AppAssets.lockIcon,
                                 color: AppTheme.silverColor,

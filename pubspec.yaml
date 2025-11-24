@@ -129,7 +129,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  sizer: ^2.0.15  # Changed to more stable version
+  sizer: ^2.0.15
   zoom_tap_animation: ^1.1.0
   get: ^4.7.2
   intl: ^0.20.2
@@ -141,6 +141,7 @@ dependencies:
   country_picker_bkb: ^1.0.14
   flutter_chat_ui: ^1.6.15
   country_picker: ^2.0.26
+  image_picker: ^1.1.2
 #  country_picker_bkb: ^1.0.14
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eventori/constants/app_text_style.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
+import '../../../../../app_widgets/custom_image_picker.dart';
 import '../../../../../app_widgets/custom_success_dialog.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../app_widgets/custom_button.dart';
@@ -44,6 +46,7 @@ class CreateEventScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final EventController eventcontroller = Get.put(EventController());
+    final CustomImagePicker _imagePicker = CustomImagePicker();
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -268,9 +271,10 @@ class CreateEventScreen extends StatelessWidget {
                                                 Expanded(
                                                   child: Text(
                                                     eventcontroller.selectedCity.value ?? 'City',
-                                                    style: AppTextStyle.f16W400SColorTextStyle.copyWith(color: eventcontroller.selectedCity.value == null
-                                                        ? AppTheme.silverColor
-                                                        : AppTheme.darkpurpleColor,
+                                                    style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                                                      color: eventcontroller.selectedCity.value == null
+                                                          ? AppTheme.silverColor
+                                                          : AppTheme.darkpurpleColor,
                                                     ),
                                                     overflow: TextOverflow.ellipsis,
                                                   ),
@@ -333,8 +337,9 @@ class CreateEventScreen extends StatelessWidget {
                                 controller: eventcontroller.eventdateController,
                                 hintText: "Date",
                                 fieldBorderColor: AppTheme.textfieldBorderColor,
-                                validator:
-                                eventcontroller.isNotSureDate.value ? null : CustomValidator.eventDate,
+                                validator: eventcontroller.isNotSureDate.value
+                                    ? null
+                                    : CustomValidator.eventDate,
                                 suffixIcon: Icon(
                                   Icons.keyboard_arrow_down,
                                   color: AppTheme.slateGreyColor,
@@ -369,35 +374,141 @@ class CreateEventScreen extends StatelessWidget {
                                 style: AppTextStyle.f14W500BColorTextStyle,
                               ),
                               const SizedBox(height: 12),
-                              DottedBorder(
-                                color: AppTheme.silverColor,
-                                strokeWidth: 1,
-                                dashPattern: const [5, 3],
-                                borderType: BorderType.RRect,
-                                radius: const Radius.circular(8),
-                                child: Container(
-                                  height: 72,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        AppAssets.uploadCloudIcon,
-                                        height: 24,
-                                        width: 24,
+
+                              // Image Upload Section with CustomImagePicker
+                              Obx(() {
+                                final selectedImage = eventcontroller.selectedEventImage.value;
+
+                                if (selectedImage != null) {
+                                  // Show selected image with option to remove
+                                  return Container(
+                                    height: 200,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        color: AppTheme.textfieldBorderColor,
                                       ),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        'Upload',
-                                        style: AppTextStyle.f14W500SColorTextStyle,
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(8),
+                                          child: Image.file(
+                                            selectedImage,
+                                            width: double.infinity,
+                                            height: double.infinity,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        // Remove button
+                                        Positioned(
+                                          top: 8,
+                                          right: 8,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              eventcontroller.removeEventImage();
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.all(6),
+                                              decoration: BoxDecoration(
+                                                color: Colors.black.withOpacity(0.6),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: const Icon(
+                                                Icons.close,
+                                                color: Colors.white,
+                                                size: 20,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        // Change image button
+                                        Positioned(
+                                          bottom: 8,
+                                          right: 8,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              final image = await _imagePicker.pickImageFromGallery();
+                                              if (image != null) {
+                                                eventcontroller.setEventImage(image);
+                                              }
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(
+                                                horizontal: 12,
+                                                vertical: 8,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: AppTheme.lightCyanColor,
+                                                borderRadius: BorderRadius.circular(6),
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  const Icon(
+                                                    Icons.edit,
+                                                    color: Colors.white,
+                                                    size: 16,
+                                                  ),
+                                                  const SizedBox(width: 4),
+                                                  Text(
+                                                    'Change',
+                                                    style: TextStyle(
+                                                      color: AppTheme.whiteColor,
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+
+                                // Show upload area
+                                return DottedBorder(
+                                  color: AppTheme.silverColor,
+                                  strokeWidth: 1,
+                                  dashPattern: const [5, 3],
+                                  borderType: BorderType.RRect,
+                                  radius: const Radius.circular(8),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      final image = await _imagePicker.pickImageFromGallery();
+                                      if (image != null) {
+                                        eventcontroller.setEventImage(image);
+                                      }
+                                    },
+                                    child: Container(
+                                      height: 72,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
                                       ),
-                                    ],
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            AppAssets.uploadCloudIcon,
+                                            height: 24,
+                                            width: 24,
+                                          ),
+                                          const SizedBox(height: 8),
+                                          Text(
+                                            'Upload',
+                                            style: AppTextStyle.f14W500SColorTextStyle,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
+                                );
+                              }),
                             ],
                           ),
                         ),
