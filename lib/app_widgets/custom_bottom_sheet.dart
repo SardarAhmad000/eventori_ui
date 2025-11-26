@@ -128,8 +128,8 @@ class CustomBottomSheet {
                           Image.asset(
                             primaryActionIcon,
                             color: primaryActionIconColor ?? AppTheme.redColor,
-                            width: 18,
-                            height: 18,
+                            width: 20,
+                            height: 20,
                           ),
                       ],
                     ),

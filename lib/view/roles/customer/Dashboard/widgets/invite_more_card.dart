@@ -27,7 +27,7 @@ class InviteMoreCard extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                color: AppTheme.silverColor,
+                color: AppTheme.lightGrayishColor,
                 shape: BoxShape.circle,
               ),
               child: Center(

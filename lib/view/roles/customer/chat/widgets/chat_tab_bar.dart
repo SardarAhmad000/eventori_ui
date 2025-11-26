@@ -24,7 +24,7 @@ class ChatTabBar extends StatelessWidget {
           height: 32,
           decoration: BoxDecoration(
             color: isSelected ? AppTheme.whiteColor : Colors.transparent,
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(6),
             border: Border.all(
               width: 1,
               color: isSelected ? AppTheme.textfieldBorderColor : AppTheme.whiteColor,

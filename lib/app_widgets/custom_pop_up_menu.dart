@@ -2,6 +2,7 @@ import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/http/io/file_decoder_io.dart';
+import 'package:sizer/sizer.dart';
 
 class PopupMenuOption {
   final String title;
@@ -54,7 +55,7 @@ class CustomPopupMenu extends StatelessWidget {
       items: options.map((option) {
         return PopupMenuItem(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-          height: 36,
+          height: 4.h,
           onTap: option.onTap,
           child: Row(
             children: [

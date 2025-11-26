@@ -215,8 +215,8 @@ class ProfileScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(10.0),
                                 child: Image.asset(
                                   AppAssets.loactionIcon,
-                                  width: 20,
-                                  height: 20,
+                                  width: 18,
+                                  height: 18,
                                   color: AppTheme.silverColor,
                                 ),
                               ),
@@ -348,10 +348,11 @@ class ProfileScreen extends StatelessWidget {
                                   title: 'Delete Account',
                                   subtitle: 'This will permanently remove your account from Eventori.',
                                   buttonText: 'Yes, Delete it',
-                                  icon: Icons.delete,
+                                  icon: AppAssets.deleteIcon, // Pass the String path, not Image.asset widget
                                   iconColor: AppTheme.redColor,
                                   buttonColor: AppTheme.redColor,
                                   buttonTextColor: AppTheme.whiteColor,
+                                  isIconData: false, // Important: set to false for image assets
                                   onConfirm: () {
                                     controller.deleteAccount();
                                   },

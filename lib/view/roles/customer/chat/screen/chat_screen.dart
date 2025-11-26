@@ -63,6 +63,7 @@ class ChatScreen extends StatelessWidget {
                 AbsorbPointer(
                   absorbing: true,
                   child: CustomTextField(
+                    // borderRadius: 16,
                     controller: controller.vendorsController,
                     hintText: "Search Vendors",
                     prefixIcon: Padding(
@@ -81,7 +82,7 @@ class ChatScreen extends StatelessWidget {
                   height: 40,
                   decoration: BoxDecoration(
                     color: AppTheme.whiteColor,
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Row(
                     children: [

@@ -49,7 +49,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                        children: [
                          GestureDetector(
                            onTap: (){
-                             // Get.toNamed(AppRoutes.profileScreen);
+                             Get.toNamed(AppRoutes.profileScreen);
                            },
                            child: Container(
                              decoration: BoxDecoration(
@@ -179,7 +179,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                                child: ListView.builder(
                                  scrollDirection: Axis.horizontal,
                                  physics: const AlwaysScrollableScrollPhysics(),
-                                 itemCount: 1,
+                                 itemCount: 2,
                                  itemBuilder: (context, index) {
                                    return Padding(
                                      padding: const EdgeInsets.only(right: 0),
@@ -242,7 +242,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                            shrinkWrap: true,
                            physics: const NeverScrollableScrollPhysics(),
                            padding: EdgeInsets.zero,
-                           itemCount: 2,
+                           itemCount: 3,
                            itemBuilder: (context, index) {
                              return VendorCard(
                                imageUrl: AppAssets.picImage,

@@ -116,7 +116,7 @@ class VendorDetailedScreen extends StatelessWidget {
                           'Your report will help us review any suspicious or inappropriate behaviour.',
                         ],
                         primaryActionText: 'Yes, Block and Report ',
-                        primaryActionIcon: AppAssets.reportIcon,
+                        primaryActionIcon: AppAssets.blockIcon,
                         onPrimaryAction: () {
                           Navigator.pop(context);
                           Future.delayed(Duration(milliseconds: 100), () {
@@ -125,7 +125,7 @@ class VendorDetailedScreen extends StatelessWidget {
                           print('Report Vendor');
                           },
                         secondaryActionText: 'Cancel',
-                        secondaryActionIcon: AppAssets.blockIcon,
+                        secondaryActionIcon: AppAssets.reportIcon,
                       ),
                     ),
                   ],
@@ -253,18 +253,38 @@ class VendorDetailedScreen extends StatelessWidget {
                                   backgroundColor: AppTheme.blueGrayColor.withOpacity(.6),
                                   isIconData: true,
                                 ),
+
                                 BadgeItem(
                                   icon: Icons.account_balance,
                                   label: 'Established',
                                   backgroundColor: AppTheme.blueGrayColor.withOpacity(.5),
+                                  iconColor: AppTheme.blackColor,
+                                  textColor: AppTheme.blackColor,
                                   isIconData: true,
                                 ),
+
                                 BadgeItem(
                                   icon: Icons.rocket_launch,
                                   label: 'Rising Star',
                                   backgroundColor: AppTheme.blueGrayColor.withOpacity(.3),
+                                  iconColor: AppTheme.blackColor,
+                                  textColor: AppTheme.blackColor,
                                   isIconData: true,
                                 ),
+
+
+                                // BadgeItem(
+                                //   icon: Icons.account_balance,
+                                //   label: 'Established',
+                                //   backgroundColor: AppTheme.blueGrayColor.withOpacity(.5),
+                                //   isIconData: true,
+                                //),
+                                // BadgeItem(
+                                //   icon: Icons.rocket_launch,
+                                //   label: 'Rising Star',
+                                //   backgroundColor: AppTheme.blueGrayColor.withOpacity(.3),
+                                //   isIconData: true,
+                                // ),
                               ],
                             ),
                           ),

@@ -7,6 +7,8 @@ class BadgeItem extends StatelessWidget {
   final dynamic icon;
   final String label;
   final Color backgroundColor;
+  final Color iconColor;
+  final Color textColor;
   final bool isIconData;
 
   const BadgeItem({
@@ -14,6 +16,8 @@ class BadgeItem extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.backgroundColor,
+    this.iconColor = Colors.white,
+    this.textColor = Colors.white,
     this.isIconData = false,
   }) : super(key: key);
 
@@ -32,20 +36,22 @@ class BadgeItem extends StatelessWidget {
           if (isIconData)
             Icon(
               icon as IconData,
-              color: AppTheme.whiteColor,
+              color: iconColor,
               size: 16,
             )
           else
             Image.asset(
               icon as String,
-              color: AppTheme.whiteColor,
+              color: iconColor,
               width: 16,
               height: 16,
             ),
           const SizedBox(height: 4),
           Text(
             label,
-            style: AppTextStyle.f12W400WColorTextStyle,
+            style: AppTextStyle.f12W400WColorTextStyle.copyWith(
+              color: textColor,
+            ),
             textAlign: TextAlign.center,
           ),
         ],

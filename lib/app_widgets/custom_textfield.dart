@@ -363,7 +363,7 @@ class CustomTextField extends StatefulWidget {
     this.suffixIconColor,
     this.isEditProfileInfoScreen = false,
     this.hintTextPadding,
-    this.borderRadius = 8.0,
+    this.borderRadius = 12.0,
     this.isRequired = false, // Default is false
   });
 
@@ -441,7 +441,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     // Use the borderRadius parameter
-    final radius = widget.borderRadius ?? 8.0;
+    final radius = widget.borderRadius ?? 12.0;
 
     // Check if we should show the hint with red asterisk
     final bool shouldShowHint = (widget.controller?.text.isEmpty ?? true) &&

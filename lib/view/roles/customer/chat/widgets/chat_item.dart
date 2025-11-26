@@ -170,7 +170,7 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 8),
+      padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 12),
       child: InkWell(
         onTap: onTap,
         child: Container(
@@ -182,7 +182,7 @@ class ChatItem extends StatelessWidget {
               color: AppTheme.textfieldBorderColor,
               width: 2,
             ),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
             children: [

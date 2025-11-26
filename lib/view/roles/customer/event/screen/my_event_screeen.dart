@@ -43,7 +43,7 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
                     month: 'Jun',
                     title: 'Restaurant Launch Party',
                     imagePath: AppAssets.eventImage2,
-                    description: 'Join us for an exclusive evening celebrating the grand opening of our new restaurant.',
+                    description: 'Wedding Gala 2025 is a grand celebration bringing together families, friends, and professionals from the wedding industry. ',
                     eventUrl: 'www.restaurantlaunchparty.com',
                   );
                 },

@@ -10,10 +10,12 @@ class CustomClearChatDialog extends StatelessWidget {
   final String buttonText;
   final VoidCallback onConfirm;
   final VoidCallback? onCancel;
-  final IconData? icon;
+  final dynamic icon; // Can be IconData or String (asset path)
   final Color? iconColor;
   final Color? buttonColor;
   final Color? buttonTextColor;
+  final bool isIconData;
+  final double? iconSize;
 
   const CustomClearChatDialog({
     Key? key,
@@ -26,6 +28,8 @@ class CustomClearChatDialog extends StatelessWidget {
     this.iconColor,
     this.buttonColor,
     this.buttonTextColor,
+    this.isIconData = true,
+    this.iconSize = 24,
   }) : super(key: key);
 
   @override
@@ -43,11 +47,26 @@ class CustomClearChatDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  icon ?? Icons.close,
-                  color: iconColor ?? AppTheme.redColor,
-                  size: 24,
-                ),
+                // Icon or Image Asset
+                if (icon != null)
+                  isIconData
+                      ? Icon(
+                    icon as IconData,
+                    color: iconColor ?? AppTheme.redColor,
+                    size: iconSize,
+                  )
+                      : Image.asset(
+                    icon as String,
+                    color: iconColor,
+                    width: iconSize,
+                    height: iconSize,
+                  )
+                else
+                  Icon(
+                    Icons.close,
+                    color: iconColor ?? AppTheme.redColor,
+                    size: iconSize,
+                  ),
                 SizedBox(width: 8),
                 Text(
                   title,
@@ -65,7 +84,6 @@ class CustomClearChatDialog extends StatelessWidget {
               ],
             ),
             SizedBox(height: 8),
-
             Text(
               subtitle,
               style: AppTextStyle.f14W400SGColorTextStyle,
@@ -96,11 +114,13 @@ class CustomClearChatDialog extends StatelessWidget {
     required String buttonText,
     required VoidCallback onConfirm,
     VoidCallback? onCancel,
-    IconData? icon,
+    dynamic icon,
     Color? iconColor,
     Color? buttonColor,
     Color? buttonTextColor,
     bool barrierDismissible = true,
+    bool isIconData = true,
+    double? iconSize = 24,
   }) {
     return showDialog(
       context: context,
@@ -116,6 +136,8 @@ class CustomClearChatDialog extends StatelessWidget {
           iconColor: iconColor,
           buttonColor: buttonColor,
           buttonTextColor: buttonTextColor,
+          isIconData: isIconData,
+          iconSize: iconSize,
         );
       },
     );

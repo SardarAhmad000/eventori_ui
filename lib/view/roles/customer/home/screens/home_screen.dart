@@ -48,9 +48,15 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text(
-                    'Browse Vendors',
-                    style: AppTextStyle.f20W600DPColorTextStyle,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Browse Vendors', style: AppTextStyle.f20W600DPColorTextStyle),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text('View All', style: AppTextStyle.f14W500LCColorTextStyle),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 12),
                 SizedBox(
@@ -79,18 +85,18 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                CustomButton(
-                  Text: 'View all vendors',
-                  width: double.infinity,
-                  height: 48,
-                  buttonColor: AppTheme.whiteColor,
-                  textColor: AppTheme.blackColor,
-                  borderColor: AppTheme.lightCyanColor,
-                  textSize: 16,
-                  fontFamily: AppFonts.regular,
-                  onTap: () {},
-                ),
-                const SizedBox(height: 16),
+                // CustomButton(
+                //   Text: 'View all vendors',
+                //   width: double.infinity,
+                //   height: 48,
+                //   buttonColor: AppTheme.whiteColor,
+                //   textColor: AppTheme.blackColor,
+                //   borderColor: AppTheme.lightCyanColor,
+                //   textSize: 16,
+                //   fontFamily: AppFonts.regular,
+                //   onTap: () {},
+                // ),
+                // const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
