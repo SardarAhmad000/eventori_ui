@@ -362,14 +362,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
       authController.clearSignUpForm();
     });
 
-    // Add listeners for real-time validation
-    passwordSignUpController.addListener(() {
-      authController.validateSignUpPassword(passwordSignUpController.text);
-      authController.checkSignUpPasswordsMatch(
-        passwordSignUpController.text,
-        confirmPasswordController.text,
-      );
-    });
+    // // Add listeners for real-time validation
+    // passwordSignUpController.addListener(() {
+    //   authController.validateSignUpPassword(passwordSignUpController.text);
+    //   authController.checkSignUpPasswordsMatch(
+    //     passwordSignUpController.text,
+    //     confirmPasswordController.text,
+    //   );
+    // });
 
     confirmPasswordController.addListener(() {
       authController.checkSignUpPasswordsMatch(
@@ -378,16 +378,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
       );
     });
   }
-
-  @override
-  void dispose() {
-    firstNameController.dispose();
-    lastNameController.dispose();
-    emailController.dispose();
-    passwordSignUpController.dispose();
-    confirmPasswordController.dispose();
-    super.dispose();
-  }
+  //
+  // @override
+  // void dispose() {
+  //   firstNameController.dispose();
+  //   lastNameController.dispose();
+  //   emailController.dispose();
+  //   passwordSignUpController.dispose();
+  //   confirmPasswordController.dispose();
+  //   super.dispose();
+  // }
 
 
 
@@ -502,9 +502,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       : Icons.visibility_outlined,
                                   color: AppTheme.silverColor,
                                 ),
-                                onPressed: authController.togglePasswordVisibility,
+                                onPressed: (){},
+                                // onPressed: authController.togglePasswordVisibility,
                               ),
-                              validator: CustomValidator.password,
+                              // validator: CustomValidator.password,
                             ),
                       ),
                       const SizedBox(height: 12),
@@ -525,13 +526,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     : Icons.visibility_outlined,
                                 color: AppTheme.silverColor,
                               ),
-                              onPressed:
-                              authController.toggleConfirmPasswordVisibility,
+                              onPressed:(){},
+                              // authController.toggleConfirmPasswordVisibility,
                             ),
-                              validator: (value) => CustomValidator.confirmPassword(
-                                value,
-                                passwordSignUpController.text,
-                              ),
+                              // validator: (value) => CustomValidator.confirmPassword(
+                              //   value,
+                              //   passwordSignUpController.text,
+                              // ),
                             ),
                       ),
                       const SizedBox(height: 12),
@@ -574,12 +575,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         onTap: () {
 
                           if (formKey.currentState!.validate()) {
-                            if (authController.areSignUpPasswordRequirementsMet()) {
-                              printUserInformation();
-                              // Get.toNamed(AppRoutes.homeScreen);
-                            } else {
-
-                            }
+                            printUserInformation();
+                            authController.signUpUser(firstNameController.text, lastNameController.text, emailController.text, passwordSignUpController.text, Get.arguments['role']);
+                            // Get.toNamed(AppRoutes.homeScreen);
+                            // if (authController.areSignUpPasswordRequirementsMet()) {
+                            //
+                            // }
+                            // else {
+                            //
+                            // }
                           }
                         },
                       ),

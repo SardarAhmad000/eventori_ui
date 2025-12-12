@@ -138,9 +138,16 @@
 // }
 
 
+import 'dart:convert';
 import 'dart:ui';
+import 'package:eventori/view/auth/controller/base_controller.dart';
 import 'package:get/get.dart';
 import '../../../AppTheme/app_theme.dart';
+import '../../../api_services/api_exceptions.dart';
+import '../../../api_services/data_api.dart';
+import '../../../routes/app_routes.dart';
+import '../../../utils/custom_dialog.dart';
+import '../../../utils/snackbar_util.dart';
 
 class AuthController extends GetxController {
   // SignUp Screen States
@@ -165,23 +172,89 @@ class AuthController extends GetxController {
 
   var isLoading = false.obs;
 
-  /// Validate SignUp password requirements
-  void validateSignUpPassword(String password) {
-    signUpHasMinLength.value = password.length >= 8;
-    signUpHasUppercase.value = password.contains(RegExp(r'[A-Z]'));
-    signUpHasLowercase.value = password.contains(RegExp(r'[a-z]'));
-    signUpHasNumber.value = password.contains(RegExp(r'[0-9]'));
-    signUpHasSpecialChar.value = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+  RxString accessToken = "".obs;
+  final BaseController _baseController = BaseController.instance;
+
+
+
+  RxString storedEmailForReuse = ''.obs;
+  RxString storedPasswordForReuse = ''.obs;
+  RxString storedFirstNameForReuse = ''.obs;
+  RxString storedLastNameForReuse = ''.obs;
+  RxString storedRoleForReuse=''.obs;
+
+
+
+  Future signUpUser(String firstName, String lastName, String email, String password,String role) async {
+    _baseController.showLoading();
+    Map<String, String> body = {
+      "firstName":firstName ,
+      "lastName": lastName,
+      "email": email,
+      "password": password,
+      "role": role,
+      "fcmToken":'hjhj'
+    };
+
+    var response = await DataApiService.instance
+        .post('/signup', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true" && result['message']=="Successful") {
+
+      Get.toNamed(AppRoutes.verifyAccountScreen);
+      accessToken.value=result['data']['token'];
+      // signUpOtp.value=result['data']['otp'];
+      SnackbarUtil.showSnackbar(message: result['data']['otp'], type: SnackbarType.success);
+
+      storedEmailForReuse.value=email;
+      storedPasswordForReuse.value=password;
+      storedFirstNameForReuse.value=firstName;
+      storedLastNameForReuse.value=lastName;
+      storedRoleForReuse.value=role;
+
+
+    } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
   }
 
-  /// Validate CreateNewPassword password requirements
-  void validateCreateNewPassword(String password) {
-    createPasswordHasMinLength.value = password.length >= 8;
-    createPasswordHasUppercase.value = password.contains(RegExp(r'[A-Z]'));
-    createPasswordHasLowercase.value = password.contains(RegExp(r'[a-z]'));
-    createPasswordHasNumber.value = password.contains(RegExp(r'[0-9]'));
-    createPasswordHasSpecialChar.value = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
-  }
+
+
+
+  /// Validate SignUp password requirements
+  // void validateSignUpPassword(String password) {
+  //   signUpHasMinLength.value = password.length >= 8;
+  //   signUpHasUppercase.value = password.contains(RegExp(r'[A-Z]'));
+  //   signUpHasLowercase.value = password.contains(RegExp(r'[a-z]'));
+  //   signUpHasNumber.value = password.contains(RegExp(r'[0-9]'));
+  //   signUpHasSpecialChar.value = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+  // }
+
+  // /// Validate CreateNewPassword password requirements
+  // void validateCreateNewPassword(String password) {
+  //   createPasswordHasMinLength.value = password.length >= 8;
+  //   createPasswordHasUppercase.value = password.contains(RegExp(r'[A-Z]'));
+  //   createPasswordHasLowercase.value = password.contains(RegExp(r'[a-z]'));
+  //   createPasswordHasNumber.value = password.contains(RegExp(r'[0-9]'));
+  //   createPasswordHasSpecialChar.value = password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+  // }
 
   /// Check if SignUp passwords match
   void checkSignUpPasswordsMatch(String password, String confirmPassword) {
@@ -194,23 +267,23 @@ class AuthController extends GetxController {
   }
 
   /// Toggle visibility
-  void togglePasswordVisibility() {
-    obscurePassword.value = !obscurePassword.value;
-  }
+  // void togglePasswordVisibility() {
+  //   obscurePassword.value = !obscurePassword.value;
+  // }
+  //
+  // void toggleConfirmPasswordVisibility() {
+  //   obscureConfirmPassword.value = !obscureConfirmPassword.value;
+  // }
 
-  void toggleConfirmPasswordVisibility() {
-    obscureConfirmPassword.value = !obscureConfirmPassword.value;
-  }
-
-  /// Check if all SignUp password requirements are met
-  bool areSignUpPasswordRequirementsMet() {
-    return signUpHasMinLength.value &&
-        signUpHasUppercase.value &&
-        signUpHasLowercase.value &&
-        signUpHasNumber.value &&
-        signUpHasSpecialChar.value &&
-        signUpSamePassword.value;
-  }
+  // /// Check if all SignUp password requirements are met
+  // bool areSignUpPasswordRequirementsMet() {
+  //   return signUpHasMinLength.value &&
+  //       signUpHasUppercase.value &&
+  //       signUpHasLowercase.value &&
+  //       signUpHasNumber.value &&
+  //       signUpHasSpecialChar.value &&
+  //       signUpSamePassword.value;
+  // }
 
   /// Check if all CreateNewPassword password requirements are met
   bool areCreateNewPasswordRequirementsMet() {

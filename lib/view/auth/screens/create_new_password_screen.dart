@@ -7,6 +7,7 @@ import '../../../constants/app_text_style.dart';
 import '../../../app_widgets/custom_button.dart';
 import '../../../app_widgets/custom_textfield.dart';
 import '../../../constants/custom_validators.dart';
+import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
 import '../controller/auth_controller.dart';
 import '../widget/password_requirement_widget.dart';
@@ -37,14 +38,14 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
       authController.clearCreateNewPasswordForm();
     });
 
-    // Add listeners for real-time validation
-    newPasswordController.addListener(() {
-      authController.validateCreateNewPassword(newPasswordController.text);
-      authController.checkCreateNewPasswordsMatch(
-        newPasswordController.text,
-        newConfirmPasswordController.text,
-      );
-    });
+    // // Add listeners for real-time validation
+    // newPasswordController.addListener(() {
+    //   authController.validateCreateNewPassword(newPasswordController.text);
+    //   authController.checkCreateNewPasswordsMatch(
+    //     newPasswordController.text,
+    //     newConfirmPasswordController.text,
+    //   );
+    // });
 
     newConfirmPasswordController.addListener(() {
       authController.checkCreateNewPasswordsMatch(
@@ -269,8 +270,8 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
 
                       if (authController.areCreateNewPasswordRequirementsMet()) {
                         printPasswordInformation();
-                        // Get.toNamed(AppRoutes.loginScreen);
-                        Get.back();
+                        Get.toNamed(AppRoutes.loginScreen);
+                        // Get.back();
                       } else {
 
                       }

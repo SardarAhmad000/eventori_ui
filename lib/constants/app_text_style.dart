@@ -3,7 +3,7 @@ import '../AppTheme/app_theme.dart';
 
 
 class AppTextStyle {
-  static const String fontFamily = "Outfit";
+  static const String fontFamily = "regular";
 
   //Splash Screen Title
 

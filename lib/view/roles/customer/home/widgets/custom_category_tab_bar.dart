@@ -82,6 +82,7 @@
 
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../../../../AppTheme/app_theme.dart';
 
@@ -130,7 +131,7 @@ class _CustomCategoryTabBarState extends State<CustomCategoryTabBar> {
                 widget.onCategorySelected(index);
               },
               child: Container(
-                width: 100,
+                width: 30.w,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
                   color: isSelected

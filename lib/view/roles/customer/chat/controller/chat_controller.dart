@@ -241,8 +241,8 @@ class ChatController extends GetxController {
       'Are you sure you want to clear the chat? This action cannot be reversed.',
       buttonText: 'Delete',
       icon: Icons.close,
-      iconColor: AppTheme.redColor,
-      buttonColor: AppTheme.redColor,
+      iconColor: AppTheme.lightRedColor,
+      buttonColor: AppTheme.lightRedColor,
       buttonTextColor: AppTheme.whiteColor,
       onConfirm: () {
         messages.clear();

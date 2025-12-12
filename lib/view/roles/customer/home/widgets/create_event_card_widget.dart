@@ -15,8 +15,9 @@ class CreateEventCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 30.h,
+        // height: 195,
         width: 44.w,
+        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
         decoration: BoxDecoration(
           color: AppTheme.lightCyanColor,
           borderRadius: BorderRadius.circular(12),
@@ -29,40 +30,31 @@ class CreateEventCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  width: 141.5,
-                  height: 98,
-                  decoration: BoxDecoration(
-                    color: AppTheme.paperWhiteColor,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Icon(
-                    Icons.add,
-                    color: AppTheme.darkpurpleColor,
-                    size: 24,
-                  ),
+              child: Container(
+                width: 141.5,
+                height: 98,
+                decoration: BoxDecoration(
+                  color: AppTheme.paperWhiteColor,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  Icons.add,
+                  color: AppTheme.darkpurpleColor,
+                  size: 24,
                 ),
               ),
             ),
             const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Create New Event',
-                style: AppTextStyle.f14W600WColorTextStyle,
-                textAlign: TextAlign.start,
-              ),
+            Text(
+              'Create New Event',
+              style: AppTextStyle.f14W600WColorTextStyle,
+              textAlign: TextAlign.start,
             ),
             const SizedBox(height: 6),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Plan and organize your next event',
-                style: AppTextStyle.f12W400WColorTextStyle,
-                textAlign: TextAlign.start,
-              ),
+            Text(
+              'Plan and organize your next event',
+              style: AppTextStyle.f12W400WColorTextStyle,
+              textAlign: TextAlign.start,
             ),
           ],
         ),

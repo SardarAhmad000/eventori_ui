@@ -15,6 +15,7 @@ class _FaviourteVendorsScreenState extends State<FaviourteVendorsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.paperWhiteColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Column(

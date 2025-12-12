@@ -4,5 +4,5 @@ class AppFonts{
   static const medium = 'medium';
   static const regular = 'regular';
 //FontFamily
-  static const String fontFamily = "Outfit";
+  static const String fontFamily = "regular";
 }

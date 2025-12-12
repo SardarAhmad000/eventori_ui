@@ -37,13 +37,16 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {},
                     ),
                     const SizedBox(width: 8),
-                    CustomCard(
-                      imagePath: AppAssets.myEventImage,
-                      title: 'My Events',
-                      subtitle: 'View and manage your past and upcoming events',
-                      onTap: () {
-                        Get.toNamed(AppRoutes.myEventScreeen);
-                      },
+                    SizedBox(
+                      height: 187,
+                      child: CustomCard(
+                        imagePath: AppAssets.myEventImage,
+                        title: 'My Events',
+                        subtitle: 'View and manage your past and upcoming events',
+                        onTap: () {
+                          Get.toNamed(AppRoutes.myEventScreeen);
+                        },
+                      ),
                     )
                   ],
                 ),
@@ -59,31 +62,56 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                SizedBox(
-                  height: 235,
-                  child: GridView.builder(
-                    padding: EdgeInsets.zero,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      childAspectRatio: 0.7,
-                    ),
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: 2,
-                    itemBuilder: (context, index) {
-                      return CustomCard(
-                        imagePath: AppAssets.vendor2Image,
-                        title: 'Surprise Birthday Dinner',
-                        subtitle: 'Cozy gathering at restaurant/venue',
-                        onTap: () {
-                          print('Tapped on Surprise Birthday Dinner');
-                        },
-                      );
-                    },
+
+                GridView.builder(
+                  padding: EdgeInsets.zero,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    mainAxisExtent: 180,
                   ),
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: 2,
+                  itemBuilder: (context, index) {
+                    return CustomCard(
+                      imagePath: AppAssets.vendor2Image,
+                      title: 'Florist',
+                      subtitle: 'London, UK ',
+                      onTap: () {
+                        print('Tapped on Florist');
+                        },
+                    );
+                  },
                 ),
+
+
+                // SizedBox(
+                //   // height: 235,
+                //   child: GridView.builder(
+                //     padding: EdgeInsets.zero,
+                //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                //       crossAxisCount: 2,
+                //       crossAxisSpacing: 12,
+                //       mainAxisSpacing: 12,
+                //       childAspectRatio: 0.7,
+                //     ),
+                //     physics: const NeverScrollableScrollPhysics(),
+                //     shrinkWrap: true,
+                //     itemCount: 2,
+                //     itemBuilder: (context, index) {
+                //       return CustomCard(
+                //         imagePath: AppAssets.vendor2Image,
+                //         title: 'Photographer',
+                //         subtitle: 'Birmingham, UK ',
+                //         onTap: () {
+                //           print('Tapped on Photographer');
+                //         },
+                //       );
+                //     },
+                //   ),
+                // ),
                 const SizedBox(height: 12),
                 // CustomButton(
                 //   Text: 'View all vendors',

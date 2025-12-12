@@ -142,6 +142,8 @@ dependencies:
   flutter_chat_ui: ^1.6.15
   country_picker: ^2.0.26
   image_picker: ^1.1.2
+  http: ^1.4.0
+  shared_preferences: ^2.3.2
 #  country_picker_bkb: ^1.0.14
 
 dev_dependencies:

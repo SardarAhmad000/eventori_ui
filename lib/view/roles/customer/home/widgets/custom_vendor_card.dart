@@ -577,6 +577,7 @@ class _CustomVendorCardState extends State<CustomVendorCard> {
                           ),
                       ],
                     ),
+
                     const SizedBox(height: 16),
 
                     // Categories

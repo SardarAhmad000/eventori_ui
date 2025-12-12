@@ -84,14 +84,14 @@ class CustomDropdownField extends StatelessWidget {
         )
             : null,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             width: 1.3,
             color: fieldBorderColor ?? AppTheme.textfieldBorderColor,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             width: 1.3,
             color: fieldBorderColor ?? AppTheme.textfieldBorderColor,
@@ -105,14 +105,14 @@ class CustomDropdownField extends StatelessWidget {
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             width: 1.3,
             color: AppTheme.textfieldBorderColor,
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(
             width: 1.3,
             color: AppTheme.textfieldBorderColor,
@@ -151,7 +151,7 @@ class CustomDropdownField extends StatelessWidget {
         // width: 91.w, // Adjust dropdown menu width
         offset: const Offset(0, -4), // Adjust dropdown position
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           color: fillColor ?? AppTheme.whiteColor,
         ),
       ),

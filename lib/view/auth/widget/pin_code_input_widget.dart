@@ -42,13 +42,13 @@ class PinCodeInputWidgetState extends State<PinCodeInputWidget> {
     _errorController = StreamController<ErrorAnimationType>();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    _focusNode.dispose();
-    _errorController?.close();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _controller.dispose();
+  //   _focusNode.dispose();
+  //   _errorController?.close();
+  //   super.dispose();
+  // }
 
   // Expose current PIN as public getter
   String get currentPin => _controller.text;

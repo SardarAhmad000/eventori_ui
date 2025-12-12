@@ -63,10 +63,10 @@ class ChatDetailedScreen extends StatelessWidget {
                   CustomPopupMenu(
                     menuKey: controller.menuKey,
                     options: [
-                      PopupMenuOption(
-                        title: 'Save Chat',
-                        onTap: controller.handleSaveChat,
-                      ),
+                      // PopupMenuOption(
+                      //   title: 'Save Chat',
+                      //   onTap: controller.handleSaveChat,
+                      // ),
                       PopupMenuOption(
                         title: 'Block',
                         onTap: () => CustomBottomSheet.show(
@@ -143,36 +143,36 @@ class ChatDetailedScreen extends StatelessWidget {
               style: AppTextStyle.f14W400SGColorTextStyle,
             ),
             const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: CustomButton(
-                      Text: "Add",
-                      onTap: controller.handleAddVendor,
-                      buttonColor: AppTheme.whiteColor,
-                      textColor: AppTheme.silverColor,
-                      height: 32,
-                      borderColor: AppTheme.lightGrayishColor,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: CustomButton(
-                      Text: "Block",
-                      onTap: controller.handleBlockVendor,
-                      buttonColor: AppTheme.whiteColor,
-                      textColor: AppTheme.redColor,
-                      height: 32,
-                      borderColor: AppTheme.redColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       Expanded(
+            //         child: CustomButton(
+            //           Text: "Add",
+            //           onTap: controller.handleAddVendor,
+            //           buttonColor: AppTheme.whiteColor,
+            //           textColor: AppTheme.silverColor,
+            //           height: 32,
+            //           borderColor: AppTheme.lightGrayishColor,
+            //         ),
+            //       ),
+            //       const SizedBox(width: 12),
+            //       Expanded(
+            //         child: CustomButton(
+            //           Text: "Block",
+            //           onTap: controller.handleBlockVendor,
+            //           buttonColor: AppTheme.whiteColor,
+            //           textColor: AppTheme.redColor,
+            //           height: 32,
+            //           borderColor: AppTheme.redColor,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // const SizedBox(height: 12),
             Expanded(
               child: Obx(() {
                 final messagesList = controller.messages.toList();

@@ -6,6 +6,7 @@ class AppTheme{
   static Color darkpurpleColor=Color(0xFF1B2638);
   static Color paperWhiteColor=Color(0xFFF2F5F8);
   static Color redColor=Color(0xFFFF0000);
+  static Color lightRedColor=Color(0xFFEC4F47);
   static Color blackColor=Color(0xFF000000);
   static Color slateGreyColor =Color(0xFF667085);
   static Color midnightBlueColor=Color(0xFF141C29);

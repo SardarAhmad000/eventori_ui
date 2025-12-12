@@ -3,6 +3,7 @@ import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/constants/custom_validators.dart';
+import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -36,7 +37,7 @@ class CreateEventScreen extends StatelessWidget {
           buttonTextColor: AppTheme.whiteColor,
           buttonBorderColor: AppTheme.greenColor,
           onTap: () {
-            Navigator.of(context).pop();
+            Get.toNamed(AppRoutes.myEventScreeen);
           },
         );
       },

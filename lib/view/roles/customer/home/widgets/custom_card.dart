@@ -23,8 +23,9 @@ class CustomCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 30.h,
+        // height: 195,
         width: 44.w,
+        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 8),
         decoration: BoxDecoration(
           color: AppTheme.whiteColor,
           borderRadius: BorderRadius.circular(16),
@@ -45,19 +46,16 @@ class CustomCard extends StatelessWidget {
           children: [
             // Image Container
             Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: SizedBox(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  width: 141.5,
+                  height: 98,
+                  child: CustomImageHandler(
+                    imagePath: imagePath,
+                    fit: BoxFit.cover,
                     width: 141.5,
                     height: 98,
-                    child: CustomImageHandler(
-                      imagePath: imagePath,
-                      fit: BoxFit.cover,
-                      width: 141.5,
-                      height: 98,
-                    ),
                   ),
                 ),
               ),
@@ -65,27 +63,24 @@ class CustomCard extends StatelessWidget {
 
             // Content
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      title,
-                      style: AppTextStyle.f14W600BColorTextStyle,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      subtitle,
-                      style: AppTextStyle.f12W400SGColorTextStyle,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    title,
+                    style: AppTextStyle.f14W600BColorTextStyle,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    subtitle,
+                    style: AppTextStyle.f12W400SGColorTextStyle,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
             ),
           ],

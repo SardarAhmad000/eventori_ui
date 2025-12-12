@@ -38,31 +38,55 @@ class EventsScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: SizedBox(
-                      height: 420,
-                      child: GridView.builder(
-                        padding: EdgeInsets.zero,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 12,
-                          mainAxisSpacing: 12,
-                          childAspectRatio: 0.75,
-                        ),
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return CustomCard(
-                            imagePath: AppAssets.vendor2Image,
-                            title: 'Kids Birthday Bash',
-                            subtitle: 'Team-focused, trendy & colorful ideas',
-                            onTap: () {
-                              print('Tapped on Kids Birthday Bash');
-                            },
-                          );
-                        },
+                    child: GridView.builder(
+                      padding: EdgeInsets.zero,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        mainAxisExtent: 180,
                       ),
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: 4,
+                      itemBuilder: (context, index)
+                      {
+                        return CustomCard(
+                          imagePath: AppAssets.vendor2Image,
+                          title: 'Kids Birthday Bash',
+                          subtitle: 'Team-focused, trendy & colorful ideas',
+                          onTap: ()
+                          {
+                            print('Tapped on Kids Birthday Bash');
+                            },
+                        );
+                      },
                     ),
+                    // SizedBox(
+                    //   height: 440,
+                    //   child: GridView.builder(
+                    //     padding: EdgeInsets.zero,
+                    //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    //       crossAxisCount: 2,
+                    //       crossAxisSpacing: 12,
+                    //       mainAxisSpacing: 12,
+                    //       childAspectRatio: 0.75,
+                    //     ),
+                    //     physics: const NeverScrollableScrollPhysics(),
+                    //     shrinkWrap: true,
+                    //     itemCount: 4,
+                    //     itemBuilder: (context, index) {
+                    //       return CustomCard(
+                    //         imagePath: AppAssets.vendor2Image,
+                    //         title: 'Kids Birthday Bash',
+                    //         subtitle: 'Team-focused, trendy & colorful ideas',
+                    //         onTap: () {
+                    //           print('Tapped on Kids Birthday Bash');
+                    //         },
+                    //       );
+                    //     },
+                    //   ),
+                    // ),
                   ),
                   const SizedBox(height: 16),
                   Padding(

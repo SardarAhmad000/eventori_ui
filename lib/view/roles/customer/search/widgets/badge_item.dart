@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/app_text_style.dart';
 
 class BadgeItem extends StatelessWidget {

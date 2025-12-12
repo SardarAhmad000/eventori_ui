@@ -1,3 +1,4 @@
+import 'package:eventori/app_widgets/custom_textfield.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:country_picker_bkb/country_picker_bkb.dart';
@@ -238,6 +239,9 @@ class FilterBottomSheet extends StatelessWidget {
                     'Notice',
                     style: AppTextStyle.f14W500SGColorTextStyle,
                   ),
+                  // CustomTextField(
+                  //   hintText: '1 day',
+                  // ),
                   const SizedBox(height: 16),
                   Obx(() => CustomDropdownField(
                     hintText: '1 day',

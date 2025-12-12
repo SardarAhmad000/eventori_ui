@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../AppTheme/app_theme.dart';
 import '../../app_widgets/custom_button.dart';
+import '../../routes/app_routes.dart';
 import 'controller/Onboarding_controller.dart';
 
 class SelectionScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class SelectionScreen extends StatefulWidget {
 class _SelectionScreenState extends State<SelectionScreen> {
   final List<Map<String, String>> accountTypes = [
     {
-      'id': 'customer',
+      'id': 'Customer',
       'title': 'Customer',
       'description': 'Browse trusted vendors and find the right services for your event.',
     },
@@ -52,9 +53,6 @@ class _SelectionScreenState extends State<SelectionScreen> {
               borderColor: AppTheme.midnightBlueColor,
               showLogo: true,
             ),
-            // HeaderWidget(onBackPressed: () => Navigator.of(context).maybePop()),
-
-
             const SizedBox(height: 24),
             const SelectionTitle(),
             const Spacer(),
@@ -139,13 +137,24 @@ class _SelectionScreenState extends State<SelectionScreen> {
             ),
 
             const SizedBox(height: 12),
-            CustomButton(
-              Text: "Get Started",
-              width: double.infinity,
-              onTap: () {
-                controller.onGetStarted();
-              },
-            ),
+            Obx(() {
+              final isCustomerSelected = controller.selectedAccountType.value == 'Customer';
+              return CustomButton(
+                Text: "Get Started",
+                width: double.infinity,
+                onTap: isCustomerSelected
+                    ? () {
+                  Get.toNamed(AppRoutes.addProfilePhotoPage,arguments: {
+                    'role':controller.selectedAccountType.value
+                  });
+                  print(controller.selectedAccountType.value);
+                }
+                    : () {
+                },
+                buttonColor: isCustomerSelected ? null : AppTheme.lightCyanColor,
+                textColor: isCustomerSelected ? null : AppTheme.whiteColor.withOpacity(0.5),
+              );
+            }),
             const SizedBox(height: 12),
           ],
         ),

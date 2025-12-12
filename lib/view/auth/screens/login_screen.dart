@@ -209,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   style: AppTextStyle.f16W400DPColorTextStyle),
                               GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(AppRoutes.signUpScreen);
+                                  Get.toNamed(AppRoutes.selectionScreen);
                                 },
                                 child: Text(
                                   'Sign up',

@@ -27,45 +27,43 @@ class CustomTabBar extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppTheme.paperWhiteColor,
         ),
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          itemCount: _tabs.length,
-          separatorBuilder: (context, index) => SizedBox(width: 12.w),
-          itemBuilder: (context, index) {
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(_tabs.length, (index) {
             final isSelected = selectedIndex == index;
-
-            return GestureDetector(
-              onTap: () => onTabSelected(index),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    _tabs[index],
-                    style: TextStyle(
-                      color: isSelected
-                          ? AppTheme.darkpurpleColor
-                          : AppTheme.denimBlueColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      fontFamily: AppFonts.regular,
+            return Expanded(
+              child: GestureDetector(
+                onTap: () => onTabSelected(index),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      _tabs[index],
+                      style: TextStyle(
+                        color: isSelected
+                            ? AppTheme.darkpurpleColor
+                            : AppTheme.denimBlueColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        fontFamily: AppFonts.regular,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Container(
-                    height: 3,
-                    width: 12.w,
-                    decoration: BoxDecoration(
-                      color: isSelected
-                          ? AppTheme.darkpurpleColor
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(2),
+                    const SizedBox(height: 4),
+                    Container(
+                      height: 2,
+                      width: 15.w,
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? AppTheme.darkpurpleColor
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(2),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
-          },
+          }),
         ),
       ),
     );
