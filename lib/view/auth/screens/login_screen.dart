@@ -3,6 +3,7 @@ import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/app_widgets/custom_button.dart';
 import 'package:eventori/app_widgets/custom_textfield.dart';
+import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:eventori/view/onboarding/widgets/build_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +23,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController loginPasswordController = TextEditingController();
   bool _obscurePassword = true;
   final _formKey = GlobalKey<FormState>();
+
+  AuthController authController = Get.find();
+
 
   @override
   void dispose() {
@@ -126,12 +130,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {
-                          Get.toNamed(AppRoutes.verifyAccountScreen);
-                          // if (_formKey.currentState!.validate()) {
+                          // Get.toNamed(AppRoutes.verifyAccountScreen);
+                          if (_formKey.currentState!.validate()) {
+                            authController.loginUser(loginEmailController.text, loginPasswordController.text);
                             print('Email: ${loginEmailController.text}');
                             print('Password: ${loginPasswordController.text}');
-
-                          // }
+                          }
                         },
                       ),
 

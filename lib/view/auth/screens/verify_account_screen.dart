@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:eventori/view/auth/widget/pin_code_input_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:get/get.dart';
@@ -18,7 +20,9 @@ class VerifyAccountScreen extends StatefulWidget {
 
 class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
 
-  int _secondsRemaining = 53;
+  AuthController authController = Get.find();
+  TextEditingController controller=TextEditingController();
+  int _secondsRemaining = 4;
   Timer? _timer;
 
   @override
@@ -89,12 +93,10 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
             ),
             const SizedBox(height: 32),
 
-            /// 🔹 OTP Input Field
             PinCodeInputWidget(
-                // key: otpKey,
+                controller: controller,
                 length: 5,
                 onChanged: (value){
-
                 },
                 onCompleted: (value){
                   debugPrint("Entered OTP: $value");
@@ -110,7 +112,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
 
             const SizedBox(height: 24),
 
-            /// 🔹 Verify Button
             CustomButton(
               Text: 'Verify code',
               width: double.infinity,
@@ -119,7 +120,12 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
               textColor: AppTheme.whiteColor,
               textSize: 16,
               onTap: (){
-                Get.toNamed(AppRoutes.navBarScreen);
+                if(controller.text.isEmpty){
+                  print("enter otp");
+                }else{
+                  authController.verifyEmailRegisteredUser(controller.text);
+                }
+                // Get.toNamed(AppRoutes.navBarScreen);
               },
             ),
 
@@ -129,29 +135,33 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
             Center(
               child: GestureDetector(
                 onTap: _secondsRemaining == 0 ? _resendCode : null,
-                child: RichText(
-                  text: TextSpan(
-                    style: AppTextStyle.f16W400SIColorTextStyle,
-                    children: [
-                      TextSpan(
-                        text: 'Resend code ',
-                        style: AppTextStyle.f16W400SColorTextStyle.copyWith(
-                            color: _secondsRemaining == 0
-                                ? AppTheme.lightCyanColor
-                                : AppTheme.silverColor,
+                child: GestureDetector(
+                  onTap: (){
+                    if(_secondsRemaining==0){
+                      authController.resendOtpToVerifyRegisteredUser();
+                    }else{
+                      print("sdah");
+                    }
+
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      style: AppTextStyle.f16W400SIColorTextStyle,
+                      children: [
+                        TextSpan(
+                          text: 'Resend code ',
+                          style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                              color: _secondsRemaining == 0
+                                  ? AppTheme.lightCyanColor
+                                  : AppTheme.silverColor,
+                          ),
                         ),
-                        // style: TextStyle(
-                        //   color: _secondsRemaining == 0
-                        //       ? AppTheme.lightCyanColor
-                        //       : AppTheme.silverColor,
-                        //   fontWeight: FontWeight.w500,
-                        // ),
-                      ),
-                      TextSpan(
-                        text: '$_secondsRemaining seconds',
-                        style: AppTextStyle.f16W400DPColorTextStyle,
-                      ),
-                    ],
+                        TextSpan(
+                          text: '$_secondsRemaining seconds',
+                          style: AppTextStyle.f16W400DPColorTextStyle,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

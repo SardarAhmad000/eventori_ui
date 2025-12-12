@@ -502,8 +502,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       : Icons.visibility_outlined,
                                   color: AppTheme.silverColor,
                                 ),
-                                onPressed: (){},
-                                // onPressed: authController.togglePasswordVisibility,
+                                onPressed: authController.togglePasswordVisibility,
                               ),
                               // validator: CustomValidator.password,
                             ),
@@ -526,8 +525,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     : Icons.visibility_outlined,
                                 color: AppTheme.silverColor,
                               ),
-                              onPressed:(){},
-                              // authController.toggleConfirmPasswordVisibility,
+                              onPressed:
+                              authController.toggleConfirmPasswordVisibility,
                             ),
                               // validator: (value) => CustomValidator.confirmPassword(
                               //   value,
