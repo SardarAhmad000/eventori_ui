@@ -6,9 +6,8 @@ import '../../../constants/app_text_style.dart';
 import '../../../app_widgets/custom_button.dart';
 import '../../../app_widgets/custom_textfield.dart';
 import '../../../constants/custom_validators.dart';
-import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
-
+import '../controller/auth_controller.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -18,29 +17,20 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController forgotEmailController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  late final AuthController authController;
+
+  @override
+  void initState() {
+    super.initState();
+    authController = Get.find<AuthController>();
+  }
 
   @override
   void dispose() {
-    _emailController.dispose();
+    forgotEmailController.dispose();
     super.dispose();
-  }
-
-  // void _sendEmailCode() {
-  //   final email = _emailController.text.trim();
-  //   if (email.isNotEmpty) {
-  //     Get.toNamed(AppRoutes.verifyOTPScreen, arguments: {'email': email});
-  //   }
-  // }
-
-
-  void _sendEmailCode() {
-    // if (_formKey.currentState!.validate())
-    // {
-      print('Email: ${_emailController.text}');
-      Get.toNamed(AppRoutes.verifyOTPScreen);
-    // }
   }
 
   @override
@@ -50,7 +40,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Form(
-          key: _formKey,
+          key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -76,9 +66,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               const SizedBox(height: 32),
 
               CustomTextField(
-                controller: _emailController,
+                controller: forgotEmailController,
                 hintText: 'Email Address',
-                // isRequired: true,
                 prefixIcon: Image.asset(
                   AppAssets.mailIcon,
                   color: AppTheme.silverColor,
@@ -95,13 +84,12 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 buttonColor: AppTheme.lightCyanColor,
                 textColor: AppTheme.whiteColor,
                 textSize: 16,
-                onTap: (){
-
-                  print('Email: ${_emailController.text}');
-                  Get.toNamed(AppRoutes.verifyOTPScreen);
-
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    print('Email: ${forgotEmailController.text}');
+                    authController.forgotPassword(forgotEmailController.text);
+                  }
                 },
-                // onTap: _sendEmailCode,
               ),
             ],
           ),

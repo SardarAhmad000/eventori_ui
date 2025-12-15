@@ -2,24 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:get/get.dart';
 import 'dart:async';
-
 import '../../../constants/app_text_style.dart';
 import '../../../app_widgets/custom_button.dart';
-import '../../../routes/app_routes.dart';
 import '../../onboarding/widgets/build_header.dart';
+import '../controller/auth_controller.dart';
 import '../widget/pin_code_input_widget.dart';
 
-class PasswordOTPScreen extends StatefulWidget {
-  const PasswordOTPScreen({super.key});
+class VerifyForgetPasswordOTPScreen extends StatefulWidget {
+  const VerifyForgetPasswordOTPScreen({super.key});
 
   @override
-  State<PasswordOTPScreen> createState() => PasswordOTPScreenState();
+  State<VerifyForgetPasswordOTPScreen> createState() => VerifyForgetPasswordOTPScreenState();
 }
 
-class PasswordOTPScreenState extends State<PasswordOTPScreen> {
-  // final GlobalKey<OtpInputFieldState> _otpFieldKey = GlobalKey();
-
-  int _secondsRemaining = 53;
+class VerifyForgetPasswordOTPScreenState extends State<VerifyForgetPasswordOTPScreen> {
+  AuthController authController = Get.find();
+  TextEditingController otpcontroller=TextEditingController();
+  int _secondsRemaining = 4;
   Timer? _timer;
 
   @override
@@ -55,10 +54,6 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
     debugPrint("Resend OTP triggered");
   }
 
-  void _verifyCode() {
-      Get.toNamed(AppRoutes.createNewPasswordScreen);
-    // }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +74,8 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
             ),
             const SizedBox(height: 20),
             Text(
-              'Verify your account',
+              // 'Verify your account',
+              'Verify Forget Password OTP Screen',
               style: AppTextStyle.f32W600DPColorTextStyle,
             ),
             const SizedBox(height: 8),
@@ -89,28 +85,16 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
             ),
             const SizedBox(height: 32),
 
-            // OTP Input Fields
-
             PinCodeInputWidget(
-              // key: otpKey,
+              controller: otpcontroller,
                 length: 5,
                 onChanged: (value){
-
                 },
                 onCompleted: (value){
                   debugPrint("Entered OTP: $value");
 
                 }
             ),
-
-
-            // OtpInputField(
-            //   key: _otpFieldKey,
-            //   otpLength: 5,
-            //   onCompleted: (otp) {
-            //     debugPrint("OTP Completed: $otp");
-            //   },
-            // ),
 
             const SizedBox(height: 24),
 
@@ -122,40 +106,46 @@ class PasswordOTPScreenState extends State<PasswordOTPScreen> {
               buttonColor: AppTheme.lightCyanColor,
               textColor: AppTheme.whiteColor,
               textSize: 16,
-              onTap: _verifyCode,
+              onTap: (){
+                if(otpcontroller.text.isEmpty){
+                  print("enter otp");
+                }else{
+                  authController.verifyForgotPasswordOTP(otpcontroller.text);
+                }
+              },
+              // onTap: _verifyCode,
             ),
 
             const SizedBox(height: 16),
-
-            // Resend Code
             Center(
               child: GestureDetector(
                 onTap: _secondsRemaining == 0 ? _resendCode : null,
-                child: RichText(
-                  text: TextSpan(
-                    style: AppTextStyle.f16W400SIColorTextStyle,
-                    children: [
-                      TextSpan(
-                        text: 'Resend code ',
-                        style: AppTextStyle.f16W400SColorTextStyle.copyWith(
-                          color: _secondsRemaining == 0
-                              ? AppTheme.lightCyanColor
-                              : AppTheme.silverColor,
+                child: GestureDetector(
+                  onTap: (){
+                    if(_secondsRemaining==0){
+                      authController.resendForgetPasswordOTP();
+                    }else{
+                      print("sdah");
+                    }
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      style: AppTextStyle.f16W400SIColorTextStyle,
+                      children: [
+                        TextSpan(
+                          text: 'Resend code ',
+                          style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                            color: _secondsRemaining == 0
+                                ? AppTheme.lightCyanColor
+                                : AppTheme.silverColor,
+                          ),
                         ),
-                        // style: TextStyle(
-                        //   color: _secondsRemaining == 0
-                        //       ? AppTheme.lightCyanColor
-                        //       : AppTheme.silverColor,
-                        //   fontWeight: FontWeight.w500,
-                        // ),
-                      ),
-                      TextSpan(
-                        text: _secondsRemaining > 0
-                            ? '$_secondsRemaining seconds'
-                            : '',
-                        style: AppTextStyle.f16W400DPColorTextStyle,
-                      ),
-                    ],
+                        TextSpan(
+                          text: '$_secondsRemaining seconds',
+                          style: AppTextStyle.f16W400DPColorTextStyle,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

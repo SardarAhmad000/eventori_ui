@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:eventori/app_widgets/custom_button.dart';
 import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';

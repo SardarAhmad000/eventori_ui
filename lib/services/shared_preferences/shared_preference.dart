@@ -28,11 +28,9 @@ class AuthPreference {
 
   Future<Map<String, dynamic>> getUserLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    var log = prefs.getBool("isLoggedIn") ?? false;
-    String userType=prefs.getString("userType") ?? "user";
+    dynamic log = prefs.getBool("isLoggedIn") ?? false;
     return {
       "isLoggedIn": log,
-      "userType": userType,
     };
   }
 

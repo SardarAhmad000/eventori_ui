@@ -1,5 +1,8 @@
+import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../services/shared_preferences/shared_preference.dart';
 
 class ProfileController extends GetxController {
   // Observable variables
@@ -10,6 +13,9 @@ class ProfileController extends GetxController {
   final profileNameController = TextEditingController();
   final profileEmailController = TextEditingController();
   final phoneNoController = TextEditingController();
+
+
+  final AuthPreference _authPreference = AuthPreference.instance;
 
   // Dropdown values
   RxString selectedGender = ''.obs;
@@ -50,7 +56,8 @@ class ProfileController extends GetxController {
   }
 
   void logout() {
-    // Add your logout logic
+    Get.offAllNamed(AppRoutes.loginScreen);
+    _authPreference.setUserLoggedIn(false);
     print('Logout');
   }
 

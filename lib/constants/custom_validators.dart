@@ -230,11 +230,11 @@ class CustomValidator {
   }
 
   static String? password(String? value) {
-    // if (value!.isEmpty) {
-    //   return 'Enter password';
-    // } else if (value.length < 8) {
-    //   return 'Password must be at least 8 characters';
-    // }
+    if (value!.isEmpty) {
+      return 'Enter password';
+    } else if (value.length < 8) {
+      return 'Password must be at least 8 characters';
+    }
     return null;
   }
 
@@ -261,12 +261,12 @@ class CustomValidator {
     if (value!.isEmpty) {
       return null;
     }
-    // else if (value.length < 8) {
-    //   return ' Password must be at least 8 characters';
-    // }
-    // else if (value != oldPassword) {
-    //   return ' Confirm password is not matched';
-    // }
+    else if (value.length < 8) {
+      return ' Password must be at least 8 characters';
+    }
+    else if (value != oldPassword) {
+      return ' Confirm password is not matched';
+    }
     return null;
   }
 

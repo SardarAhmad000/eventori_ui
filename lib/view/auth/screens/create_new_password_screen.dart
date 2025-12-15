@@ -38,14 +38,14 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
       authController.clearCreateNewPasswordForm();
     });
 
-    // // Add listeners for real-time validation
-    // newPasswordController.addListener(() {
-    //   authController.validateCreateNewPassword(newPasswordController.text);
-    //   authController.checkCreateNewPasswordsMatch(
-    //     newPasswordController.text,
-    //     newConfirmPasswordController.text,
-    //   );
-    // });
+    // Add listeners for real-time validation
+    newPasswordController.addListener(() {
+      authController.validateCreateNewPassword(newPasswordController.text);
+      authController.checkCreateNewPasswordsMatch(
+        newPasswordController.text,
+        newConfirmPasswordController.text,
+      );
+    });
 
     newConfirmPasswordController.addListener(() {
       authController.checkCreateNewPasswordsMatch(
@@ -78,13 +78,6 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
         newConfirmPasswordController.text.trim().isNotEmpty;
   }
 
-  /// Print password information
-  void printPasswordInformation() {
-    print('========== New Password Information ==========');
-    print('Password: ${newPasswordController.text}');
-    print('Confirm Password: ${newConfirmPasswordController.text}');
-    print('==============================================');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -253,27 +246,12 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
                   textColor: AppTheme.whiteColor,
                   textSize: 16,
                   onTap: () {
-                    // // Check if all fields are filled
-                    // if (!areAllPasswordFieldsFilled()) {
-                    //   Get.snackbar(
-                    //     "Validation Error",
-                    //     "Please fill all password fields",
-                    //     snackPosition: SnackPosition.BOTTOM,
-                    //     backgroundColor: AppTheme.redColor,
-                    //     colorText: AppTheme.whiteColor,
-                    //   );
-                    //   return;
-                    // }
 
-                    // Validate form
                     if (formKey.currentState!.validate()) {
-
                       if (authController.areCreateNewPasswordRequirementsMet()) {
-                        printPasswordInformation();
-                        Get.toNamed(AppRoutes.loginScreen);
-                        // Get.back();
-                      } else {
-
+                        authController.resetPassword(newConfirmPasswordController.text);
+                        print('Password: ${newPasswordController.text}');
+                        print('Confirm Password: ${newConfirmPasswordController.text}');
                       }
                     }
                   },
@@ -287,3 +265,16 @@ class _CreateNewPasswordScreenState extends State<CreateNewPasswordScreen> {
     );
   }
 }
+// // Check if all fields are filled
+// if (!areAllPasswordFieldsFilled()) {
+//   Get.snackbar(
+//     "Validation Error",
+//     "Please fill all password fields",
+//     snackPosition: SnackPosition.BOTTOM,
+//     backgroundColor: AppTheme.redColor,
+//     colorText: AppTheme.whiteColor,
+//   );
+//   return;
+// }
+
+// Validate form

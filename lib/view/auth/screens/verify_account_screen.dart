@@ -37,7 +37,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
     super.dispose();
   }
 
-  /// Starts countdown timer for resend OTP
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_secondsRemaining > 0) {
@@ -50,17 +49,12 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
     });
   }
 
-  /// Logic for resending OTP
   void _resendCode() {
     setState(() {
       _secondsRemaining = 53;
     });
     _startTimer();
 
-    // // 🔹 Add your resend OTP API call here
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   const SnackBar(content: Text('A new OTP has been sent.')),
-    // );
   }
 
 
@@ -102,13 +96,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                   debugPrint("Entered OTP: $value");
                 }
             ),
-            // OtpInputField(
-            //   key: otpKey,
-            //   otpLength: 5,
-            //   onCompleted: (otp) {
-            //     debugPrint("Entered OTP: $otp");
-            //   },
-            // ),
 
             const SizedBox(height: 24),
 
@@ -125,13 +112,11 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                 }else{
                   authController.verifyEmailRegisteredUser(controller.text);
                 }
-                // Get.toNamed(AppRoutes.navBarScreen);
               },
             ),
 
             const SizedBox(height: 16),
 
-            /// 🔹 Resend OTP Section
             Center(
               child: GestureDetector(
                 onTap: _secondsRemaining == 0 ? _resendCode : null,
@@ -142,7 +127,6 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
                     }else{
                       print("sdah");
                     }
-
                   },
                   child: RichText(
                     text: TextSpan(

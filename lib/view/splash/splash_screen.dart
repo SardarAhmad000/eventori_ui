@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void initState() {
     super.initState();
-    splashController.splashTimer();
+    splashController.maintainSessionAndNavigate();
   }
 
   SplashController splashController=Get.find();
