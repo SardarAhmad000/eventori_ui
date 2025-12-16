@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/onboarding/widgets/build_header.dart';
 import 'package:eventori/view/onboarding/widgets/selection_tittle.dart';
@@ -6,6 +8,7 @@ import 'package:get/get.dart';
 import '../../AppTheme/app_theme.dart';
 import '../../app_widgets/custom_button.dart';
 import '../../routes/app_routes.dart';
+import '../auth/controller/auth_controller.dart';
 import 'controller/Onboarding_controller.dart';
 
 class SelectionScreen extends StatefulWidget {
@@ -16,6 +19,8 @@ class SelectionScreen extends StatefulWidget {
 }
 
 class _SelectionScreenState extends State<SelectionScreen> {
+  AuthController authController = Get.find();
+
   final List<Map<String, String>> accountTypes = [
     {
       'id': 'Customer',
@@ -144,9 +149,12 @@ class _SelectionScreenState extends State<SelectionScreen> {
                 width: double.infinity,
                 onTap: isCustomerSelected
                     ? () {
-                  Get.toNamed(AppRoutes.addProfilePhotoPage,arguments: {
-                    'role':controller.selectedAccountType.value
-                  });
+                  if(Get.arguments['SignInMethod'] == "Google"){
+                    authController.updateRole(controller.selectedAccountType.value);
+                  }else{
+                    Get.toNamed(AppRoutes.addProfilePhotoPage,arguments: {'role':controller.selectedAccountType.value});
+                  }
+
                   print(controller.selectedAccountType.value);
                 }
                     : () {

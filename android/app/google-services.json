@@ -12,7 +12,20 @@
           "package_name": "com.eventori.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "463040539794-0e05odrmpelgbuiern7l90e04pn32qa1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eventori.app",
+            "certificate_hash": "d3ee9292b97a42ed00e33a02ca551350c182c31b"
+          }
+        },
+        {
+          "client_id": "463040539794-jjofq5ojcb7vthm308c9dh4ls5nklcij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDe4mLUhrB50haMBqEypBwdmqoyIDk9ndk"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "463040539794-jjofq5ojcb7vthm308c9dh4ls5nklcij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

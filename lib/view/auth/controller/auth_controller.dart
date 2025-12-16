@@ -477,6 +477,104 @@ class AuthController extends GetxController {
     }
   }
 
+  Future loginUserWithSocialMethod(String firstName,String lastName,String email,String authMethod,String socialId) async {
+    _baseController.showLoading();
+    print("entry 1");
+    Map<String, String> body = {
+      "firstName":firstName,
+      "lastName":lastName,
+      "email":email,
+      "authMethod" : authMethod ,
+      "socialId" : socialId,
+      "fcmToken":"hsahds"
+    };
+    print("entry 2");
+    var response = await DataApiService.instance
+        .post('/social-auth', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    print("entry 3");
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+
+    var result = json.decode(response);
+    if (result['success'].toString()=="true") {
+      userData.value=UserModel.fromJson(result['data']);
+      accessToken.value=result['data']['token'];
+      _authPreference.saveUserData(data: jsonEncode(userData.value?.toJson()));
+      print("${jsonEncode(userData.value?.toJson())} this is user data");
+      _authPreference.saveUserDataToken(token: accessToken.value);
+      if(result['data']['role'] ==null){
+        Get.toNamed(AppRoutes.selectionScreen,arguments:{
+          "SignInMethod": "Google"
+        });
+      } else{
+        Get.offAndToNamed(AppRoutes.navBarScreen);
+        _authPreference.setUserLoggedIn(true);
+      }
+
+      // _authPreference.setUserLoggedIn(true);
+    }
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true") {
+      print("error is here");
+      String message = result['data']['message'];
+      if(result['data']['message']=="Verification pending, please verify your email first"){
+        Get.toNamed(AppRoutes.signUpScreen);
+      }
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+    else if(result['success'].toString()=="false"&&result['message'].toString()=="No active subscription plan found. Please start a trial or subscribe to continue."){
+      Get.toNamed(AppRoutes.selectionScreen);
+      userData.value=UserModel.fromJson(result['data']);
+      accessToken.value=result['data']['token'];
+    }
+  }
+
+
+  Future updateRole(String role) async {
+    _baseController.showLoading();
+    Map<String, String> body = {
+      "role": role
+    };
+    var response = await DataApiService.instance
+        .post('/update-role', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        print("object...");
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      }
+      else {
+        print("objsaghect...");
+        _baseController.handleError(error);
+      }
+    });
+
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true") {
+      Get.toNamed(AppRoutes.navBarScreen);
+      _authPreference.setUserLoggedIn(true);
+
+    } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
 
   // Method to set profile image
   void setProfileImage(File? path) {

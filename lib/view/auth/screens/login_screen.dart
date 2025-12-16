@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../../constants/custom_validators.dart';
 import '../../../routes/app_routes.dart';
+import '../controller/social_sign_in_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   AuthController authController = Get.find();
+  SocialSignInController socialSignInController = Get.find();
 
 
   @override
@@ -170,6 +172,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         iconPath: AppAssets.googleIcon,
                         onTap: () {
                           print("Sign In with Google Clicked");
+                          socialSignInController.signInWithGoogle();
+
                         },
                       ),
                       const SizedBox(height: 12),

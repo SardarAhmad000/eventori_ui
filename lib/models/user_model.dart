@@ -42,7 +42,7 @@ class UserModel {
       firstName: json["firstName"],
       lastName: json["lastName"],
       email: json["email"],
-      role: json["role"],
+      role: json["role"] ?? '',
       authMethod: json["authMethod"],
       socialId: json["socialId"],
       status: json["status"],
