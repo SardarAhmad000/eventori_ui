@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "463040539794",
+    "project_id": "eventori-e45ee",
+    "storage_bucket": "eventori-e45ee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463040539794:android:7b26ac324033f2c8568a4b",
+        "android_client_info": {
+          "package_name": "com.eventori.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDe4mLUhrB50haMBqEypBwdmqoyIDk9ndk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

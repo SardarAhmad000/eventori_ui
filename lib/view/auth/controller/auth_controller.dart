@@ -569,7 +569,6 @@ class AuthController extends GetxController {
     return criteriaCount / 6;
   }
 
-
   /// Get CreateNewPassword strength text
   String getCreateNewPasswordStrengthText() {
     int criteriaCount = 0;
@@ -627,7 +626,6 @@ class AuthController extends GetxController {
 
     return criteriaCount / 6;
   }
-
 
 }
 

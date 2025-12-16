@@ -156,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
 
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 24),
 
                       CustomButton(
                         Text: 'Sign in with Google',
@@ -168,21 +168,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         isAuth: true,
                         isGoogle: true,
                         iconPath: AppAssets.googleIcon,
-                        onTap: () {},
-                      ),
-                      const SizedBox(height: 12),
-
-                      CustomButton(
-                        Text: 'Sign in with Facebook',
-                        width: double.infinity,
-                        height: 48,
-                        buttonColor: AppTheme.whiteColor,
-                        textColor: AppTheme.blackColor,
-                        textSize: 14,
-                        borderColor: AppTheme.textfieldBorderColor,
-                        isAuth: true,
-                        iconPath: AppAssets.facebookIcon,
-                        onTap: () {},
+                        onTap: () {
+                          print("Sign In with Google Clicked");
+                        },
                       ),
                       const SizedBox(height: 12),
 
@@ -235,3 +223,18 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+
+
+// CustomButton(
+//   Text: 'Sign in with Facebook',
+//   width: double.infinity,
+//   height: 48,
+//   buttonColor: AppTheme.whiteColor,
+//   textColor: AppTheme.blackColor,
+//   textSize: 14,
+//   borderColor: AppTheme.textfieldBorderColor,
+//   isAuth: true,
+//   iconPath: AppAssets.facebookIcon,
+//   onTap: () {},
+// ),
+// const SizedBox(height: 12),

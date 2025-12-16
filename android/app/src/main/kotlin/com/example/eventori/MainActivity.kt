@@ -1,4 +1,4 @@
-package com.example.eventori
+package com.eventori.app
 
 import io.flutter.embedding.android.FlutterActivity
 
