@@ -1,8 +1,14 @@
+import 'dart:convert';
+
 import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../api_services/api_exceptions.dart';
+import '../../../api_services/data_api.dart';
 import '../../../services/shared_preferences/shared_preference.dart';
+import '../../../utils/snackbar_util.dart';
+import '../../auth/controller/base_controller.dart';
 
 class ProfileController extends GetxController {
   // Observable variables
@@ -19,6 +25,43 @@ class ProfileController extends GetxController {
 
   // Dropdown values
   RxString selectedGender = ''.obs;
+
+
+  RxString accessToken = "".obs;
+  final BaseController _baseController = BaseController.instance;
+
+  Future deleteUser() async {
+    _baseController.showLoading();
+    var response = await DataApiService.instance
+        .delete('/user/delete')
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        print("object...");
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      }
+      else {
+        print("objsaghect...");
+        _baseController.handleError(error);
+      }
+    });
+
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true") {
+      Get.offAllNamed(AppRoutes.loginScreen);
+
+    } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
 
   // Methods
   void updateCountry(String country) {
@@ -86,10 +129,6 @@ class ProfileController extends GetxController {
     print('Rate us');
   }
 
-  void deleteAccount() {
-    // Add your delete account logic
-    print('Delete account');
-  }
 
   @override
   void onClose() {

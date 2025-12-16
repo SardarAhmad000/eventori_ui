@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProfileController());
+  ProfileController profileController = Get.find();
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -69,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              controller.logout();
+                              profileController.logout();
                             },
                             child: Image.asset(
                               AppAssets.logoutIcon,
@@ -111,7 +111,7 @@ class ProfileScreen extends StatelessWidget {
                       right: 2,
                       child: GestureDetector(
                         onTap: () {
-                          controller.uploadProfilePicture();
+                          profileController.uploadProfilePicture();
                         },
                         child: Icon(
                           Icons.camera_alt,
@@ -131,7 +131,7 @@ class ProfileScreen extends StatelessWidget {
           // Remove Text (Fixed)
           GestureDetector(
             onTap: () {
-              controller.removeProfilePicture();
+              profileController.removeProfilePicture();
             },
             child: Text(
               'Remove',
@@ -153,7 +153,7 @@ class ProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextField(
-                      controller: controller.profileNameController,
+                      controller: profileController.profileNameController,
                       hintText: 'First Name',
                       prefixIcon: Image.asset(
                         AppAssets.userIcon,
@@ -163,7 +163,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     CustomTextField(
-                      controller: controller.profileEmailController,
+                      controller: profileController.profileEmailController,
                       hintText: 'Email Address',
                       prefixIcon: Image.asset(
                         AppAssets.mailIcon,
@@ -173,7 +173,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     CustomTextField(
-                      controller: controller.phoneNoController,
+                      controller: profileController.phoneNoController,
                       hintText: '+44799999999',
                       prefixIcon: Image.asset(
                         AppAssets.phoneIcon,
@@ -185,16 +185,16 @@ class ProfileScreen extends StatelessWidget {
                     Obx(() => CustomDropdownField(
                       prefixIcon: AppAssets.userIcon,
                       hintText: 'Gender',
-                      value: controller.selectedGender.value.isEmpty
+                      value: profileController.selectedGender.value.isEmpty
                           ? null
-                          : controller.selectedGender.value,
+                          : profileController.selectedGender.value,
                       items: const [
                         DropdownMenuItem(value: 'Male', child: Text('Male')),
                         DropdownMenuItem(value: 'Female', child: Text('Female')),
                         DropdownMenuItem(value: 'Other', child: Text('Other')),
                       ],
                       onChanged: (value) {
-                        controller.updateGender(value);
+                        profileController.updateGender(value);
                       },
                     )),
                     const SizedBox(height: 12),
@@ -204,7 +204,7 @@ class ProfileScreen extends StatelessWidget {
                           context: context,
                           showPhoneCode: false,
                           onSelect: (Country country) {
-                            controller.updateCountry(country.name);
+                            profileController.updateCountry(country.name);
                           },
                           countryListTheme: CountryListThemeData(
                             borderRadius: BorderRadius.circular(8),
@@ -247,10 +247,10 @@ class ProfileScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              controller.selectedCountry.value.isEmpty
+                              profileController.selectedCountry.value.isEmpty
                                   ? 'Location'
-                                  : controller.selectedCountry.value,
-                              style: controller.selectedCountry.value.isEmpty
+                                  : profileController.selectedCountry.value,
+                              style: profileController.selectedCountry.value.isEmpty
                                   ? AppTextStyle.f14W400SColorTextStyle
                                   : AppTextStyle.f14W400BColorTextStyle,
                             ),
@@ -284,13 +284,13 @@ class ProfileScreen extends StatelessWidget {
                                   style: AppTextStyle.f14W400SColorTextStyle,
                                 ),
                                 Obx(() => CustomToggleSwitch(
-                                  initialValue: controller.allowNotifications.value,
+                                  initialValue: profileController.allowNotifications.value,
                                   activeColor: AppTheme.lightCyanColor,
                                   inactiveColor: AppTheme.silverColor.withOpacity(0.3),
                                   width: 45,
                                   height: 28,
                                   onChanged: (value) {
-                                    controller.toggleNotifications(value);
+                                    profileController.toggleNotifications(value);
                                   },
                                 )),
                               ],
@@ -301,7 +301,7 @@ class ProfileScreen extends StatelessWidget {
                             title: 'Change Password',
                             iconPath: AppAssets.chevronIcon,
                             onTap: () {
-                              controller.changePassword();
+                              profileController.changePassword();
                             },
                           ),
                           Divider(color: AppTheme.dividerColor),
@@ -309,7 +309,7 @@ class ProfileScreen extends StatelessWidget {
                             title: 'Privacy Policy',
                             iconPath: AppAssets.chevronIcon,
                             onTap: () {
-                              controller.openPrivacyPolicy();
+                              profileController.openPrivacyPolicy();
                             },
                           ),
                           Divider(color: AppTheme.dividerColor),
@@ -317,7 +317,7 @@ class ProfileScreen extends StatelessWidget {
                             title: 'Term & Conditions',
                             iconPath: AppAssets.chevronIcon,
                             onTap: () {
-                              controller.openTermsAndConditions();
+                              profileController.openTermsAndConditions();
                             },
                           ),
                           Divider(color: AppTheme.dividerColor),
@@ -325,7 +325,7 @@ class ProfileScreen extends StatelessWidget {
                             title: 'Contact Us',
                             iconPath: AppAssets.chevronIcon,
                             onTap: () {
-                              controller.contactUs();
+                              profileController.contactUs();
                             },
                           ),
                           Divider(color: AppTheme.dividerColor),
@@ -333,7 +333,7 @@ class ProfileScreen extends StatelessWidget {
                             title: 'Rate Us',
                             iconPath: AppAssets.chevronIcon,
                             onTap: () {
-                              controller.rateUs();
+                              profileController.rateUs();
                             },
                           ),
                           Divider(color: AppTheme.dividerColor),
@@ -354,7 +354,8 @@ class ProfileScreen extends StatelessWidget {
                                   buttonTextColor: AppTheme.whiteColor,
                                   isIconData: false, // Important: set to false for image assets
                                   onConfirm: () {
-                                    controller.deleteAccount();
+                                    profileController.deleteUser();
+                                    print('Delete account');
                                   },
                                 );
                               },
@@ -378,7 +379,7 @@ class ProfileScreen extends StatelessWidget {
                 CustomButton(
                   Text: "Edit",
                   onTap: () {
-                    controller.editProfile();
+                    profileController.editProfile();
                   },
                   buttonColor: AppTheme.whiteColor,
                   textColor: AppTheme.blackColor,
@@ -389,7 +390,7 @@ class ProfileScreen extends StatelessWidget {
                 CustomButton(
                   Text: "Save changes",
                   onTap: () {
-                    controller.saveChanges();
+                    profileController.saveChanges();
                   },
                   buttonColor: AppTheme.lightCyanColor,
                   textColor: AppTheme.whiteColor,
