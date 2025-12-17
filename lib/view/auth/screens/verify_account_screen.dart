@@ -53,7 +53,14 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
     setState(() {
       _secondsRemaining = 53;
     });
-    _startTimer();
+
+    if(_secondsRemaining==0){
+      _startTimer();
+      // authController.resendOtpToVerifyRegisteredUser();
+    }else{
+      authController.resendOtpToVerifyRegisteredUser();
+      print("sdah");
+    }
 
   }
 
@@ -119,33 +126,24 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
 
             Center(
               child: GestureDetector(
-                onTap: _secondsRemaining == 0 ? _resendCode : null,
-                child: GestureDetector(
-                  onTap: (){
-                    if(_secondsRemaining==0){
-                      authController.resendOtpToVerifyRegisteredUser();
-                    }else{
-                      print("sdah");
-                    }
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      style: AppTextStyle.f16W400SIColorTextStyle,
-                      children: [
-                        TextSpan(
-                          text: 'Resend code ',
-                          style: AppTextStyle.f16W400SColorTextStyle.copyWith(
-                              color: _secondsRemaining == 0
-                                  ? AppTheme.lightCyanColor
-                                  : AppTheme.silverColor,
-                          ),
+                onTap: _resendCode,
+                child: RichText(
+                  text: TextSpan(
+                    style: AppTextStyle.f16W400SIColorTextStyle,
+                    children: [
+                      TextSpan(
+                        text: 'Resend code ',
+                        style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                            color: _secondsRemaining == 0
+                                ? AppTheme.lightCyanColor
+                                : AppTheme.silverColor,
                         ),
-                        TextSpan(
-                          text: '$_secondsRemaining seconds',
-                          style: AppTextStyle.f16W400DPColorTextStyle,
-                        ),
-                      ],
-                    ),
+                      ),
+                      TextSpan(
+                        text: '$_secondsRemaining seconds',
+                        style: AppTextStyle.f16W400DPColorTextStyle,
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -21,14 +21,56 @@ class ProfileController extends GetxController {
   final phoneNoController = TextEditingController();
 
 
-  final AuthPreference _authPreference = AuthPreference.instance;
+  // Observable variables for password visibility
+  var obscureCurrentPassword = true.obs;
+  var obscureNewPassword = true.obs;
+  var obscureConfirmPassword = true.obs;
 
+
+
+
+  final AuthPreference _authPreference = AuthPreference.instance;
   // Dropdown values
   RxString selectedGender = ''.obs;
 
-
   RxString accessToken = "".obs;
   final BaseController _baseController = BaseController.instance;
+
+  Future changePassword( String oldPassword,String newPassword,) async {
+    _baseController.showLoading();
+    Map<String, String> body = {
+      "oldPassword": oldPassword,
+      "newPassword" : newPassword
+    };
+
+    var response = await DataApiService.instance
+        .post('/change-password', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      }
+      else {
+        _baseController.handleError(error);
+      }
+    });
+
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true" && result['message']=="Password changed successfully") {
+      Get.offAllNamed(AppRoutes.loginScreen);
+
+    } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
 
   Future deleteUser() async {
     _baseController.showLoading();
@@ -63,7 +105,6 @@ class ProfileController extends GetxController {
   }
 
 
-  // Methods
   void updateCountry(String country) {
     selectedCountry.value = country;
   }
@@ -104,10 +145,6 @@ class ProfileController extends GetxController {
     print('Logout');
   }
 
-  void changePassword() {
-    // Navigate to change password screen
-    print('Change password');
-  }
 
   void openPrivacyPolicy() {
     // Navigate to privacy policy screen
@@ -129,6 +166,19 @@ class ProfileController extends GetxController {
     print('Rate us');
   }
 
+  // Toggle password visibility
+  void toggleCurrentPasswordVisibility() {
+    obscureCurrentPassword.value = !obscureCurrentPassword.value;
+  }
+
+  void toggleNewPasswordVisibility() {
+    obscureNewPassword.value = !obscureNewPassword.value;
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    obscureConfirmPassword.value = !obscureConfirmPassword.value;
+  }
+
 
   @override
   void onClose() {
@@ -136,6 +186,6 @@ class ProfileController extends GetxController {
     // firstNameController.dispose();
     // emailController.dispose();
     // phoneNoController.dispose();
-    super.onClose();
+    // super.onClose();
   }
 }

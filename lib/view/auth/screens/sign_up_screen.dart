@@ -445,7 +445,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       const SizedBox(height: 20),
 
-                      // First Name
                       CustomTextField(
                         controller: firstNameController,
                         hintText: 'First Name',
@@ -457,8 +456,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: CustomValidator.firstName,
                       ),
                       const SizedBox(height: 12),
-
-                      // Last Name
                       CustomTextField(
                         controller: lastNameController,
                         hintText: 'Last Name',
@@ -470,8 +467,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: CustomValidator.lastName,
                       ),
                       const SizedBox(height: 12),
-
-                      // Email
                       CustomTextField(
                         controller: emailController,
                         hintText: 'Email Address',
@@ -483,8 +478,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         validator: CustomValidator.email,
                       ),
                       const SizedBox(height: 12),
-
-                      // Password
                       Obx(
                             () => CustomTextField(
                               controller: passwordSignUpController,
@@ -508,7 +501,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                       ),
                       const SizedBox(height: 12),
-                      // Confirm Password
                       Obx(
                             () => CustomTextField(
                               controller: confirmPasswordController,
@@ -535,7 +527,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                       ),
                       const SizedBox(height: 12),
-                      // Password Requirements
                       Obx(
                             () => Column(
                           children: [
@@ -562,8 +553,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ),
                       const SizedBox(height: 19),
-
-                      // Sign Up Button
                       CustomButton(
                         Text: 'Sign Up',
                         height: 48,

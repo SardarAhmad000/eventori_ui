@@ -151,7 +151,7 @@ class _SelectionScreenState extends State<SelectionScreen> {
                     ? () {
                   if(Get.arguments['SignInMethod'] == "Google"){
                     authController.updateRole(controller.selectedAccountType.value);
-                  }else{
+                  }else if(Get.arguments['SignInMethod'] == "SimpleSignUp"){
                     Get.toNamed(AppRoutes.addProfilePhotoPage,arguments: {'role':controller.selectedAccountType.value});
                   }
 

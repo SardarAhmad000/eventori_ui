@@ -12,6 +12,7 @@ import '../../../app_widgets/custom_dropdown.dart';
 import '../../../app_widgets/custom_textfield.dart';
 import '../../../app_widgets/custom_toggle.dart';
 import '../controller/profile_controller.dart';
+import '../widgets/change_password_bottem_sheet.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -297,11 +298,38 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ),
                           Divider(color: AppTheme.dividerColor),
+                          // MenuItemWidget(
+                          //   title: 'Change Password',
+                          //   iconPath: AppAssets.chevronIcon,
+                          //   onTap: () {
+                          //     showModalBottomSheet(
+                          //       context: context,
+                          //       isScrollControlled: true,
+                          //       backgroundColor: Colors.transparent,
+                          //       builder: (context) => const ChangePasswordBottomSheet(),
+                          //     );
+                          //     print('Change password');
+                          //   },
+                          // ),
+
                           MenuItemWidget(
                             title: 'Change Password',
                             iconPath: AppAssets.chevronIcon,
                             onTap: () {
-                              profileController.changePassword();
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                isDismissible: true,
+                                enableDrag: true,
+                                backgroundColor: Colors.transparent,
+                                builder: (context) => Padding(
+                                  padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context).viewInsets.bottom,
+                                  ),
+                                  child: const ChangePasswordBottomSheet(),
+                                ),
+                              );
+                              print('Change password');
                             },
                           ),
                           Divider(color: AppTheme.dividerColor),
@@ -348,11 +376,11 @@ class ProfileScreen extends StatelessWidget {
                                   title: 'Delete Account',
                                   subtitle: 'This will permanently remove your account from Eventori.',
                                   buttonText: 'Yes, Delete it',
-                                  icon: AppAssets.deleteIcon, // Pass the String path, not Image.asset widget
+                                  icon: AppAssets.deleteIcon,
                                   iconColor: AppTheme.redColor,
                                   buttonColor: AppTheme.redColor,
                                   buttonTextColor: AppTheme.whiteColor,
-                                  isIconData: false, // Important: set to false for image assets
+                                  isIconData: false,
                                   onConfirm: () {
                                     profileController.deleteUser();
                                     print('Delete account');

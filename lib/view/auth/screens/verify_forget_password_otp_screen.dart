@@ -49,8 +49,14 @@ class VerifyForgetPasswordOTPScreenState extends State<VerifyForgetPasswordOTPSc
     setState(() {
       _secondsRemaining = 53;
     });
-    _startTimer();
-    // TODO: Add resend code logic here (e.g., API call)
+
+    if(_secondsRemaining==0){
+      _startTimer();
+
+    }else{
+      print("sdah");
+      authController.resendForgetPasswordOTP();
+    }
     debugPrint("Resend OTP triggered");
   }
 
@@ -119,33 +125,24 @@ class VerifyForgetPasswordOTPScreenState extends State<VerifyForgetPasswordOTPSc
             const SizedBox(height: 16),
             Center(
               child: GestureDetector(
-                onTap: _secondsRemaining == 0 ? _resendCode : null,
-                child: GestureDetector(
-                  onTap: (){
-                    if(_secondsRemaining==0){
-                      authController.resendForgetPasswordOTP();
-                    }else{
-                      print("sdah");
-                    }
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      style: AppTextStyle.f16W400SIColorTextStyle,
-                      children: [
-                        TextSpan(
-                          text: 'Resend code ',
-                          style: AppTextStyle.f16W400SColorTextStyle.copyWith(
-                            color: _secondsRemaining == 0
-                                ? AppTheme.lightCyanColor
-                                : AppTheme.silverColor,
-                          ),
+                onTap: _resendCode,
+                child: RichText(
+                  text: TextSpan(
+                    style: AppTextStyle.f16W400SIColorTextStyle,
+                    children: [
+                      TextSpan(
+                        text: 'Resend code ',
+                        style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                          color: _secondsRemaining == 0
+                              ? AppTheme.lightCyanColor
+                              : AppTheme.silverColor,
                         ),
-                        TextSpan(
-                          text: '$_secondsRemaining seconds',
-                          style: AppTextStyle.f16W400DPColorTextStyle,
-                        ),
-                      ],
-                    ),
+                      ),
+                      TextSpan(
+                        text: '$_secondsRemaining seconds',
+                        style: AppTextStyle.f16W400DPColorTextStyle,
+                      ),
+                    ],
                   ),
                 ),
               ),

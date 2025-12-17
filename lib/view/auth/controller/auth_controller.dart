@@ -324,9 +324,8 @@ class AuthController extends GetxController {
     Map<String, String> body = {
       "email": email,
     };
-    var response='';
 
-    response = await DataApiService.instance
+    var response = await DataApiService.instance
         .post('/forget-password', body)
         .catchError((error) {
           if (error is BadRequestException) {
