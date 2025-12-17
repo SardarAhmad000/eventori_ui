@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,7 @@ import '../../auth/controller/base_controller.dart';
 class ProfileController extends GetxController {
   // Observable variables
   RxString selectedCountry = ''.obs;
-  RxBool allowNotifications = false.obs;
+  // RxBool allowNotifications = false.obs;
 
   // Text editing controllers
   final profileNameController = TextEditingController();
@@ -71,6 +70,43 @@ class ProfileController extends GetxController {
     }
   }
 
+  Future changeNotificationStatus(bool status) async {
+    _baseController.showLoading();
+    Map<String,String> body = {
+      "status":status==true?"True":'False'
+    };
+
+    var response = await DataApiService.instance
+        .post('/set-notification-status', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        print("object...");
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      }
+      else {
+        print("objsaghect...");
+        _baseController.handleError(error);
+      }
+    });
+
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true") {
+
+      // print('Notofication Status Changed');
+
+    }
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
 
   Future deleteUser() async {
     _baseController.showLoading();
@@ -109,9 +145,6 @@ class ProfileController extends GetxController {
     selectedCountry.value = country;
   }
 
-  void toggleNotifications(bool value) {
-    allowNotifications.value = value;
-  }
 
   void updateGender(String? gender) {
     if (gender != null) {

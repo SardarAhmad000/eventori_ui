@@ -19,13 +19,13 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
   ProfileController profileController = Get.find();
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: Column(
         children: [
-          // Header Section (Fixed)
           Stack(
             clipBehavior: Clip.none,
             alignment: Alignment.bottomCenter,
@@ -284,16 +284,16 @@ class ProfileScreen extends StatelessWidget {
                                   'Allow Notifications',
                                   style: AppTextStyle.f14W400SColorTextStyle,
                                 ),
-                                Obx(() => CustomToggleSwitch(
-                                  initialValue: profileController.allowNotifications.value,
+                                    CustomToggleSwitch(
+                                  initialValue: false,
                                   activeColor: AppTheme.lightCyanColor,
                                   inactiveColor: AppTheme.silverColor.withOpacity(0.3),
                                   width: 45,
                                   height: 28,
-                                  onChanged: (value) {
-                                    profileController.toggleNotifications(value);
+                                  onChanged: (value){
+                                    profileController.changeNotificationStatus(value);
                                   },
-                                )),
+                                ),
                               ],
                             ),
                           ),

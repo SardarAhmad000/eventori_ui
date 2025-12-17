@@ -133,22 +133,18 @@ class ChangePasswordBottomSheet extends StatelessWidget {
                     textColor: AppTheme.whiteColor,
                     buttonColor: AppTheme.lightCyanColor,
                     onTap: () {
-                      if (!formKey.currentState!.validate()) {
-                        print("validator called");
-                        return;
+                      if (formKey.currentState!.validate()) {
+                        profileController.changePassword(
+                          oldPasswordController.text,
+                          newPasswordController.text,
+                        );
+                        print('=== Change Password Request ===');
+                        print('Current Password: ${oldPasswordController.text}');
+                        print('New Password: ${newPasswordController.text}');
+                        print('Confirm Password: ${confirmPasswordController.text}');
+                        print('===============================');
                       }
-                      profileController.changePassword(
-                        oldPasswordController.text,
-                        newPasswordController.text,
-                      );
 
-                      print('=== Change Password Request ===');
-                      print('Current Password: ${oldPasswordController.text}');
-                      print('New Password: ${newPasswordController.text}');
-                      print('Confirm Password: ${confirmPasswordController.text}');
-                      print('===============================');
-
-                      Get.back();
                     },
                   ),
                 ],
