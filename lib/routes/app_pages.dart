@@ -10,6 +10,7 @@ import '../view/auth/screens/verify_account_screen.dart';
 import '../view/auth/screens/verify_forget_password_otp_screen.dart';
 import '../view/onboarding/onboarding_screen.dart';
 import '../view/onboarding/selection_screen.dart';
+import '../view/profile/screen/edit_profile_screen.dart';
 import '../view/profile/screen/profile_screen.dart';
 import '../view/roles/customer/Dashboard/screen/add_collaborators_screen.dart';
 import '../view/roles/customer/Dashboard/screen/tasks_dashboard_screen.dart';
@@ -54,6 +55,7 @@ class AppPages {
     GetPage(name: AppRoutes.vendorDetailedScreen, page: () =>  VendorDetailedScreen()),
     GetPage(name: AppRoutes.reportVendorScreen, page: () =>  ReportVendorScreen()),
     GetPage(name: AppRoutes.faviourteVendorsScreen, page: () =>  FaviourteVendorsScreen()),
+    GetPage(name: AppRoutes.editProfileScreen, page: () =>  EditProfileScreen()),
 
   ];
 }

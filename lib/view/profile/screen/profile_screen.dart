@@ -1,6 +1,9 @@
 import 'package:eventori/AppTheme/app_theme.dart';
+import 'package:eventori/app_widgets/custom_image_handler.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
+import 'package:eventori/routes/app_routes.dart';
+import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:eventori/view/profile/widgets/menu_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,13 +17,28 @@ import '../../../app_widgets/custom_toggle.dart';
 import '../controller/profile_controller.dart';
 import '../widgets/change_password_bottem_sheet.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
 
+class _ProfileScreenState extends State<ProfileScreen> {
+  AuthController authController =Get.find();
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   // profileController.profileEmailController.text=authController.userData.value!.email;
+  //   // profileController.phoneNoController.text=authController.userData.value!.phoneNumber;
+  //   // profileController.selectedGender.value =authController.userData.value!.gender;
+  //   // profileController.locationController.text =authController.userData.value!.location;
+  //
+  // }
   ProfileController profileController = Get.find();
+  @override
+  Widget build(BuildContext context) {
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -99,28 +117,29 @@ class ProfileScreen extends StatelessWidget {
                           width: 2,
                         ),
                       ),
-                      child: CircleAvatar(
-                        radius: 60,
-                        backgroundColor: AppTheme.silverColor,
-                        // backgroundImage: AssetImage(
-                        //     AppAssets.uploadImageIcon,
-                        // ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 10,
-                      right: 2,
-                      child: GestureDetector(
-                        onTap: () {
-                          profileController.uploadProfilePicture();
-                        },
-                        child: Icon(
-                          Icons.camera_alt,
-                          color: AppTheme.stormyGrayColor,
-                          size: 24,
+                      child: ClipRRect(
+
+                        borderRadius: BorderRadius.circular(100),
+                        child: CustomImageHandler(
+                          imagePath: authController.userData.value!.image,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
+                    // Positioned(
+                    //   bottom: 10,
+                    //   right: 2,
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       profileController.uploadProfilePicture();
+                    //     },
+                    //     child: Icon(
+                    //       Icons.camera_alt,
+                    //       color: AppTheme.stormyGrayColor,
+                    //       size: 24,
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -129,20 +148,20 @@ class ProfileScreen extends StatelessWidget {
 
           const SizedBox(height: 55),
 
-          // Remove Text (Fixed)
           GestureDetector(
             onTap: () {
-              profileController.removeProfilePicture();
+              Get.toNamed(AppRoutes.editProfileScreen);
+              authController.getUserData();
             },
             child: Text(
-              'Remove',
-              style: AppTextStyle.f12W400RColorTextStyle,
+              'Edit',
+              style: AppTextStyle.f14W400RColorTextStyle.copyWith(color: AppTheme.lightCyanColor),
             ),
           ),
 
           // Name Text (Fixed)
           Text(
-            'Talha Warraich',
+            authController.userData.value!.firstName +' '+authController.userData.value!.lastName,
             style: AppTextStyle.f24W600BColorTextStyle,
           ),
 
@@ -153,116 +172,129 @@ class ProfileScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 16.0, left: 16, right: 16),
                 child: Column(
                   children: [
-                    CustomTextField(
-                      controller: profileController.profileNameController,
-                      hintText: 'First Name',
-                      prefixIcon: Image.asset(
-                        AppAssets.userIcon,
-                        color: AppTheme.silverColor,
-                      ),
-                      // validator: CustomValidator.firstName,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: profileController.profileEmailController,
-                      hintText: 'Email Address',
-                      prefixIcon: Image.asset(
-                        AppAssets.mailIcon,
-                        color: AppTheme.silverColor,
-                      ),
-                      // validator: CustomValidator.email,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: profileController.phoneNoController,
-                      hintText: '+44799999999',
-                      prefixIcon: Image.asset(
-                        AppAssets.phoneIcon,
-                        color: AppTheme.silverColor,
-                      ),
-                      // validator: CustomValidator.phoneNo,
-                    ),
-                    const SizedBox(height: 12),
-                    Obx(() => CustomDropdownField(
-                      prefixIcon: AppAssets.userIcon,
-                      hintText: 'Gender',
-                      value: profileController.selectedGender.value.isEmpty
-                          ? null
-                          : profileController.selectedGender.value,
-                      items: const [
-                        DropdownMenuItem(value: 'Male', child: Text('Male')),
-                        DropdownMenuItem(value: 'Female', child: Text('Female')),
-                        DropdownMenuItem(value: 'Other', child: Text('Other')),
-                      ],
-                      onChanged: (value) {
-                        profileController.updateGender(value);
-                      },
-                    )),
-                    const SizedBox(height: 12),
-                    GestureDetector(
-                      onTap: () {
-                        showCountryPicker(
-                          context: context,
-                          showPhoneCode: false,
-                          onSelect: (Country country) {
-                            profileController.updateCountry(country.name);
-                          },
-                          countryListTheme: CountryListThemeData(
-                            borderRadius: BorderRadius.circular(8),
-                            inputDecoration: InputDecoration(
-                              hintText: 'Location',
-                              hintStyle: AppTextStyle.f14W400SColorTextStyle,
-                              prefixIcon: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Image.asset(
-                                  AppAssets.loactionIcon,
-                                  width: 18,
-                                  height: 18,
-                                  color: AppTheme.silverColor,
-                                ),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide(
-                                  color: AppTheme.textfieldBorderColor,
-                                  width: 2,
-                                ),
-                              ),
-                            ),
-                            searchTextStyle: AppTextStyle.f14W400BColorTextStyle,
-                            textStyle: AppTextStyle.f14W400BColorTextStyle,
-                          ),
-                        );
-                      },
-                      child: Obx(() => Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                        decoration: BoxDecoration(
-                          color: AppTheme.whiteColor,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: AppTheme.textfieldBorderColor,
-                            width: 2,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              profileController.selectedCountry.value.isEmpty
-                                  ? 'Location'
-                                  : profileController.selectedCountry.value,
-                              style: profileController.selectedCountry.value.isEmpty
-                                  ? AppTextStyle.f14W400SColorTextStyle
-                                  : AppTextStyle.f14W400BColorTextStyle,
-                            ),
-                            Icon(
-                              Icons.keyboard_arrow_down,
-                              color: AppTheme.silverColor,
-                            ),
-                          ],
-                        ),
-                      )),
-                    ),
+                    // CustomTextField(
+                    //   controller: profileController.profileNameController,
+                    //   hintText: 'First Name',
+                    //   prefixIcon: Image.asset(
+                    //     AppAssets.userIcon,
+                    //     color: AppTheme.silverColor,
+                    //   ),
+                    //   // validator: CustomValidator.firstName,
+                    // ),
+                    // const SizedBox(height: 12),
+                    // CustomTextField(
+                    //   controller: profileController.profileEmailController,
+                    //   hintText: 'Email Address',
+                    //   prefixIcon: Image.asset(
+                    //     AppAssets.mailIcon,
+                    //     color: AppTheme.silverColor,
+                    //   ),
+                    //   // validator: CustomValidator.email,
+                    // ),
+                    // const SizedBox(height: 12),
+                    // CustomTextField(
+                    //   controller: profileController.phoneNoController,
+                    //   hintText: '+44799999999',
+                    //   prefixIcon: Image.asset(
+                    //     AppAssets.phoneIcon,
+                    //     color: AppTheme.silverColor,
+                    //   ),
+                    //   // validator: CustomValidator.phoneNo,
+                    // ),
+                    // const SizedBox(height: 12),
+                    // Obx(() => CustomDropdownField(
+                    //   prefixIcon: AppAssets.userIcon,
+                    //   hintText: 'Gender',
+                    //   value: profileController.selectedGender.value.isEmpty
+                    //       ? null
+                    //       : profileController.selectedGender.value,
+                    //   items: const [
+                    //     DropdownMenuItem(value: 'Male', child: Text('Male')),
+                    //     DropdownMenuItem(value: 'Female', child: Text('Female')),
+                    //     DropdownMenuItem(value: 'Other', child: Text('Other')),
+                    //   ],
+                    //   onChanged: (value) {
+                    //     profileController.updateGender(value);
+                    //   },
+                    // )),
+                    // const SizedBox(height: 12),
+
+                    // CustomTextField(
+                    //   controller: profileController.locationController,
+                    //   hintText: 'Location',
+                    //   prefixIcon: Image.asset(
+                    //     AppAssets.locationIcon,
+                    //     color: AppTheme.silverColor,
+                    //   ),
+                    //   // validator: CustomValidator.lo,
+                    // ),
+                    // const SizedBox(height: 12),
+
+
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     showCountryPicker(
+                    //       context: context,
+                    //       showPhoneCode: false,
+                    //       onSelect: (Country country) {
+                    //         profileController.updateCountry(country.name);
+                    //       },
+                    //       countryListTheme: CountryListThemeData(
+                    //         borderRadius: BorderRadius.circular(8),
+                    //         inputDecoration: InputDecoration(
+                    //           hintText: 'Location',
+                    //           hintStyle: AppTextStyle.f14W400SColorTextStyle,
+                    //           prefixIcon: Padding(
+                    //             padding: const EdgeInsets.all(10.0),
+                    //             child: Image.asset(
+                    //               AppAssets.loactionIcon,
+                    //               width: 18,
+                    //               height: 18,
+                    //               color: AppTheme.silverColor,
+                    //             ),
+                    //           ),
+                    //           border: OutlineInputBorder(
+                    //             borderRadius: BorderRadius.circular(8),
+                    //             borderSide: BorderSide(
+                    //               color: AppTheme.textfieldBorderColor,
+                    //               width: 2,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //         searchTextStyle: AppTextStyle.f14W400BColorTextStyle,
+                    //         textStyle: AppTextStyle.f14W400BColorTextStyle,
+                    //       ),
+                    //     );
+                    //   },
+                    //   child: Obx(() => Container(
+                    //     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                    //     decoration: BoxDecoration(
+                    //       color: AppTheme.whiteColor,
+                    //       borderRadius: BorderRadius.circular(8),
+                    //       border: Border.all(
+                    //         color: AppTheme.textfieldBorderColor,
+                    //         width: 2,
+                    //       ),
+                    //     ),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //       children: [
+                    //         Text(
+                    //           profileController.selectedCountry.value.isEmpty
+                    //               ? 'Location'
+                    //               : profileController.selectedCountry.value,
+                    //           style: profileController.selectedCountry.value.isEmpty
+                    //               ? AppTextStyle.f14W400SColorTextStyle
+                    //               : AppTextStyle.f14W400BColorTextStyle,
+                    //         ),
+                    //         Icon(
+                    //           Icons.keyboard_arrow_down,
+                    //           color: AppTheme.silverColor,
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   )),
+                    // ),
                     const SizedBox(height: 16),
                     Container(
                       decoration: BoxDecoration(
@@ -287,7 +319,7 @@ class ProfileScreen extends StatelessWidget {
                                     CustomToggleSwitch(
                                   initialValue: false,
                                   activeColor: AppTheme.lightCyanColor,
-                                  inactiveColor: AppTheme.silverColor.withOpacity(0.3),
+                                  inactiveColor: AppTheme.textfieldBorderColor,
                                   width: 45,
                                   height: 28,
                                   onChanged: (value){
@@ -400,34 +432,34 @@ class ProfileScreen extends StatelessWidget {
           ),
 
 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
-            child: Column(
-              children: [
-                CustomButton(
-                  Text: "Edit",
-                  onTap: () {
-                    profileController.editProfile();
-                  },
-                  buttonColor: AppTheme.whiteColor,
-                  textColor: AppTheme.blackColor,
-                  height: 48,
-                  borderColor: AppTheme.lightCyanColor,
-                ),
-                const SizedBox(height: 12),
-                CustomButton(
-                  Text: "Save changes",
-                  onTap: () {
-                    profileController.saveChanges();
-                  },
-                  buttonColor: AppTheme.lightCyanColor,
-                  textColor: AppTheme.whiteColor,
-                  height: 48,
-                  borderColor: AppTheme.lightCyanColor,
-                ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+          //   child: Column(
+          //     children: [
+          //       CustomButton(
+          //         Text: "Edit",
+          //         onTap: () {
+          //           profileController.editProfile();
+          //         },
+          //         buttonColor: AppTheme.whiteColor,
+          //         textColor: AppTheme.blackColor,
+          //         height: 48,
+          //         borderColor: AppTheme.lightCyanColor,
+          //       ),
+          //       const SizedBox(height: 12),
+          //       CustomButton(
+          //         Text: "Save changes",
+          //         onTap: () {
+          //           profileController.saveChanges();
+          //         },
+          //         buttonColor: AppTheme.lightCyanColor,
+          //         textColor: AppTheme.whiteColor,
+          //         height: 48,
+          //         borderColor: AppTheme.lightCyanColor,
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

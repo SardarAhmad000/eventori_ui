@@ -1,3 +1,4 @@
+import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -20,6 +21,7 @@ class EventDashboardScreen extends StatefulWidget {
 }
 
 class _EventDashboardScreenState extends State<EventDashboardScreen> {
+  AuthController authController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +65,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                              child: ClipRRect(
                                borderRadius: BorderRadius.circular(12),
                                child: CustomImageHandler(
-                                 imagePath: AppAssets.homeProfileImage,
+                                 imagePath: authController.userData.value!.image,
                                  width: 40,
                                  height: 40,
                                  // fit: BoxFit.cover,
@@ -77,7 +79,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                              crossAxisAlignment: CrossAxisAlignment.start,
                              mainAxisAlignment: MainAxisAlignment.center,
                              children: [
-                               Text('Hi Noraiz',
+                               Text('Hi '+ authController.userData.value!.firstName,
                                    style: AppTextStyle.f12W400SGColorTextStyle),
                                const SizedBox(height: 2),
                                Text('Every detail, right  at your fingertips',
@@ -93,9 +95,9 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                      mainAxisAlignment: MainAxisAlignment.center,
                      children: [
                        Image.asset(AppAssets.bellIcon, color: AppTheme.charcoalBlueColor, width: 18, height: 18),
-                       SizedBox(width: 1.w),
+                       SizedBox(width: 12),
                        Image.asset(AppAssets.heartIcon, color: AppTheme.charcoalBlueColor, width: 18, height: 18),
-                       SizedBox(width: 1.w),
+                       SizedBox(width: 12),
                        Image.asset(AppAssets.settingsIcon, color: AppTheme.charcoalBlueColor, width: 18, height: 18),
                      ],
                    ),
@@ -168,7 +170,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                    child: Column(
                      crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
-                       Text('Collaborator',style: AppTextStyle.f18W500BColorTextStyle),
+                       Text('Collaborators',style: AppTextStyle.f18W500BColorTextStyle),
                        const SizedBox(height: 12),
                        Row(
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,

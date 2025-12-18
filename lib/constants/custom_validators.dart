@@ -318,7 +318,7 @@ class CustomValidator {
   static String? selectGenderRange(String? value) {
     // Ensure value is not null or empty
     if (value == null || value.isEmpty) {
-      return 'Please select gender';
+      return '       Please select gender';
     }
 
     // Check if the input contains any digits

@@ -15,6 +15,10 @@ class UserModel {
   final String createdAt;
   final String updatedAt;
   final String token;
+  final String phoneNumber;
+  final String gender;
+  final String city;
+  final String country;
 
   UserModel({
     required this.id,
@@ -33,6 +37,10 @@ class UserModel {
     required this.createdAt,
     required this.updatedAt,
     required this.token,
+    required this.phoneNumber,
+    required this.gender,
+    required this.city,
+    required this.country,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -53,6 +61,10 @@ class UserModel {
       createdAt: json["createdAt"],
       updatedAt: json["updatedAt"],
       token: json["token"],
+      phoneNumber: json["phoneNumber"]?? '',
+      gender: json["gender"]?? '',
+      city: json["city"]?? '',
+      country: json["country"]?? '',
     );
   }
 
@@ -74,6 +86,10 @@ class UserModel {
       "createdAt": createdAt,
       "updatedAt": updatedAt,
       "token": token,
+      "phoneNumber": phoneNumber,
+      "gender": gender,
+      "city": city,
+      "country": country,
     };
   }
 }

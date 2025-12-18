@@ -93,7 +93,7 @@ class ChatDetailedScreen extends StatelessWidget {
                             'Are you sure you want to block this vendor? You’ll no longer receive messages or quotes from them.  ',
                             'Your report will help us review any suspicious or inappropriate behaviour.',
                           ],
-                          primaryActionText: 'Yes, Block and Report ',
+                          primaryActionText: 'Yes, Report Vendor',
                           primaryActionIcon: AppAssets.blockIcon,
                           onPrimaryAction: () {
                             print('Vendor blocked');

@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:io';
 import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:dotted_border/dotted_border.dart';
@@ -167,6 +168,7 @@ class CreateEventScreen extends StatelessWidget {
                                           size,
                                           eventcontroller.countryVN,
                                         );
+
                                       },
                                       child: Obx(() => Container(
                                         height: 48,

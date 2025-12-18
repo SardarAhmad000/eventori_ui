@@ -537,7 +537,6 @@ class AuthController extends GetxController {
     }
   }
 
-
   Future updateRole(String role) async {
     _baseController.showLoading();
     Map<String, String> body = {
@@ -574,6 +573,43 @@ class AuthController extends GetxController {
     }
   }
 
+  Future getUserData() async {
+    print(imagePath.value);
+
+    var  response = await DataApiService.instance
+        .get('user/data',)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+
+    update();
+    if (response == null) return;
+    print(response + " responded");
+    print(imagePath);
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+
+    if (result['success'].toString()=="true" && result['message']=="Successful") {
+
+      userData.value=UserModel.fromJson(result['data']);
+      accessToken.value=result['data']['token'];
+      _authPreference.saveUserData(data: jsonEncode(userData.value?.toJson()));
+      _authPreference.saveUserDataToken(token: accessToken.value);
+
+
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
 
   // Method to set profile image
   void setProfileImage(File? path) {

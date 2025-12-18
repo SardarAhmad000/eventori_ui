@@ -17,8 +17,8 @@ class CustomToggleSwitch extends StatefulWidget {
     this.onChanged,
      required this.activeColor,
     required this.inactiveColor,
-    this.thumbColor = Colors.white,
-    this.width = 36,
+     this.thumbColor = const Color(0xFF697586),
+     this.width = 36,
     this.height = 20,
   }) : super(key: key);
 
