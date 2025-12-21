@@ -17,8 +17,9 @@ class UserModel {
   final String token;
   final String phoneNumber;
   final String gender;
-  final String city;
   final String country;
+  final String city;
+
 
   UserModel({
     required this.id,
@@ -39,8 +40,9 @@ class UserModel {
     required this.token,
     required this.phoneNumber,
     required this.gender,
-    required this.city,
     required this.country,
+    required this.city,
+
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -63,8 +65,9 @@ class UserModel {
       token: json["token"],
       phoneNumber: json["phoneNumber"]?? '',
       gender: json["gender"]?? '',
-      city: json["city"]?? '',
       country: json["country"]?? '',
+      city: json["city"]?? '',
+
     );
   }
 
@@ -88,8 +91,8 @@ class UserModel {
       "token": token,
       "phoneNumber": phoneNumber,
       "gender": gender,
-      "city": city,
       "country": country,
+      "city": city,
     };
   }
 }

@@ -24,7 +24,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
     // const HomePage(),
     // Center(child: Text('Search Screen', style: AppTextStyle.f16W400SColorTextStyle)),
     SearchScreen(),
-    const CreateEventScreen(),
+    CreateEventScreen(),
     const ChatScreen(),
     const EventDashboardScreen(),
     // Center(child: Text('Dashboard Screen',style: AppTextStyle.f16W400SColorTextStyle)),

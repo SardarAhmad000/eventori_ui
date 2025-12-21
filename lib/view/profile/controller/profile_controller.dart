@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import '../../../api_services/api_exceptions.dart';
 import '../../../api_services/data_api.dart';
 import '../../../constants/custom_validators.dart';
+import '../../../models/user_model.dart';
 import '../../../services/shared_preferences/shared_preference.dart';
 import '../../../utils/snackbar_util.dart';
 import '../../auth/controller/base_controller.dart';
@@ -112,11 +113,10 @@ class ProfileController extends GetxController {
     print(result['message']);
     print(result['success']);
     if (result['success'].toString()=="true") {
-
       print( 'Profile Updated Api Call');
-      // Get.put(AuthController().getUserData());
-      Get.back();
-
+      await Get.put(AuthController().getUserData());
+      Get.offAllNamed(AppRoutes.navBarScreen);
+      // print(AuthController().userData.value!.image.toString()+"image fro profile");
     }
     else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];

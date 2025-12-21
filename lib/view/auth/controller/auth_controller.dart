@@ -72,7 +72,7 @@ class AuthController extends GetxController {
     var response='';
     if(imagePath.isEmpty){
       response = await DataApiService.instance
-          .post('/signup', body)
+          .post('signup', body)
           .catchError((error) {
         if (error is BadRequestException) {
           var apiError = json.decode(error.message!);
@@ -85,7 +85,7 @@ class AuthController extends GetxController {
       });
     }else{
       response = await DataApiService.instance
-          .multiPartImage('/signup',[imagePath.value],'image', body)
+          .multiPartImage('signup',[imagePath.value],'image', body)
           .catchError((error) {
         if (error is BadRequestException) {
           var apiError = json.decode(error.message!);
@@ -140,7 +140,7 @@ class AuthController extends GetxController {
     var response='';
     if(imagePath.isEmpty){
       response = await DataApiService.instance
-          .post('/signup', body)
+          .post('signup', body)
           .catchError((error) {
         if (error is BadRequestException) {
           var apiError = json.decode(error.message!);
@@ -153,7 +153,7 @@ class AuthController extends GetxController {
       });
     }else{
       response = await DataApiService.instance
-          .multiPartImage('/signup',[imagePath.value],'image', body)
+          .multiPartImage('signup',[imagePath.value],'image', body)
           .catchError((error) {
         if (error is BadRequestException) {
           var apiError = json.decode(error.message!);
@@ -598,6 +598,7 @@ class AuthController extends GetxController {
     if (result['success'].toString()=="true" && result['message']=="Successful") {
 
       userData.value=UserModel.fromJson(result['data']);
+      print(userData.value!.gender+' gender came from...');
       accessToken.value=result['data']['token'];
       _authPreference.saveUserData(data: jsonEncode(userData.value?.toJson()));
       _authPreference.saveUserDataToken(token: accessToken.value);
@@ -610,6 +611,10 @@ class AuthController extends GetxController {
       SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
     }
   }
+
+
+
+
 
   // Method to set profile image
   void setProfileImage(File? path) {

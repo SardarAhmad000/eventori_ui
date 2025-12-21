@@ -8,11 +8,7 @@ import 'package:eventori/view/profile/widgets/menu_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:country_picker/country_picker.dart';
-import '../../../app_widgets/custom_button.dart';
 import '../../../app_widgets/custom_clear_chat_dialog.dart';
-import '../../../app_widgets/custom_dropdown.dart';
-import '../../../app_widgets/custom_textfield.dart';
 import '../../../app_widgets/custom_toggle.dart';
 import '../controller/profile_controller.dart';
 import '../widgets/change_password_bottem_sheet.dart';
@@ -107,22 +103,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 bottom: -50,
                 child: Stack(
                   children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: AppTheme.whiteColor,
-                          width: 2,
+                    Obx(
+                          ()=> Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppTheme.whiteColor,
+                            width: 2,
+                          ),
                         ),
-                      ),
-                      child: ClipRRect(
-
-                        borderRadius: BorderRadius.circular(100),
-                        child: CustomImageHandler(
-                          imagePath: authController.userData.value!.image,
-                          fit: BoxFit.cover,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: CustomImageHandler(
+                            imagePath: authController.userData.value!.image,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     ),
@@ -145,13 +142,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ],
           ),
-
           const SizedBox(height: 55),
-
           GestureDetector(
-            onTap: () {
+            onTap: ()async {
+               await authController.getUserData();
               Get.toNamed(AppRoutes.editProfileScreen);
-              authController.getUserData();
+              // profileController.updateUserProfileData();
+              //
             },
             child: Text(
               'Edit',
@@ -430,8 +427,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
           ),
-
-
           // Padding(
           //   padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
           //   child: Column(

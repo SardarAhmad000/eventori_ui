@@ -22,7 +22,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
 
   AuthController authController = Get.find();
   TextEditingController controller=TextEditingController();
-  int _secondsRemaining = 4;
+  int _secondsRemaining = 59;
   Timer? _timer;
 
   @override
@@ -51,7 +51,7 @@ class _VerifyAccountScreenState extends State<VerifyAccountScreen> {
 
   void _resendCode() {
     setState(() {
-      _secondsRemaining = 53;
+      _secondsRemaining = 59;
     });
 
     if(_secondsRemaining==0){

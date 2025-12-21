@@ -18,7 +18,7 @@ class VerifyForgetPasswordOTPScreen extends StatefulWidget {
 class VerifyForgetPasswordOTPScreenState extends State<VerifyForgetPasswordOTPScreen> {
   AuthController authController = Get.find();
   TextEditingController otpcontroller=TextEditingController();
-  int _secondsRemaining = 4;
+  int _secondsRemaining = 59;
   Timer? _timer;
 
   @override
@@ -47,7 +47,7 @@ class VerifyForgetPasswordOTPScreenState extends State<VerifyForgetPasswordOTPSc
 
   void _resendCode() {
     setState(() {
-      _secondsRemaining = 53;
+      _secondsRemaining = 59;
     });
 
     if(_secondsRemaining==0){
