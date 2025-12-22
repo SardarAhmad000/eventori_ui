@@ -7,7 +7,7 @@ class EventModel {
   final String about;
   final String country;
   final String city;
-  final DateTime eventDate;
+  final String eventDate;
   final bool sendReminderEmail;
   final DateTime createdAt;
   final DateTime updatedAt;
@@ -35,9 +35,9 @@ class EventModel {
       eventName: json['eventName'],
       eventCategory: json['eventCategory'],
       about: json['about'],
-      country: json['country'],
-      city: json['city'],
-      eventDate: DateTime.parse(json['eventDate']),
+      country: json['country']?? '',
+      city: json['city']?? '',
+      eventDate: json['eventDate'] ?? '',
       sendReminderEmail: json['sendReminderEmail'],
       createdAt: DateTime.parse(json['createdAt']),
       updatedAt: DateTime.parse(json['updatedAt']),
@@ -54,7 +54,7 @@ class EventModel {
       'about': about,
       'country': country,
       'city': city,
-      'eventDate': eventDate.toIso8601String(),
+      'eventDate': eventDate,
       'sendReminderEmail': sendReminderEmail,
       'createdAt': createdAt.toIso8601String(),
       'updatedAt': updatedAt.toIso8601String(),

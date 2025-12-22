@@ -15,8 +15,10 @@ class CustomLoader extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircularProgressIndicator(
-              color: AppTheme.lightCyanColor,
+            Center(
+              child: CircularProgressIndicator(
+                color: AppTheme.lightCyanColor,
+              ),
             ),
           ],
         ));

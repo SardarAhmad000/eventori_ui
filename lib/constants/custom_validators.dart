@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class CustomValidator {
 
   // static String? email(String? value) {
@@ -82,12 +84,42 @@ class CustomValidator {
     return null;
   }
 
+
   static String? eventDate(String? value) {
-    if (value == null || value.isEmpty) {
-      return ' Select event date';
+    if (value == null || value.trim().isEmpty) {
+      return 'Select event date';
     }
+
+    try {
+      // Parse UI date format: dd-MM-yy
+      final DateTime selectedDate =
+      DateFormat('dd-MM-yy').parseStrict(value.trim());
+
+      // Normalize dates (remove time)
+      final DateTime today = DateTime.now();
+      final DateTime todayDate =
+      DateTime(today.year, today.month, today.day);
+
+      final DateTime pickedDate =
+      DateTime(selectedDate.year, selectedDate.month, selectedDate.day);
+
+      // Check past date
+      if (pickedDate.isBefore(todayDate)) {
+        return 'Past dates are not allowed';
+      }
+    } catch (e) {
+      return 'Invalid date format';
+    }
+
     return null;
   }
+
+  // static String? eventDate(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return ' Select event date';
+  //   }
+  //   return null;
+  // }
 
   static String? reason(String? value) {
     if (value == null || value.isEmpty) {
@@ -269,13 +301,43 @@ class CustomValidator {
     }
     return null;
   }
-
   static String? firstName(String? value) {
-    if (value!.isEmpty) {
+    if (value == null || value.trim().isEmpty) {
       return 'Please enter your First Name';
     }
+
+    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value.trim())) {
+      return 'First Name should contain only letters';
+    }
+
     return null;
   }
+
+  // static String? firstName(String? value) {
+  //   if (value!.isEmpty) {
+  //     return 'Please enter your First Name';
+  //   }
+  //   return null;
+  // }
+
+  static String? lastName(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Please enter your Last Name';
+    }
+
+    if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value.trim())) {
+      return 'Last Name should contain only letters';
+    }
+
+    return null;
+  }
+
+  // static String? lastName(String? value) {
+  //   if (value!.isEmpty) {
+  //     return 'Please enter your Last Name';
+  //   }
+  //   return null;
+  // }
 
   static String? otp(String? value) {
     if (value!.isEmpty) {
@@ -287,12 +349,7 @@ class CustomValidator {
     return null;
   }
 
-  static String? lastName(String? value) {
-    if (value!.isEmpty) {
-      return 'Please enter your Last Name';
-    }
-    return null;
-  }
+
 
   static String? isEmptyFirstName(String? value) {
     // Check if the value is empty

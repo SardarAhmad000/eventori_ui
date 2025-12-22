@@ -2,7 +2,6 @@ import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/constants/custom_validators.dart';
-import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +9,6 @@ import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_date_textfield.dart';
 import '../../../../../app_widgets/custom_image_picker.dart';
-import '../../../../../app_widgets/custom_success_dialog.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../app_widgets/custom_checkbox.dart';
@@ -34,33 +32,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
 
   final CustomImagePicker _imagePicker = CustomImagePicker();
 
-  void _showSuccessDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return CustomSuccessDialog(
-          title: 'Event created\nsuccessfully',
-          subtitle: 'Event created — let the planning begin.',
-          buttonText: 'Next',
-          iconAsset: AppAssets.vectorIcon,
-          iconBackgroundColor: AppTheme.greenColor,
-          buttonColor: AppTheme.greenColor,
-          buttonTextColor: AppTheme.whiteColor,
-          buttonBorderColor: AppTheme.greenColor,
-          onTap: () async {
-            // await eventcontroller.getEvent();
-            Get.toNamed(AppRoutes.myEventScreeen);
-          },
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: Padding(
@@ -133,14 +106,14 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 fillColor: AppTheme.whiteColor,
                                 contentPadding: const EdgeInsets.all(12),
                                 enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
                                     color: AppTheme.textfieldBorderColor,
                                     width: 1,
                                   ),
                                 ),
                                 focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(
                                     color: AppTheme.lightCyanColor,
                                     width: 1,
@@ -149,8 +122,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               ),
                             ),
                           ),
-
-
                           const SizedBox(height: 12),
                           Text(
                             'What type of event are you planning?',
@@ -223,7 +194,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                           size,
                                           eventcontroller.countryVN,
                                         );
-
                                       },
                                       child: Obx(() => Container(
                                         height: 48,
@@ -380,30 +350,25 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             ],
                           ),
                           const SizedBox(height: 8),
-
                           Obx(() => CustomDateTextField(
                             onTapSuffixIcon: () async {
-                              final selectedDate = await CustomDatePicker.showCustomDatePicker(
+                              final DateTime? pickedDate =
+                              await CustomDatePicker.showCustomDatePicker(
                                 context: context,
                               );
 
-                              if (selectedDate != null) {
-                                // UI Format (22/12/25) - Display in TextField
-                                print('UI Format: $selectedDate');
-                                eventcontroller.eventdateController.text = selectedDate;
+                              if (pickedDate != null) {
+                                // ✅ UI format
+                                final uiDate = DateFormat('dd-MM-yy').format(pickedDate);
+                                eventcontroller.eventdateController.text = uiDate;
+                                print('UI Format: $uiDate');
 
-                                // Convert to full format first (22/12/25 -> 22/12/2025)
-                                final fullDateFormat = DateFormat('dd/MM/yy').parse(selectedDate);
-                                final fullDateString = DateFormat('dd/MM/yyyy').format(fullDateFormat);
-
-                                // Backend Format using your converter
-                                backendDate = convertToIsoFormat(fullDateString);
+                                // ✅ Backend format (ISO UTC)
+                                backendDate = convertDateTimeToIso(pickedDate);
                                 print('Backend Format: $backendDate');
-
-                                // If using GetX reactive variable in controller:
-                                // eventcontroller.eventBackendDate.value = backendDate;
                               }
                             },
+
                             controller: eventcontroller.eventdateController,
                             hintText: "Date",
                             fieldBorderColor: AppTheme.textfieldBorderColor,
@@ -416,27 +381,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               size: 20,
                             ),
                           )),
-                          // Obx(() => CustomDateTextField(
-                          //   onTapSuffixIcon:  () async {
-                          //     final selectedDate = await CustomDatePicker.showCustomDatePicker(
-                          //       context: context,
-                          //     );
-                          //     print(selectedDate);
-                          //     eventcontroller.eventdateController.text = selectedDate!;
-                          //   },
-                          //
-                          //   controller: eventcontroller.eventdateController,
-                          //   hintText: "Date",
-                          //   fieldBorderColor: AppTheme.textfieldBorderColor,
-                          //   validator: eventcontroller.isNotSureDate.value
-                          //       ? null
-                          //       : CustomValidator.eventDate,
-                          //   suffixIcon: Icon(
-                          //     Icons.keyboard_arrow_down,
-                          //     color: AppTheme.slateGreyColor,
-                          //     size: 20,
-                          //   ),
-                          // )),
                           const SizedBox(height: 12),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -461,158 +405,166 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'Upload image',
+                            'Upload image *',
                             style: AppTextStyle.f14W500BColorTextStyle,
                           ),
-                          const SizedBox(height: 12),
-
+                          const SizedBox(height: 8),
                           // Image Upload Section with CustomImagePicker
                           Obx(() {
                             final selectedImage = eventcontroller.selectedEventImage.value;
 
-                            if (selectedImage != null) {
-                              // Show selected image with option to remove
-                              return Container(
-                                height: 200,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: AppTheme.textfieldBorderColor,
-                                  ),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    ClipRRect(
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                if (selectedImage != null)
+                                // Show selected image with option to remove
+                                  Container(
+                                    height: 200,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      child: Image.file(
-                                        selectedImage,
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        fit: BoxFit.cover,
+                                      border: Border.all(
+                                        color: eventcontroller.imageError.value != null
+                                            ? AppTheme.redColor
+                                            : AppTheme.textfieldBorderColor,
+                                        width: eventcontroller.imageError.value != null ? 2 : 1,
                                       ),
                                     ),
-                                    // Remove button
-                                    Positioned(
-                                      top: 8,
-                                      right: 8,
-                                      child: GestureDetector(
-                                        onTap: () {
-                                          eventcontroller.removeEventImage();
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.all(6),
-                                          decoration: BoxDecoration(
-                                            color:AppTheme.blackColor.withOpacity(0.6),
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Icon(
-                                            Icons.close,
-                                            color: AppTheme.whiteColor,
-                                            size: 20,
+                                    child: Stack(
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(8),
+                                          child: Image.file(
+                                            selectedImage,
+                                            width: double.infinity,
+                                            height: double.infinity,
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                    // Change image button
-                                    Positioned(
-                                      bottom: 8,
-                                      right: 8,
-                                      child: GestureDetector(
-                                        onTap: () async {
-                                          final image = await _imagePicker.pickImageFromGallery();
-                                          if (image != null) {
-                                            eventcontroller.setEventImage(image);
-                                          }
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12,
-                                            vertical: 8,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: AppTheme.lightCyanColor,
-                                            borderRadius: BorderRadius.circular(6),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                Icons.edit,
+                                        // Remove button
+                                        Positioned(
+                                          top: 8,
+                                          right: 8,
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              eventcontroller.removeEventImage();
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.all(6),
+                                              decoration: BoxDecoration(
+                                                color: AppTheme.blackColor.withOpacity(0.6),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Icon(
+                                                Icons.close,
                                                 color: AppTheme.whiteColor,
-                                                size: 16,
+                                                size: 20,
                                               ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                'Change',
-                                                style: TextStyle(
-                                                  color: AppTheme.whiteColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
+                                        ),
+                                        // Change image button
+                                        Positioned(
+                                          bottom: 8,
+                                          right: 8,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              final image = await _imagePicker.pickImageFromGallery();
+                                              if (image != null) {
+                                                eventcontroller.setEventImage(image);
+                                              }
+                                            },
+                                            child: Container(
+                                              padding: const EdgeInsets.symmetric(
+                                                horizontal: 12,
+                                                vertical: 8,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: AppTheme.lightCyanColor,
+                                                borderRadius: BorderRadius.circular(6),
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Icon(
+                                                    Icons.edit,
+                                                    color: AppTheme.whiteColor,
+                                                    size: 16,
+                                                  ),
+                                                  const SizedBox(width: 4),
+                                                  Text(
+                                                    'Change',
+                                                    style: TextStyle(
+                                                      color: AppTheme.whiteColor,
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                else
+                                // Show upload area
+                                  DottedBorder(
+                                    color: eventcontroller.imageError.value != null
+                                        ? Colors.red
+                                        : AppTheme.silverColor,
+                                    strokeWidth: eventcontroller.imageError.value != null ? 2 : 1,
+                                    dashPattern: const [5, 3],
+                                    borderType: BorderType.RRect,
+                                    radius: const Radius.circular(8),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        final image = await _imagePicker.pickImageFromGallery();
+                                        if (image != null) {
+                                          eventcontroller.setEventImage(image);
+                                        }
+                                      },
+                                      child: Container(
+                                        height: 72,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              AppAssets.uploadCloudIcon,
+                                              height: 24,
+                                              width: 24,
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Text(
+                                              'Upload',
+                                              style: AppTextStyle.f14W500SColorTextStyle,
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              );
-                            }
-
-                            // Show upload area
-                            return DottedBorder(
-                              color: AppTheme.silverColor,
-                              strokeWidth: 1,
-                              dashPattern: const [5, 3],
-                              borderType: BorderType.RRect,
-                              radius: const Radius.circular(8),
-                              child: InkWell(
-                                onTap: () async {
-                                  final image = await _imagePicker.pickImageFromGallery();
-                                  if (image != null) {
-                                    eventcontroller.setEventImage(image);
-                                  }
-                                },
-                                child: Container(
-                                  height: 72,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        AppAssets.uploadCloudIcon,
-                                        height: 24,
-                                        width: 24,
+                                // Show error message if image is not selected
+                                if (eventcontroller.imageError.value != null)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 4, left: 4),
+                                    child: Text(
+                                      eventcontroller.imageError.value!,
+                                      style: AppTextStyle.f12W400RColorTextStyle.copyWith(
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        'Upload',
-                                        style: AppTextStyle.f14W500SColorTextStyle,
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
+                              ],
                             );
                           }),
                         ],
                       ),
-                      // Container(
-                      //   width: 100.w,
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(12),
-                      //     border: Border.all(
-                      //       color: AppTheme.lightGrayishColor,
-                      //       width: 1,
-                      //     ),
-                      //   ),
-                      //   child:
-                      // ),
                       const SizedBox(height: 24),
                       CustomButton(
                         Text: 'Create Event',
@@ -628,11 +580,11 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             print('Country: ${eventcontroller.selectedCountry.value}');
                             print('City: ${eventcontroller.selectedCity.value}');
                             print('Date: ${eventcontroller.eventdateController.text}');
+                            print('Backend Date: $backendDate');
                             print('Not Sure Location: ${eventcontroller.isNotSureChecked.value}');
                             print('Not Sure Date: ${eventcontroller.isNotSureDate.value}');
                             print('Reminder: ${eventcontroller.isReminderEnabled.value}');
                             print('Event Image: ${eventcontroller.selectedEventImage.value?.path ?? "No image selected"}');
-
 
                             eventcontroller.createEvent(
                                 eventcontroller.eventNameController.text,
@@ -640,14 +592,13 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 eventcontroller.eventAboutController.text,
                                 eventcontroller.selectedCountry.value ?? '',
                                 eventcontroller.selectedCity.value ?? '',
-                                eventcontroller.eventdateController.text,
+                                eventcontroller.isNotSureDate.value?'': backendDate,
                                 eventcontroller.isReminderEnabled.value,
                                 eventcontroller.selectedEventImage.value?.path ?? ''
                             );
 
 
                             // _showSuccessDialog(context);
-
                           } else {
                             print('Form validation failed');
                           }
@@ -663,7 +614,5 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
         ),
       ),
     );
-
   }
-
 }

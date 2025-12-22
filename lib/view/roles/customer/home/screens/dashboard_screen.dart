@@ -63,12 +63,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-
           Obx(
             () => Container(
               width: 100.w,
-              height: 30.h,
+              height: 218,
               decoration: BoxDecoration(
                 color: AppTheme.stormyIndigoColor,
                 borderRadius: const BorderRadius.only(
