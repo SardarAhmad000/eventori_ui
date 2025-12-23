@@ -28,9 +28,11 @@ class CreateEventScreen extends StatefulWidget {
 
 class _CreateEventScreenState extends State<CreateEventScreen> {
   EventController eventcontroller = Get.find();
-  String backendDate = ''; // Store backend format
-
+  String backendDate = '';
+  final GlobalKey countryKey = GlobalKey();
+  final GlobalKey cityKey = GlobalKey();
   final CustomImagePicker _imagePicker = CustomImagePicker();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Form(
-                  key: eventcontroller.formKey,
+                  key: formKey,
                   child: Column(
                     children: [
                       Column(
@@ -181,9 +183,9 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     GestureDetector(
-                                      key: eventcontroller.countryKey,
+                                      key: countryKey,
                                       onTap: () async {
-                                        final renderBox = eventcontroller.countryKey.currentContext!
+                                        final renderBox = countryKey.currentContext!
                                             .findRenderObject() as RenderBox;
                                         final position = renderBox.localToGlobal(Offset.zero);
                                         final size = renderBox.size;
@@ -251,11 +253,11 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Obx(() => GestureDetector(
-                                      key: eventcontroller.cityKey,
+                                      key: cityKey,
                                       onTap: eventcontroller.selectedCountry.value == null
                                           ? null
                                           : () async {
-                                        final renderBox = eventcontroller.cityKey.currentContext!
+                                        final renderBox = cityKey.currentContext!
                                             .findRenderObject() as RenderBox;
                                         final position = renderBox.localToGlobal(Offset.zero);
                                         final size = renderBox.size;
@@ -412,7 +414,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           // Image Upload Section with CustomImagePicker
                           Obx(() {
                             final selectedImage = eventcontroller.selectedEventImage.value;
-
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -572,6 +573,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                         height: 48,
                         buttonColor: AppTheme.lightCyanColor,
                         textColor: AppTheme.whiteColor,
+                        // // In the Create Event button's onTap:
+                        // onTap: () {
+                        //   // Pass formKey to validateForm
+                        //   if (eventcontroller.validateForm(formKey)) {
+                        //     print('Event Name: ${eventcontroller.eventNameController.text}');
+                        //     // ... rest of your code
+                        //   } else {
+                        //     print('Form validation failed');
+                        //   }
+                        // },
                         onTap: () {
                           if (eventcontroller.validateForm()) {
                             print('Event Name: ${eventcontroller.eventNameController.text}');

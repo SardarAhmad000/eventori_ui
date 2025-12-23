@@ -1,9 +1,17 @@
+import 'dart:ffi';
+
+import 'package:eventori/models/event_model.dart';
+import 'package:eventori/routes/app_routes.dart';
+import 'package:eventori/view/roles/customer/event/controller/event_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
+import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../app_widgets/custom_image_handler.dart';
+
 class EventCard extends StatelessWidget {
   final String date;
   final String month;
@@ -12,6 +20,9 @@ class EventCard extends StatelessWidget {
   final String? description;
   final String? eventUrl;
   final bool showDateCard;
+  final EventModel event;
+  final VoidCallback? onEditTap;
+  final VoidCallback? onDeleteTap;
 
   const EventCard({
     Key? key,
@@ -22,10 +33,14 @@ class EventCard extends StatelessWidget {
     this.description,
     this.eventUrl,
     this.showDateCard = true,
+    this.onEditTap,
+    this.onDeleteTap,
+    required this.event, // Require event object
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final menuKey = GlobalKey();
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       height: 270,
@@ -77,40 +92,65 @@ class EventCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 40,
-                    height: 64,
-                    child: showDateCard
-                        ? Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: AppTheme.textfieldBorderColor,
-                              width: 1,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        width: 40,
+                        height: 64,
+                        child: showDateCard
+                            ? Column(
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: AppTheme.textfieldBorderColor,
+                                  width: 1,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  date,
+                                  style: AppTextStyle
+                                      .f20W500WColorTextStyle,
+                                ),
+                              ),
                             ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              date,
-                              style: AppTextStyle.f20W500WColorTextStyle,
+                            const SizedBox(height: 5),
+                            Text(
+                              month,
+                              style:
+                              AppTextStyle.f12W400PWColorTextStyle,
                             ),
+                          ],
+                        )
+                            : const SizedBox.shrink(),
+                      ),
+                      CustomPopupMenu(
+                        menuKey: menuKey,
+                        options: [
+                          PopupMenuOption(
+                            title: 'Edit Event',
+                            onTap: onEditTap ?? () {},
                           ),
+                          PopupMenuOption(
+                            title: 'Delete Event',
+                            onTap: onDeleteTap ?? () {},
+                          ),
+                        ],
+                        child: Icon(
+                          Icons.more_vert,
+                          size: 24,
+                          color: AppTheme.whiteColor,
                         ),
-                        const SizedBox(height: 5),
-                        Text(
-                          month,
-                          style: AppTextStyle.f12W400PWColorTextStyle,
-                        ),
-                      ],
-                    )
-                        : const SizedBox.shrink(),
+                      ),
+                    ],
                   ),
-
                   Text(
                     title,
                     style: AppTextStyle.f20W600PWColorTextStyle,
@@ -118,7 +158,6 @@ class EventCard extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ),
       ),

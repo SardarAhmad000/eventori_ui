@@ -2,6 +2,7 @@ import 'package:eventori/app_widgets/custom_text_placeholder.dart';
 import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/routes/app_routes.dart';
+import 'package:eventori/view/bottom_nav_bar/controller/nav_bar_controller.dart';
 import 'package:eventori/view/roles/customer/event/controller/event_controller.dart';
 import 'package:eventori/view/roles/customer/event/widgets/event_card.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_loader.dart';
 import '../../../../../utils/date_helpers.dart';
 import '../../../../onboarding/widgets/build_header.dart';
+import '../widgets/edit_event_bottom_sheet.dart';
 import '../widgets/event_details_bottom_sheet.dart';
 
 class MyEventsScreen extends StatefulWidget {
@@ -29,6 +31,7 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
   }
 
   EventController eventController = Get.find();
+  NavBarController navBarController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +85,7 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
                         );
                       },
                       child: EventCard(
+                        event: event,
                         showDateCard:event.eventDate.toString()==''? false:true,
                         month: dateData['month']!,
                         date: dateData['day']!,
@@ -89,6 +93,23 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
                         imagePath: event.image,
                         description:event.about,
                         eventUrl: 'www.restaurantlaunchparty.com',
+                        onDeleteTap: (){
+                          eventController.deleteEvent(event.id.toString());
+                        },
+                          onEditTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              builder: (context) => EditEventBottomSheet(
+                                eventData: event,
+                                onEventUpdated: () {
+                                  // Refresh the event list after update
+                                  eventController.getEvent();
+                                },
+                              ),
+                            );
+                          }
                       ),
                     );
                   },

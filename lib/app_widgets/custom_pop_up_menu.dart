@@ -21,14 +21,18 @@ class CustomPopupMenu extends StatelessWidget {
   final GlobalKey menuKey;
   final Widget child;
   final double horizontalOffset;
+  final Color iconColor;
 
-  const CustomPopupMenu({
+
+  CustomPopupMenu({
     Key? key,
     required this.options,
     required this.menuKey,
     required this.child,
+    this.iconColor = Colors.black,
     this.horizontalOffset = -160,
   }) : super(key: key);
+
 
   void _showMenu(BuildContext context) {
     final RenderBox? renderBox =
@@ -63,7 +67,7 @@ class CustomPopupMenu extends StatelessWidget {
                 Icon(
                   option.icon,
                   size: 18,
-                  color: AppTheme.blackColor,
+                  color: iconColor,
                 ),
                 const SizedBox(width: 8),
               ],

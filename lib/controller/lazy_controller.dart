@@ -1,3 +1,4 @@
+import 'package:eventori/view/bottom_nav_bar/controller/nav_bar_controller.dart';
 import 'package:eventori/view/roles/customer/search/controller/vendor_booking_controller.dart';
 import 'package:get/get.dart';
 import '../view/auth/controller/auth_controller.dart';
@@ -24,6 +25,7 @@ class LazyController extends Bindings{
     Get.put(ProfileController());
     Get.put(HomeController());
     Get.put(VendorBookingController());
+    Get.put(NavBarController());
     // Get.put(SearchController());
 
   }

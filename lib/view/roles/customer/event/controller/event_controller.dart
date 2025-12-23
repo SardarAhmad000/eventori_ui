@@ -20,7 +20,7 @@ class EventController extends GetxController {
   var selectedPaymentMethod = 'paypal'.obs;
 
   // Form key and controllers
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final TextEditingController eventNameController = TextEditingController();
   final TextEditingController eventAboutController = TextEditingController();
   final TextEditingController eventdateController = TextEditingController();
@@ -40,16 +40,13 @@ class EventController extends GetxController {
   final ValueNotifier<CountryModel> countryVN = ValueNotifier(CountryModel());
   final ValueNotifier<CityModel> cityVN = ValueNotifier(CityModel());
 
-  // Global keys
-  final GlobalKey countryKey = GlobalKey();
-  final GlobalKey cityKey = GlobalKey();
-
   // Validation error messages
   var countryError = Rxn<String>();
   var cityError = Rxn<String>();
   var imageError = Rxn<String>(); // New: Image validation error
 
   // Event categories list
+
   final List<String> eventCategories = [
     'Conference',
     'Workshop',
@@ -62,12 +59,10 @@ class EventController extends GetxController {
     'Other',
   ];
 
-
   RxString accessToken = "".obs;
   RxBool isLoading=false.obs;
   final BaseController _baseController = BaseController.instance;
   RxList<EventModel> eventList=<EventModel>[].obs;
-
 
   Future createEvent(String eventName, String eventCategory, String about, String country, String city, String eventDate, bool sendReminderEmail, String image) async {
     _baseController.showLoading();
@@ -105,26 +100,26 @@ class EventController extends GetxController {
     print(result['message']);
     print(result['success']);
     if (result['success'].toString()=="true") {
-        showDialog(
-          context: Get.context!,
-          barrierDismissible: false,
-          builder: (BuildContext context) {
-            return CustomSuccessDialog(
-              title: 'Event created\nsuccessfully',
-              subtitle: 'Event created — let the planning begin.',
-              buttonText: 'Next',
-              iconAsset: AppAssets.vectorIcon,
-              iconBackgroundColor: AppTheme.greenColor,
-              buttonColor: AppTheme.greenColor,
-              buttonTextColor: AppTheme.whiteColor,
-              buttonBorderColor: AppTheme.greenColor,
-              onTap: () async {
-                Get.back();
-                Get.offAllNamed(AppRoutes.myEventScreeen);
-              },
-            );
-          },
-        );
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return CustomSuccessDialog(
+            title: 'Event created\nsuccessfully',
+            subtitle: 'Event created — let the planning begin.',
+            buttonText: 'Next',
+            iconAsset: AppAssets.vectorIcon,
+            iconBackgroundColor: AppTheme.greenColor,
+            buttonColor: AppTheme.greenColor,
+            buttonTextColor: AppTheme.whiteColor,
+            buttonBorderColor: AppTheme.greenColor,
+            onTap: () async {
+              Get.back();
+              Get.offAllNamed(AppRoutes.myEventScreeen);
+            },
+          );
+        },
+      );
       print("Event Created Successfully Api Called");
 
     }
@@ -166,7 +161,36 @@ class EventController extends GetxController {
     }
   }
 
+  Future deleteEvent(String id) async {
+    isLoading.value= true;
+    var response = await DataApiService.instance
+        .delete('/event/$id')
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        print("object...");
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      }
+      else {
+        print("objsaghect...");
+        _baseController.handleError(error);
+      }
+    });
 
+    update();
+    isLoading.value= false;
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true") {
+      getEvent();
+    } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
 
   @override
   void onInit() {
@@ -230,6 +254,8 @@ class EventController extends GetxController {
     }
   }
 
+
+
   // Method to remove event image
   void removeEventImage() {
     selectedEventImage.value = null;
@@ -238,10 +264,10 @@ class EventController extends GetxController {
   bool validateForm() {
     bool isValid = true;
 
-    // Validate form fields
-    if (!formKey.currentState!.validate()) {
-      isValid = false;
-    }
+    // // Validate form fields
+    // if (!formKey.currentState!.validate()) {
+    //   isValid = false;
+    // }
 
     // Validate country if "Not sure" is not checked
     if (!isNotSureChecked.value) {
@@ -342,204 +368,3 @@ class EventController extends GetxController {
     super.onClose();
   }
 }
-
-// import 'dart:convert';
-// import 'dart:io';
-// import 'package:country_picker_bkb/model/country_model.dart';
-// import 'package:eventori/models/event_model.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import '../../../../../api_services/api_exceptions.dart';
-// import '../../../../../api_services/data_api.dart';
-// import '../../../../../models/user_model.dart';
-// import '../../../../../routes/app_routes.dart';
-// import '../../../../../services/shared_preferences/shared_preference.dart';
-// import '../../../../../utils/snackbar_util.dart';
-// import '../../../../auth/controller/auth_controller.dart';
-// import '../../../../auth/controller/base_controller.dart';
-//
-// class EventController extends GetxController {
-//   // Existing properties
-//   var selectedPromotionPlan = '7day'.obs;
-//   var selectedPaymentMethod = 'paypal'.obs;
-//
-//   // Form key and controllers
-//   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-//   final TextEditingController eventNameController = TextEditingController();
-//   final TextEditingController eventAboutController = TextEditingController();
-//   final TextEditingController eventdateController = TextEditingController();
-//
-//   // Observable properties
-//   var selectedCategory = Rxn<String>();
-//   var selectedCountry = Rxn<String>();
-//   var selectedCity = Rxn<String>();
-//   var isNotSureChecked = false.obs;
-//   var isNotSureDate = false.obs;
-//   var isReminderEnabled = false.obs;
-//
-//   // Image selection property
-//   final Rx<File?> selectedEventImage = Rx<File?>(null);
-//
-//   // ValueNotifiers for country and city
-//   final ValueNotifier<CountryModel> countryVN = ValueNotifier(CountryModel());
-//   final ValueNotifier<CityModel> cityVN = ValueNotifier(CityModel());
-//
-//   // Global keys
-//   final GlobalKey countryKey = GlobalKey();
-//   final GlobalKey cityKey = GlobalKey();
-//
-//   // Validation error messages
-//   var countryError = Rxn<String>();
-//   var cityError = Rxn<String>();
-//
-//   // Event categories list
-//   final List<String> eventCategories = [
-//     'Conference',
-//     'Workshop',
-//     'Seminar',
-//     'Meeting',
-//     'Concert',
-//     'Exhibition',
-//     'Party',
-//     'Sports',
-//     'Other',
-//   ];
-//
-//
-//
-//   @override
-//   void onInit() {
-//     super.onInit();
-//
-//     // Add listeners
-//     countryVN.addListener(() {
-//       selectedCountry.value = countryVN.value.name;
-//       countryError.value = null;
-//       // Reset city when country changes
-//       selectedCity.value = null;
-//       cityVN.value = CityModel();
-//     });
-//
-//     cityVN.addListener(() {
-//       selectedCity.value = cityVN.value.name;
-//       cityError.value = null;
-//     });
-//   }
-//
-//   // Methods
-//   void selectPromotionPlan(String plan) {
-//     selectedPromotionPlan.value = plan;
-//   }
-//
-//   void selectPaymentMethod(String method) {
-//     selectedPaymentMethod.value = method;
-//   }
-//
-//   void updateCategory(String? category) {
-//     selectedCategory.value = category;
-//   }
-//
-//   void toggleNotSureLocation(bool value) {
-//     isNotSureChecked.value = value;
-//     if (value) {
-//       countryError.value = null;
-//       cityError.value = null;
-//     }
-//   }
-//
-//   void toggleNotSureDate(bool value) {
-//     isNotSureDate.value = value;
-//   }
-//
-//   void toggleReminder(bool value) {
-//     isReminderEnabled.value = value;
-//     print('Toggle changed: $value');
-//   }
-//
-//   // Method to set event image
-//   void setEventImage(File? image) {
-//     selectedEventImage.value = image;
-//   }
-//
-//   // Method to remove event image
-//   void removeEventImage() {
-//     selectedEventImage.value = null;
-//   }
-//
-//   bool validateForm() {
-//     bool isValid = true;
-//
-//     // Validate form fields
-//     if (!formKey.currentState!.validate()) {
-//       isValid = false;
-//     }
-//
-//     // Validate country if "Not sure" is not checked
-//     if (!isNotSureChecked.value) {
-//       final countryValidation = _validateCountry(selectedCountry.value);
-//       if (countryValidation != null) {
-//         countryError.value = countryValidation;
-//         isValid = false;
-//       }
-//
-//       // Validate city if "Not sure" is not checked
-//       final cityValidation = _validateCity(selectedCity.value);
-//       if (cityValidation != null) {
-//         cityError.value = cityValidation;
-//         isValid = false;
-//       }
-//     }
-//
-//     // Validate date if "Not sure" is not checked
-//     if (!isNotSureDate.value && eventdateController.text.isEmpty) {
-//       isValid = false;
-//     }
-//
-//     return isValid;
-//   }
-//
-//   String? _validateCountry(String? country) {
-//     if (country == null || country.isEmpty) {
-//       return 'Please select a country';
-//     }
-//     return null;
-//   }
-//
-//   String? _validateCity(String? city) {
-//     if (city == null || city.isEmpty) {
-//       return 'Please select a city';
-//     }
-//     return null;
-//   }
-//
-//   void handlePayment() {
-//     print('Selected Plan: ${selectedPromotionPlan.value}');
-//     print('Selected Payment Method: ${selectedPaymentMethod.value}');
-//   }
-//
-//   // Method to reset form
-//   void resetForm() {
-//     eventNameController.clear();
-//     eventAboutController.clear();
-//     eventdateController.clear();
-//     selectedCategory.value = null;
-//     selectedCountry.value = null;
-//     selectedCity.value = null;
-//     isNotSureChecked.value = false;
-//     isNotSureDate.value = false;
-//     isReminderEnabled.value = false;
-//     selectedEventImage.value = null;
-//     countryError.value = null;
-//     cityError.value = null;
-//   }
-//
-//   @override
-//   void onClose() {
-//     eventNameController.dispose();
-//     eventAboutController.dispose();
-//     eventdateController.dispose();
-//     countryVN.dispose();
-//     cityVN.dispose();
-//     super.onClose();
-//   }
-// }

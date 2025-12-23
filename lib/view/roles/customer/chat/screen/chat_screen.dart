@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
-import '../../../../../app_widgets/custom_clear_chat_dialog.dart';
 import '../controller/chat_controller.dart';
 import '../widgets/chat_item.dart';
 import '../widgets/chat_tab_bar.dart';
