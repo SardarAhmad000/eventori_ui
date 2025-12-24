@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:country_picker_bkb/country_picker_bkb.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -14,11 +13,11 @@ import '../../../../../app_widgets/custom_dropdown.dart';
 import '../../../../../app_widgets/custom_image_picker.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../app_widgets/custom_toggle.dart';
-import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../constants/custom_validators.dart';
 import '../../../../../controller/date_controller.dart';
 import '../../../../../models/event_model.dart';
+import '../../../../../utils/date_helpers.dart';
 import '../controller/event_controller.dart';
 
 class EditEventBottomSheet extends StatefulWidget {
@@ -51,22 +50,39 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_){
-      eventController.selectedEventImage.value=null;
-      eventEditNameController.text=widget.eventData.eventName;
-      eventEditAboutController.text=widget.eventData.about;
-      eventEditdateController.text=widget.eventData.eventDate;
-      eventController.selectedCategory.value=widget.eventData.eventCategory;
-      eventController.selectedCountry.value=widget.eventData.country;
-      eventController.selectedCity.value=widget.eventData.city;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Reset image selection
+      eventController.selectedEventImage.value = null;
+
+      // Set basic fields
+      eventEditNameController.text = widget.eventData.eventName;
+      eventEditAboutController.text = widget.eventData.about;
+      eventController.selectedCategory.value = widget.eventData.eventCategory;
+      eventController.isReminderEnabled.value = widget.eventData.sendReminderEmail;
+
+      // Handle Country and City
+      if (widget.eventData.country == null || widget.eventData.country.isEmpty) {
+        eventController.isNotSureChecked.value = true;
+        eventController.selectedCountry.value = null;
+        eventController.selectedCity.value = null;
+      } else {
+        eventController.isNotSureChecked.value = false;
+        eventController.selectedCountry.value = widget.eventData.country;
+        eventController.selectedCity.value = widget.eventData.city;
+      }
+
+      // Handle Date
+      if (widget.eventData.eventDate == null || widget.eventData.eventDate.isEmpty) {
+        eventController.isNotSureDate.value = true;
+        eventEditdateController.clear();
+        backendDate = '';
+      } else {
+        eventController.isNotSureDate.value = false;
+        eventEditdateController.text = formatIsoToDDMMYY(widget.eventData.eventDate);
+        backendDate = widget.eventData.eventDate;
+      }
     });
-
-    // eventController.selectedEventImage.value=widget.eventData.image;
-
-    // print(object)
-    // eventController.selectedEventImage.value = widget.eventData.image!;
-
-
   }
 
   @override
@@ -103,7 +119,7 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                 Spacer(),
                 IconButton(
                   onPressed: () {
-                    eventController.selectedEventImage.value=null;
+                    eventController.selectedEventImage.value = null;
                     Get.back();
                   },
                   icon: Icon(Icons.close, color: AppTheme.blackColor),
@@ -218,6 +234,9 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                                   onChanged: (value) {
                                     eventController.isNotSureChecked.value = value;
                                     if (value) {
+                                      // Clear country and city when "Not sure" is checked
+                                      eventController.selectedCountry.value = null;
+                                      eventController.selectedCity.value = null;
                                       eventController.countryError.value = null;
                                       eventController.cityError.value = null;
                                     }
@@ -229,7 +248,7 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                         ],
                       ),
                       const SizedBox(height: 12),
-                      Row(
+                      Obx(() => Row(
                         children: [
                           Expanded(
                             child: Column(
@@ -237,9 +256,10 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                               children: [
                                 GestureDetector(
                                   key: countryKey,
-                                  onTap: () async {
-                                    final renderBox = countryKey.currentContext!
-                                        .findRenderObject() as RenderBox;
+                                  onTap: eventController.isNotSureChecked.value
+                                      ? null
+                                      : () async {
+                                    final renderBox = countryKey.currentContext!.findRenderObject() as RenderBox;
                                     final position = renderBox.localToGlobal(Offset.zero);
                                     final size = renderBox.size;
                                     await loadCountryData();
@@ -250,10 +270,12 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                                       eventController.countryVN,
                                     );
                                   },
-                                  child: Obx(() => Container(
+                                  child: Container(
                                     height: 48,
                                     decoration: BoxDecoration(
-                                      color: AppTheme.whiteColor,
+                                      color: eventController.isNotSureChecked.value
+                                          ? AppTheme.textfieldBorderColor.withOpacity(0.3)
+                                          : AppTheme.whiteColor,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
                                         color: eventController.countryError.value != null
@@ -277,26 +299,19 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        Icon(Icons.keyboard_arrow_down,
-                                            color: AppTheme.slateGreyColor, size: 20),
+                                        Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 20),
                                       ],
                                     ),
-                                  )),
+                                  ),
                                 ),
-                                Obx(() {
-                                  if (eventController.countryError.value != null &&
-                                      !eventController.isNotSureChecked.value) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(top: 4, left: 4),
-                                      child: Text(
-                                        eventController.countryError.value!,
-                                        style: AppTextStyle.f12W400RColorTextStyle
-                                            .copyWith(fontWeight: FontWeight.bold),
-                                      ),
-                                    );
-                                  }
-                                  return const SizedBox.shrink();
-                                }),
+                                if (eventController.countryError.value != null && !eventController.isNotSureChecked.value)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 4, left: 4),
+                                    child: Text(
+                                      eventController.countryError.value!,
+                                      style: AppTextStyle.f12W400RColorTextStyle.copyWith(fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                               ],
                             ),
                           ),
@@ -305,13 +320,12 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Obx(() => GestureDetector(
+                                GestureDetector(
                                   key: cityKey,
-                                  onTap: eventController.selectedCountry.value == null
+                                  onTap: eventController.isNotSureChecked.value || eventController.selectedCountry.value == null
                                       ? null
                                       : () async {
-                                    final renderBox = cityKey.currentContext!
-                                        .findRenderObject() as RenderBox;
+                                    final renderBox = cityKey.currentContext!.findRenderObject() as RenderBox;
                                     final position = renderBox.localToGlobal(Offset.zero);
                                     final size = renderBox.size;
                                     await loadCityData(country: eventController.countryVN);
@@ -326,7 +340,9 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                                   child: Container(
                                     height: 48,
                                     decoration: BoxDecoration(
-                                      color: AppTheme.whiteColor,
+                                      color: eventController.isNotSureChecked.value
+                                          ? AppTheme.textfieldBorderColor.withOpacity(0.3)
+                                          : AppTheme.whiteColor,
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
                                         color: eventController.cityError.value != null
@@ -351,31 +367,24 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
-                                        Icon(Icons.keyboard_arrow_down,
-                                            color: AppTheme.slateGreyColor, size: 20),
+                                        Icon(Icons.keyboard_arrow_down, color: AppTheme.slateGreyColor, size: 20),
                                       ],
                                     ),
                                   ),
-                                )),
-                                Obx(() {
-                                  if (eventController.cityError.value != null &&
-                                      !eventController.isNotSureChecked.value) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(top: 4, left: 4),
-                                      child: Text(
-                                        eventController.cityError.value!,
-                                        style: AppTextStyle.f12W400RColorTextStyle
-                                            .copyWith(fontWeight: FontWeight.bold),
-                                      ),
-                                    );
-                                  }
-                                  return const SizedBox.shrink();
-                                }),
+                                ),
+                                if (eventController.cityError.value != null && !eventController.isNotSureChecked.value)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 4, left: 4),
+                                    child: Text(
+                                      eventController.cityError.value!,
+                                      style: AppTextStyle.f12W400RColorTextStyle.copyWith(fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
                               ],
                             ),
                           ),
                         ],
-                      ),
+                      )),
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -398,7 +407,9 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                                   onChanged: (value) {
                                     eventController.isNotSureDate.value = value;
                                     if (value) {
+                                      // Clear date when "Not sure" is checked
                                       eventEditdateController.clear();
+                                      backendDate = '';
                                     }
                                   },
                                 )),
@@ -443,16 +454,18 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                               style: AppTextStyle.f14W500BColorTextStyle,
                             ),
                           ),
-                          Obx(() => CustomToggleSwitch(
-                            initialValue: eventController.isReminderEnabled.value,
-                            onChanged: (value) {
-                              eventController.isReminderEnabled.value = value;
-                            },
-                            activeColor: AppTheme.blueColor,
-                            inactiveColor: AppTheme.textfieldBorderColor,
-                            width: 36,
-                            height: 20,
-                          )),
+                          Obx(
+                                () => CustomToggleSwitch(
+                              initialValue: eventController.isReminderEnabled.value,
+                              onChanged: (value) {
+                                eventController.isReminderEnabled.value = value;
+                              },
+                              activeColor: AppTheme.blueColor,
+                              inactiveColor: AppTheme.textfieldBorderColor,
+                              width: 36,
+                              height: 20,
+                            ),
+                          ),
                         ],
                       ),
                       const SizedBox(height: 12),
@@ -466,80 +479,81 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
-                            // Show selected image with option to remove
-                              Container(
-                                height: 200,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(
-                                    color: eventController.imageError.value != null
-                                        ? AppTheme.redColor
-                                        : AppTheme.textfieldBorderColor,
-                                    width: eventController.imageError.value != null ? 2 : 1,
-                                  ),
+                            Container(
+                              height: 200,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: eventController.imageError.value != null ? AppTheme.redColor : AppTheme.textfieldBorderColor,
+                                  width: eventController.imageError.value != null ? 2 : 1,
                                 ),
-                                child: Stack(
-                                  children: [
-
-                                    selectedImage!=null?ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.file(
-                                        selectedImage,
-                                        width: double.infinity,
-                                        height: double.infinity,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ):
-                                    ClipRRect(
-                                        borderRadius: BorderRadius.circular(8),
-                                        child: CachedNetworkImage(imageUrl: widget.eventData.image, width: double.infinity,fit: BoxFit.cover,)),
-                                    Positioned(
-                                      bottom: 8,
-                                      right: 8,
-                                      child: GestureDetector(
-                                        onTap: () async {
-                                          final image = await _imagePicker.pickImageFromGallery();
-                                          if (image != null) {
-                                            eventController.setEventImage(image);
-                                          }
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12,
-                                            vertical: 8,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: AppTheme.lightCyanColor,
-                                            borderRadius: BorderRadius.circular(6),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                Icons.edit,
+                              ),
+                              child: Stack(
+                                children: [
+                                  selectedImage != null
+                                      ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.file(
+                                      selectedImage,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                      : ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: CachedNetworkImage(
+                                      imageUrl: widget.eventData.image,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: 8,
+                                    right: 8,
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        final image = await _imagePicker.pickImageFromGallery();
+                                        if (image != null) {
+                                          eventController.setEventImage(image);
+                                        }
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 8,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: AppTheme.lightCyanColor,
+                                          borderRadius: BorderRadius.circular(6),
+                                        ),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(
+                                              Icons.edit,
+                                              color: AppTheme.whiteColor,
+                                              size: 16,
+                                            ),
+                                            const SizedBox(width: 4),
+                                            Text(
+                                              'Change',
+                                              style: TextStyle(
                                                 color: AppTheme.whiteColor,
-                                                size: 16,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
                                               ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                'Change',
-                                                style: TextStyle(
-                                                  color: AppTheme.whiteColor,
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            // Show error message if image is not selected
+                            ),
                             if (eventController.imageError.value != null)
                               Padding(
                                 padding: const EdgeInsets.only(top: 4, left: 4),
@@ -579,14 +593,14 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
               buttonColor: AppTheme.lightCyanColor,
               textColor: AppTheme.whiteColor,
               onTap: () {
-                if (eventController.validateForm()) {
+                if (eventController.validateEditForm(_formKey, eventEditdateController, widget.eventData.image)) {
                   print('=== Event Updated Successfully ===');
                   print('Event ID: ${widget.eventData.id}');
                   print('Event Name: ${eventEditNameController.text}');
                   print('About Event: ${eventEditAboutController.text}');
                   print('Category: ${eventController.selectedCategory.value}');
-                  print('Country: ${eventController.selectedCountry.value ?? "Not specified"}');
-                  print('City: ${eventController.selectedCity.value ?? "Not specified"}');
+                  print('Country: ${eventController.selectedCountry.value ?? ""}');
+                  print('City: ${eventController.selectedCity.value ?? ""}');
                   print('Date: ${eventEditdateController.text}');
                   print('Backend Date: $backendDate');
                   print('Not Sure Location: ${eventController.isNotSureChecked.value}');
@@ -595,21 +609,20 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                   print('New Image Selected: ${eventController.selectedEventImage.value != null}');
                   print('====================================');
 
-                  // TODO: Call update API here
-                  // eventController.updateEvent(
-                  //   widget.eventData.id!,
-                  //   eventNameController.text,
-                  //   selectedCategory.value ?? '',
-                  //   eventAboutController.text,
-                  //   selectedCountry.value ?? '',
-                  //   selectedCity.value ?? '',
-                  //   isNotSureDate.value ? '' : backendDate,
-                  //   isReminderEnabled.value,
-                  //   selectedEventImage.value?.path ?? '',
-                  // );
+                  // Call update API
+                  eventController.updateEvent(
+                      eventEditNameController.text,
+                      eventController.selectedCategory.value ?? '',
+                      eventEditAboutController.text,
+                      eventController.selectedCountry.value ?? '',
+                      eventController.selectedCity.value ?? '',
+                      eventController.isNotSureDate.value? '': backendDate,
+                      eventController.isReminderEnabled.value.toString(),
+                      widget.eventData.id.toString()
+                  );
 
-                  widget.onEventUpdated?.call();
-                  // Navigator.pop(context);
+                  // // widget.onEventUpdated?.call();
+                  // Get.back();
                 } else {
                   print('=== Form Validation Failed ===');
                 }
@@ -620,14 +633,4 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
       ),
     );
   }
-
-  // @override
-  // void dispose() {
-  //   eventNameController.dispose();
-  //   eventAboutController.dispose();
-  //   eventDateController.dispose();
-  //   countryVN.dispose();
-  //   cityVN.dispose();
-  //   super.dispose();
-  // }
 }

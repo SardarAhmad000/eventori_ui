@@ -10,7 +10,6 @@ import '../../../../../api_services/data_api.dart';
 import '../../../../../app_widgets/custom_success_dialog.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../routes/app_routes.dart';
-import '../../../../../services/shared_preferences/shared_preference.dart';
 import '../../../../../utils/snackbar_util.dart';
 import '../../../../auth/controller/base_controller.dart';
 
@@ -20,7 +19,6 @@ class EventController extends GetxController {
   var selectedPaymentMethod = 'paypal'.obs;
 
   // Form key and controllers
-
   final TextEditingController eventNameController = TextEditingController();
   final TextEditingController eventAboutController = TextEditingController();
   final TextEditingController eventdateController = TextEditingController();
@@ -46,7 +44,6 @@ class EventController extends GetxController {
   var imageError = Rxn<String>(); // New: Image validation error
 
   // Event categories list
-
   final List<String> eventCategories = [
     'Conference',
     'Workshop',
@@ -155,6 +152,69 @@ class EventController extends GetxController {
 
     }
 
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
+  Future updateEvent(String eventName, String eventCategory, String about, String country, String city, String eventDate, String sendReminderEmail,String id ) async {
+    _baseController.showLoading();
+    Map<String,String> body = {
+      "eventName":eventName,
+      "eventCategory":eventCategory,
+      "about":about,
+      "country":country,
+      "city":city,
+      "eventDate":eventDate,
+      "sendReminderEmail":sendReminderEmail,
+    };
+    var response;
+    if(selectedEventImage.value!=null){
+      response= await DataApiService.instance
+          .multiPartImagePut('/event/$id',[selectedEventImage.value!.path],'image', body)
+          .catchError((error) {
+        if (error is BadRequestException) {
+          var apiError = json.decode(error.message!);
+          print("object...");
+          SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+        }
+        else {
+          print("objsaghect...");
+          _baseController.handleError(error);
+        }
+      });
+    }else{
+      response= await DataApiService.instance
+          .put('/event/$id', body)
+          .catchError((error) {
+        if (error is BadRequestException) {
+          var apiError = json.decode(error.message!);
+          print("object...");
+          SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+        }
+        else {
+          print("objsaghect...");
+          _baseController.handleError(error);
+        }
+      });
+    }
+
+
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true") {
+
+      print("Event Updated Successfully Api Called");
+      Get.back();
+      getEvent();
+
+    }
     else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];
       SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
@@ -295,6 +355,56 @@ class EventController extends GetxController {
     if (imageValidation != null) {
       imageError.value = imageValidation;
       isValid = false;
+    }
+
+    return isValid;
+  }
+
+  bool validateEditForm(GlobalKey<FormState> formKey, TextEditingController eventEditdateController, String? existingImage) {
+    bool isValid = true;
+
+    // Validate form fields (name, about, category)
+    if (!formKey.currentState!.validate()) {
+      isValid = false;
+    }
+
+    // Validate country if "Not sure" is not checked
+    if (!isNotSureChecked.value) {
+      final countryValidation = _validateCountry(selectedCountry.value);
+      if (countryValidation != null) {
+        countryError.value = countryValidation;
+        isValid = false;
+      } else {
+        countryError.value = null;
+      }
+
+      // Validate city if "Not sure" is not checked
+      final cityValidation = _validateCity(selectedCity.value);
+      if (cityValidation != null) {
+        cityError.value = cityValidation;
+        isValid = false;
+      } else {
+        cityError.value = null;
+      }
+    } else {
+      // Clear errors if "Not sure" is checked
+      countryError.value = null;
+      cityError.value = null;
+    }
+
+    // Validate date only if "Not sure" is not checked
+    if (!isNotSureDate.value && eventEditdateController.text.isEmpty) {
+      isValid = false;
+    }
+
+    // For edit screen: Image validation is optional
+    // If user hasn't selected a new image, use existing image
+    // Only validate if both selectedEventImage and existing image are null
+    if (selectedEventImage.value == null && (existingImage == null || existingImage.isEmpty)) {
+      imageError.value = 'Please select an image';
+      isValid = false;
+    } else {
+      imageError.value = null;
     }
 
     return isValid;
