@@ -8,10 +8,13 @@ class CustomDatePicker {
     DateTime? firstDate,
     DateTime? lastDate,
   }) async {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+
     return await showDatePicker(
       context: context,
-      initialDate: initialDate ?? DateTime.now(),
-      firstDate: firstDate ?? DateTime(1900),
+      initialDate: initialDate ?? now,
+      firstDate: today, // ✅ This line makes past dates blurred/low opacity
       lastDate: lastDate ?? DateTime(2100),
       builder: (context, child) {
         return Theme(
@@ -27,5 +30,4 @@ class CustomDatePicker {
       },
     );
   }
-
 }

@@ -354,8 +354,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           const SizedBox(height: 8),
                           Obx(() => CustomDateTextField(
                             onTapSuffixIcon: () async {
-                              final DateTime? pickedDate =
-                              await CustomDatePicker.showCustomDatePicker(
+                              final DateTime? pickedDate = await CustomDatePicker.showCustomDatePicker(
                                 context: context,
                               );
 
@@ -370,7 +369,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 print('Backend Format: $backendDate');
                               }
                             },
-
                             controller: eventcontroller.eventdateController,
                             hintText: "Date",
                             fieldBorderColor: AppTheme.textfieldBorderColor,
