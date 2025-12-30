@@ -49,6 +49,7 @@ class AppAssets{
   static String vendorBookedIcon= 'assets/app_icons/vendor_boked_icon.png';
   static String layoutIcon= 'assets/app_icons/layout_icon.png';
   static String deleteIcon= 'assets/app_icons/delete_icon.png';
+  static String userAvatarIcon= 'assets/app_icons/user_avatar.png';
 
 
 

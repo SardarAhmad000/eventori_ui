@@ -105,23 +105,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Obx(
                           ()=> Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: AppTheme.whiteColor,
-                            width: 2,
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          child: CustomImageHandler(
-                            imagePath: authController.userData.value!.image,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: AppTheme.denimBlueColor,
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: AppTheme.whiteColor,
+                                width: 2,
+                              ),
+                            ),
+                            child: Padding(
+                              padding: (authController.userData.value?.image == null || authController.userData.value!.image!.isEmpty)
+                                  ? const EdgeInsets.all(12)
+                                  : EdgeInsets.zero,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: CustomImageHandler(
+                                  imagePath: authController.userData.value?.image,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          )
+
                     ),
                     // Positioned(
                     //   bottom: 10,

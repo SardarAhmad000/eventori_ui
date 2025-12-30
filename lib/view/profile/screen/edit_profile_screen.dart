@@ -125,7 +125,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               height: 100,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: AppTheme.slateGreyColor,
+                                color: AppTheme.denimBlueColor,
                                 boxShadow: [
                                   BoxShadow(
                                     color: Colors.black.withOpacity(0.1),
@@ -143,7 +143,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   width: 100,
                                   height: 100,
                                   fit: BoxFit.cover,
-                                  errorAsset: AppAssets.uploadImageIcon,
+                                  errorAsset: AppAssets.userAvatarIcon,
                                   loaderColor: AppTheme.lightCyanColor,
                                   loaderSize: 24,
                                 )
@@ -153,15 +153,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   height: 100,
                                   fit: BoxFit.cover,
                                 ))
-                                    : CustomImageHandler(
-                                  imagePath: '',
-                                  width: 100,
-                                  height: 100,
-                                  fit: BoxFit.cover,
-                                  errorAsset: AppAssets.uploadImageIcon,
-                                  loaderColor: AppTheme.lightCyanColor,
-                                  loaderSize: 24,
-                                ),
+                                    : Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: CustomImageHandler(
+                                        imagePath: '',
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                        errorAsset: AppAssets.userAvatarIcon,
+                                        loaderColor: AppTheme.lightCyanColor,
+                                        loaderSize: 24,
+                                      ),
+                                    ),
                               )),
                             ),
                             Positioned(

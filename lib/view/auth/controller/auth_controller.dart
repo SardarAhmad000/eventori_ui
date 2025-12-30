@@ -262,7 +262,7 @@ class AuthController extends GetxController {
       _authPreference.saveUserDataToken(token: accessToken.value);
       _authPreference.setUserLoggedIn(true);
 
-      Get.toNamed(AppRoutes.navBarScreen);
+      Get.offAllNamed(AppRoutes.navBarScreen);
 
     }
 
