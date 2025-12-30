@@ -105,7 +105,7 @@ class CustomImageHandler extends StatelessWidget {
   /// Builds error widget when image fails to load
   Widget _buildErrorWidget() {
     return Image.asset(
-      errorAsset ?? AppAssets.uploadImageIcon,
+      errorAsset ?? AppAssets.userIcon,
       width: width,
       height: height,
       fit: fit ?? BoxFit.cover,

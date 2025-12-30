@@ -117,7 +117,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     imagePath: authController.userData.value!.image,
                                     width: 40,
                                     height: 40,
-                                    // fit: BoxFit.cover,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               ),

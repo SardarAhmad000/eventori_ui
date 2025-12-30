@@ -35,6 +35,16 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
+  void initState() {
+    super.initState();
+    // Reset form when screen is initialized
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      eventcontroller.resetForm();
+      backendDate = '';
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -359,12 +369,10 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                               );
 
                               if (pickedDate != null) {
-                                // ✅ UI format
                                 final uiDate = DateFormat('dd-MM-yy').format(pickedDate);
                                 eventcontroller.eventdateController.text = uiDate;
                                 print('UI Format: $uiDate');
 
-                                // ✅ Backend format (ISO UTC)
                                 backendDate = convertDateTimeToIso(pickedDate);
                                 print('Backend Format: $backendDate');
                               }
@@ -409,14 +417,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             style: AppTextStyle.f14W500BColorTextStyle,
                           ),
                           const SizedBox(height: 8),
-                          // Image Upload Section with CustomImagePicker
                           Obx(() {
                             final selectedImage = eventcontroller.selectedEventImage.value;
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 if (selectedImage != null)
-                                // Show selected image with option to remove
                                   Container(
                                     height: 200,
                                     width: double.infinity,
@@ -440,7 +446,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                             fit: BoxFit.cover,
                                           ),
                                         ),
-                                        // Remove button
                                         Positioned(
                                           top: 8,
                                           right: 8,
@@ -462,7 +467,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                             ),
                                           ),
                                         ),
-                                        // Change image button
                                         Positioned(
                                           bottom: 8,
                                           right: 8,
@@ -508,7 +512,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                     ),
                                   )
                                 else
-                                // Show upload area
                                   DottedBorder(
                                     color: eventcontroller.imageError.value != null
                                         ? Colors.red
@@ -548,7 +551,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                       ),
                                     ),
                                   ),
-                                // Show error message if image is not selected
                                 if (eventcontroller.imageError.value != null)
                                   Padding(
                                     padding: const EdgeInsets.only(top: 4, left: 4),
@@ -571,18 +573,8 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                         height: 48,
                         buttonColor: AppTheme.lightCyanColor,
                         textColor: AppTheme.whiteColor,
-                        // // In the Create Event button's onTap:
-                        // onTap: () {
-                        //   // Pass formKey to validateForm
-                        //   if (eventcontroller.validateForm(formKey)) {
-                        //     print('Event Name: ${eventcontroller.eventNameController.text}');
-                        //     // ... rest of your code
-                        //   } else {
-                        //     print('Form validation failed');
-                        //   }
-                        // },
                         onTap: () {
-                          if (eventcontroller.validateForm()) {
+                          if (eventcontroller.validateForm(formKey)) {
                             print('Event Name: ${eventcontroller.eventNameController.text}');
                             print('About Event: ${eventcontroller.eventAboutController.text}');
                             print('Category: ${eventcontroller.selectedCategory.value}');
@@ -605,9 +597,6 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 eventcontroller.isReminderEnabled.value,
                                 eventcontroller.selectedEventImage.value?.path ?? ''
                             );
-
-
-                            // _showSuccessDialog(context);
                           } else {
                             print('Form validation failed');
                           }

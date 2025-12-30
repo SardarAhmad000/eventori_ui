@@ -56,11 +56,25 @@ class CustomValidator {
   }
 
   static String? event(String? value) {
-    if (value!.isEmpty) {
-      return ' Enter event name';
+    if (value == null || value.trim().isEmpty) {
+      return 'Enter event name';
     }
+
+    final regex = RegExp(r'^[A-Za-z ]+$');
+
+    if (!regex.hasMatch(value)) {
+      return 'Event name should not contain numbers or special characters';
+    }
+
     return null;
   }
+
+  // static String? event(String? value) {
+  //   if (value!.isEmpty) {
+  //     return ' Enter event name';
+  //   }
+  //   return null;
+  // }
 
   static String? eventCategory(String? value) {
     if (value == null || value.isEmpty) {

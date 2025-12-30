@@ -321,44 +321,85 @@ class EventController extends GetxController {
     selectedEventImage.value = null;
   }
 
-  bool validateForm() {
-    bool isValid = true;
 
-    // // Validate form fields
-    // if (!formKey.currentState!.validate()) {
-    //   isValid = false;
-    // }
 
-    // Validate country if "Not sure" is not checked
-    if (!isNotSureChecked.value) {
-      final countryValidation = _validateCountry(selectedCountry.value);
-      if (countryValidation != null) {
-        countryError.value = countryValidation;
+    bool validateForm(GlobalKey<FormState> formKey) {
+      bool isValid = true;
+
+      // Validate form fields
+      if (!formKey.currentState!.validate()) {
         isValid = false;
       }
 
-      // Validate city if "Not sure" is not checked
-      final cityValidation = _validateCity(selectedCity.value);
-      if (cityValidation != null) {
-        cityError.value = cityValidation;
+      // Validate country if "Not sure" is not checked
+      if (!isNotSureChecked.value) {
+        final countryValidation = _validateCountry(selectedCountry.value);
+        if (countryValidation != null) {
+          countryError.value = countryValidation;
+          isValid = false;
+        }
+
+        // Validate city if "Not sure" is not checked
+        final cityValidation = _validateCity(selectedCity.value);
+        if (cityValidation != null) {
+          cityError.value = cityValidation;
+          isValid = false;
+        }
+      }
+
+      // Validate date only if "Not sure" is not checked
+      if (!isNotSureDate.value && eventdateController.text.isEmpty) {
         isValid = false;
       }
+
+      // Validate image (always required)
+      final imageValidation = _validateImage(selectedEventImage.value);
+      if (imageValidation != null) {
+        imageError.value = imageValidation;
+        isValid = false;
+      }
+
+      return isValid;
     }
 
-    // Validate date only if "Not sure" is not checked
-    if (!isNotSureDate.value && eventdateController.text.isEmpty) {
-      isValid = false;
-    }
-
-    // NEW: Validate image (always required)
-    final imageValidation = _validateImage(selectedEventImage.value);
-    if (imageValidation != null) {
-      imageError.value = imageValidation;
-      isValid = false;
-    }
-
-    return isValid;
-  }
+  // bool validateForm() {
+  //   bool isValid = true;
+  //
+  //   // // Validate form fields
+  //   // if (!formKey.currentState!.validate()) {
+  //   //   isValid = false;
+  //   // }
+  //
+  //   // Validate country if "Not sure" is not checked
+  //   if (!isNotSureChecked.value) {
+  //     final countryValidation = _validateCountry(selectedCountry.value);
+  //     if (countryValidation != null) {
+  //       countryError.value = countryValidation;
+  //       isValid = false;
+  //     }
+  //
+  //     // Validate city if "Not sure" is not checked
+  //     final cityValidation = _validateCity(selectedCity.value);
+  //     if (cityValidation != null) {
+  //       cityError.value = cityValidation;
+  //       isValid = false;
+  //     }
+  //   }
+  //
+  //   // Validate date only if "Not sure" is not checked
+  //   if (!isNotSureDate.value && eventdateController.text.isEmpty) {
+  //     isValid = false;
+  //   }
+  //
+  //   // NEW: Validate image (always required)
+  //   final imageValidation = _validateImage(selectedEventImage.value);
+  //   if (imageValidation != null) {
+  //     imageError.value = imageValidation;
+  //     isValid = false;
+  //   }
+  //
+  //   return isValid;
+  // }
 
   bool validateEditForm(GlobalKey<FormState> formKey, TextEditingController eventEditdateController, String? existingImage) {
     bool isValid = true;
