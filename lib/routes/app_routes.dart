@@ -12,7 +12,7 @@ abstract class AppRoutes {
   static const navBarScreen = '/navBarScreen';
   static const myEventScreeen = '/myEventScreeen';
   static const profileScreen = '/profileScreen';
-
+  static const createEventScreen = '/createEventScreen';
   static const dashboardScreen = '/dashboardScreen';
   static const homeScreen = '/homeScreen';
   static const eventsScreen = '/eventsScreen';

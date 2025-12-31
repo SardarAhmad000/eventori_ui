@@ -514,7 +514,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 else
                                   DottedBorder(
                                     color: eventcontroller.imageError.value != null
-                                        ? Colors.red
+                                        ? AppTheme.redColor
                                         : AppTheme.silverColor,
                                     strokeWidth: eventcontroller.imageError.value != null ? 2 : 1,
                                     dashPattern: const [5, 3],

@@ -34,7 +34,9 @@ class HomeScreen extends StatelessWidget {
                   // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CreateEventCard(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(AppRoutes.createEventScreen);
+                      },
                     ),
                     const SizedBox(width: 8),
                     SizedBox(

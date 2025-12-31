@@ -16,6 +16,7 @@ import '../view/roles/customer/Dashboard/screen/add_collaborators_screen.dart';
 import '../view/roles/customer/Dashboard/screen/tasks_dashboard_screen.dart';
 import '../view/roles/customer/Dashboard/screen/vendors_dashboard_screen.dart';
 import '../view/roles/customer/chat/screen/chat_detailed_screen.dart';
+import '../view/roles/customer/event/screen/create_event_screen.dart';
 import '../view/roles/customer/home/screens/dashboard_screen.dart';
 import '../view/roles/customer/home/screens/events_screen.dart';
 import '../view/roles/customer/home/screens/forum_screen.dart';
@@ -49,6 +50,7 @@ class AppPages {
     GetPage(name: AppRoutes.forumScreen, page: () =>  ForumScreen()),
     GetPage(name: AppRoutes.teamChatScreen, page: () =>  ChatDetailedScreen()),
     GetPage(name: AppRoutes.profileScreen, page: () =>  ProfileScreen()),
+    GetPage(name: AppRoutes.createEventScreen, page: () =>  CreateEventScreen()),
     GetPage(name: AppRoutes.addCollaboratorsScreen, page: () =>  AddCollaboratorsScreen()),
     GetPage(name: AppRoutes.vendorsDashboardScreen, page: () =>  VendorsDashboardScreen()),
     GetPage(name: AppRoutes.tasksDashboardScreen, page: () =>  TasksDashboardScreen()),
