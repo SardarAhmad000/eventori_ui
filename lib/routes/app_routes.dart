@@ -27,4 +27,13 @@ abstract class AppRoutes {
   static const faviourteVendorsScreen = '/faviourteVendorsScreen';
   static const editProfileScreen = '/editProfileScreen';
 
+
+
+
+  //Vendor
+  static const basicInformationScreen = '/basicInformationScreen';
+  static const identityVerificationScreen = '/identityVerificationScreen';
+
+
+
 }

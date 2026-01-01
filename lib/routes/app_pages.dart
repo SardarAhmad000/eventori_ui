@@ -25,6 +25,8 @@ import '../view/roles/customer/home/screens/vendors_screen.dart';
 import '../view/roles/customer/search/screens/faviourte_vendors_screen.dart';
 import '../view/roles/customer/search/screens/report_vendor_screen.dart';
 import '../view/roles/customer/search/screens/vendor_detailed_screen.dart';
+import '../view/roles/vendor/complete_profile_vendor/screens/basic_information_screen.dart';
+import '../view/roles/vendor/complete_profile_vendor/screens/identity_verification_screen.dart';
 import '../view/splash/splash_screen.dart';
 import 'app_routes.dart';
 
@@ -58,6 +60,17 @@ class AppPages {
     GetPage(name: AppRoutes.reportVendorScreen, page: () =>  ReportVendorScreen()),
     GetPage(name: AppRoutes.faviourteVendorsScreen, page: () =>  FaviourteVendorsScreen()),
     GetPage(name: AppRoutes.editProfileScreen, page: () =>  EditProfileScreen()),
+
+
+
+
+
+
+    //Vendor Module
+    GetPage(name: AppRoutes.basicInformationScreen, page: () =>  BasicInformationScreen()),
+    GetPage(name: AppRoutes.identityVerificationScreen, page: () =>  IdentityVerificationScreen()),
+
+
 
   ];
 }

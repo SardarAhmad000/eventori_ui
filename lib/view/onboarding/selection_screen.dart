@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/onboarding/widgets/build_header.dart';
 import 'package:eventori/view/onboarding/widgets/selection_tittle.dart';
@@ -144,25 +142,37 @@ class _SelectionScreenState extends State<SelectionScreen> {
             const SizedBox(height: 12),
             Obx(() {
               final isCustomerSelected = controller.selectedAccountType.value == 'Customer';
+              final isVendorSelected = controller.selectedAccountType.value == 'vendor';
+              final isPlannerSelected = controller.selectedAccountType.value == 'planner';
+              final isEnabled = isCustomerSelected || isVendorSelected;
+
               return CustomButton(
                 Text: "Get Started",
                 width: double.infinity,
-                onTap: isCustomerSelected
+                onTap: !isEnabled
+                    ? null
+                    : isCustomerSelected
                     ? () {
-                  if(Get.arguments['SignInMethod'] == "Google"){
+                  if (Get.arguments['SignInMethod'] == "Google") {
                     authController.updateRole(controller.selectedAccountType.value);
-                  }else if(Get.arguments['SignInMethod'] == "SimpleSignUp"){
-                    Get.toNamed(AppRoutes.addProfilePhotoPage,arguments: {'role':controller.selectedAccountType.value});
+                  } else if (Get.arguments['SignInMethod'] == "SimpleSignUp") {
+                    Get.toNamed(
+                      AppRoutes.addProfilePhotoPage, arguments: {
+                        'role': controller.selectedAccountType.value,
+                      },
+                    );
                   }
 
                   print(controller.selectedAccountType.value);
                 }
                     : () {
+                  Get.toNamed(AppRoutes.basicInformationScreen);
                 },
-                buttonColor: isCustomerSelected ? null : AppTheme.lightCyanColor,
-                textColor: isCustomerSelected ? null : AppTheme.whiteColor.withOpacity(0.5),
+                buttonColor: isEnabled ? null : AppTheme.lightCyanColor,
+                textColor: isEnabled ? null : AppTheme.whiteColor.withOpacity(0.5),
               );
             }),
+
             const SizedBox(height: 12),
           ],
         ),
