@@ -197,11 +197,11 @@ class FilterBottomSheet extends StatelessWidget {
                     style: AppTextStyle.f14W500SGColorTextStyle,
                   ),
                   const SizedBox(height: 16),
-                  Obx(() => Row(
+                  Obx(() =>
+                      Row(
                     children: [
                       CustomCheckbox(
-                        initialValue:
-                        controller.selectedRating.value == '5 stars',
+                        initialValue: controller.selectedRating.value == '5 stars',
                         label: '5 stars',
                         labelStyle: AppTextStyle.f16W400BColorTextStyle,
                         onChanged: (value) {
@@ -210,8 +210,7 @@ class FilterBottomSheet extends StatelessWidget {
                       ),
                       const SizedBox(width: 16),
                       CustomCheckbox(
-                        initialValue:
-                        controller.selectedRating.value == '4 stars',
+                        initialValue: controller.selectedRating.value == '4 stars',
                         label: '4 stars',
                         labelStyle: AppTextStyle.f16W400BColorTextStyle,
                         onChanged: (value) {
@@ -229,7 +228,8 @@ class FilterBottomSheet extends StatelessWidget {
                         },
                       ),
                     ],
-                  )),
+                  )
+                  ),
                   const SizedBox(height: 16),
                   Divider(
                     color: AppTheme.dividerColor,
@@ -273,15 +273,14 @@ class FilterBottomSheet extends StatelessWidget {
                   ),
                   const SizedBox(height: 16),
                   Obx(() => CustomCheckbox(
-                    initialValue: controller
-                        .selectedTravelAvailability.value ==
-                        'Local only',
+                    initialValue: controller.selectedTravelAvailability.value == 'Local only',
                     label: 'Local only',
                     labelStyle: AppTextStyle.f16W400BColorTextStyle,
                     onChanged: (value) {
                       controller.updateTravelAvailability('Local only');
                     },
-                  )),
+                  )
+                  ),
                   const SizedBox(height: 16),
                   Obx(() => CustomCheckbox(
                     initialValue: controller

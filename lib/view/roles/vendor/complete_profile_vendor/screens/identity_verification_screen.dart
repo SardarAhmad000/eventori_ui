@@ -1,12 +1,16 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
+import '../../../../../app_widgets/custom_checkbox.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../constants/custom_validators.dart';
+import '../controller/complete_profile_vendor_controller.dart';
 class IdentityVerificationScreen extends StatefulWidget {
   const IdentityVerificationScreen({super.key});
 
@@ -15,6 +19,8 @@ class IdentityVerificationScreen extends StatefulWidget {
 }
 
 class _IdentityVerificationScreenState extends State<IdentityVerificationScreen> {
+  CompleteProfileVendorController completeProfileVendorController =Get.find();
+
   final TextEditingController vendorServiceDescpController = TextEditingController();
 
 
@@ -72,7 +78,7 @@ class _IdentityVerificationScreenState extends State<IdentityVerificationScreen>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                AppAssets.uploadCloudIcon,
+                                AppAssets.uploadDocumentsIcon,
                                 height: 24,
                                 width: 24,
                               ),
@@ -106,7 +112,7 @@ class _IdentityVerificationScreenState extends State<IdentityVerificationScreen>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                AppAssets.uploadCloudIcon,
+                                AppAssets.uploadPortfolioIcon,
                                 height: 24,
                                 width: 24,
                               ),
@@ -140,7 +146,7 @@ class _IdentityVerificationScreenState extends State<IdentityVerificationScreen>
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset(
-                                AppAssets.uploadCloudIcon,
+                                AppAssets.uploadLogoIcon,
                                 height: 24,
                                 width: 24,
                               ),
@@ -201,9 +207,64 @@ class _IdentityVerificationScreenState extends State<IdentityVerificationScreen>
                         style: AppTextStyle.f14W500BColorTextStyle,
                       ),
                       const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Obx(() => CustomCheckbox(
+                              initialValue: completeProfileVendorController.selectedTravelAvailability.value == 'Local',
+                              label: 'Local',
+                              labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                              onChanged: (value) {
+                                completeProfileVendorController.updateTravelAvailability('Local');
+                              },
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Obx(() => CustomCheckbox(
+                            initialValue: completeProfileVendorController.selectedTravelAvailability.value == 'Nationwide',
+                            label: 'Nationwide',
+                            labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                            onChanged: (value) {
+                              completeProfileVendorController.updateTravelAvailability('Nationwide');
+                            },
+                          )),
+                          const SizedBox(height: 16),
+                          Obx(() => CustomCheckbox(
+                            initialValue: completeProfileVendorController.selectedTravelAvailability.value == 'International',
+                            label: 'International',
+                            labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                            onChanged: (value) {
+                              completeProfileVendorController.updateTravelAvailability('International');
+                            },
+                          )),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
                       Text(
                         'Pricing Tier',
                         style: AppTextStyle.f14W500BColorTextStyle,
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          CustomCheckbox(
+                            initialValue: completeProfileVendorController.selectedPricingTier.value == 'Budget-Friendly',
+                            label: 'Budget-Friendly',
+                            labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                            onChanged: (value) {
+                              completeProfileVendorController.updatePricingTier('Budget-Friendly');
+                            },
+                          ),
+                          const SizedBox(width: 16),
+                          CustomCheckbox(
+                            initialValue: completeProfileVendorController.selectedPricingTier.value == 'Budget-Friendly',
+                            label: 'Budget-Friendly',
+                            labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                            onChanged: (value) {
+                              completeProfileVendorController.updatePricingTier('Budget-Friendly');
+                            },
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 12),
                       Text(
@@ -215,7 +276,6 @@ class _IdentityVerificationScreenState extends State<IdentityVerificationScreen>
                         'Less than one month',
                         style: AppTextStyle.f14W400SColorTextStyle,
                       ),
-
                       const SizedBox(height: 24),
                       CustomButton(
                         Text: 'Next',
@@ -225,6 +285,7 @@ class _IdentityVerificationScreenState extends State<IdentityVerificationScreen>
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {
+                          Get.toNamed(AppRoutes.preferenceFinalizationScreen);
                         },
                       ),
 

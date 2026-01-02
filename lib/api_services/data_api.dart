@@ -387,7 +387,7 @@ class DataApiService {
           // Get.put(AuthController()).signOut();
 
           // Get.offAll(const SignInScreen());
-          AuthPreference.instance.setUserLoggedIn(false); // please uncomment it
+          AuthPreference.instance.setUserLoggedIn(false,authController.userData.value!.role); // please uncomment it
           SnackbarUtil.showSnackbar(message: "Session Expired", type: SnackbarType.error);
           Get.offAndToNamed(AppRoutes.loginScreen);
 

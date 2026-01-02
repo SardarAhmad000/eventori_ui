@@ -8,9 +8,10 @@ class AuthPreference {
 
   // static AuthPreference get instance => _instance;
 
-  void setUserLoggedIn(bool key) async {
+  void setUserLoggedIn(bool key,String role) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool("isLoggedIn", key);
+    prefs.setString("role", role);
     // prefs.setString("userType", userType);
   }
 
@@ -29,8 +30,10 @@ class AuthPreference {
   Future<Map<String, dynamic>> getUserLoggedIn() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     dynamic log = prefs.getBool("isLoggedIn") ?? false;
+    dynamic role = prefs.getString("role") ?? false;
     return {
       "isLoggedIn": log,
+      "role": role,
     };
   }
 

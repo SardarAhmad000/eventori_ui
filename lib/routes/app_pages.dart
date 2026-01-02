@@ -8,8 +8,8 @@ import '../view/auth/screens/login_screen.dart';
 import '../view/auth/screens/sign_up_screen.dart';
 import '../view/auth/screens/verify_account_screen.dart';
 import '../view/auth/screens/verify_forget_password_otp_screen.dart';
-import '../view/onboarding/onboarding_screen.dart';
-import '../view/onboarding/selection_screen.dart';
+import '../view/onboarding/screens/onboarding_screen.dart';
+import '../view/onboarding/screens/selection_screen.dart';
 import '../view/profile/screen/edit_profile_screen.dart';
 import '../view/profile/screen/profile_screen.dart';
 import '../view/roles/customer/Dashboard/screen/add_collaborators_screen.dart';
@@ -27,6 +27,8 @@ import '../view/roles/customer/search/screens/report_vendor_screen.dart';
 import '../view/roles/customer/search/screens/vendor_detailed_screen.dart';
 import '../view/roles/vendor/complete_profile_vendor/screens/basic_information_screen.dart';
 import '../view/roles/vendor/complete_profile_vendor/screens/identity_verification_screen.dart';
+import '../view/roles/vendor/complete_profile_vendor/screens/preference_finalization_screen.dart';
+import '../view/roles/vendor/home/home_vendor_screen.dart';
 import '../view/splash/splash_screen.dart';
 import 'app_routes.dart';
 
@@ -69,6 +71,8 @@ class AppPages {
     //Vendor Module
     GetPage(name: AppRoutes.basicInformationScreen, page: () =>  BasicInformationScreen()),
     GetPage(name: AppRoutes.identityVerificationScreen, page: () =>  IdentityVerificationScreen()),
+    GetPage(name: AppRoutes.preferenceFinalizationScreen, page: () =>  PreferenceFinalizationScreen()),
+    GetPage(name: AppRoutes.homeVendorScreen, page: () =>  HomeVendorScreen()),
 
 
 

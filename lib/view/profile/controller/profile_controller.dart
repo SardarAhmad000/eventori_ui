@@ -351,7 +351,7 @@ class ProfileController extends GetxController {
 
   void logout() {
     Get.offAllNamed(AppRoutes.loginScreen);
-    _authPreference.setUserLoggedIn(false);
+    _authPreference.setUserLoggedIn(false,"Customer");
     print('Logout');
   }
 

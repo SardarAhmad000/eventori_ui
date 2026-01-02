@@ -1,11 +1,11 @@
 import 'package:eventori/constants/app_text_style.dart';
-import 'package:eventori/view/onboarding/selection_screen.dart';
+import 'package:eventori/view/onboarding/screens/selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../AppTheme/app_theme.dart';
-import '../../app_widgets/custom_button.dart';
-import '../../routes/app_routes.dart';
+import '../../../AppTheme/app_theme.dart';
+import '../../../app_widgets/custom_button.dart';
+import '../../../routes/app_routes.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});

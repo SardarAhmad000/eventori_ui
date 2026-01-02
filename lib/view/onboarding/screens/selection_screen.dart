@@ -3,11 +3,10 @@ import 'package:eventori/view/onboarding/widgets/build_header.dart';
 import 'package:eventori/view/onboarding/widgets/selection_tittle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../AppTheme/app_theme.dart';
-import '../../app_widgets/custom_button.dart';
-import '../../routes/app_routes.dart';
-import '../auth/controller/auth_controller.dart';
-import 'controller/Onboarding_controller.dart';
+import '../../../AppTheme/app_theme.dart';
+import '../../../app_widgets/custom_button.dart';
+import '../../../routes/app_routes.dart';
+import '../../auth/controller/auth_controller.dart';
 
 class SelectionScreen extends StatefulWidget {
   const SelectionScreen({super.key});
@@ -26,12 +25,12 @@ class _SelectionScreenState extends State<SelectionScreen> {
       'description': 'Browse trusted vendors and find the right services for your event.',
     },
     {
-      'id': 'vendor',
+      'id': 'Event_Vendor',
       'title': 'Event Vendor',
       'description': 'Showcase your services and grow your business.',
     },
     {
-      'id': 'planner',
+      'id': 'Event_Planner',
       'title': 'Event Planner',
       'description': 'Organize events and promote your services.',
     },
@@ -39,7 +38,6 @@ class _SelectionScreenState extends State<SelectionScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<OnboardingController>();
 
     return Scaffold(
       backgroundColor: AppTheme.blackColor,
@@ -68,11 +66,9 @@ class _SelectionScreenState extends State<SelectionScreen> {
               itemBuilder: (context, index) {
                 final accountType = accountTypes[index];
                 return Obx(() {
-                  final isSelected =
-                      controller.selectedAccountType.value == accountType['id'];
-                  return GestureDetector(
-                    onTap: () =>
-                        controller.selectAccountType(accountType['id']!),
+                  final isSelected = authController.selectedAccountType.value == accountType['id'];
+                  return GestureDetector(onTap: () =>
+                        authController.selectAccountType(accountType['id']!),
                     child: Container(
                       height: 78,
                       padding: const EdgeInsets.all(8),
@@ -140,39 +136,24 @@ class _SelectionScreenState extends State<SelectionScreen> {
             ),
 
             const SizedBox(height: 12),
-            Obx(() {
-              final isCustomerSelected = controller.selectedAccountType.value == 'Customer';
-              final isVendorSelected = controller.selectedAccountType.value == 'vendor';
-              final isPlannerSelected = controller.selectedAccountType.value == 'planner';
-              final isEnabled = isCustomerSelected || isVendorSelected;
-
-              return CustomButton(
-                Text: "Get Started",
-                width: double.infinity,
-                onTap: !isEnabled
-                    ? null
-                    : isCustomerSelected
-                    ? () {
-                  if (Get.arguments['SignInMethod'] == "Google") {
-                    authController.updateRole(controller.selectedAccountType.value);
-                  } else if (Get.arguments['SignInMethod'] == "SimpleSignUp") {
-                    Get.toNamed(
-                      AppRoutes.addProfilePhotoPage, arguments: {
-                        'role': controller.selectedAccountType.value,
-                      },
-                    );
-                  }
-
-                  print(controller.selectedAccountType.value);
+            CustomButton(
+              Text: "Get Started",
+              width: double.infinity,
+              onTap: () {
+                if (Get.arguments['SignInMethod'] == "Google") {
+                  authController.updateRole(authController.selectedAccountType.value);
+                } else if (Get.arguments['SignInMethod'] == "SimpleSignUp") {
+                  Get.toNamed(
+                    AppRoutes.addProfilePhotoPage, arguments: {
+                      'role': authController.selectedAccountType.value,
+                  },
+                  );
                 }
-                    : () {
-                  Get.toNamed(AppRoutes.basicInformationScreen);
+                print(authController.selectedAccountType.value);
                 },
-                buttonColor: isEnabled ? null : AppTheme.lightCyanColor,
-                textColor: isEnabled ? null : AppTheme.whiteColor.withOpacity(0.5),
-              );
-            }),
-
+              buttonColor: AppTheme.lightCyanColor,
+              textColor:  AppTheme.whiteColor,
+            ),
             const SizedBox(height: 12),
           ],
         ),

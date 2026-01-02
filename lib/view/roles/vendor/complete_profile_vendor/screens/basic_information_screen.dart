@@ -1,4 +1,6 @@
+import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:eventori/routes/app_routes.dart';
+import 'package:eventori/view/roles/vendor/complete_profile_vendor/controller/complete_profile_vendor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,14 +10,8 @@ import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../constants/custom_validators.dart';
-class BasicInformationScreen extends StatefulWidget {
-  const BasicInformationScreen({super.key});
-
-  @override
-  State<BasicInformationScreen> createState() => _BasicInformationScreenState();
-}
-
-class _BasicInformationScreenState extends State<BasicInformationScreen> {
+class BasicInformationScreen extends StatelessWidget {
+  BasicInformationScreen({super.key});
 
   final TextEditingController vendorOwnerNameController = TextEditingController();
   final TextEditingController vendorBusinessNameController = TextEditingController();
@@ -23,6 +19,10 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
   final TextEditingController vendorOperatingAddressController = TextEditingController();
   final TextEditingController vendorServicesController = TextEditingController();
 
+  final GlobalKey _countryKey = GlobalKey();
+  final GlobalKey _cityKey = GlobalKey();
+
+  CompleteProfileVendorController completeProfileVendorController =Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -80,17 +80,17 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
                       hintText: 'Enter your business name',
                       validator: CustomValidator.vendorName,
                     ),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Email Address',
-                      style: AppTextStyle.f14W500BColorTextStyle,
-                    ),
-                    const SizedBox(height: 12),
-                    CustomTextField(
-                      controller: vendorEmailController,
-                      hintText: 'Email Address',
-                      validator: CustomValidator.email,
-                    ),
+                    // const SizedBox(height: 16),
+                    // Text(
+                    //   'Email Address',
+                    //   style: AppTextStyle.f14W500BColorTextStyle,
+                    // ),
+                    // const SizedBox(height: 12),
+                    // CustomTextField(
+                    //   controller: vendorEmailController,
+                    //   hintText: 'Email Address',
+                    //   validator: CustomValidator.email,
+                    // ),
                     const SizedBox(height: 16),
                     Text(
                       'Operating address',
@@ -118,6 +118,129 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
                     Text(
                       'Location',
                       style: AppTextStyle.f14W500BColorTextStyle,
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Obx(() => GestureDetector(
+                            key: _countryKey,
+                            onTap: () async {
+                              final renderBox = _countryKey.currentContext!
+                                  .findRenderObject() as RenderBox;
+                              final position =
+                              renderBox.localToGlobal(Offset.zero);
+                              final size = renderBox.size;
+                              await loadCountryData();
+                              countrySelect(
+                                context,
+                                position,
+                                size,
+                                completeProfileVendorController.countryVN,
+                              );
+                            },
+                            child: Container(
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: AppTheme.whiteColor,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: AppTheme.textfieldBorderColor,
+                                  width: 1,
+                                ),
+                              ),
+                              padding: const EdgeInsets.symmetric(horizontal: 12),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      completeProfileVendorController.selectedCountry.value ??
+                                          'Country',
+                                      style: AppTextStyle.f16W400SColorTextStyle.copyWith(
+                                        color: completeProfileVendorController.selectedCountry.value == null
+                                            ? AppTheme.silverColor
+                                            : AppTheme.darkpurpleColor,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: AppTheme.slateGreyColor,
+                                    size: 20,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Obx(() => GestureDetector(
+                            key: _cityKey,
+                            onTap: completeProfileVendorController.selectedCountry.value == null
+                                ? null
+                                : () async {
+                              final renderBox = _cityKey.currentContext!
+                                  .findRenderObject() as RenderBox;
+                              final position =
+                              renderBox.localToGlobal(Offset.zero);
+                              final size = renderBox.size;
+                              await loadCityData(
+                                  country: completeProfileVendorController.countryVN);
+                              citySelect(
+                                context,
+                                position,
+                                size,
+                                completeProfileVendorController.cityVN,
+                                country: completeProfileVendorController.countryVN,
+                              );
+                            },
+                            child: Container(
+                              height: 48,
+                              decoration: BoxDecoration(
+                                color: AppTheme.whiteColor,
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: AppTheme.textfieldBorderColor,
+                                  width: 1,
+                                ),
+                              ),
+                              padding:
+                              const EdgeInsets.symmetric(horizontal: 12),
+                              alignment: Alignment.centerLeft,
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      completeProfileVendorController.selectedCity.value ?? 'City',
+                                      style: AppTextStyle
+                                          .f16W400SColorTextStyle
+                                          .copyWith(
+                                        color: completeProfileVendorController.selectedCity.value ==
+                                            null
+                                            ? AppTheme.silverColor
+                                            : AppTheme.darkpurpleColor,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: AppTheme.slateGreyColor,
+                                    size: 20,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )),
+                        ),
+                      ],
                     ),
 
 

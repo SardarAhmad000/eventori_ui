@@ -15,19 +15,21 @@ class SplashController extends GetxController {
 
     Map<String, dynamic> userStatus = await AuthPreference.instance.getUserLoggedIn();
     bool isLoggedIn = userStatus["isLoggedIn"];
+    // String role = userStatus["role"];
+    String role = "Event_Vendor";
 
     if (isLoggedIn==true) {
       Get.put(AuthController()).accessToken.value = await AuthPreference.instance.getUserDataToken();
       var userData = await AuthPreference.instance.getUserData();
       print(userData);
       Get.put(AuthController()).userData.value = UserModel.fromJson(jsonDecode(userData));
-      startProgressTimer(true);
+      startProgressTimer(true,role);
     }else if(isLoggedIn==false){
-      startProgressTimer(false);
+      startProgressTimer(false,role);
     }
   }
 
-  void startProgressTimer(bool isLoggedIn) {
+  void startProgressTimer(bool isLoggedIn, String role) {
     const totalDuration = Duration(seconds: 2);
     const tick = Duration(milliseconds: 30);
     final step = tick.inMilliseconds / totalDuration.inMilliseconds;
@@ -38,9 +40,13 @@ class SplashController extends GetxController {
         progress.value = 1.0;
         timer.cancel();
         if(isLoggedIn){
-          Get.offAndToNamed(AppRoutes.navBarScreen);
-        }else{
-          // Get.offAndToNamed(AppRoutes.bottomBar);
+          if(role == "Customer"){
+            Get.offAndToNamed(AppRoutes.navBarScreen);
+          } else if(role == 'Event_Vendor'){
+            Get.toNamed(AppRoutes.homeVendorScreen);
+          }
+        }
+        else{
           Get.offNamed(AppRoutes.loginScreen);
         }
       }

@@ -52,6 +52,12 @@ class AppAssets{
   static String userAvatarIcon= 'assets/app_icons/user_avatar.png';
 
 
+  //EVENT VENDOR ICON
+  static String uploadDocumentsIcon= 'assets/app_icons/upload_documents_icon.png';
+  static String uploadLogoIcon= 'assets/app_icons/upload_logo_icon.png';
+  static String uploadPortfolioIcon= 'assets/app_icons/upload_portfolio_icon.png';
+
+
 
 
 

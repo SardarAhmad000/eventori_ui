@@ -42,6 +42,8 @@ class AuthController extends GetxController {
 
   var isLoading = false.obs;
 
+  RxString selectedAccountType=''.obs;
+
   RxString accessToken = "".obs;
   final BaseController _baseController = BaseController.instance;
 
@@ -216,8 +218,12 @@ class AuthController extends GetxController {
     print(result['message']);
     print(result['success']);
     if (result['success'].toString()=="true") {
-
-      loginUserAfterVerification();
+      if(selectedAccountType.value == 'Event_Vendor'){
+        Get.toNamed(AppRoutes.basicInformationScreen);
+      } else if(selectedAccountType.value == 'Event_Planner'){
+      } else{
+        loginUserAfterVerification();
+      }
     }
     else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];
@@ -260,9 +266,15 @@ class AuthController extends GetxController {
       accessToken.value=result['data']['token'];
       _authPreference.saveUserData(data: jsonEncode(userData.value?.toJson()));
       _authPreference.saveUserDataToken(token: accessToken.value);
-      _authPreference.setUserLoggedIn(true);
 
-      Get.offAllNamed(AppRoutes.navBarScreen);
+      if(userData.value!.role == 'Customer'){
+        _authPreference.setUserLoggedIn(true,"Customer");
+        Get.offAllNamed(AppRoutes.navBarScreen);
+      } else if(userData.value!.role == 'Event_Vendor'){
+        _authPreference.setUserLoggedIn(true,"Event_Vendor");
+        Get.toNamed(AppRoutes.homeVendorScreen);
+      } else{
+      }
 
     }
 
@@ -307,9 +319,17 @@ class AuthController extends GetxController {
       accessToken.value=result['data']['token'];
       _authPreference.saveUserData(data: jsonEncode(userData.value?.toJson()));
       _authPreference.saveUserDataToken(token: accessToken.value);
-      _authPreference.setUserLoggedIn(true);
 
-      Get.offAllNamed(AppRoutes.navBarScreen);
+
+      if(userData.value!.role == 'Customer'){
+        _authPreference.setUserLoggedIn(true,"Customer");
+        Get.offAllNamed(AppRoutes.navBarScreen);
+      } else if(userData.value!.role == 'Event_Vendor'){
+        _authPreference.setUserLoggedIn(true,"Event_Vendor");
+        Get.toNamed(AppRoutes.homeVendorScreen);
+      } else{
+
+      }
 
     }
 
@@ -517,7 +537,7 @@ class AuthController extends GetxController {
         });
       } else{
         Get.offAndToNamed(AppRoutes.navBarScreen);
-        _authPreference.setUserLoggedIn(true);
+        _authPreference.setUserLoggedIn(true,"Customer");
       }
 
       // _authPreference.setUserLoggedIn(true);
@@ -565,7 +585,7 @@ class AuthController extends GetxController {
     print(result['success']);
     if (result['success'].toString()=="true") {
       Get.toNamed(AppRoutes.navBarScreen);
-      _authPreference.setUserLoggedIn(true);
+      _authPreference.setUserLoggedIn(true,"Customer");
 
     } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];
@@ -614,6 +634,9 @@ class AuthController extends GetxController {
 
 
 
+  void selectAccountType(String accountId) {
+    selectedAccountType.value = accountId;
+  }
 
 
   // Method to set profile image
