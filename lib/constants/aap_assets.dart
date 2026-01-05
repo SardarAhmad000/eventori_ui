@@ -56,6 +56,7 @@ class AppAssets{
   static String uploadDocumentsIcon= 'assets/app_icons/upload_documents_icon.png';
   static String uploadLogoIcon= 'assets/app_icons/upload_logo_icon.png';
   static String uploadPortfolioIcon= 'assets/app_icons/upload_portfolio_icon.png';
+  static String buildingIcon= 'assets/app_icons/building_icon.png';
 
 
 
