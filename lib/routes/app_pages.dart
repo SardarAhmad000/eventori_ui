@@ -25,6 +25,7 @@ import '../view/roles/customer/home/screens/vendors_screen.dart';
 import '../view/roles/customer/search/screens/faviourte_vendors_screen.dart';
 import '../view/roles/customer/search/screens/report_vendor_screen.dart';
 import '../view/roles/customer/search/screens/vendor_detailed_screen.dart';
+import '../view/roles/vendor/bottom_nav_bar/screen/custom_bottom_nav_bar_screen.dart';
 import '../view/roles/vendor/complete_profile_vendor/screens/basic_information_screen.dart';
 import '../view/roles/vendor/complete_profile_vendor/screens/identity_verification_screen.dart';
 import '../view/roles/vendor/complete_profile_vendor/screens/preference_finalization_screen.dart';
@@ -73,6 +74,7 @@ class AppPages {
     GetPage(name: AppRoutes.identityVerificationScreen, page: () =>  IdentityVerificationScreen()),
     GetPage(name: AppRoutes.preferenceFinalizationScreen, page: () =>  PreferenceFinalizationScreen()),
     GetPage(name: AppRoutes.homeVendorScreen, page: () =>  HomeVendorScreen()),
+    GetPage(name: AppRoutes.vendorBottomNav, page: () => BottomNavScreen(),),
 
 
 

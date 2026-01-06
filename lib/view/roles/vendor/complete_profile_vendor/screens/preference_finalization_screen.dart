@@ -1,6 +1,7 @@
 import 'package:eventori/app_widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../app_widgets/custom_checkbox.dart';
@@ -22,8 +23,17 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
   CompleteProfileVendorController completeProfileVendorController =Get.find();
   TextEditingController vendorTeamMemberController = TextEditingController();
 
-  // var selectedPromotionPlan = '7day'.obs;
   final String selectedPromotionPlan = '';
+
+
+  Future<void> openLink(String url) async {
+    final Uri uri = Uri.parse(url);
+
+    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch $url';
+    }
+  }
+
 
 
   @override
@@ -82,17 +92,41 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                         style: AppTextStyle.f14W500BColorTextStyle,
                       ),
                       const SizedBox(height: 12),
-                      CustomButton(
-                        Text: 'Connect',
-                        buttonColor: AppTheme.paperWhiteColor,
-                        textColor: AppTheme.blackColor,
-                        borderColor: AppTheme.lightGrayishColor,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: CustomButton(
+                              Text: 'Connect',
+                              buttonColor: AppTheme.paperWhiteColor,
+                              textColor: AppTheme.blackColor,
+                              borderColor: AppTheme.lightGrayishColor,
+                              onTap: (){
+                                openLink("https://calendly.com/app/intro/availability");
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 24,),
+                          Expanded(
+                            child: CustomButton(
+                              Text: '',
+                              buttonColor: AppTheme.paperWhiteColor,
+                              textColor: AppTheme.blackColor,
+                              borderColor: AppTheme.paperWhiteColor,
+                            ),
+                          ),
+                        ],
                       ),
                       const SizedBox(height: 12),
                       Text(
                         'Social links',
                         style: AppTextStyle.f14W500BColorTextStyle,
                       ),
+                      const SizedBox(height: 12),
+
+
+
+
                       const SizedBox(height: 12),
                       Text(
                         'Preferred Contact',
@@ -141,87 +175,91 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                         controller: vendorTeamMemberController,
                         hintText: 'Enter team members',
                         // validator: CustomValidator.,
-                        suffixIcon: Container(
-                          width: 53,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(12),
-                              bottomRight: Radius.circular(12),
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.only(right: 8.0),
+                          child: Container(
+                            width: 53,
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                                topRight: Radius.circular(12),
+                                bottomRight: Radius.circular(12),
+                              ),
+                              border: Border(
+                                left: BorderSide(
+                                  color: AppTheme.lightGrayishColor,
+                                  width: 1,
+                                ),
+                              ),
+                              color: AppTheme.whiteColor,
                             ),
-                            border: Border(
-                              left: BorderSide(
-                                color: AppTheme.lightGrayishColor,
-                                width: 1,
+                            child: Center(
+                              child: Text(
+                                'Add',
+                                style: AppTextStyle.f16W400SColorTextStyle,
                               ),
                             ),
-                            color: AppTheme.whiteColor,
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Add',
-                              style: AppTextStyle.f16W400SColorTextStyle,
-                            ),
-                          ),
 
+                          ),
                         ),
                       ),
                       const SizedBox(height: 12),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomRadioButton(
-                            label: "I confirm i am over 18 years old",
-                            isSelected: completeProfileVendorController.isAgeConfirmed.value,
-                            onTap: () {
-                              completeProfileVendorController.isAgeConfirmed.toggle();
-                            },
-                          ),
-                          const SizedBox(height: 12),
-                          // Replace lines 181-207 with this fixed version:
-                          GestureDetector(
-                            onTap: () {
-                              completeProfileVendorController.isTermsAccepted.toggle();
-                            },
-                            child: Row(
-                              children: [
-                                CustomRadioButton(
-                                  label: "",
-                                  isSelected: completeProfileVendorController.isTermsAccepted.value,
-                                  onTap: () {
-                                    completeProfileVendorController.isTermsAccepted.toggle();
-                                  },
-                                ),
-                                const SizedBox(width: 8),
-                                Flexible(
-                                  child: RichText(
-                                    text: TextSpan(
-                                      style: AppTextStyle.f12W400DSBColorTextStyle,
-                                      children: [
-                                        const TextSpan(text: "I agree "),
-                                        TextSpan(
-                                          text: "term and conditions",
-                                          style: AppTextStyle.f12W400DSBColorTextStyle.copyWith(
-                                            color: AppTheme.lightCyanColor,
+                      Obx(() =>  Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomRadioButton(
+                              label: "I confirm i am over 18 years old",
+                              isSelected: completeProfileVendorController.isAgeConfirmed.value,
+                              onTap: () {
+                                completeProfileVendorController.isAgeConfirmed.value = !completeProfileVendorController.isAgeConfirmed.value;
+                              },
+                            ),
+                            const SizedBox(height: 12),
+                            GestureDetector(
+                              onTap: () {
+                                completeProfileVendorController.isTermsAccepted.value = !completeProfileVendorController.isTermsAccepted.value;
+                              },
+                              child: Row(
+                                children: [
+                                  CustomRadioButton(
+                                    label: "",
+                                    isSelected: completeProfileVendorController.isTermsAccepted.value,
+                                    onTap: () {
+                                      completeProfileVendorController.isTermsAccepted.value = !completeProfileVendorController.isTermsAccepted.value;
+                                    },
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Flexible(
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: AppTextStyle.f12W400DSBColorTextStyle,
+                                        children: [
+                                          const TextSpan(text: "I agree "),
+                                          TextSpan(
+                                            text: "term and conditions",
+                                            style: AppTextStyle.f12W400DSBColorTextStyle.copyWith(
+                                              color: AppTheme.lightCyanColor,
+                                            ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 24),
                       CustomButton(
-                        Text: 'Next',
+                        Text: 'Finish',
                         height: 48,
                         width: double.infinity,
                         buttonColor: AppTheme.lightCyanColor,
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {
+
                         },
                       ),
                     ],

@@ -412,7 +412,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                             ],
                           ),
                           const SizedBox(height: 12),
-                          Text(
+                          Text (
                             'Upload image *',
                             style: AppTextStyle.f14W500BColorTextStyle,
                           ),

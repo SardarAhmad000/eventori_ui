@@ -97,7 +97,7 @@ class CustomRadioButton extends StatelessWidget {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: isSelected ? AppTheme.lightIndigoColor : AppTheme.charcoalVioletColor.withOpacity(.3),
+                color: isSelected ? AppTheme.lightCyanColor : AppTheme.charcoalVioletColor.withOpacity(.3),
                 width: 3,
               ),
             ),
@@ -108,7 +108,7 @@ class CustomRadioButton extends StatelessWidget {
                 height: 10,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppTheme.lightIndigoColor,
+                  color: AppTheme.lightCyanColor,
                 ),
               ),
             )

@@ -7,6 +7,7 @@ import '../view/profile/controller/profile_controller.dart';
 import '../view/roles/customer/chat/controller/chat_controller.dart';
 import '../view/roles/customer/event/controller/event_controller.dart';
 import '../view/roles/customer/home/controller/home_controller.dart';
+import '../view/roles/vendor/bottom_nav_bar/controller/bottom_nav_controller.dart';
 import '../view/roles/vendor/complete_profile_vendor/controller/complete_profile_vendor_controller.dart';
 import '../view/splash/controller/splash_controller.dart';
 
@@ -30,6 +31,7 @@ class LazyController extends Bindings{
 
     // EVENT VENDOR CONTROLLERS
     Get.put(CompleteProfileVendorController());
+    Get.put(BottomNavController());
 
 
   }

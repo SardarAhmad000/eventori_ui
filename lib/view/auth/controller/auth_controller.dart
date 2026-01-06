@@ -272,7 +272,7 @@ class AuthController extends GetxController {
         Get.offAllNamed(AppRoutes.navBarScreen);
       } else if(userData.value!.role == 'Event_Vendor'){
         _authPreference.setUserLoggedIn(true,"Event_Vendor");
-        Get.toNamed(AppRoutes.homeVendorScreen);
+        Get.toNamed(AppRoutes.vendorBottomNav);
       } else{
       }
 
@@ -326,7 +326,7 @@ class AuthController extends GetxController {
         Get.offAllNamed(AppRoutes.navBarScreen);
       } else if(userData.value!.role == 'Event_Vendor'){
         _authPreference.setUserLoggedIn(true,"Event_Vendor");
-        Get.toNamed(AppRoutes.homeVendorScreen);
+        Get.toNamed(AppRoutes.vendorBottomNav);
       } else{
 
       }

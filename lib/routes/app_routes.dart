@@ -35,6 +35,7 @@ abstract class AppRoutes {
   static const identityVerificationScreen = '/identityVerificationScreen';
   static const preferenceFinalizationScreen = '/preferenceFinalizationScreen';
   static const homeVendorScreen = '/homeVendorScreen';
+  static const String vendorBottomNav = '/bottom-nav';
 
 
 

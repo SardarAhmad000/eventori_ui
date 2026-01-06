@@ -3,7 +3,6 @@ import 'package:eventori/routes/app_routes.dart';
 import 'package:eventori/view/roles/vendor/complete_profile_vendor/controller/complete_profile_vendor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../app_widgets/custom_dropdown.dart';

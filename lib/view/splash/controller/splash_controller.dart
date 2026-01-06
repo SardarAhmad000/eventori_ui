@@ -43,7 +43,7 @@ class SplashController extends GetxController {
           if(role == "Customer"){
             Get.offAndToNamed(AppRoutes.navBarScreen);
           } else if(role == 'Event_Vendor'){
-            Get.toNamed(AppRoutes.homeVendorScreen);
+            Get.toNamed(AppRoutes.vendorBottomNav);
           }
         }
         else{
