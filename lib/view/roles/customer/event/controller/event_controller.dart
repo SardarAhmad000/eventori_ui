@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:country_picker_bkb/model/country_model.dart';
+import 'package:eventori/models/event_category_model.dart';
 import 'package:eventori/models/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ import '../../../../../api_services/api_exceptions.dart';
 import '../../../../../api_services/data_api.dart';
 import '../../../../../app_widgets/custom_success_dialog.dart';
 import '../../../../../constants/aap_assets.dart';
+import '../../../../../models/event_category_services.dart';
 import '../../../../../routes/app_routes.dart';
 import '../../../../../utils/snackbar_util.dart';
 import '../../../../auth/controller/base_controller.dart';
@@ -60,6 +62,8 @@ class EventController extends GetxController {
   RxBool isLoading=false.obs;
   final BaseController _baseController = BaseController.instance;
   RxList<EventModel> eventList=<EventModel>[].obs;
+  RxList<EventCategory> eventCategoryList=<EventCategory>[].obs;
+  RxList<CategoryServices> eventCategoryServicesList=<CategoryServices>[].obs;
 
   Future createEvent(String eventName, String eventCategory, String about, String country, String city, String eventDate, bool sendReminderEmail, String image) async {
     _baseController.showLoading();
@@ -252,6 +256,69 @@ class EventController extends GetxController {
     }
   }
 
+  Future getEventCategory() async {
+    isLoading.value=true;
+    var  response = await DataApiService.instance
+        .get('event/getCategories',)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    isLoading.value=false;
+    update();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+
+    if (result['success'].toString()=="true" && result['message']=="Successful") {
+      eventCategoryList.value= List<EventCategory>.from(result['data'].map((x)=> EventCategory.fromJson(x)));
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
+  Future getCategoryServiceById(String id) async {
+    isLoading.value=true;
+    var  response = await DataApiService.instance
+        .get('event/getServicesByCategory/$id',)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    isLoading.value=false;
+    update();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+
+    if (result['success'].toString()=="true" && result['message']=="Successful") {
+      eventCategoryServicesList.value= List<CategoryServices>.from(result['data'].map((x)=> CategoryServices.fromJson(x)));
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
+
+
+
   @override
   void onInit() {
     super.onInit();
@@ -314,8 +381,6 @@ class EventController extends GetxController {
     }
   }
 
-
-
   // Method to remove event image
   void removeEventImage() {
     selectedEventImage.value = null;
@@ -323,7 +388,7 @@ class EventController extends GetxController {
 
 
 
-    bool validateForm(GlobalKey<FormState> formKey) {
+  bool validateForm(GlobalKey<FormState> formKey) {
       bool isValid = true;
 
       // Validate form fields
@@ -519,3 +584,42 @@ class EventController extends GetxController {
     super.onClose();
   }
 }
+
+//
+// Future eventCategory(String categoryName) async {
+//   _baseController.showLoading();
+//   Map<String,String> body = {
+//     "categoryName":categoryName,
+//   };
+//
+//   var response = await DataApiService.instance
+//       .post('event/createCategory', body)
+//       .catchError((error) {
+//     if (error is BadRequestException) {
+//       var apiError = json.decode(error.message!);
+//       print("object...");
+//       SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+//     }
+//     else {
+//       print("objsaghect...");
+//       _baseController.handleError(error);
+//     }
+//   });
+//
+//   update();
+//   _baseController.hideLoading();
+//   if (response == null) return;
+//   print(response + " responded");
+//   var result = json.decode(response);
+//   print(result['message']);
+//   print(result['success']);
+//   if (result['success'].toString()=="true") {
+//
+//     print("Event Category API Successfully Called");
+//
+//   }
+//   else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+//     String message = result['data']['message'];
+//     SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+//   }
+// }

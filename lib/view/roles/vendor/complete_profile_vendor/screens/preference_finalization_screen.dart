@@ -65,68 +65,85 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                         style: AppTextStyle.f20W600BColorTextStyle,
                       ),
                       const SizedBox(height: 16),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Available now',
-                              style: AppTextStyle.f14W500BColorTextStyle,
-                            ),
-                          ),
-                          CustomToggleSwitch(
-                            initialValue: completeProfileVendorController.isReminderEnabled.value,
-                            onChanged: (value) {
-                              completeProfileVendorController.toggleReminder(value);
-                            },
-                            activeColor: AppTheme.lightCyanColor,
-                            inactiveColor: AppTheme.whiteColor,
-                            width: 36,
-                            height: 20,
-                          ),
-                        ],
-                      ),
+                      // Row(
+                      //   crossAxisAlignment: CrossAxisAlignment.start,
+                      //   children: [
+                      //     Expanded(
+                      //       child: Text(
+                      //         'Available now',
+                      //         style: AppTextStyle.f14W500BColorTextStyle,
+                      //       ),
+                      //     ),
+                      //     CustomToggleSwitch(
+                      //       initialValue: completeProfileVendorController.isReminderEnabled.value,
+                      //       onChanged: (value) {
+                      //         completeProfileVendorController.toggleReminder(value);
+                      //       },
+                      //       activeColor: AppTheme.lightCyanColor,
+                      //       inactiveColor: AppTheme.whiteColor,
+                      //       width: 36,
+                      //       height: 20,
+                      //     ),
+                      //   ],
+                      // ),
+                      // const SizedBox(height: 12),
+                      // Text(
+                      //   'Calendly integration',
+                      //   style: AppTextStyle.f14W500BColorTextStyle,
+                      // ),
+                      // const SizedBox(height: 12),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Expanded(
+                      //       child: CustomButton(
+                      //         Text: 'Connect',
+                      //         buttonColor: AppTheme.paperWhiteColor,
+                      //         textColor: AppTheme.blackColor,
+                      //         borderColor: AppTheme.lightGrayishColor,
+                      //         onTap: (){
+                      //           openLink("https://calendly.com/app/intro/availability");
+                      //         },
+                      //       ),
+                      //     ),
+                      //     const SizedBox(width: 24,),
+                      //     Expanded(
+                      //       child: CustomButton(
+                      //         Text: '',
+                      //         buttonColor: AppTheme.paperWhiteColor,
+                      //         textColor: AppTheme.blackColor,
+                      //         borderColor: AppTheme.paperWhiteColor,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       const SizedBox(height: 12),
                       Text(
-                        'Calendly integration',
+                        'Instagram link',
                         style: AppTextStyle.f14W500BColorTextStyle,
                       ),
                       const SizedBox(height: 12),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: CustomButton(
-                              Text: 'Connect',
-                              buttonColor: AppTheme.paperWhiteColor,
-                              textColor: AppTheme.blackColor,
-                              borderColor: AppTheme.lightGrayishColor,
-                              onTap: (){
-                                openLink("https://calendly.com/app/intro/availability");
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 24,),
-                          Expanded(
-                            child: CustomButton(
-                              Text: '',
-                              buttonColor: AppTheme.paperWhiteColor,
-                              textColor: AppTheme.blackColor,
-                              borderColor: AppTheme.paperWhiteColor,
-                            ),
-                          ),
-                        ],
+                      CustomTextField(
+                        hintText: 'Paste your link here',
                       ),
                       const SizedBox(height: 12),
                       Text(
-                        'Social links',
+                        'Tiktok link',
                         style: AppTextStyle.f14W500BColorTextStyle,
                       ),
                       const SizedBox(height: 12),
-
-
-
-
+                      CustomTextField(
+                        hintText: 'Paste your link here',
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'Facebook link',
+                        style: AppTextStyle.f14W500BColorTextStyle,
+                      ),
+                      const SizedBox(height: 12),
+                      CustomTextField(
+                        hintText: 'Paste your link here',
+                      ),
                       const SizedBox(height: 12),
                       Text(
                         'Preferred Contact',

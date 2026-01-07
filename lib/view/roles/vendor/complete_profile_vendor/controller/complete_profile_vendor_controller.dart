@@ -18,7 +18,17 @@ class CompleteProfileVendorController extends GetxController {
   var isReminderEnabled = false.obs;
   RxBool isAgeConfirmed = false.obs;
   RxBool isTermsAccepted = false.obs;
-  final Rx<String?> selectedService = Rx<String?>(null);
+  // RxString selectedEventCategoryId = ''.obs;
+  final Rx<String?> selectedEventCategory = Rx<String?>(null);
+  final Rx<String?> selectedEventCategoryId = Rx<String?>(null);
+
+
+  // final Rx<String?> selectedService = Rx<String?>(null);
+  // final Rx<String?> selectedServiceId = Rx<String?>(null);
+
+  var selectedServiceIds = <String>[].obs;
+  var selectedServices = <dynamic>[].obs;
+
 
   var countryError = Rxn<String>();
   var cityError = Rxn<String>();

@@ -1,5 +1,4 @@
 import 'package:eventori/app_widgets/custom_text_placeholder.dart';
-import 'package:eventori/constants/aap_assets.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/routes/app_routes.dart';
 import 'package:eventori/view/bottom_nav_bar/controller/nav_bar_controller.dart';

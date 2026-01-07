@@ -7,12 +7,12 @@ import '../widgets/custom_category_tab_bar.dart';
 import '../widgets/custom_vendor_card.dart';
 
 class VendorsScreen extends StatelessWidget {
-  const VendorsScreen({super.key});
+  VendorsScreen({super.key});
+
+  HomeController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.find<HomeController>();
-
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: Column(
@@ -22,6 +22,7 @@ class VendorsScreen extends StatelessWidget {
             child: Obx(
                   () => CustomCategoryTabBar(
                 categories: controller.vendorCategories,
+                //                categories: eventController.eventCategoryList,
                 initialIndex: controller.selectedCategoryIndex.value,
                 onCategorySelected: (index) {
                   controller.selectVendorCategory(index);

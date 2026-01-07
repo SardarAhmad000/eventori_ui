@@ -731,7 +731,8 @@ class _IdentityVerificationScreenState
 
                           // All validations passed, navigate to next screen
                           Get.toNamed(AppRoutes.preferenceFinalizationScreen);
-                        } else {
+                        }
+                        else {
                           // Show error message
                          print("Validation Not Filled ");
                         }

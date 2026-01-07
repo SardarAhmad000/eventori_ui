@@ -9,11 +9,12 @@ import '../widgets/custom_card.dart';
 import '../widgets/custom_featured_event_card.dart';
 
 class EventsScreen extends StatelessWidget {
-  const EventsScreen({super.key});
+  EventsScreen({super.key});
+
+  HomeController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    final HomeController controller = Get.find<HomeController>();
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -24,6 +25,7 @@ class EventsScreen extends StatelessWidget {
             child: Obx(
                   () => CustomCategoryTabBar(
                 categories: controller.eventCategories,
+                //                categories: eventController.eventCategoryList,
                 initialIndex: controller.selectedCategoryIndex.value,
                 onCategorySelected: (index) {
                   controller.selectEventCategory(index);

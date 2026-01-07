@@ -29,6 +29,7 @@ import '../view/roles/vendor/bottom_nav_bar/screen/custom_bottom_nav_bar_screen.
 import '../view/roles/vendor/complete_profile_vendor/screens/basic_information_screen.dart';
 import '../view/roles/vendor/complete_profile_vendor/screens/identity_verification_screen.dart';
 import '../view/roles/vendor/complete_profile_vendor/screens/preference_finalization_screen.dart';
+import '../view/roles/vendor/complete_profile_vendor/screens/set_availability_screen.dart';
 import '../view/roles/vendor/home/home_vendor_screen.dart';
 import '../view/splash/splash_screen.dart';
 import 'app_routes.dart';
@@ -73,6 +74,7 @@ class AppPages {
     GetPage(name: AppRoutes.basicInformationScreen, page: () =>  BasicInformationScreen()),
     GetPage(name: AppRoutes.identityVerificationScreen, page: () =>  IdentityVerificationScreen()),
     GetPage(name: AppRoutes.preferenceFinalizationScreen, page: () =>  PreferenceFinalizationScreen()),
+    GetPage(name: AppRoutes.setAvailabilityScreen, page: () =>  SetAvailabilityScreen()),
     GetPage(name: AppRoutes.homeVendorScreen, page: () =>  HomeVendorScreen()),
     GetPage(name: AppRoutes.vendorBottomNav, page: () => BottomNavScreen(),),
 

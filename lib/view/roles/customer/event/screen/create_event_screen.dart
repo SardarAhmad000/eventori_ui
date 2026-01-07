@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eventori/constants/app_text_style.dart';
@@ -143,6 +145,12 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                           Obx(() => CustomDropdownField(
                             hintText: "Event Category",
                             value: eventcontroller.selectedCategory.value,
+                          //   items: eventcontroller.eventCategoryList.length{
+                          //     return DropdownMenuItem<String>(
+                          //       value: category,
+                          //       child: Text(category),
+                          //     );
+                          // }).toList();
                             items: eventcontroller.eventCategories.map((category) {
                               return DropdownMenuItem<String>(
                                 value: category,
