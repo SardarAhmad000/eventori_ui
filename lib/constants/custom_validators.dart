@@ -420,7 +420,8 @@ class CustomValidator {
     required Function(String?) onNameError,
     required Function(String?) onEmailError,
     required Function(String?) onPhoneError,
-  }) {
+  })
+  {
     bool isValid = true;
     final nameError = CustomValidator.name(name);
     onNameError(nameError);
@@ -440,6 +441,111 @@ class CustomValidator {
     }
     return null;
   }
+
+  // Validate availability: if from time is selected, to time must be selected
+  static String? validateAvailability(bool isAvailable, String from, String to) {
+    if (!isAvailable) {
+      return null; // If day is not available, no validation needed
+    }
+
+    if (from.isNotEmpty && to.isEmpty) {
+      return 'Please select "To" time';
+    }
+
+    if (from.isEmpty && to.isNotEmpty) {
+      return 'Please select "From" time';
+    }
+
+    if (isAvailable && from.isEmpty && to.isEmpty) {
+      return 'Please select both times';
+    }
+
+    return null; // Valid
+  }
+
+  static String? instagram(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Please enter Instagram link';
+    }
+
+    final instagramRegex = RegExp(
+      r'^(https?:\/\/)?(www\.)?instagram\.com\/([A-Za-z0-9_.]+|p\/[A-Za-z0-9_-]+|reel\/[A-Za-z0-9_-]+|stories\/[A-Za-z0-9_.]+\/[0-9]+)\/?$',
+      caseSensitive: false,
+    );
+
+    if (!instagramRegex.hasMatch(value.trim())) {
+      return 'Please enter a valid Instagram link';
+    }
+
+    return null;
+  }
+
+  static String? tiktok(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Please enter TikTok link';
+    }
+
+    final tiktokRegex = RegExp(
+      r'^(https?:\/\/)?(www\.)?(tiktok\.com\/(@[A-Za-z0-9._]+|v\/[0-9]+|video\/[0-9]+)|vm\.tiktok\.com\/[A-Za-z0-9]+|vt\.tiktok\.com\/[A-Za-z0-9]+)\/?$',
+      caseSensitive: false,
+    );
+
+    if (!tiktokRegex.hasMatch(value.trim())) {
+      return 'Please enter a valid TikTok link';
+    }
+
+    return null;
+  }
+
+  static String? facebook(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'Please enter Facebook link';
+    }
+
+    final facebookRegex = RegExp(
+      r'^(https?:\/\/)?(www\.)?facebook\.com\/(profile\.php\?id=\d+|[A-Za-z0-9.\-_/]+)\/?$',
+      caseSensitive: false,
+    );
+
+    if (!facebookRegex.hasMatch(value.trim())) {
+      return 'Please enter a valid Facebook link';
+    }
+
+    return null;
+  }
+
+  static String? preferredContact(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please select a preferred contact method';
+    }
+    return null;
+  }
+
+  static String? teamMember(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return null; // Team member is optional
+    }
+    if (value.trim().length < 2) {
+      return 'Team member name must be at least 2 characters';
+    }
+    return null;
+  }
+
+  static String? ageConfirmation(bool isConfirmed) {
+    if (!isConfirmed) {
+      return 'You must confirm you are over 18 years old';
+    }
+    return null;
+  }
+
+  static String? termsAcceptance(bool isAccepted) {
+    if (!isAccepted) {
+      return 'You must agree to the terms and conditions';
+    }
+    return null;
+  }
+
+
 }
 // import 'package:intl/intl.dart';
 //

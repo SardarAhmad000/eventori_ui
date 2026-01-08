@@ -11,6 +11,7 @@ import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../constants/custom_validators.dart';
+import '../widgets/custom_stepper.dart';
 
 class BasicInformationScreen extends StatefulWidget {
   BasicInformationScreen({super.key});
@@ -52,6 +53,7 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
               height: 32,
             ),
             const SizedBox(height: 20),
+            const CustomStepper(currentStep: 1),
             const SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(
@@ -431,6 +433,14 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
                           }
 
                           if (isFormValid && isCountryValid && isCityValid) {
+                            completeProfileVendorController.storedCompanyOwnerNameForReuse.value=vendorOwnerNameController.text;
+                            completeProfileVendorController.storedBusinessNameForReuse.value=vendorBusinessNameController.text;
+                            completeProfileVendorController.storedOperatingAddressForReuse.value=vendorOperatingAddressController.text;
+                            completeProfileVendorController.storedCategoryForReuse.value=completeProfileVendorController.selectedEventCategoryId.value.toString();
+                            completeProfileVendorController.storedServicesProvidedForReuse.value=completeProfileVendorController.selectedServiceIds.toString();
+                            completeProfileVendorController.storedCountryForReuse.value=completeProfileVendorController.selectedCountry.value.toString();
+                            completeProfileVendorController.storedCityForReuse.value=completeProfileVendorController.selectedCity.value.toString();
+
                             // All validations passed
                             print('=== Form Validation Passed ===');
                             print('Owner Name: ${vendorOwnerNameController.text}');
@@ -443,8 +453,9 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
                             print('Selected City: ${completeProfileVendorController.selectedCity.value}');
                             print('=== End of Form Data ===');
 
-                            // Navigate to next screen
+
                             Get.toNamed(AppRoutes.identityVerificationScreen);
+
                           } else {
                             // Validation failed
                             print('=== Form Validation Failed ===');

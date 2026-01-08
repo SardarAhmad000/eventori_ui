@@ -11,6 +11,7 @@ import '../../../../../app_widgets/custom_image_picker.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../controller/complete_profile_vendor_controller.dart';
+import '../widgets/custom_stepper.dart';
 
 class IdentityVerificationScreen extends StatefulWidget {
   const IdentityVerificationScreen({super.key});
@@ -50,6 +51,8 @@ class _IdentityVerificationScreenState
               height: 32,
             ),
             const SizedBox(height: 20),
+            const CustomStepper(currentStep: 2),
+            const SizedBox(height: 20),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -73,7 +76,7 @@ class _IdentityVerificationScreenState
                     const SizedBox(height: 12),
                     Obx(() {
                       final documentFile =
-                          completeProfileVendorController.documentFile.value;
+                          completeProfileVendorController.businessDocument.value;
                       final documentFileName = completeProfileVendorController
                           .documentFileName.value;
 
@@ -217,7 +220,7 @@ class _IdentityVerificationScreenState
                     ),
                     const SizedBox(height: 12),
                     Obx(() {
-                      final portfolioImages = completeProfileVendorController.portfolioImages;
+                      final portfolioImages = completeProfileVendorController.portfolio;
 
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -353,7 +356,7 @@ class _IdentityVerificationScreenState
                     ),
                     const SizedBox(height: 12),
                     Obx(() {
-                      final logoImage = completeProfileVendorController.logoImage.value;
+                      final logoImage = completeProfileVendorController.logo.value;
                       if (logoImage != null) {
                         return Stack(
                           children: [
@@ -548,32 +551,32 @@ class _IdentityVerificationScreenState
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               CustomCheckbox(
-                                initialValue: completeProfileVendorController.selectedTravelAvailability.value == 'Local',
-                                label: 'Local',
+                                initialValue: completeProfileVendorController.selectedTravelAvailability.value == 'LOCAL',
+                                label: 'LOCAL',
                                 labelStyle:
                                 AppTextStyle.f14W400SColorTextStyle,
                                 onChanged: (value) {
-                                  completeProfileVendorController.updateTravelAvailability('Local');
+                                  completeProfileVendorController.updateTravelAvailability('LOCAL');
                                 },
                               ),
                               CustomCheckbox(
                                 initialValue:
-                                completeProfileVendorController.selectedTravelAvailability.value == 'Nationwide',
-                                label: 'Nationwide',
+                                completeProfileVendorController.selectedTravelAvailability.value == 'NATIONWIDE',
+                                label: 'NATIONWIDE',
                                 labelStyle:
                                 AppTextStyle.f14W400SColorTextStyle,
                                 onChanged: (value) {
-                                  completeProfileVendorController.updateTravelAvailability('Nationwide');
+                                  completeProfileVendorController.updateTravelAvailability('NATIONWIDE');
                                 },
                               ),
                               CustomCheckbox(
                                 initialValue:
-                                completeProfileVendorController.selectedTravelAvailability.value == 'International',
-                                label: 'International',
+                                completeProfileVendorController.selectedTravelAvailability.value == 'INTERNATIONAL',
+                                label: 'INTERNATIONAL',
                                 labelStyle:
                                 AppTextStyle.f14W400SColorTextStyle,
                                 onChanged: (value) {
-                                  completeProfileVendorController.updateTravelAvailability('International');
+                                  completeProfileVendorController.updateTravelAvailability('INTERNATIONAL');
                                 },
                               ),
                             ],
@@ -609,13 +612,13 @@ class _IdentityVerificationScreenState
                                 initialValue:
                                 completeProfileVendorController
                                     .selectedPricingTier.value ==
-                                    'Budget-Friendly',
-                                label: 'Budget-Friendly',
+                                    'BUDGET_FRIENDLY',
+                                label: 'BUDGET FRIENDLY',
                                 labelStyle:
                                 AppTextStyle.f14W400SColorTextStyle,
                                 onChanged: (value) {
                                   completeProfileVendorController
-                                      .updatePricingTier('Budget-Friendly');
+                                      .updatePricingTier('BUDGET_FRIENDLY');
                                 },
                               ),
                               const SizedBox(width: 16),
@@ -623,13 +626,13 @@ class _IdentityVerificationScreenState
                                 initialValue:
                                 completeProfileVendorController
                                     .selectedPricingTier.value ==
-                                    'Premium',
-                                label: 'Premium',
+                                    'MID_RANGE',
+                                label: 'MID RANGE',
                                 labelStyle:
                                 AppTextStyle.f14W400SColorTextStyle,
                                 onChanged: (value) {
                                   completeProfileVendorController
-                                      .updatePricingTier('Premium');
+                                      .updatePricingTier('MID_RANGE');
                                 },
                               ),
                             ],
@@ -716,21 +719,26 @@ class _IdentityVerificationScreenState
                         if (isValid) {
                           // Print all the collected data
                           print('==================== IDENTITY VERIFICATION DATA ====================');
-                          print('Document File: ${completeProfileVendorController.documentFile.value?.path ?? "Not provided"}');
+                          print('Business Document: ${completeProfileVendorController.businessDocument.value?.path ?? "Not provided"}');
                           print('Document Name: ${completeProfileVendorController.documentFileName.value}');
-                          print('Portfolio Images Count: ${completeProfileVendorController.portfolioImages.length}');
-                          for (int i = 0; i < completeProfileVendorController.portfolioImages.length; i++) {
-                            print('  Portfolio Image ${i + 1}: ${completeProfileVendorController.portfolioImages[i].path}');
+                          print('Portfolio Images Count: ${completeProfileVendorController.portfolio.length}');
+                          for (int i = 0; i < completeProfileVendorController.portfolio.length; i++) {
+                            print('  Portfolio Image ${i + 1}: ${completeProfileVendorController.portfolio[i].path}');
                           }
-                          print('Logo Image: ${completeProfileVendorController.logoImage.value?.path ?? "Not provided"}');
+                          print('Logo Image: ${completeProfileVendorController.logo.value?.path ?? "Not provided"}');
                           print('Service Description: ${vendorServiceDescpController.text}');
-                          print('Travel Availability: ${completeProfileVendorController.selectedTravelAvailability.value}');
-                          print('Pricing Tier: ${completeProfileVendorController.selectedPricingTier.value}');
+                          print('TRAVEL_SETTINGS : ${completeProfileVendorController.selectedTravelAvailability.value}');
+                          print('PREFERRED_BUDGET : ${completeProfileVendorController.selectedPricingTier.value}');
                           print('Notice Period: ${completeProfileVendorController.selectedNotice.value}');
                           print('====================================================================');
 
-                          // All validations passed, navigate to next screen
-                          Get.toNamed(AppRoutes.preferenceFinalizationScreen);
+
+                          completeProfileVendorController.storedServiceDescriptionForReuse.value=vendorServiceDescpController.text;
+                          completeProfileVendorController.storedTravelSettingForReuse.value= completeProfileVendorController.selectedTravelAvailability.value.toString();
+                          completeProfileVendorController.storedPricingTierForReuse.value=completeProfileVendorController.selectedPricingTier.value.toString();
+                          completeProfileVendorController.storedNoticePeriodForReuse.value=completeProfileVendorController.selectedNotice.value.toString();
+
+                          Get.toNamed(AppRoutes.setAvailabilityScreen);
                         }
                         else {
                           // Show error message

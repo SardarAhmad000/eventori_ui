@@ -1,5 +1,5 @@
+import 'package:eventori/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_checkbox.dart';
 
@@ -9,6 +9,7 @@ class DayAvailabilityRow extends StatefulWidget {
   final String initialFrom;
   final String initialTo;
   final Function(bool isAvailable, String from, String to) onChanged;
+  final String? validationError;
 
   const DayAvailabilityRow({
     super.key,
@@ -17,6 +18,7 @@ class DayAvailabilityRow extends StatefulWidget {
     required this.initialFrom,
     required this.initialTo,
     required this.onChanged,
+    this.validationError,
   });
 
   @override
@@ -25,8 +27,8 @@ class DayAvailabilityRow extends StatefulWidget {
 
 class _DayAvailabilityRowState extends State<DayAvailabilityRow> {
   late bool isAvailable;
-  late TextEditingController fromController;
-  late TextEditingController toController;
+  TextEditingController fromController = TextEditingController();
+  TextEditingController toController = TextEditingController();
 
   @override
   void initState() {
@@ -43,99 +45,141 @@ class _DayAvailabilityRowState extends State<DayAvailabilityRow> {
     super.dispose();
   }
 
-  void _notifyParent() {
-    widget.onChanged(isAvailable, fromController.text, toController.text);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
-      child: Row(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CustomCheckbox(
-            initialValue: isAvailable,
-            onChanged: (value) {
-              setState(() {
-                isAvailable = value;
-              });
-              _notifyParent();
-            },
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Text(
-              widget.day,
-              style: TextStyle(
-                color: AppTheme.blackColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
+          Container(
+            height: 60,
+            decoration: BoxDecoration(
+              color: AppTheme.whiteColor,
+              borderRadius: BorderRadius.circular(12),
+              border: widget.validationError != null
+                  ? Border.all(color: Colors.red, width: 1)
+                  : null,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  CustomCheckbox(
+                    initialValue: isAvailable,
+                    onChanged: (value) {
+                      setState(() {
+                        isAvailable = value;
+                      });
+                      widget.onChanged(isAvailable, fromController.text, toController.text);
+                    },
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      widget.day,
+                      style: AppTextStyle.f16W400SColorTextStyle,
+                    ),
+                  ),
+                  if (isAvailable) ...[
+                    Container(
+                      width: 82,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        color: AppTheme.whiteColor,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: widget.validationError != null
+                              ? Colors.red
+                              : AppTheme.textfieldBorderColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: Center(
+                        child: TextField(
+                          controller: fromController,
+                          textAlign: TextAlign.center,
+                          textAlignVertical: TextAlignVertical.center,
+                          style: AppTextStyle.f14W400BColorTextStyle,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: 'From',
+                            hintStyle: AppTextStyle.f14W400SColorTextStyle,
+                            isDense: true,
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                          onTap: () async {
+                            final TimeOfDay? pickedTime = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            );
+                            if (pickedTime != null) {
+                              fromController.text = pickedTime.format(context);
+                              widget.onChanged(isAvailable, fromController.text, toController.text);
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Container(
+                      width: 82,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        color: AppTheme.whiteColor,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: widget.validationError != null
+                              ? Colors.red
+                              : AppTheme.textfieldBorderColor,
+                          width: 1,
+                        ),
+                      ),
+                      child: Center(
+                        child: TextField(
+                          controller: toController,
+                          textAlign: TextAlign.center,
+                          textAlignVertical: TextAlignVertical.center,
+                          style: AppTextStyle.f14W400BColorTextStyle,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            hintText: 'To',
+                            hintStyle: AppTextStyle.f14W400SColorTextStyle,
+                            isDense: true,
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.zero,
+                          ),
+                          onTap: () async {
+                            final TimeOfDay? pickedTime = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay.now(),
+                            );
+                            if (pickedTime != null) {
+                              toController.text = pickedTime.format(context);
+                              widget.onChanged(isAvailable, fromController.text, toController.text);
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
           ),
-          if (isAvailable) ...[
-            _buildTimeInput(
-              hint: 'from',
-              controller: fromController,
-              onTimePicked: () => _notifyParent(),
+          if (widget.validationError != null)
+            Padding(
+              padding: const EdgeInsets.only(left: 12, top: 4),
+              child: Text(
+                widget.validationError!,
+                style: const TextStyle(
+                  color: Colors.red,
+                  fontSize: 12,
+                ),
+              ),
             ),
-            const SizedBox(width: 12),
-            _buildTimeInput(
-              hint: 'to',
-              controller: toController,
-              onTimePicked: () => _notifyParent(),
-            ),
-          ],
         ],
-      ),
-    );
-  }
-
-  Widget _buildTimeInput({
-    required String hint,
-    required TextEditingController controller,
-    required VoidCallback onTimePicked,
-  }) {
-    return Container(
-      width: 80,
-      height: 40,
-      decoration: BoxDecoration(
-        color: AppTheme.whiteColor,
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: AppTheme.lightGrayishColor,
-          width: 1,
-        ),
-      ),
-      child: Center(
-        child: TextField(
-          controller: controller,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: AppTheme.blackColor,
-            fontSize: 14,
-          ),
-          decoration: InputDecoration(
-            hintText: hint,
-            hintStyle: TextStyle(
-              color: AppTheme.lightGrayishColor,
-              fontSize: 14,
-            ),
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.zero,
-          ),
-          onTap: () async {
-            final TimeOfDay? pickedTime = await showTimePicker(
-              context: context,
-              initialTime: TimeOfDay.now(),
-            );
-            if (pickedTime != null) {
-              controller.text = pickedTime.format(context);
-              onTimePicked();
-            }
-          },
-          readOnly: true,
-        ),
       ),
     );
   }
