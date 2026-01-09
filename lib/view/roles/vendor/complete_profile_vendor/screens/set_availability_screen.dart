@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:eventori/routes/app_routes.dart';
 import 'package:eventori/view/roles/vendor/complete_profile_vendor/controller/complete_profile_vendor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_button.dart';
 import '../../../../../constants/aap_assets.dart';
@@ -64,14 +67,31 @@ class _SetAvailabilityScreenState extends State<SetAvailabilityScreen> {
     return isValid;
   }
 
+  // Helper function to convert 12-hour format to 24-hour format
+  String _convertTo24HourFormat(String time12Hour) {
+    try {
+      // Parse the 12-hour format time (e.g., "12:56 PM")
+      DateFormat inputFormat = DateFormat("hh:mm a");
+      DateTime dateTime = inputFormat.parse(time12Hour);
+
+      // Format to 24-hour format (e.g., "12:56")
+      DateFormat outputFormat = DateFormat("HH:mm");
+      return outputFormat.format(dateTime);
+    } catch (e) {
+      print('Error converting time: $e');
+      return time12Hour; // Return original if conversion fails
+    }
+  }
+
+
   List<Map<String, String>> _getSelectedAvailability() {
     List<Map<String, String>> availabilityList = [];
     availability.forEach((day, data) {
       if (data['isAvailable'] && data['from'].isNotEmpty && data['to'].isNotEmpty) {
         availabilityList.add({
           "day": day,
-          "from": data['from'],
-          "to": data['to'],
+          "from": _convertTo24HourFormat(data['from']),
+          "to": _convertTo24HourFormat(data['to']),
         });
       }
     });
@@ -134,10 +154,10 @@ class _SetAvailabilityScreenState extends State<SetAvailabilityScreen> {
                   List<Map<String, String>> selectedData = _getSelectedAvailability();
                   // Print for debugging
                   print('=== Availability Data for Backend ===');
-                  print(selectedData);
+                  print(jsonEncode(selectedData));
                   print('====================================');
 
-                  completeProfileVendorController.storedAvailabilityTimeForReuse.value = selectedData.toString();
+                  completeProfileVendorController.storedAvailabilityTimeForReuse.value = jsonEncode(selectedData).toString();
 
                   Get.toNamed(AppRoutes.preferenceFinalizationScreen);
 

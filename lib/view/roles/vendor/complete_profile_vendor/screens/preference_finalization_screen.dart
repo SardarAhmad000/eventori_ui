@@ -134,29 +134,29 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomCheckbox(
-                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'In-app chat',
+                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'IN_APP',
                               label: 'In-app chat',
                               labelStyle: AppTextStyle.f14W400SColorTextStyle,
                               onChanged: (value) {
-                                completeProfileVendorController.updatePreferredContact('In-app chat');
+                                completeProfileVendorController.updatePreferredContact('IN_APP');
                               },
                             ),
                             const SizedBox(width: 16),
                             CustomCheckbox(
-                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'WhatsApp',
+                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'WHATSAPP',
                               label: 'WhatsApp',
                               labelStyle: AppTextStyle.f14W400SColorTextStyle,
                               onChanged: (value) {
-                                completeProfileVendorController.updatePreferredContact('WhatsApp');
+                                completeProfileVendorController.updatePreferredContact('WHATSAPP');
                               },
                             ),
                             const SizedBox(width: 16),
                             CustomCheckbox(
-                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'Email',
+                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'EMAIL',
                               label: 'Email',
                               labelStyle: AppTextStyle.f14W400SColorTextStyle,
                               onChanged: (value) {
-                                completeProfileVendorController.updatePreferredContact('Email');
+                                completeProfileVendorController.updatePreferredContact('EMAIL');
                               },
                             ),
                             const SizedBox(width: 16),
@@ -387,7 +387,7 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                             Map<String, String> socialLinks = {
                               "instagram": instagramController.text.trim(),
                               "facebook": facebookController.text.trim(),
-                              "tiktok": tiktokController.text.trim(),
+                              "website": tiktokController.text.trim(),
                             };
 
                             // Convert to JSON string

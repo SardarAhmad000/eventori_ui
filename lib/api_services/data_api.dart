@@ -410,4 +410,90 @@ class DataApiService {
             'Error occurred with code : ${response.statusCode}', response.request!.url.toString());
     }
   }
+
+  Future<dynamic> multiPartRequestForCompleteProfile({
+    required String api,
+    required Map<String, String> body,
+
+    // single file fields
+    required String businessDocumentPath,
+    required String logoPath,
+
+    // multiple files (portfolio)
+    required List<dynamic> portfolioPaths,
+  }) async {
+    final uri = Uri.parse(BASE_URL + api);
+    print(uri);
+
+    try {
+      final request = http.MultipartRequest('POST', uri);
+
+      /// Headers
+      request.headers.addAll({
+        'Authorization': 'Bearer ${authController.accessToken.value}',
+      });
+
+      /// Text fields
+      request.fields.addAll(body);
+
+      /// Business Document (single)
+      if (businessDocumentPath != null && businessDocumentPath.isNotEmpty) {
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            'businessDocument',
+            businessDocumentPath,
+          ),
+        );
+      }
+
+      /// Logo (single)
+      if (logoPath != null && logoPath.isNotEmpty) {
+        request.files.add(
+          await http.MultipartFile.fromPath(
+            'logo',
+            logoPath,
+          ),
+        );
+      }
+
+      /// Portfolio (multiple)
+      if (portfolioPaths != null && portfolioPaths.isNotEmpty) {
+        for (final path in portfolioPaths) {
+          if (path.isNotEmpty) {
+            request.files.add(
+              await http.MultipartFile.fromPath(
+                'portfolio', // SAME key multiple times
+                path,
+              ),
+            );
+          }
+        }
+      }
+
+      /// Debug logs
+      print('FIELDS: ${request.fields}');
+      print('FILES: ${request.files.map((e) => e.field)}');
+
+      final response = await request
+          .send()
+          .timeout(const Duration(seconds: TIME_OUT_DURATION));
+
+      final responseBody = await response.stream.bytesToString();
+
+      if (response.statusCode == 200) {
+        return responseBody;
+      } else {
+        throw BadRequestException(responseBody, uri.toString());
+      }
+    } on SocketException {
+      throw FetchDataException('No Internet connection', uri.toString());
+    } on TimeoutException {
+      throw ApiNotRespondingException(
+        'API not responded in time',
+        uri.toString(),
+      );
+    }
+  }
+
+
 }

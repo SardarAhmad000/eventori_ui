@@ -14,6 +14,7 @@ import '../../../routes/app_routes.dart';
 import '../../../services/shared_preferences/shared_preference.dart';
 import '../../../utils/custom_dialog.dart';
 import '../../../utils/snackbar_util.dart';
+import '../../roles/vendor/complete_profile_vendor/controller/complete_profile_vendor_controller.dart';
 
 class AuthController extends GetxController {
   // SignUp Screen States
@@ -241,7 +242,7 @@ class AuthController extends GetxController {
     };
 
     var  response = await DataApiService.instance
-        .post('/login', body)
+        .post('login', body)
         .catchError((error) {
       if (error is BadRequestException) {
         var apiError = json.decode(error.message!);
@@ -274,6 +275,7 @@ class AuthController extends GetxController {
         _authPreference.setUserLoggedIn(true,"Event_Vendor");
         Get.toNamed(AppRoutes.vendorBottomNav);
       } else{
+
       }
 
     }
@@ -328,11 +330,8 @@ class AuthController extends GetxController {
         _authPreference.setUserLoggedIn(true,"Event_Vendor");
         Get.toNamed(AppRoutes.vendorBottomNav);
       } else{
-
       }
-
     }
-
     else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];
       SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:country_picker_bkb/country_picker_bkb.dart';
 import 'package:eventori/routes/app_routes.dart';
 import 'package:eventori/view/roles/customer/event/controller/event_controller.dart';
@@ -437,7 +439,10 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
                             completeProfileVendorController.storedBusinessNameForReuse.value=vendorBusinessNameController.text;
                             completeProfileVendorController.storedOperatingAddressForReuse.value=vendorOperatingAddressController.text;
                             completeProfileVendorController.storedCategoryForReuse.value=completeProfileVendorController.selectedEventCategoryId.value.toString();
-                            completeProfileVendorController.storedServicesProvidedForReuse.value=completeProfileVendorController.selectedServiceIds.toString();
+                            // completeProfileVendorController.storedServicesProvidedForReuse.value=completeProfileVendorController.selectedServiceIds.toString();
+
+                            completeProfileVendorController.storedServicesProvidedForReuse.value = jsonEncode(completeProfileVendorController.selectedServiceIds);
+
                             completeProfileVendorController.storedCountryForReuse.value=completeProfileVendorController.selectedCountry.value.toString();
                             completeProfileVendorController.storedCityForReuse.value=completeProfileVendorController.selectedCity.value.toString();
 
@@ -446,7 +451,7 @@ class _BasicInformationScreenState extends State<BasicInformationScreen> {
                             print('Owner Name: ${vendorOwnerNameController.text}');
                             print('Business Name: ${vendorBusinessNameController.text}');
                             print('Event Category ID: ${completeProfileVendorController.selectedEventCategoryId.value}');
-                            print('Selected Services IDs: ${completeProfileVendorController.selectedServiceIds}');
+                            print('Selected Services IDs: ${jsonEncode(completeProfileVendorController.selectedServiceIds)}');
                             print('Selected Services Names: ${completeProfileVendorController.selectedServices.map((s) => s.serviceName).toList()}');
                             print('Operating Address: ${vendorOperatingAddressController.text}');
                             print('Selected Country: ${completeProfileVendorController.selectedCountry.value}');

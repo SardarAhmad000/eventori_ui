@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:country_picker_bkb/model/country_model.dart';
+import 'package:eventori/routes/app_routes.dart';
+import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 import '../../../../../api_services/api_exceptions.dart';
 import '../../../../../api_services/data_api.dart';
@@ -33,6 +36,9 @@ class CompleteProfileVendorController extends GetxController {
   // final Rx<String?> selectedService = Rx<String?>(null);
   // final Rx<String?> selectedServiceId = Rx<String?>(null);
 
+  // RxString selectedServices=''.obs;
+  // RxString selectedServices = ''.obs;
+
   var selectedServiceIds = <String>[].obs;
   var selectedServices = <dynamic>[].obs;
 
@@ -58,6 +64,8 @@ class CompleteProfileVendorController extends GetxController {
   var travelSettingsError = Rxn<String>();
   var pricingTierError = Rxn<String>();
   var noticePeriodError = Rxn<String>();
+  RxString storedEmailForReuse = ''.obs;
+  RxString storedPasswordForReuse = ''.obs;
 
 
   var preferredContactError = Rxn<String>();
@@ -83,6 +91,10 @@ class CompleteProfileVendorController extends GetxController {
   RxString storedTeamMembersForReuse =''.obs;
   RxString storedSocialLinksForReuse =''.obs;
   RxString storedNoticePeriodForReuse =''.obs;
+  RxString storedBusinessDocumentForReuse =''.obs;
+  RxString storedPortfolioForReuse =''.obs;
+  RxString storedLogoForReuse =''.obs;
+  RxList portfolioImages=[].obs;
 
 
 
@@ -105,37 +117,45 @@ class CompleteProfileVendorController extends GetxController {
       'preferredContact': storedPreferredContactForReuse.value,
       'teamMembers': storedTeamMembersForReuse.value,
       'socialLinks': storedSocialLinksForReuse.value,
-      'noticePeriod': storedNoticePeriodForReuse.value
-    };
-    print(body);
-    // var  response = await DataApiService.instance
-    //     .post('/complete-profile', body)
-    //     .catchError((error) {
-    //   if (error is BadRequestException) {
-    //     var apiError = json.decode(error.message!);
-    //     SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
-    //   } else {
-    //     _baseController.handleError(error);
-    //   }
-    // });
+      'noticePeriod': storedNoticePeriodForReuse.value,
 
+    };
+
+    print(body);
+    print(storedBusinessDocumentForReuse);
+    print(storedLogoForReuse);
+    print(portfolioImages);
+
+    var  response = await DataApiService.instance
+        .multiPartRequestForCompleteProfile(api: "complete-profile", body: body,businessDocumentPath:storedBusinessDocumentForReuse.value ,logoPath:storedLogoForReuse.value ,portfolioPaths: portfolioImages)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+//
     update();
     _baseController.hideLoading();
-    // if (response == null) return;
-    // print(response + " responded");
-    // var result = json.decode(response);
-    // print(result['message']);
-    // print(result['success']);
-    //
-    // if (result['success'].toString()=="true" && result['message']=="Successful") {
-    //
-    //
-    // }
-    //
-    // else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
-    //   String message = result['data']['message'];
-    //   SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
-    // }
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+
+    if (result['success'].toString()=="true") {
+      Get.put(AuthController().loginUser(storedEmailForReuse.value, storedPasswordForReuse.value));
+
+
+      // Get.toNamed(AppRoutes.vendorBottomNav);
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
   }
 
 

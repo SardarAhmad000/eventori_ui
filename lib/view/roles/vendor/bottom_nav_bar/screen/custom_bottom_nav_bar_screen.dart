@@ -21,57 +21,56 @@ class BottomNavScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return PopScope(
-        canPop: false,
-        onPopInvoked: (bool didPop) async {
-          if (didPop) return;
-          if (bottomNavController.selectedIndex.value == 0) {
-            // Exit dialog or action here
-            // SystemNavigator.pop();
-          } else {
-            bottomNavController.changeIndex(0);
-          }
-        },
-        child: Scaffold(
-          body: pages[bottomNavController.selectedIndex.value],
-          bottomNavigationBar: Container(
-            height: 10.h,
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: AppTheme.whiteColor,
-            ),
-            child: Row(
-              children: [
-                CustomNavItem(
-                  iconPath: AppAssets.gridIcon,
-                  title: 'Dashboard',
-                  isSelected: bottomNavController.selectedIndex.value == 0,
-                  onTap: () => bottomNavController.changeIndex(0),
-                ),
-                CustomNavItem(
-                  iconPath: AppAssets.messageChatIcon,
-                  title: 'Inquires',
-                  isSelected: bottomNavController.selectedIndex.value == 1,
-                  onTap: () => bottomNavController.changeIndex(1),
-                ),
-                CustomNavItem(
-                  iconPath: AppAssets.arrowIcon,
-                  title: 'Booking',
-                  isSelected: bottomNavController.selectedIndex.value == 2,
-                  onTap: () => bottomNavController.changeIndex(2),
-                ),
-                CustomNavItem(
-                  iconPath: AppAssets.userIcon,
-                  title: 'Profile',
-                  isSelected: bottomNavController.selectedIndex.value == 3,
-                  onTap: () => bottomNavController.changeIndex(3),
-                ),
-              ],
-            ),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) async {
+        if (didPop) return;
+        if (bottomNavController.selectedIndex.value == 0) {
+          // Exit dialog or action here
+          // SystemNavigator.pop();
+        } else {
+          bottomNavController.changeIndex(0);
+        }
+      },
+      child: Scaffold(
+        body: Obx(
+                () => pages[bottomNavController.selectedIndex.value]),
+        bottomNavigationBar: Container(
+          height: 10.h,
+          padding: EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: AppTheme.whiteColor,
           ),
+          child: Obx(() => Row(
+            children: [
+              CustomNavItem(
+                iconPath: AppAssets.gridIcon,
+                title: 'Dashboard',
+                isSelected: bottomNavController.selectedIndex.value == 0,
+                onTap: () => bottomNavController.changeIndex(0),
+              ),
+              CustomNavItem(
+                iconPath: AppAssets.messageChatIcon,
+                title: 'Inquires',
+                isSelected: bottomNavController.selectedIndex.value == 1,
+                onTap: () => bottomNavController.changeIndex(1),
+              ),
+              CustomNavItem(
+                iconPath: AppAssets.arrowIcon,
+                title: 'Booking',
+                isSelected: bottomNavController.selectedIndex.value == 2,
+                onTap: () => bottomNavController.changeIndex(2),
+              ),
+              CustomNavItem(
+                iconPath: AppAssets.userIcon,
+                title: 'Profile',
+                isSelected: bottomNavController.selectedIndex.value == 3,
+                onTap: () => bottomNavController.changeIndex(3),
+              ),
+            ],
+          )),
         ),
-      );
-    });
+      ),
+    );
   }
 }

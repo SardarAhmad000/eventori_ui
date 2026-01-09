@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:eventori/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -202,10 +203,7 @@ class _IdentityVerificationScreenState
                               child: Text(
                                 completeProfileVendorController
                                     .documentError.value!,
-                                style: TextStyle(
-                                  color: AppTheme.redColor,
-                                  fontSize: 12,
-                                ),
+                                style: AppTextStyle.f12W400RColorTextStyle,
                               ),
                             ),
                         ],
@@ -285,10 +283,7 @@ class _IdentityVerificationScreenState
                               child: Text(
                                 completeProfileVendorController
                                     .portfolioError.value!,
-                                style: TextStyle(
-                                  color: AppTheme.redColor,
-                                  fontSize: 12,
-                                ),
+                                style: AppTextStyle.f12W400RColorTextStyle,
                               ),
                             ),
                           if (portfolioImages.isNotEmpty) ...[
@@ -451,10 +446,7 @@ class _IdentityVerificationScreenState
                               child: Text(
                                 completeProfileVendorController
                                     .logoError.value!,
-                                style: TextStyle(
-                                  color: AppTheme.redColor,
-                                  fontSize: 12,
-                                ),
+                                style: AppTextStyle.f12W400RColorTextStyle,
                               ),
                             ),
                         ],
@@ -527,10 +519,7 @@ class _IdentityVerificationScreenState
                               child: Text(
                                 completeProfileVendorController
                                     .serviceDescriptionError.value!,
-                                style: TextStyle(
-                                  color: AppTheme.redColor,
-                                  fontSize: 12,
-                                ),
+                                style: AppTextStyle.f12W400RColorTextStyle,
                               ),
                             ),
                         ],
@@ -586,10 +575,7 @@ class _IdentityVerificationScreenState
                               padding: const EdgeInsets.only(top: 8, left: 4),
                               child: Text(
                                 completeProfileVendorController.travelSettingsError.value!,
-                                style: TextStyle(
-                                  color: AppTheme.redColor,
-                                  fontSize: 12,
-                                ),
+                                style: AppTextStyle.f12W400RColorTextStyle,
                               ),
                             ),
                         ],
@@ -645,10 +631,7 @@ class _IdentityVerificationScreenState
                               child: Text(
                                 completeProfileVendorController
                                     .pricingTierError.value!,
-                                style: TextStyle(
-                                  color: AppTheme.redColor,
-                                  fontSize: 12,
-                                ),
+                                style: AppTextStyle.f12W400RColorTextStyle,
                               ),
                             ),
                         ],
@@ -694,10 +677,7 @@ class _IdentityVerificationScreenState
                               child: Text(
                                 completeProfileVendorController
                                     .noticePeriodError.value!,
-                                style: TextStyle(
-                                  color: AppTheme.redColor,
-                                  fontSize: 12,
-                                ),
+                                style: AppTextStyle.f12W400RColorTextStyle,
                               ),
                             ),
                         ],
@@ -717,32 +697,38 @@ class _IdentityVerificationScreenState
                         bool isValid = completeProfileVendorController.validateIdentityVerification(vendorServiceDescpController.text);
 
                         if (isValid) {
+                          // Create JSON array for portfolio images
+                          List<String> portfolioImagePaths = completeProfileVendorController.portfolio
+                              .map((file) => file.path)
+                              .toList();
+
                           // Print all the collected data
                           print('==================== IDENTITY VERIFICATION DATA ====================');
                           print('Business Document: ${completeProfileVendorController.businessDocument.value?.path ?? "Not provided"}');
                           print('Document Name: ${completeProfileVendorController.documentFileName.value}');
                           print('Portfolio Images Count: ${completeProfileVendorController.portfolio.length}');
-                          for (int i = 0; i < completeProfileVendorController.portfolio.length; i++) {
-                            print('  Portfolio Image ${i + 1}: ${completeProfileVendorController.portfolio[i].path}');
-                          }
+                          print('Portfolio Images: ${jsonEncode(portfolioImagePaths)}');
                           print('Logo Image: ${completeProfileVendorController.logo.value?.path ?? "Not provided"}');
                           print('Service Description: ${vendorServiceDescpController.text}');
-                          print('TRAVEL_SETTINGS : ${completeProfileVendorController.selectedTravelAvailability.value}');
-                          print('PREFERRED_BUDGET : ${completeProfileVendorController.selectedPricingTier.value}');
+                          print('TRAVEL_SETTINGS: ${completeProfileVendorController.selectedTravelAvailability.value}');
+                          print('PREFERRED_BUDGET: ${completeProfileVendorController.selectedPricingTier.value}');
                           print('Notice Period: ${completeProfileVendorController.selectedNotice.value}');
                           print('====================================================================');
 
+                          completeProfileVendorController.storedServiceDescriptionForReuse.value = vendorServiceDescpController.text;
+                          completeProfileVendorController.storedTravelSettingForReuse.value = completeProfileVendorController.selectedTravelAvailability.value.toString();
+                          completeProfileVendorController.storedPricingTierForReuse.value = completeProfileVendorController.selectedPricingTier.value.toString();
+                          completeProfileVendorController.storedNoticePeriodForReuse.value = completeProfileVendorController.selectedNotice.value.toString();
 
-                          completeProfileVendorController.storedServiceDescriptionForReuse.value=vendorServiceDescpController.text;
-                          completeProfileVendorController.storedTravelSettingForReuse.value= completeProfileVendorController.selectedTravelAvailability.value.toString();
-                          completeProfileVendorController.storedPricingTierForReuse.value=completeProfileVendorController.selectedPricingTier.value.toString();
-                          completeProfileVendorController.storedNoticePeriodForReuse.value=completeProfileVendorController.selectedNotice.value.toString();
+                          completeProfileVendorController.storedBusinessDocumentForReuse.value=completeProfileVendorController.businessDocument.value!.path;
+                          completeProfileVendorController.portfolioImages.value=portfolioImagePaths;
+                          completeProfileVendorController.storedPortfolioForReuse.value=completeProfileVendorController.logo.value!.path;
+
 
                           Get.toNamed(AppRoutes.setAvailabilityScreen);
                         }
                         else {
-                          // Show error message
-                         print("Validation Not Filled ");
+                          print("Validation Not Filled");
                         }
                       },
                     ),

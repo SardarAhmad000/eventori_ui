@@ -321,6 +321,7 @@
 //     );
 //   }
 // }
+import 'package:eventori/view/roles/vendor/complete_profile_vendor/controller/complete_profile_vendor_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../AppTheme/app_theme.dart';
@@ -352,6 +353,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final formKey = GlobalKey<FormState>();
 
   AuthController authController = Get.find();
+  CompleteProfileVendorController completeProfileVendorController=Get.find();
 
   @override
   void initState() {
@@ -564,6 +566,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                           if (formKey.currentState!.validate()) {
                            if (authController.areSignUpPasswordRequirementsMet()) {
+                             completeProfileVendorController.storedEmailForReuse.value=emailController.text;
+                             completeProfileVendorController.storedPasswordForReuse.value=passwordSignUpController.text;
                              printUserInformation();
                              authController.signUpUser(firstNameController.text, lastNameController.text, emailController.text, passwordSignUpController.text, Get.arguments['role']);
                            }

@@ -1,13 +1,10 @@
-import 'package:eventori/app_widgets/custom_button.dart';
 import 'package:eventori/constants/app_text_style.dart';
 import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../../AppTheme/app_theme.dart';
 import '../../../../app_widgets/custom_image_handler.dart';
-import '../../../../app_widgets/custom_textfield.dart';
 import '../../../../constants/aap_assets.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../services/shared_preferences/shared_preference.dart';
