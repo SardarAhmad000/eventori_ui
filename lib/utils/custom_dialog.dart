@@ -1,12 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../AppTheme/app_theme.dart';
 
 class CustomDialog {
-
 
   static void showLoading([String? message]) {
     Get.dialog(

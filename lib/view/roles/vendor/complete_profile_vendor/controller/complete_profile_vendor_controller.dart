@@ -136,9 +136,10 @@ class CompleteProfileVendorController extends GetxController {
         _baseController.handleError(error);
       }
     });
-//
-    update();
+
     _baseController.hideLoading();
+    update();
+
     if (response == null) return;
     print(response + " responded");
     var result = json.decode(response);

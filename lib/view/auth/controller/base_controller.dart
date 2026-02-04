@@ -1,13 +1,14 @@
+import 'package:eventori/utils/snackbar_util.dart';
+
 import '../../../api_services/api_exceptions.dart';
 import '../../../utils/custom_dialog.dart';
-import '../../../utils/snackbar_util.dart';
 
 
 class BaseController {
   BaseController._();
 
-  static final BaseController instance = BaseController._();
-  // static BaseController get instance => _instance;
+  static final BaseController _instance = BaseController._();
+  static BaseController get instance => _instance;
   void handleError(error) {
     hideLoading();
     if (error is BadRequestException) {

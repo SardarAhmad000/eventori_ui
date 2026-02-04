@@ -128,8 +128,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('Hi '+ authController.userData.value!.firstName,
-                                    style: AppTextStyle.f12W400LGColorTextStyle),
+                                Row(
+                                  children: [
+                                    Text('Hi',style:  AppTextStyle.f12W400LGColorTextStyle,),
+                                    SizedBox(width: 4,),
+                                    Text(authController.userData.value!.firstName?? '',
+                                        style: AppTextStyle.f12W400LGColorTextStyle),
+                                  ],
+                                ),
                                 const SizedBox(height: 2),
                                 Text('Welcome Back!',
                                     style: AppTextStyle.f16W400WColorTextStyle),

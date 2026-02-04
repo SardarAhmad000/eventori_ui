@@ -86,7 +86,7 @@ class AuthController extends GetxController {
           _baseController.handleError(error);
         }
       });
-    }else{
+    } else{
       response = await DataApiService.instance
           .multiPartImage('signup',[imagePath.value],'image', body)
           .catchError((error) {
@@ -99,9 +99,9 @@ class AuthController extends GetxController {
       });
     }
 
-
-    update();
     _baseController.hideLoading();
+    update();
+
     if (response == null) return;
     print(response + " responded");
     print(imagePath);
@@ -113,7 +113,7 @@ class AuthController extends GetxController {
       Get.toNamed(AppRoutes.verifyAccountScreen);
       accessToken.value=result['data']['token'];
       // signUpOtp.value=result['data']['otp'];
-      SnackbarUtil.showSnackbar(message: result['data']['otp'], type: SnackbarType.success);
+
 
 
       storedEmailForReuse.value=email;
@@ -121,6 +121,7 @@ class AuthController extends GetxController {
       storedFirstNameForReuse.value=firstName;
       storedLastNameForReuse.value=lastName;
       storedRoleForReuse.value=role;
+      SnackbarUtil.showSnackbar(message: result['data']['otp'], type: SnackbarType.success);
 
 
     } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){

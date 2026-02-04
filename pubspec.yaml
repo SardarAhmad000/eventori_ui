@@ -131,7 +131,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   sizer: ^2.0.15
   zoom_tap_animation: ^1.1.0
-  get: ^4.7.2
+  get: ^4.7.3
   intl: ^0.20.2
   pin_code_fields: ^8.0.1
   curved_nav_bar: ^0.0.2

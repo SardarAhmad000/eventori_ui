@@ -79,8 +79,14 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                              crossAxisAlignment: CrossAxisAlignment.start,
                              mainAxisAlignment: MainAxisAlignment.center,
                              children: [
-                               Text('Hi '+ authController.userData.value!.firstName,
-                                   style: AppTextStyle.f12W400SGColorTextStyle),
+                               Row(
+                                 children: [
+                                   Text('Hi',style:  AppTextStyle.f12W400LGColorTextStyle,),
+                                   SizedBox(width: 4,),
+                                   Text( authController.userData.value!.firstName??'',
+                                       style: AppTextStyle.f12W400SGColorTextStyle),
+                                 ],
+                               ),
                                const SizedBox(height: 2),
                                Text('Every detail, right  at your fingertips',
                                    style: AppTextStyle.f13W400BColorTextStyle),

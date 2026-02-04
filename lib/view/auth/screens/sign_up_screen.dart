@@ -331,8 +331,10 @@ import '../../../app_widgets/custom_button.dart';
 import '../../../app_widgets/custom_textfield.dart';
 import '../../../constants/custom_validators.dart';
 import '../../../routes/app_routes.dart';
+import '../../../utils/snackbar_util.dart';
 import '../../onboarding/widgets/build_header.dart';
 import '../controller/auth_controller.dart';
+import '../controller/base_controller.dart';
 import '../widget/password_requirement_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -354,6 +356,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   AuthController authController = Get.find();
   CompleteProfileVendorController completeProfileVendorController=Get.find();
+  final BaseController _baseController = BaseController.instance;
 
   @override
   void initState() {
@@ -563,13 +566,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         textColor: AppTheme.whiteColor,
                         textSize: 16,
                         onTap: () {
-
                           if (formKey.currentState!.validate()) {
                            if (authController.areSignUpPasswordRequirementsMet()) {
                              completeProfileVendorController.storedEmailForReuse.value=emailController.text;
                              completeProfileVendorController.storedPasswordForReuse.value=passwordSignUpController.text;
                              printUserInformation();
-                             authController.signUpUser(firstNameController.text, lastNameController.text, emailController.text, passwordSignUpController.text, Get.arguments['role']);
+                             authController.signUpUser(
+                                 firstNameController.text,
+                                 lastNameController.text,
+                                 emailController.text,
+                                 passwordSignUpController.text,
+                                 Get.arguments['role']
+                             );
                            }
                           }
                         },

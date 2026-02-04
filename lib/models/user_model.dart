@@ -1,7 +1,7 @@
 class UserModel {
   final int id;
   final String? image;
-  final String firstName;
+  final String? firstName;
   final String lastName;
   final String email;
   final String role;
@@ -24,7 +24,7 @@ class UserModel {
   UserModel({
     required this.id,
     required this.image,
-    required this.firstName,
+    this.firstName,
     required this.lastName,
     required this.email,
     required this.role,
@@ -49,7 +49,7 @@ class UserModel {
     return UserModel(
       id: json["id"],
       image: json["image"],
-      firstName: json["firstName"],
+      firstName: json["firstName"]??'',
       lastName: json["lastName"],
       email: json["email"],
       role: json["role"] ?? '',
