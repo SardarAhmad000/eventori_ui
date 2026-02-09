@@ -1,15 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/aap_assets.dart';
+import '../../../../../constants/app_text_style.dart';
 import '../controller/home_controller.dart';
-import '../widgets/custom_category_tab_bar.dart';
 import '../widgets/custom_vendor_card.dart';
 
-class VendorsScreen extends StatelessWidget {
+class VendorsScreen extends StatefulWidget {
   VendorsScreen({super.key});
 
-  HomeController controller = Get.find();
+  @override
+  State<VendorsScreen> createState() => _VendorsScreenState();
+}
+
+class _VendorsScreenState extends State<VendorsScreen> {
+  HomeController homeController = Get.find();
+  int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    homeController.getVendorCategory();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +33,59 @@ class VendorsScreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 16.0, bottom: 8,right: 16, left: 16),
-            child: Obx(
-                  () => CustomCategoryTabBar(
-                categories: controller.vendorCategories,
-                //                categories: eventController.eventCategoryList,
-                initialIndex: controller.selectedCategoryIndex.value,
-                onCategorySelected: (index) {
-                  controller.selectVendorCategory(index);
+            child:
+            // Obx(
+            // () =>
+            SizedBox(
+              height: 32,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: homeController.eventCategoryList.length,
+                itemBuilder: (context, index) {
+                  final isSelected = _selectedIndex == index;
+                  var eventCategory=homeController.eventCategoryList[index];
+
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _selectedIndex = index;
+                        });
+                        homeController.selectVendorCategory(index);
+                      },
+                      child: Container(
+                        width: 30.w,
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: isSelected
+                              ? AppTheme.steelBlueColor
+                              : AppTheme.whiteColor,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: isSelected
+                                ? AppTheme.steelBlueColor
+                                : AppTheme.textfieldBorderColor,
+                            width: 1,
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            eventCategory.categoryName,
+                            style: AppTextStyle.f10W400BColorTextStyle.copyWith(
+                              color: isSelected
+                                  ? AppTheme.whiteColor
+                                  : AppTheme.charcoalBlueColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
                 },
               ),
             ),
+            // ),
           ),
           Expanded(
             child: SingleChildScrollView(

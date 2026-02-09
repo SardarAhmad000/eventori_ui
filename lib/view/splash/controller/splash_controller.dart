@@ -15,8 +15,8 @@ class SplashController extends GetxController {
 
     Map<String, dynamic> userStatus = await AuthPreference.instance.getUserLoggedIn();
     bool isLoggedIn = userStatus["isLoggedIn"];
-    // String role = userStatus["role"];
-    String role = "Event_Vendor";
+    String role = userStatus["role"];
+    // String role = "Event_Vendor";
 
     if (isLoggedIn==true) {
       Get.put(AuthController()).accessToken.value = await AuthPreference.instance.getUserDataToken();

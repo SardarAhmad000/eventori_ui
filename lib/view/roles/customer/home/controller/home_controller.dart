@@ -1,21 +1,42 @@
+import 'dart:convert';
+import 'package:eventori/models/event_category_model.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:country_picker_bkb/model/country_model.dart';
+import '../../../../../api_services/api_exceptions.dart';
+import '../../../../../api_services/data_api.dart';
+import '../../../../../utils/snackbar_util.dart';
+import '../../../../auth/controller/base_controller.dart';
+
 
 class HomeController extends GetxController {
   final RxInt selectedCategoryIndex = 0.obs;
+  RxBool isLoading=false.obs;
+  final BaseController _baseController = BaseController.instance;
+  RxList<EventCategory> eventCategoryList=<EventCategory>[].obs;
 
-  final List<String> vendorCategories = [
-    'PHOTOGRAPHER',
-    'CATERING',
-    'VENUE',
-    'DECORATION',
-    'MUSIC',
-  ];
+  // Filter State Management
+  final Rx<String?> selectedCountry = Rx<String?>(null);
+  final Rx<String?> selectedCity = Rx<String?>(null);
+
+  // Using ValueNotifier for compatibility with country_picker_bkb
+  late final ValueNotifier<CountryModel> countryVN;
+  late final ValueNotifier<CityModel> cityVN;
+
+  final Rx<String?> selectedNotice = Rx<String?>(null);
+  final Rx<String?> selectedRating = Rx<String?>(null);
+  final Rx<String?> selectedTravelAvailability = Rx<String?>(null);
+
+  final RxBool isCateringSelected = false.obs;
+  final RxBool isDjSelected = false.obs;
+  final RxBool isPhotographySelected = false.obs;
+  final RxBool isFloralSelected = false.obs;
+  final RxBool isVerifiedIdSelected = false.obs;
+
 
   void selectVendorCategory(int index) {
     selectedCategoryIndex.value = index;
-    print('Selected category: ${vendorCategories[index]}');
+    print('Selected category: ${eventCategoryList.value[index].categoryName}');
   }
 
   final List<String> eventCategories = [
@@ -43,23 +64,38 @@ class HomeController extends GetxController {
     print('Selected category: ${forumCategories[index]}');
   }
 
-  // Filter State Management
-  final Rx<String?> selectedCountry = Rx<String?>(null);
-  final Rx<String?> selectedCity = Rx<String?>(null);
 
-  // Using ValueNotifier for compatibility with country_picker_bkb
-  late final ValueNotifier<CountryModel> countryVN;
-  late final ValueNotifier<CityModel> cityVN;
+  Future getVendorCategory() async {
+    isLoading.value=true;
+    var  response = await DataApiService.instance
+        .get('event/getCategories',)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    isLoading.value=false;
+    update();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
 
-  final Rx<String?> selectedNotice = Rx<String?>(null);
-  final Rx<String?> selectedRating = Rx<String?>(null);
-  final Rx<String?> selectedTravelAvailability = Rx<String?>(null);
+    if (result['success'].toString()=="true" && result['message']=="Successful") {
 
-  final RxBool isCateringSelected = false.obs;
-  final RxBool isDjSelected = false.obs;
-  final RxBool isPhotographySelected = false.obs;
-  final RxBool isFloralSelected = false.obs;
-  final RxBool isVerifiedIdSelected = false.obs;
+      eventCategoryList.value=List<EventCategory>.from(result['data'].map((x) => EventCategory.fromJson(x)));
+
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
 
   @override
   void onInit() {
