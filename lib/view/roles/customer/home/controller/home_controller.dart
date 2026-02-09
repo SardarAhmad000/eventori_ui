@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:eventori/models/event_category_model.dart';
+import 'package:eventori/models/event_vendor.dart';
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:country_picker_bkb/model/country_model.dart';
@@ -14,6 +15,7 @@ class HomeController extends GetxController {
   RxBool isLoading=false.obs;
   final BaseController _baseController = BaseController.instance;
   RxList<EventCategory> eventCategoryList=<EventCategory>[].obs;
+  RxList<EventVendor> eventAllVendorsList=<EventVendor>[].obs;
 
   // Filter State Management
   final Rx<String?> selectedCountry = Rx<String?>(null);
@@ -88,6 +90,38 @@ class HomeController extends GetxController {
     if (result['success'].toString()=="true" && result['message']=="Successful") {
 
       eventCategoryList.value=List<EventCategory>.from(result['data'].map((x) => EventCategory.fromJson(x)));
+
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
+  Future getAllVendors() async {
+    isLoading.value=true;
+    var  response = await DataApiService.instance
+        .get('event/vendors',)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    isLoading.value=false;
+    update();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+
+    if (result['success'].toString()=="true") {
+      eventAllVendorsList.value=List<EventVendor>.from(result['data']['vendors'].map((x) => EventVendor.fromJson(x)));
+      print(eventAllVendorsList.length.toString()+"lenght");
 
     }
 
