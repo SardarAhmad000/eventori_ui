@@ -1,8 +1,8 @@
 import 'package:eventori/AppTheme/app_theme.dart';
 import 'package:eventori/app_widgets/custom_bottom_sheet.dart';
 import 'package:eventori/routes/app_routes.dart';
+import 'package:eventori/view/roles/customer/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../app_widgets/custom_button.dart';
@@ -13,39 +13,48 @@ import '../../../../../constants/app_text_style.dart';
 import '../../home/widgets/custom_category_tab_bar.dart';
 import '../widgets/badge_item.dart';
 
-class VendorDetailedScreen extends StatelessWidget {
+class VendorDetailedScreen extends StatefulWidget {
   const VendorDetailedScreen({super.key});
+  @override
+  State<VendorDetailedScreen> createState() => _VendorDetailedScreenState();
+}
+
+class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
+
+  HomeController homeController = Get.find();
+  final Map<String, dynamic> args = Get.arguments ?? {};
+   List<String> imagePaths =  [
+    AppAssets.vendorDummyImage,
+    AppAssets.eventImage1,
+    AppAssets.featuredImage1,
+  ];
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // homeController.getAllVendors();
+    imagePaths= args['imagePaths'];
+    print(imagePaths);
+  }
+
+  final List<String> vendorDetailedCategories = [
+    'ABOUT',
+    'PORTFOLIO',
+    // 'REVIEWS',
+    // 'REWARDS',
+    // 'PAST EVENTS',
+  ];
+  final GlobalKey menuKey = GlobalKey();
+
+
+  var selectedCategoryIndex = 0;
+  @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic> args = Get.arguments ?? {};
-    final GlobalKey menuKey = GlobalKey();
-    var selectedCategoryIndex = 0;
-    final List<String> vendorDetailedCategories = [
-      'ABOUT',
-      'PORTFOLIO',
-      'REVIEWS',
-      'REWARDS',
-      'PAST EVENTS',
-    ];
 
-    void selectVendorCategory(int index) {
-      selectedCategoryIndex = 0;
-      print('Selected category: ${vendorDetailedCategories[index]}');
-    }
+    final String vendorName = args['vendorName'];
 
-    final List<String> imagePaths = args['imagePaths'] ?? [
-      AppAssets.vendorDummyImage,
-      AppAssets.eventImage1,
-      AppAssets.featuredImage1,
-    ];
-
-    final String vendorName = args['vendorName'] ?? 'Elegant Moments Photography';
-    // final double rating = args['rating'] ?? 4.8;
-    // final bool isTopRated = args['isTopRated'] ?? true;
-    // final bool isVerified = args['isVerified'] ?? true;
-    // final String location = args['location'] ?? 'Lahore, Pakistan';
-    // final List<String> categories = args['categories'] ?? ['WEDDING', 'EVENT'];
+    final String vendorEmail = args['email'];
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -221,12 +230,12 @@ class VendorDetailedScreen extends StatelessWidget {
                         const SizedBox(height: 70),
                         Text(
                           vendorName,
-                          style: AppTextStyle.f18W500BColorTextStyle, 
+                          style: AppTextStyle.f18W500BColorTextStyle,
                           textAlign: TextAlign.center,
-                        ), 
-                          const SizedBox(height: 16), 
+                        ),
+                          const SizedBox(height: 16),
                           Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 16), 
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Wrap(
                               alignment: WrapAlignment.start,
                               spacing: 4,
@@ -305,7 +314,8 @@ class VendorDetailedScreen extends StatelessWidget {
                               Expanded(
                                 child: CustomButton(
                                   Text: "Contact",
-                                  onTap: () {},
+                                  onTap: () {
+                                  },
                                   buttonColor: AppTheme.whiteColor,
                                   textColor: AppTheme.lightCyanColor,
                                   height: 48,
@@ -318,47 +328,61 @@ class VendorDetailedScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+
                     Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        child: CustomCategoryTabBar(
-                          categories: vendorDetailedCategories,
-                          initialIndex: selectedCategoryIndex,
-                          onCategorySelected: (index) {selectVendorCategory(index);},
-                        ),
-                      ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Portfolio',
-                          style: AppTextStyle.f18W500BColorTextStyle,
-                        ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      child: CustomCategoryTabBar(
+                        categories: vendorDetailedCategories,
+                        initialIndex: selectedCategoryIndex,
+                        onCategorySelected: (index){
+                          setState(() {
+                            selectedCategoryIndex = index;
+                            print(index);
+                          });
+                          print('Selected category: ${vendorDetailedCategories[index]}');
+                        },
                       ),
                     ),
 
-                    GridView.builder(
-                      padding: const EdgeInsets.only(left: 16, right: 16, top: 12),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                      ),
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        return ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: SizedBox.expand(
-                            child: CustomImageHandler(
-                              imagePath: AppAssets.eventImage1,
-                              fit: BoxFit.cover,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text(
+                              selectedCategoryIndex == 0?'About':"Portfolio",
+                              style: AppTextStyle.f18W500BColorTextStyle,
                             ),
                           ),
-                        );
-                      },
-                    ),
+                          const SizedBox(height: 12),
+                          selectedCategoryIndex == 0? Text(
+                            homeController.eventAllVendorsList.first.serviceDescription,
+                            style: AppTextStyle.f14W400SColorTextStyle,
+                          ):  GridView.builder(
+                            padding: const EdgeInsets.only(left: 16, right: 16, top: 12),
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 12,
+                              mainAxisSpacing: 12,
+                            ),
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: imagePaths.length,
+                            itemBuilder: (context, index) {
+
+                              return ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: SizedBox.expand(
+                                  child: CustomImageHandler(
+                                    imagePath: imagePaths[index],
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
                   ],
                   ),
                 ),
@@ -369,3 +393,10 @@ class VendorDetailedScreen extends StatelessWidget {
     );
   }
 }
+
+
+// final double rating = args['rating'] ?? 4.8;
+// final bool isTopRated = args['isTopRated'] ?? true;
+// final bool isVerified = args['isVerified'] ?? true;
+// final String location = args['location'] ?? 'Lahore, Pakistan';
+// final List<String> categories = args['categories'] ?? ['WEDDING', 'EVENT'];

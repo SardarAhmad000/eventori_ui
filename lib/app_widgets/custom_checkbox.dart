@@ -28,6 +28,17 @@ class _CustomCheckboxState extends State<CustomCheckbox> {
     isChecked = widget.initialValue;
   }
 
+  // Add this method to update when external state changes
+  @override
+  void didUpdateWidget(CustomCheckbox oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initialValue != oldWidget.initialValue) {
+      setState(() {
+        isChecked = widget.initialValue;
+      });
+    }
+  }
+
   void toggleCheck() {
     setState(() {
       isChecked = !isChecked;

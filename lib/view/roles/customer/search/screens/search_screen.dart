@@ -163,6 +163,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       onAddToEvent: () {},
                       onContact: () {},
                       onTap: () {
+                        print(eventVendor.portfolio);
                         Get.toNamed(
                           AppRoutes.vendorDetailedScreen,
                           arguments: {
@@ -173,6 +174,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             'rating': ['rating'],
                             'isVerified': ['isVerified'],
                             'categories':eventVendor.servicesProvided,
+                            'email' : eventVendor.user.email,
                           },
                         );
                       },

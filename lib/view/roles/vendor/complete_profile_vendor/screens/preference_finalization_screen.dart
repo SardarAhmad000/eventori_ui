@@ -32,6 +32,7 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
   TextEditingController tiktokController = TextEditingController();
   TextEditingController facebookController = TextEditingController();
   TextEditingController vendorTeamMemberController = TextEditingController();
+  TextEditingController preferredContactController = TextEditingController();
 
   final String selectedPromotionPlan = '';
 
@@ -41,6 +42,7 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
     tiktokController.dispose();
     facebookController.dispose();
     vendorTeamMemberController.dispose();
+    preferredContactController.dispose();
     super.dispose();
   }
 
@@ -84,7 +86,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                           style: AppTextStyle.f20W600BColorTextStyle,
                         ),
                         const SizedBox(height: 16),
-
                         // Instagram Link
                         Text(
                           'Instagram link',
@@ -97,7 +98,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                           validator: CustomValidator.instagram,
                         ),
                         const SizedBox(height: 12),
-
                         // TikTok Link
                         Text(
                           'Tiktok link',
@@ -110,7 +110,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                           validator: CustomValidator.tiktok,
                         ),
                         const SizedBox(height: 12),
-
                         // Facebook Link
                         Text(
                           'Facebook link',
@@ -123,7 +122,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                           validator: CustomValidator.facebook,
                         ),
                         const SizedBox(height: 12),
-
                         // Preferred Contact
                         Text(
                           'Preferred Contact',
@@ -133,35 +131,67 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomCheckbox(
-                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'IN_APP',
-                              label: 'In-app chat',
-                              labelStyle: AppTextStyle.f14W400SColorTextStyle,
-                              onChanged: (value) {
-                                completeProfileVendorController.updatePreferredContact('IN_APP');
-                              },
+                            Flexible(
+                              child: CustomCheckbox(
+                                initialValue: completeProfileVendorController.selectedPreferredContact.value == 'IN_APP',
+                                label: 'In-app chat',
+                                labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                                onChanged: (value) {
+                                  if (completeProfileVendorController.selectedPreferredContact.value == 'IN_APP') {
+                                    completeProfileVendorController.updatePreferredContact('');
+                                  } else {
+                                    completeProfileVendorController.updatePreferredContact('IN_APP');
+                                  }
+                                  preferredContactController.clear();
+                                },
+                              ),
                             ),
-                            const SizedBox(width: 16),
-                            CustomCheckbox(
-                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'WHATSAPP',
-                              label: 'WhatsApp',
-                              labelStyle: AppTextStyle.f14W400SColorTextStyle,
-                              onChanged: (value) {
-                                completeProfileVendorController.updatePreferredContact('WHATSAPP');
-                              },
+                            const SizedBox(width: 12),
+                            Flexible(
+                              child: CustomCheckbox(
+                                initialValue: completeProfileVendorController.selectedPreferredContact.value == 'WHATSAPP',
+                                label: 'WhatsApp',
+                                labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                                onChanged: (value) {
+                                  if (completeProfileVendorController.selectedPreferredContact.value == 'WHATSAPP') {
+                                    completeProfileVendorController.updatePreferredContact('');
+                                  } else {
+                                    completeProfileVendorController.updatePreferredContact('WHATSAPP');
+                                  }
+                                  preferredContactController.clear();
+                                },
+                              ),
                             ),
-                            const SizedBox(width: 16),
-                            CustomCheckbox(
-                              initialValue: completeProfileVendorController.selectedPreferredContact.value == 'EMAIL',
-                              label: 'Email',
-                              labelStyle: AppTextStyle.f14W400SColorTextStyle,
-                              onChanged: (value) {
-                                completeProfileVendorController.updatePreferredContact('EMAIL');
-                              },
+                            const SizedBox(width: 12),
+                            Flexible(
+                              child: CustomCheckbox(
+                                initialValue: completeProfileVendorController.selectedPreferredContact.value == 'EMAIL',
+                                label: 'Email',
+                                labelStyle: AppTextStyle.f14W400SColorTextStyle,
+                                onChanged: (value) {
+                                  if (completeProfileVendorController.selectedPreferredContact.value == 'EMAIL') {
+                                    completeProfileVendorController.updatePreferredContact('');
+                                  } else {
+                                    completeProfileVendorController.updatePreferredContact('EMAIL');
+                                  }
+                                  preferredContactController.clear();
+                                },
+                              ),
                             ),
-                            const SizedBox(width: 16),
                           ],
                         ),
+                        const SizedBox(height: 12),
+                        if (completeProfileVendorController.selectedPreferredContact.value == 'WHATSAPP' ||
+                            completeProfileVendorController.selectedPreferredContact.value == 'EMAIL')
+                          CustomTextField(
+                            controller: preferredContactController,
+                            hintText: completeProfileVendorController.selectedPreferredContact.value == 'WHATSAPP'
+                                ? 'Enter Your WhatsApp Number'
+                                : 'Enter your Email',
+                            validator: completeProfileVendorController.selectedPreferredContact.value == 'WHATSAPP'
+                                ? CustomValidator.phone
+                                : CustomValidator.email,
+                          ),
                         if (completeProfileVendorController.preferredContactError.value != null)
                           Padding(
                             padding: const EdgeInsets.only(top: 4, left: 8),
@@ -171,7 +201,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                             ),
                           ),
                         const SizedBox(height: 12),
-
                         // Team Members
                         Text(
                           'Team Members',
@@ -188,7 +217,7 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                                 if (vendorTeamMemberController.text.trim().isNotEmpty) {
                                   completeProfileVendorController.teamMembers.add(vendorTeamMemberController.text.trim());
                                   vendorTeamMemberController.clear();
-                                  print('Team member added. Current list: $completeProfileVendorController.teamMembers');
+                                  print('Team member added. Current list: ${completeProfileVendorController.teamMembers}');
                                 }
                               },
                               child: Container(
@@ -217,7 +246,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                           ),
                         ),
                         const SizedBox(height: 12),
-
                         // Team Members List View
                         if (completeProfileVendorController.teamMembers.isNotEmpty)
                           SizedBox(
@@ -257,7 +285,7 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                                               // Remove team member
                                               completeProfileVendorController.teamMembers.removeAt(index);
                                               print('Team member removed: $member');
-                                              print('Remaining members: $completeProfileVendorController.teamMembers');
+                                              print('Remaining members: ${completeProfileVendorController.teamMembers}');
                                             },
                                             child: Image.asset(
                                               AppAssets.closeIcon,
@@ -271,7 +299,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                             ),
                           ),
                         const SizedBox(height: 12),
-
                         // Age Confirmation
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -341,7 +368,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                           ],
                         ),
                         const SizedBox(height: 24),
-
                         // Finish Button
                         CustomButton(
                           Text: 'Finish',
@@ -400,6 +426,7 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                             print('========== PREFERENCE FINALIZATION DATA ==========');
                             print(jsonOutput);
                             print('Preferred Contact: ${completeProfileVendorController.selectedPreferredContact.value}');
+                            print('Preferred Contact Value: ${preferredContactController.text.trim()}');
                             print('Team Members: $teamMembersJson');
                             print('Age Confirmed: ${completeProfileVendorController.isAgeConfirmed.value}');
                             print('Terms Accepted: ${completeProfileVendorController.isTermsAccepted.value}');
@@ -408,7 +435,6 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                             completeProfileVendorController.storedPreferredContactForReuse.value=completeProfileVendorController.selectedPreferredContact.value.toString();
                             completeProfileVendorController.storedTeamMembersForReuse.value=teamMembersJson;
                             completeProfileVendorController.storedSocialLinksForReuse.value=jsonOutput;
-
 
                             completeProfileVendorController.completeProfile();
 
@@ -427,3 +453,8 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
     );
   }
 }
+
+
+//https://instagram.com/example
+//https://tiktok.com/@ms
+//https://facebook.com/example
