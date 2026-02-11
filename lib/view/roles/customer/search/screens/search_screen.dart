@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../routes/app_routes.dart';
+import '../../../../../services/contact_service.dart';
 import '../../home/controller/home_controller.dart';
 import '../../home/widgets/custom_vendor_card.dart';
 
@@ -161,7 +163,12 @@ class _SearchScreenState extends State<SearchScreen> {
                         });
                       },
                       onAddToEvent: () {},
-                      onContact: () {},
+                      onContact: () async {
+                        await ContactService.launchContact(
+                          contactValue: eventVendor.preferredContactValue,
+                          context: context,
+                        );
+                      },
                       onTap: () {
                         print(eventVendor.portfolio);
                         Get.toNamed(
@@ -175,9 +182,10 @@ class _SearchScreenState extends State<SearchScreen> {
                             'isVerified': ['isVerified'],
                             'categories':eventVendor.servicesProvided,
                             'email' : eventVendor.user.email,
+                            'preferredContactValue': eventVendor.preferredContactValue,
                           },
                         );
-                      },
+                        },
                     );
                   },
                 ),

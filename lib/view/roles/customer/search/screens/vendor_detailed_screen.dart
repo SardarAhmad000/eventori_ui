@@ -10,6 +10,7 @@ import '../../../../../app_widgets/custom_image_handler.dart';
 import '../../../../../app_widgets/custom_pop_up_menu.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
+import '../../../../../services/contact_service.dart';
 import '../../home/widgets/custom_category_tab_bar.dart';
 import '../widgets/badge_item.dart';
 
@@ -22,19 +23,25 @@ class VendorDetailedScreen extends StatefulWidget {
 class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
 
   HomeController homeController = Get.find();
+
+
   final Map<String, dynamic> args = Get.arguments ?? {};
    List<String> imagePaths =  [
     AppAssets.vendorDummyImage,
     AppAssets.eventImage1,
     AppAssets.featuredImage1,
   ];
-
+  late final String vendorName;
+  late final String preferredContactValue;
+  
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     // homeController.getAllVendors();
     imagePaths= args['imagePaths'];
+    vendorName = args['vendorName'] ?? 'Vendor Name';
+    preferredContactValue = args['preferredContactValue'] ?? '';
     print(imagePaths);
   }
 
@@ -51,10 +58,10 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
   var selectedCategoryIndex = 0;
   @override
   Widget build(BuildContext context) {
-
-    final String vendorName = args['vendorName'];
-
-    final String vendorEmail = args['email'];
+    //
+    // final String vendorName = args['vendorName'];
+    //
+    // final String preferredContactValue = args['preferredContactValue'];
 
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
@@ -314,8 +321,13 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
                               Expanded(
                                 child: CustomButton(
                                   Text: "Contact",
-                                  onTap: () {
-
+                                  onTap: ()
+                                  async {
+                                    await ContactService.launchContact(
+                                      // contactValue: eventVendor.preferredContactValue,
+                                      contactValue: preferredContactValue,
+                                      context: context,
+                                    );
                                   },
                                   buttonColor: AppTheme.whiteColor,
                                   textColor: AppTheme.lightCyanColor,
