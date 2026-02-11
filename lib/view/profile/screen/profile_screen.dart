@@ -163,10 +163,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
 
-          // Name Text (Fixed)
-          Text(
-            authController.userData.value!.firstName! +' '+authController.userData.value!.lastName,
-            style: AppTextStyle.f24W600BColorTextStyle,
+          Obx(
+            () => Text(
+              authController.userData.value!= null ? authController.userData.value!.firstName!+' '+authController.userData.value!.lastName : '',
+              style: AppTextStyle.f24W600BColorTextStyle,
+            ),
           ),
 
           // Scrollable Content

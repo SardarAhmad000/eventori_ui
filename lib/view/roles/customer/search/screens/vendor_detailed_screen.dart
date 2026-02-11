@@ -315,6 +315,7 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
                                 child: CustomButton(
                                   Text: "Contact",
                                   onTap: () {
+
                                   },
                                   buttonColor: AppTheme.whiteColor,
                                   textColor: AppTheme.lightCyanColor,

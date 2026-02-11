@@ -65,14 +65,14 @@ class ProfileController extends GetxController {
 
 
 
-  Future updateProfile(String city, String country, String gender, String phoneNumber, String image) async {
+
+  Future updateProfile(String city, String country, String gender, String phoneNumber, String image,String role) async {
     _baseController.showLoading();
     Map<String,String> body = {
       "country":country,
       "city":city,
       "gender":gender,
       "phoneNumber":phoneNumber,
-
     };
     var response;
      if(image.toString().startsWith('http')){
@@ -113,9 +113,18 @@ class ProfileController extends GetxController {
     print(result['message']);
     print(result['success']);
     if (result['success'].toString()=="true") {
+
       print( 'Profile Updated Api Call');
       await Get.put(AuthController().getUserData());
-      Get.offAllNamed(AppRoutes.navBarScreen);
+
+      if(role == 'Customer'){
+        Get.offAllNamed(AppRoutes.navBarScreen);
+      } else if(role == 'Event_Vendor'){
+        Get.offAllNamed(AppRoutes.homeVendorScreen);
+      }else{
+
+      }
+
       // print(AuthController().userData.value!.image.toString()+"image fro profile");
     }
     else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){

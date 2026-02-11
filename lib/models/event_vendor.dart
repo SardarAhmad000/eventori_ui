@@ -7,6 +7,7 @@ class EventVendor {
   final List<String> servicesProvided;
   final String serviceDescription;
   final String preferredContact;
+  final String preferredContactValue;
   final VendorUser user;
 
   EventVendor({
@@ -18,12 +19,13 @@ class EventVendor {
     required this.servicesProvided,
     required this.serviceDescription,
     required this.preferredContact,
+    required this.preferredContactValue,
     required this.user,
   });
 
   factory EventVendor.fromJson(Map<String, dynamic> json) {
     return EventVendor(
-      id: json['id'],
+      id: json['id'] ?? 0,
       portfolio: List<String>.from(json['portfolio'] ?? []),
       companyOwnerName: json['companyOwnerName'] ?? '',
       businessName: json['businessName'] ?? '',
@@ -31,6 +33,7 @@ class EventVendor {
       servicesProvided: List<String>.from(json['servicesProvided'] ?? []),
       serviceDescription: json['serviceDescription'] ?? '',
       preferredContact: json['preferredContact'] ?? '',
+      preferredContactValue: json['preferredContactValue'] ?? '',
       user: VendorUser.fromJson(json['user'] ?? {}),
     );
   }
@@ -45,11 +48,16 @@ class EventVendor {
       'servicesProvided': servicesProvided,
       'serviceDescription': serviceDescription,
       'preferredContact': preferredContact,
+      'preferredContactValue': preferredContactValue,
       'user': user.toJson(),
     };
   }
-}
 
+  @override
+  String toString() {
+    return 'EventVendor(id: $id, businessName: $businessName, owner: $companyOwnerName)';
+  }
+}
 
 class VendorUser {
   final String email;
@@ -68,5 +76,10 @@ class VendorUser {
     return {
       'email': email,
     };
+  }
+
+  @override
+  String toString() {
+    return 'VendorUser(email: $email)';
   }
 }

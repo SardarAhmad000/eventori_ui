@@ -441,7 +441,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         profileController.selectedCountry.toString(),
                         profileController.selectedGender.value,
                         profileController.editPhoneController.text,
-                        profileController.selectedImage.value
+                        profileController.selectedImage.value,
+                        authController.userData.value!.role,
                     );
                     // Get.back();
                   } else {

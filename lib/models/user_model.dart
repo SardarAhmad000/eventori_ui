@@ -48,7 +48,7 @@ class UserModel {
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       id: json["id"],
-      image: json["image"],
+      image: json["image"] ?? '',
       firstName: json["firstName"]??'',
       lastName: json["lastName"],
       email: json["email"],

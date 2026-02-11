@@ -433,6 +433,7 @@ class _PreferenceFinalizationScreenState extends State<PreferenceFinalizationScr
                             print('==================================================');
 
                             completeProfileVendorController.storedPreferredContactForReuse.value=completeProfileVendorController.selectedPreferredContact.value.toString();
+                            completeProfileVendorController.storedPreferredContactValueForReuse.value=preferredContactController.text;
                             completeProfileVendorController.storedTeamMembersForReuse.value=teamMembersJson;
                             completeProfileVendorController.storedSocialLinksForReuse.value=jsonOutput;
 

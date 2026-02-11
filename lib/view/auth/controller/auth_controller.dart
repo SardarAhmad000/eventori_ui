@@ -297,7 +297,7 @@ class AuthController extends GetxController {
     };
 
     var  response = await DataApiService.instance
-        .post('/login', body)
+        .post('login', body)
         .catchError((error) {
       if (error is BadRequestException) {
         var apiError = json.decode(error.message!);
@@ -329,6 +329,9 @@ class AuthController extends GetxController {
         Get.offAllNamed(AppRoutes.navBarScreen);
       } else if(userData.value!.role == 'Event_Vendor'){
         _authPreference.setUserLoggedIn(true,"Event_Vendor");
+        print(
+            "${userData.value?.firstName ?? ' '} name of vendor at Auth Controller is : "
+        );
         Get.toNamed(AppRoutes.vendorBottomNav);
       } else{
       }

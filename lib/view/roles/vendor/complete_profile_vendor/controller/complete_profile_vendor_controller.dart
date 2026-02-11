@@ -88,6 +88,7 @@ class CompleteProfileVendorController extends GetxController {
   RxString storedAvailableNowForReuse =''.obs;
   RxString storedAvailabilityTimeForReuse =''.obs;
   RxString storedPreferredContactForReuse =''.obs;
+  RxString storedPreferredContactValueForReuse = ''.obs;
   RxString storedTeamMembersForReuse =''.obs;
   RxString storedSocialLinksForReuse =''.obs;
   RxString storedNoticePeriodForReuse =''.obs;
@@ -115,6 +116,7 @@ class CompleteProfileVendorController extends GetxController {
       'availableNow': 'false',
       'availabilityTime': storedAvailabilityTimeForReuse.value,
       'preferredContact': storedPreferredContactForReuse.value,
+      'preferredContactValue': storedPreferredContactValueForReuse.value.isEmpty?'null': storedPreferredContactValueForReuse.value,
       'teamMembers': storedTeamMembersForReuse.value,
       'socialLinks': storedSocialLinksForReuse.value,
       'noticePeriod': storedNoticePeriodForReuse.value,
