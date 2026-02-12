@@ -22,6 +22,7 @@ import '../view/roles/customer/home/screens/events_screen.dart';
 import '../view/roles/customer/home/screens/forum_screen.dart';
 import '../view/roles/customer/home/screens/home_screen.dart';
 import '../view/roles/customer/home/screens/vendors_screen.dart';
+import '../view/roles/customer/home/screens/view_all_vendors_screen.dart';
 import '../view/roles/customer/search/screens/faviourte_vendors_screen.dart';
 import '../view/roles/customer/search/screens/report_vendor_screen.dart';
 import '../view/roles/customer/search/screens/vendor_detailed_screen.dart';
@@ -64,6 +65,7 @@ class AppPages {
     GetPage(name: AppRoutes.reportVendorScreen, page: () =>  ReportVendorScreen()),
     GetPage(name: AppRoutes.faviourteVendorsScreen, page: () =>  FaviourteVendorsScreen()),
     GetPage(name: AppRoutes.editProfileScreen, page: () =>  EditProfileScreen()),
+    GetPage(name: AppRoutes.viewAllVendorsScreen, page: () =>  ViewAllVendorsScreen()),
 
 
 

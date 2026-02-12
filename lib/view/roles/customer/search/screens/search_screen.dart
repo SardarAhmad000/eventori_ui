@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:eventori/app_widgets/custom_text_placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -72,12 +73,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
                 prefixIcon: Padding(
-                  padding: const EdgeInsets.only(left: 12, right: 8),
-                  child: Image.asset(
-                    AppAssets.searchIcon,
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
+                  child: Icon(
+                    Icons.search,
                     color: AppTheme.slateGreyColor,
-                    width: 20,
-                    height: 20,
+                    size: 20,
                   ),
                 ),
                 suffixIcon: Row(
@@ -150,6 +150,8 @@ class _SearchScreenState extends State<SearchScreen> {
                             setState(() {
                               _selectedIndex = index;
                             });
+                            print(_selectedIndex);
+                            homeController.getAllVendors(eventCategory: eventCategory.id.toString());
                             homeController.selectVendorCategory(index);
                           },
                           child: Container(
@@ -185,7 +187,11 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
               ),
               Expanded(
-                child: ListView.builder(
+                child:  homeController.eventAllVendorsList.isEmpty
+                    ? CustomTextPlaceHolder(
+                  text: "There are no vendors in this category",
+                  height: 50.h,
+                ): ListView.builder(
                   padding: const EdgeInsets.only(bottom: 90),
                   itemCount: homeController.eventAllVendorsList.length,
                   itemBuilder: (context, index) {

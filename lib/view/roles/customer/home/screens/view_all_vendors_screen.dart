@@ -6,22 +6,24 @@ import '../../../../../app_widgets/custom_text_placeholder.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../routes/app_routes.dart';
 import '../../../../../services/contact_service.dart';
+import '../../../../onboarding/widgets/build_header.dart';
 import '../controller/home_controller.dart';
 import '../widgets/custom_vendor_card.dart';
 
-class VendorsScreen extends StatefulWidget {
-  VendorsScreen({super.key});
+class ViewAllVendorsScreen extends StatefulWidget {
+  ViewAllVendorsScreen({super.key});
 
   @override
-  State<VendorsScreen> createState() => _VendorsScreenState();
+  State<ViewAllVendorsScreen> createState() => _ViewAllVendorsScreenState();
 }
 
-class _VendorsScreenState extends State<VendorsScreen> {
+class _ViewAllVendorsScreenState extends State<ViewAllVendorsScreen> {
   HomeController homeController = Get.find();
   int _selectedIndex = 0;
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
     homeController.getVendorCategory();
     homeController.getAllVendors();
@@ -35,56 +37,69 @@ class _VendorsScreenState extends State<VendorsScreen> {
             () => Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 16.0, bottom: 8, right: 16, left: 16),
-              child: SizedBox(
-                height: 32,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: homeController.eventCategoryList.length,
-                  itemBuilder: (context, index) {
-                    final isSelected = _selectedIndex == index;
-                    var eventCategory = homeController.eventCategoryList[index];
+              padding: const EdgeInsets.only(top: 16.0, bottom: 8,right: 16, left: 16),
+              child: Column(
+                children: [
+                  CustomHeader(
+                    backgroundColor: AppTheme.whiteColor,
+                    arrowColor: AppTheme.blackColor,
+                    containerBackgroundColor: AppTheme.whiteColor,
+                    borderColor: AppTheme.lightGrayishColor,
+                    showLogo: true,
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 32,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: homeController.eventCategoryList.length,
+                      itemBuilder: (context, index) {
+                        final isSelected = _selectedIndex == index;
+                        var eventCategory=homeController.eventCategoryList[index];
 
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 12),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _selectedIndex = index;
-                          });
-                          homeController.getAllVendors(eventCategory: eventCategory.id.toString());
-                          homeController.selectVendorCategory(index);
-                        },
-                        child: Container(
-                          width: 30.w,
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: isSelected
-                                ? AppTheme.steelBlueColor
-                                : AppTheme.whiteColor,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: isSelected
-                                  ? AppTheme.steelBlueColor
-                                  : AppTheme.textfieldBorderColor,
-                              width: 1,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              eventCategory.categoryName,
-                              style: AppTextStyle.f10W400BColorTextStyle.copyWith(
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selectedIndex = index;
+                              });
+                              homeController.getAllVendors(eventCategory: eventCategory.id.toString());
+                              homeController.selectVendorCategory(index);
+                            },
+                            child: Container(
+                              width: 30.w,
+                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                              decoration: BoxDecoration(
                                 color: isSelected
-                                    ? AppTheme.whiteColor
-                                    : AppTheme.charcoalBlueColor,
+                                    ? AppTheme.steelBlueColor
+                                    : AppTheme.whiteColor,
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color: isSelected
+                                      ? AppTheme.steelBlueColor
+                                      : AppTheme.textfieldBorderColor,
+                                  width: 1,
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  eventCategory.categoryName,
+                                  style: AppTextStyle.f10W400BColorTextStyle.copyWith(
+                                    color: isSelected
+                                        ? AppTheme.whiteColor
+                                        : AppTheme.charcoalBlueColor,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ),
+                  ),
+
+                ],
               ),
             ),
             Expanded(
@@ -145,3 +160,13 @@ class _VendorsScreenState extends State<VendorsScreen> {
     );
   }
 }
+
+// imagePaths : [
+//   AppAssets.vendorDummyImage,
+//   AppAssets.eventImage1,
+//   AppAssets.featuredImage1,
+//   AppAssets.vendor2Image,
+// ],
+// vendorName: 'Royal Events & Catering',
+// location: 'Jinnah Boulevard sector E DHA phase 3 islamabad',
+// categories: ['WEDDING', 'EVENT', 'CATERING'],

@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:eventori/view/roles/customer/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../AppTheme/app_theme.dart';
@@ -11,9 +14,22 @@ import '../widgets/custom_forum_highlight_card.dart';
 import '../../../../../routes/app_routes.dart';
 import '../widgets/create_event_card_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+
+class _HomeScreenState extends State<HomeScreen> {
+  HomeController homeController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    homeController.getAllVendors();
+  }
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -58,7 +74,9 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Text('Browse Vendors', style: AppTextStyle.f20W600DPColorTextStyle),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(AppRoutes.viewAllVendorsScreen);
+                      },
                       child: Text('View All', style: AppTextStyle.f14W500LCColorTextStyle),
                     ),
                   ],
@@ -75,15 +93,49 @@ class HomeScreen extends StatelessWidget {
                   ),
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 2,
+                  itemCount: homeController.eventAllVendorsList.length > 2
+                      ? 2
+                      : homeController.eventAllVendorsList.length,
                   itemBuilder: (context, index) {
+                    var eventVendors = homeController.eventAllVendorsList[index];
+
+                    // Get only the first portfolio image
+                    String firstPortfolioImage = '';
+
+                    if (eventVendors.portfolio != null && eventVendors.portfolio.isNotEmpty) {
+                      if (eventVendors.portfolio is List) {
+                        firstPortfolioImage = eventVendors.portfolio[0].toString();
+                      } else {
+                        firstPortfolioImage = eventVendors.portfolio.toString();
+                      }
+                    }
+
                     return CustomCard(
-                      imagePath: AppAssets.vendor2Image,
-                      title: 'Florist',
-                      subtitle: 'London, UK ',
+                      imagePath: firstPortfolioImage,
+                      title: eventVendors.businessName,
+                      subtitle: eventVendors.operatingAddress,
                       onTap: () {
-                        print('Tapped on Florist');
-                        },
+                        print(eventVendors.portfolio);
+                        Get.toNamed(
+                          AppRoutes.vendorDetailedScreen,
+                          arguments: {
+                            'imagePaths':  eventVendors.portfolio,
+                            'vendorName': eventVendors.businessName,
+                            'location': eventVendors.operatingAddress,
+                            'isTopRated': ['isTopRated'],
+                            'rating': ['rating'],
+                            'isVerified': ['isVerified'],
+                            'categories':eventVendors.servicesProvided,
+                            'email' : eventVendors.user.email,
+                            'preferredContactValue': eventVendors.preferredContactValue,
+                          },
+                        );
+                      },
+                      // onTap: () {
+                      //   print('Tapped on Vendor');
+                      //
+                      //
+                      //   },
                     );
                   },
                 ),

@@ -205,12 +205,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         handleSearch(value);
                       },
                       prefixIcon: Padding(
-                        padding: const EdgeInsets.only(left: 12, right: 8),
-                        child: Image.asset(
-                          AppAssets.searchIcon,
+                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 7),
+                        child: Icon(
+                          Icons.search,  // Try using Material icon first
                           color: AppTheme.slateGreyColor,
-                          width: 20,
-                          height: 20,
+                          size: 20,
                         ),
                       ),
                       suffixIcon: shouldShowSuffixIcon()

@@ -26,6 +26,7 @@ abstract class AppRoutes {
   static const reportVendorScreen = '/reportVendorScreen';
   static const faviourteVendorsScreen = '/faviourteVendorsScreen';
   static const editProfileScreen = '/editProfileScreen';
+  static const viewAllVendorsScreen = '/viewAllVendorsScreen';
 
 
 
