@@ -202,3 +202,49 @@ class ContactService {
     }
   }
 }
+
+
+//// Simple usage - auto-detects email or WhatsApp
+// onContact: () async {
+//   await ContactService.launchContact(
+//     contactValue: eventVendor.preferredContactValue,
+//     context: context,
+//   );
+// },
+//
+// // Or use specific methods:
+//
+// // Email with subject and body
+// await ContactService._launchEmail(
+//   email: 'vendor@example.com',
+//   subject: 'Event Inquiry',
+//   body: 'Hello, I would like to know...',
+//   context: context,
+// );
+//
+// // WhatsApp with pre-filled message
+// await ContactService._launchWhatsApp(
+//   phoneNumber: '+1234567890',
+//   message: 'Hi! I found you on Eventori',
+//   context: context,
+// );
+//
+// // Phone call
+// await ContactService.launchPhone(
+//   phoneNumber: '+1234567890',
+//   context: context,
+// );
+//
+// // SMS
+// await ContactService.launchSMS(
+//   phoneNumber: '+1234567890',
+//   message: 'Hello!',
+//   context: context,
+// );
+//
+// // Open website
+// await ContactService.launchURL(
+//   url: 'https://example.com',
+//   inApp: false,
+//   context: context,
+// );
