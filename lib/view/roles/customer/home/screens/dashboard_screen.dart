@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:eventori/app_widgets/custom_textfield.dart';
 import 'package:eventori/view/auth/controller/auth_controller.dart';
 import 'package:eventori/view/roles/customer/home/screens/events_screen.dart';
@@ -12,6 +13,7 @@ import '../../../../../app_widgets/custom_image_handler.dart';
 import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../routes/app_routes.dart';
+import '../../home/controller/home_controller.dart';
 import '../widgets/custom_tab_bar.dart';
 import '../widgets/filter_bottom_sheet.dart';
 
@@ -25,14 +27,24 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   int _selectedTabIndex = 0;
   AuthController authController = Get.find();
+  HomeController homeController = Get.find();
+
+  final TextEditingController searchController = TextEditingController();
+  Timer? _searchDebouncer;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-     authController.getUserData();
+      authController.getUserData();
     });
+  }
+
+  @override
+  void dispose() {
+    _searchDebouncer?.cancel();
+    searchController.dispose();
+    super.dispose();
   }
 
   // Get hint text based on selected tab
@@ -56,6 +68,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return _selectedTabIndex == 1; // Only show for VendorsScreen
   }
 
+  // Handle search based on selected tab
+  void handleSearch(String value) {
+    _searchDebouncer?.cancel();
+
+    _searchDebouncer = Timer(const Duration(milliseconds: 500), () {
+      switch (_selectedTabIndex) {
+        case 1: // VendorsScreen
+          homeController.getAllVendors(searchQuery: value);
+          break;
+        case 0: // HomeScreen
+        // Add home search logic if needed
+          break;
+        case 2: // EventsScreen
+        // Add events search logic if needed
+          break;
+        case 3: // ForumScreen
+        // Add forum search logic if needed
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +98,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Obx(
-            () => Container(
+                () => Container(
               width: 100.w,
               height: 218,
               decoration: BoxDecoration(
@@ -99,7 +133,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 Get.toNamed(AppRoutes.profileScreen);
                               },
                               child: Container(
@@ -122,7 +156,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 ),
                               ),
                             ),
-
                             const SizedBox(width: 8),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -130,38 +163,34 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Hi',style:  AppTextStyle.f12W400LGColorTextStyle,),
-                                    SizedBox(width: 4,),
-                                    Text(authController.userData.value!.firstName?? '',
+                                    Text('Hi', style: AppTextStyle.f12W400LGColorTextStyle),
+                                    SizedBox(width: 4),
+                                    Text(authController.userData.value!.firstName ?? '',
                                         style: AppTextStyle.f12W400LGColorTextStyle),
                                   ],
                                 ),
                                 const SizedBox(height: 2),
-                                Text('Welcome Back!',
-                                    style: AppTextStyle.f16W400WColorTextStyle),
+                                Text('Welcome Back!', style: AppTextStyle.f16W400WColorTextStyle),
                               ],
                             ),
                           ],
                         ),
                         Row(
                           children: [
-                            Image.asset(AppAssets.bellIcon,
-                                width: 18, height: 18),
+                            Image.asset(AppAssets.bellIcon, width: 18, height: 18),
                             const SizedBox(width: 12),
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 Get.toNamed(AppRoutes.faviourteVendorsScreen);
                               },
-                              child: Image.asset(AppAssets.heartIcon,
-                                  width: 18, height: 18),
+                              child: Image.asset(AppAssets.heartIcon, width: 18, height: 18),
                             ),
                             const SizedBox(width: 12),
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 Get.toNamed(AppRoutes.profileScreen);
                               },
-                              child: Image.asset(AppAssets.settingsIcon,
-                                  width: 18, height: 18),
+                              child: Image.asset(AppAssets.settingsIcon, width: 18, height: 18),
                             ),
                           ],
                         ),
@@ -169,78 +198,111 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                     const SizedBox(height: 20),
                     CustomTextField(
+                      controller: searchController,
                       borderRadius: 99,
                       hintText: getHintText(),
+                      onChanged: (value) {
+                        handleSearch(value);
+                      },
                       prefixIcon: Padding(
-                        padding: const EdgeInsets.only(left: 5),
+                        padding: const EdgeInsets.only(left: 12, right: 8),
                         child: Image.asset(
                           AppAssets.searchIcon,
                           color: AppTheme.slateGreyColor,
-                          width: 45,
-                          height: 45,
+                          width: 20,
+                          height: 20,
                         ),
                       ),
-                      suffixIcon: shouldShowSuffixIcon() ? GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            builder: (context) => DraggableScrollableSheet(
-                              initialChildSize: 0.9,
-                              minChildSize: 0.5,
-                              maxChildSize: 0.95,
-                              builder: (_, controller) => FilterBottomSheet(),
-                            ),
-                          ).then((filters) {
-                            if (filters != null) {
-                              print('Country: ${filters['country']}');
-                              print('City: ${filters['city']}');
-                              print('Notice: ${filters['notice']}');
-                              print('Rating: ${filters['rating']}');
-                              print('Travel Availability: ${filters['travelAvailability']}');
-                              print('Catering: ${filters['catering']}');
-                              print('DJ: ${filters['dj']}');
-                              print('Photography: ${filters['photography']}');
-                              print('Floral: ${filters['floral']}');
-                              print('Verified ID: ${filters['verifiedId']}');
-                            }
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            width: 36,
-                            height: 36,
-                            decoration: BoxDecoration(
-                              color: AppTheme.paperWhiteColor,
-                              borderRadius: BorderRadius.circular(999),
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            child: Image.asset(
-                              AppAssets.filterIcon,
-                              width: 16,
-                              height: 16,
+                      suffixIcon: shouldShowSuffixIcon()
+                          ? Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Clear button
+                          ValueListenableBuilder(
+                            valueListenable: searchController,
+                            builder: (context, value, child) {
+                              if (value.text.isEmpty) return const SizedBox.shrink();
+
+                              return GestureDetector(
+                                onTap: () {
+                                  searchController.clear();
+                                  homeController.getAllVendors(searchQuery: '');
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                  child: Icon(
+                                    Icons.clear,
+                                    size: 20,
+                                    color: AppTheme.slateGreyColor,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          // Filter button
+                          GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                builder: (context) => DraggableScrollableSheet(
+                                  initialChildSize: 0.9,
+                                  minChildSize: 0.5,
+                                  maxChildSize: 0.95,
+                                  builder: (_, controller) => FilterBottomSheet(),
+                                ),
+                              ).then((filters) {
+                                if (filters != null) {
+                                  print('Country: ${filters['country']}');
+                                  print('City: ${filters['city']}');
+                                  print('Notice: ${filters['notice']}');
+                                  print('Rating: ${filters['rating']}');
+                                  print('Travel Availability: ${filters['travelAvailability']}');
+                                  print('Catering: ${filters['catering']}');
+                                  print('DJ: ${filters['dj']}');
+                                  print('Photography: ${filters['photography']}');
+                                  print('Floral: ${filters['floral']}');
+                                  print('Verified ID: ${filters['verifiedId']}');
+                                }
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                width: 36,
+                                height: 36,
+                                decoration: BoxDecoration(
+                                  color: AppTheme.paperWhiteColor,
+                                  borderRadius: BorderRadius.circular(999),
+                                ),
+                                padding: const EdgeInsets.all(8),
+                                child: Image.asset(
+                                  AppAssets.filterIcon,
+                                  width: 16,
+                                  height: 16,
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ) : null,
+                        ],
+                      )
+                          : null,
                     ),
                   ],
                 ),
               ),
             ),
           ),
-
           CustomTabBar(
             selectedIndex: _selectedTabIndex,
             onTabSelected: (index) {
               setState(() {
                 _selectedTabIndex = index;
+                searchController.clear(); // Clear search when switching tabs
               });
             },
           ),
-
           Expanded(
             child: buildTabContent(),
           ),

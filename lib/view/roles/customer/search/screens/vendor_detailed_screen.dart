@@ -33,7 +33,7 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
   ];
   late final String vendorName;
   late final String preferredContactValue;
-  
+
   @override
   void initState() {
     // TODO: implement initState

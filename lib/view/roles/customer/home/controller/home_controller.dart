@@ -99,10 +99,18 @@ class HomeController extends GetxController {
     }
   }
 
-  Future getAllVendors() async {
+  Future getAllVendors({String searchQuery='',String eventCategory=''}) async {
     isLoading.value=true;
+    String endPoint='';
+    if(searchQuery.isNotEmpty){
+      endPoint="event/vendors?search=$searchQuery";
+    }else if(eventCategory.isNotEmpty){
+      endPoint="event/vendors?categoryId=$eventCategory";
+    }else{
+      endPoint="event/vendors";
+    }
     var  response = await DataApiService.instance
-        .get('event/vendors',)
+        .get(endPoint)
         .catchError((error) {
       if (error is BadRequestException) {
         var apiError = json.decode(error.message!);

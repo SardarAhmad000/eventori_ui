@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../constants/app_text_style.dart';
+import '../../../../../routes/app_routes.dart';
+import '../../../../../services/contact_service.dart';
 import '../controller/home_controller.dart';
 import '../widgets/custom_vendor_card.dart';
 
@@ -103,8 +105,29 @@ class _VendorsScreenState extends State<VendorsScreen> {
                       isVerified: true,
                       isSponsored: true,
                       onAddToEvent: () {},
-                      onContact: () {},
-                      onTap: () {},
+                      onContact: () async {
+                        await ContactService.launchContact(
+                          contactValue: eventVendor.preferredContactValue,
+                          context: context,
+                        );
+                      },
+                      onTap: () {
+                        print(eventVendor.portfolio);
+                        Get.toNamed(
+                          AppRoutes.vendorDetailedScreen,
+                          arguments: {
+                            'imagePaths':  eventVendor.portfolio,
+                            'vendorName': eventVendor.businessName,
+                            'location': eventVendor.operatingAddress,
+                            'isTopRated': ['isTopRated'],
+                            'rating': ['rating'],
+                            'isVerified': ['isVerified'],
+                            'categories':eventVendor.servicesProvided,
+                            'email' : eventVendor.user.email,
+                            'preferredContactValue': eventVendor.preferredContactValue,
+                          },
+                        );
+                      },
                     );
                   },
                 ),

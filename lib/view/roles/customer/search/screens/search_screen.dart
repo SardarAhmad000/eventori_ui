@@ -1,7 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../../../AppTheme/app_theme.dart';
 import '../../../../../app_widgets/custom_textfield.dart';
 import '../../../../../constants/aap_assets.dart';
@@ -20,6 +20,8 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   HomeController homeController = Get.find();
+  final TextEditingController searchVendorsController = TextEditingController();
+  Timer? _searchDebouncer;
 
   final Map<int, bool> _favoriteStatus = {};
   int _selectedIndex = 0;
@@ -32,13 +34,20 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   @override
+  void dispose() {
+    _searchDebouncer?.cancel();
+    searchVendorsController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         child: Obx(
-          () =>  Column(
+              () => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
@@ -49,98 +58,132 @@ class _SearchScreenState extends State<SearchScreen> {
                   height: 32,
                 ),
               ),
+              CustomTextField(
+                controller: searchVendorsController,
+                borderRadius: 99,
+                hintText: 'Search Vendors',
+                onChanged: (value) {
+                  // Cancel previous timer
+                  _searchDebouncer?.cancel();
 
-              AbsorbPointer(
-                absorbing: true,
-                child: CustomTextField(
-                  borderRadius: 99,
-                  hintText: 'Search Vendors',
-                  prefixIcon: Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Image.asset(
-                      AppAssets.searchIcon,
-                      color: AppTheme.slateGreyColor,
-                      width: 45,
-                      height: 45,
-                    ),
-                  ),
-                  suffixIcon: GestureDetector(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 36,
-                        height: 36,
-                        decoration: BoxDecoration(
-                          color: AppTheme.paperWhiteColor,
-                          borderRadius: BorderRadius.circular(999),
-                        ),
-                        padding: const EdgeInsets.all(8),
-                        child: Image.asset(
-                          AppAssets.filterIcon,
-                          width: 16,
-                          height: 16,
-                        ),
-                      ),
-                    ),
+                  // Start new timer - searches after user stops typing for 500ms
+                  _searchDebouncer = Timer(const Duration(milliseconds: 500), () {
+                    homeController.getAllVendors(searchQuery: value);
+                  });
+                },
+                prefixIcon: Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 8),
+                  child: Image.asset(
+                    AppAssets.searchIcon,
+                    color: AppTheme.slateGreyColor,
+                    width: 20,
+                    height: 20,
                   ),
                 ),
-              ),
+                suffixIcon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Clear button - shows only when there's text
+                    ValueListenableBuilder(
+                      valueListenable: searchVendorsController,
+                      builder: (context, value, child) {
+                        if (value.text.isEmpty) return const SizedBox.shrink();
 
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0, bottom: 8),
-                child:
-                SizedBox(
-                    height: 32,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: homeController.eventCategoryList.length,
-                      itemBuilder: (context, index) {
-                        final isSelected = _selectedIndex == index;
-                        var eventCategory=homeController.eventCategoryList[index];
-
-                        return Padding(
-                          padding: const EdgeInsets.only(right: 12),
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _selectedIndex = index;
-                              });
-                              homeController.selectVendorCategory(index);
-                            },
-                            child: Container(
-                              width: 30.w,
-                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                              decoration: BoxDecoration(
-                                color: isSelected
-                                    ? AppTheme.steelBlueColor
-                                    : AppTheme.whiteColor,
-                                borderRadius: BorderRadius.circular(20),
-                                border: Border.all(
-                                  color: isSelected
-                                      ? AppTheme.steelBlueColor
-                                      : AppTheme.textfieldBorderColor,
-                                  width: 1,
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  eventCategory.categoryName,
-                                  style: AppTextStyle.f10W400BColorTextStyle.copyWith(
-                                    color: isSelected
-                                        ? AppTheme.whiteColor
-                                        : AppTheme.charcoalBlueColor,
-                                  ),
-                                ),
-                              ),
+                        return GestureDetector(
+                          onTap: () {
+                            searchVendorsController.clear();
+                            homeController.getAllVendors(searchQuery: '');
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Icon(
+                              Icons.clear,
+                              size: 20,
+                              color: AppTheme.slateGreyColor,
                             ),
                           ),
                         );
                       },
                     ),
-                  ),
+                    // Filter button
+                    GestureDetector(
+                      onTap: () {
+                        // TODO: Implement filter functionality
+                        // Example: showFilterBottomSheet(context);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          width: 36,
+                          height: 36,
+                          decoration: BoxDecoration(
+                            color: AppTheme.paperWhiteColor,
+                            borderRadius: BorderRadius.circular(999),
+                          ),
+                          padding: const EdgeInsets.all(8),
+                          child: Image.asset(
+                            AppAssets.filterIcon,
+                            width: 16,
+                            height: 16,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0, bottom: 8),
+                child: SizedBox(
+                  height: 32,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: homeController.eventCategoryList.length,
+                    itemBuilder: (context, index) {
+                      final isSelected = _selectedIndex == index;
+                      var eventCategory = homeController.eventCategoryList[index];
 
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _selectedIndex = index;
+                            });
+                            homeController.selectVendorCategory(index);
+                          },
+                          child: Container(
+                            width: 30.w,
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? AppTheme.steelBlueColor
+                                  : AppTheme.whiteColor,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: isSelected
+                                    ? AppTheme.steelBlueColor
+                                    : AppTheme.textfieldBorderColor,
+                                width: 1,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                eventCategory.categoryName,
+                                style: AppTextStyle.f10W400BColorTextStyle.copyWith(
+                                  color: isSelected
+                                      ? AppTheme.whiteColor
+                                      : AppTheme.charcoalBlueColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
               Expanded(
                 child: ListView.builder(
                   padding: const EdgeInsets.only(bottom: 90),
@@ -174,18 +217,18 @@ class _SearchScreenState extends State<SearchScreen> {
                         Get.toNamed(
                           AppRoutes.vendorDetailedScreen,
                           arguments: {
-                            'imagePaths':  eventVendor.portfolio,
+                            'imagePaths': eventVendor.portfolio,
                             'vendorName': eventVendor.businessName,
                             'location': eventVendor.operatingAddress,
                             'isTopRated': ['isTopRated'],
                             'rating': ['rating'],
                             'isVerified': ['isVerified'],
-                            'categories':eventVendor.servicesProvided,
-                            'email' : eventVendor.user.email,
+                            'categories': eventVendor.servicesProvided,
+                            'email': eventVendor.user.email,
                             'preferredContactValue': eventVendor.preferredContactValue,
                           },
                         );
-                        },
+                      },
                     );
                   },
                 ),
@@ -197,28 +240,3 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
-
-// imagePaths: [
-//   AppAssets.vendorDummyImage,
-//   AppAssets.eventImage1,
-//   AppAssets.featuredImage1,
-//   AppAssets.vendor2Image,
-// ],
-// vendorName: 'Royal Events & Catering',
-// location: 'Lahore, Pakistan',
-// isTopRated: true,
-// rating: 4.8,
-// isVerified: true,
-// isSponsored: true,
-// categories: const ['WEDDING', 'EVENT', 'CATERING'],
-
-// arguments: {
-//                           'imagePaths': vendorData['imagePaths'],
-//                           'vendorName': vendorData['vendorName'],
-//                           'location': vendorData['location'],
-//                           'isTopRated': vendorData['isTopRated'],
-//                           'rating': vendorData['rating'],
-//                           'isVerified': vendorData['isVerified'],
-//                           'categories': vendorData['categories'],
-//                         },
