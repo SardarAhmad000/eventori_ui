@@ -83,61 +83,63 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 12),
 
-                GridView.builder(
-                  padding: EdgeInsets.zero,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 12,
-                    mainAxisSpacing: 12,
-                    mainAxisExtent: 180,
-                  ),
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: homeController.eventAllVendorsList.length > 2
-                      ? 2
-                      : homeController.eventAllVendorsList.length,
-                  itemBuilder: (context, index) {
-                    var eventVendors = homeController.eventAllVendorsList[index];
+                Obx(
+                  () => GridView.builder(
+                    padding: EdgeInsets.zero,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      mainAxisExtent: 180,
+                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: homeController.eventAllVendorsList.length > 2
+                        ? 2
+                        : homeController.eventAllVendorsList.length,
+                    itemBuilder: (context, index) {
+                      var eventVendors = homeController.eventAllVendorsList[index];
 
-                    // Get only the first portfolio image
-                    String firstPortfolioImage = '';
+                      // Get only the first portfolio image
+                      String firstPortfolioImage = '';
 
-                    if (eventVendors.portfolio != null && eventVendors.portfolio.isNotEmpty) {
-                      if (eventVendors.portfolio is List) {
-                        firstPortfolioImage = eventVendors.portfolio[0].toString();
-                      } else {
-                        firstPortfolioImage = eventVendors.portfolio.toString();
+                      if (eventVendors.portfolio != null && eventVendors.portfolio.isNotEmpty) {
+                        if (eventVendors.portfolio is List) {
+                          firstPortfolioImage = eventVendors.portfolio[0].toString();
+                        } else {
+                          firstPortfolioImage = eventVendors.portfolio.toString();
+                        }
                       }
-                    }
 
-                    return CustomCard(
-                      imagePath: firstPortfolioImage,
-                      title: eventVendors.businessName,
-                      subtitle: eventVendors.operatingAddress,
-                      onTap: () {
-                        print(eventVendors.portfolio);
-                        Get.toNamed(
-                          AppRoutes.vendorDetailedScreen,
-                          arguments: {
-                            'imagePaths':  eventVendors.portfolio,
-                            'vendorName': eventVendors.businessName,
-                            'location': eventVendors.operatingAddress,
-                            'isTopRated': ['isTopRated'],
-                            'rating': ['rating'],
-                            'isVerified': ['isVerified'],
-                            'categories':eventVendors.servicesProvided,
-                            'email' : eventVendors.user.email,
-                            'preferredContactValue': eventVendors.preferredContactValue,
-                          },
-                        );
-                      },
-                      // onTap: () {
-                      //   print('Tapped on Vendor');
-                      //
-                      //
-                      //   },
-                    );
-                  },
+                      return CustomCard(
+                        imagePath: firstPortfolioImage,
+                        title: eventVendors.businessName,
+                        subtitle: eventVendors.operatingAddress,
+                        onTap: () {
+                          print(eventVendors.portfolio);
+                          Get.toNamed(
+                            AppRoutes.vendorDetailedScreen,
+                            arguments: {
+                              'imagePaths':  eventVendors.portfolio,
+                              'vendorName': eventVendors.businessName,
+                              'location': eventVendors.operatingAddress,
+                              'isTopRated': ['isTopRated'],
+                              'rating': ['rating'],
+                              'isVerified': ['isVerified'],
+                              'categories':eventVendors.servicesProvided,
+                              'email' : eventVendors.user.email,
+                              'preferredContactValue': eventVendors.preferredContactValue,
+                            },
+                          );
+                        },
+                        // onTap: () {
+                        //   print('Tapped on Vendor');
+                        //
+                        //
+                        //   },
+                      );
+                    },
+                  ),
                 ),
 
 
