@@ -122,6 +122,7 @@ class _VendorsScreenState extends State<VendorsScreen> {
                         Get.toNamed(
                           AppRoutes.vendorDetailedScreen,
                           arguments: {
+                            'vendorId' : eventVendor.id,
                             'imagePaths': eventVendor.portfolio,
                             'vendorName': eventVendor.businessName,
                             'location': eventVendor.operatingAddress,

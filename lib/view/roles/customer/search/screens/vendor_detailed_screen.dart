@@ -33,12 +33,14 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
   ];
   late final String vendorName;
   late final String preferredContactValue;
+  late final int vendorId;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     // homeController.getAllVendors();
+    vendorId = args['vendorId'];
     imagePaths= args['imagePaths'];
     vendorName = args['vendorName'] ?? 'Vendor Name';
     preferredContactValue = args['preferredContactValue'] ?? '';
@@ -58,11 +60,6 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
   var selectedCategoryIndex = 0;
   @override
   Widget build(BuildContext context) {
-    //
-    // final String vendorName = args['vendorName'];
-    //
-    // final String preferredContactValue = args['preferredContactValue'];
-
     return Scaffold(
       backgroundColor: AppTheme.paperWhiteColor,
       body: Padding(
@@ -131,12 +128,14 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
                           'Are you sure you want to block and report this vendor? You’ll no longer receive messages or quotes from them.',
                           'Your report will help us review any suspicious or inappropriate behaviour.',
                         ],
-                        primaryActionText: 'Yes, Block and Report ',
+                        primaryActionText: 'Yes, Report ',
                         primaryActionIcon: AppAssets.blockIcon,
                         onPrimaryAction: () {
                           Navigator.pop(context);
-                          Future.delayed(Duration(milliseconds: 100), () {
-                            Get.toNamed(AppRoutes.reportVendorScreen);
+                          Future.delayed(const Duration(milliseconds: 100), () {
+                            Get.toNamed(AppRoutes.reportVendorScreen, arguments: {
+                              'vendorId' : vendorId,
+                            });
                           });
                           print('Report Vendor');
                           },
