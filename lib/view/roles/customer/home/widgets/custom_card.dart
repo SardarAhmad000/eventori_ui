@@ -70,14 +70,14 @@ class CustomCard extends StatelessWidget {
                   Text(
                     title,
                     style: AppTextStyle.f14W600BColorTextStyle,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 6),
                   Text(
                     subtitle,
                     style: AppTextStyle.f12W400SGColorTextStyle,
-                    maxLines: 2,
+                    maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

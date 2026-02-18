@@ -82,7 +82,7 @@ class FeaturedEventCard extends StatelessWidget {
                           Text(
                             subtitle,
                             style:AppTextStyle.f14W400LGColorTextStyle,
-                            maxLines: 2,
+                            maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
                         ],

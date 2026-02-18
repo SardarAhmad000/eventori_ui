@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:country_picker_bkb/model/country_model.dart';
 import '../../../../../api_services/api_exceptions.dart';
 import '../../../../../api_services/data_api.dart';
+import '../../../../../models/event_model.dart';
 import '../../../../../utils/snackbar_util.dart';
 import '../../../../auth/controller/base_controller.dart';
 

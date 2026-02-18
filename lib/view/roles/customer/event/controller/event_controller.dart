@@ -62,6 +62,7 @@ class EventController extends GetxController {
   RxBool isLoading=false.obs;
   final BaseController _baseController = BaseController.instance;
   RxList<EventModel> eventList=<EventModel>[].obs;
+  RxList<EventModel> eventFeaturedList=<EventModel>[].obs;
   RxList<EventCategory> eventCategoryList=<EventCategory>[].obs;
   RxList<CategoryServices> eventCategoryServicesList=<CategoryServices>[].obs;
 
@@ -133,7 +134,7 @@ class EventController extends GetxController {
   Future getEvent() async {
     isLoading.value=true;
     var  response = await DataApiService.instance
-        .get('event',)
+        .get('event?featured=false',)
         .catchError((error) {
       if (error is BadRequestException) {
         var apiError = json.decode(error.message!);
@@ -153,6 +154,38 @@ class EventController extends GetxController {
     if (result['success'].toString()=="true" && result['message']=="Successful") {
 
       eventList.value=List<EventModel>.from(result['data'].map((x) => EventModel.fromJson(x)));
+
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
+  Future getFeaturedEvent() async {
+    isLoading.value=true;
+    var  response = await DataApiService.instance
+        .get('event?featured=true',)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    isLoading.value=false;
+    update();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+
+    if (result['success'].toString()=="true" && result['message']=="Successful") {
+
+      eventFeaturedList.value=List<EventModel>.from(result['data'].map((x) => EventModel.fromJson(x)));
 
     }
 
@@ -316,7 +349,6 @@ class EventController extends GetxController {
     }
   }
 
-
   Future featuredEvent(String eventId) async {
     _baseController.showLoading();
     Map<String, String> body = {
@@ -349,7 +381,6 @@ class EventController extends GetxController {
       SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
     }
   }
-
 
 
   @override

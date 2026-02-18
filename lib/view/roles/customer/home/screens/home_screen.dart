@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:eventori/view/roles/customer/event/controller/event_controller.dart';
 import 'package:eventori/view/roles/customer/home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import '../../../../../constants/aap_assets.dart';
 import '../../../../../constants/app_fonts.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../app_widgets/custom_button.dart';
+import '../../../../../utils/date_helpers.dart';
 import '../widgets/custom_card.dart';
 import '../widgets/custom_featured_event_card.dart';
 import '../widgets/custom_forum_highlight_card.dart';
@@ -24,11 +26,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   HomeController homeController = Get.find();
+  EventController eventController =Get.find();
+
 
   @override
   void initState() {
     super.initState();
     homeController.getAllVendors();
+    eventController.getFeaturedEvent();
   }
   @override
   Widget build(BuildContext context) {
@@ -143,52 +148,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-
-
-                // SizedBox(
-                //   // height: 235,
-                //   child: GridView.builder(
-                //     padding: EdgeInsets.zero,
-                //     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //       crossAxisCount: 2,
-                //       crossAxisSpacing: 12,
-                //       mainAxisSpacing: 12,
-                //       childAspectRatio: 0.7,
-                //     ),
-                //     physics: const NeverScrollableScrollPhysics(),
-                //     shrinkWrap: true,
-                //     itemCount: 2,
-                //     itemBuilder: (context, index) {
-                //       return CustomCard(
-                //         imagePath: AppAssets.vendor2Image,
-                //         title: 'Photographer',
-                //         subtitle: 'Birmingham, UK ',
-                //         onTap: () {
-                //           print('Tapped on Photographer');
-                //         },
-                //       );
-                //     },
-                //   ),
-                // ),
                 const SizedBox(height: 12),
-                // CustomButton(
-                //   Text: 'View all vendors',
-                //   width: double.infinity,
-                //   height: 48,
-                //   buttonColor: AppTheme.whiteColor,
-                //   textColor: AppTheme.blackColor,
-                //   borderColor: AppTheme.lightCyanColor,
-                //   textSize: 16,
-                //   fontFamily: AppFonts.regular,
-                //   onTap: () {},
-                // ),
-                // const SizedBox(height: 16),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Featured Events', style: AppTextStyle.f20W600DPColorTextStyle),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        // Get.toNamed(AppRoutes.eventsScreen);
+                      },
                       child: Text('View All', style: AppTextStyle.f14W500LCColorTextStyle),
                     ),
                   ],
@@ -199,16 +167,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     physics: AlwaysScrollableScrollPhysics(),
-                    itemCount: 5,
+                    itemCount: eventController.eventFeaturedList.length,
                     itemBuilder: (context, index) {
+                      final featuredEvents = eventController.eventFeaturedList[index];
+                      final dateData = DateUtilsHelper.getMonthAndDay(featuredEvents.eventDate.toString()==''?"2000-12-05T18:00:00.000Z":featuredEvents.eventDate.toString());
+
                       return Padding(
                         padding: const EdgeInsets.only(right: 12.0),
                         child: FeaturedEventCard(
-                          imagePath: AppAssets.featuredImage1,
-                          title: 'Summer Fest 2025',
-                          subtitle: "Here's what's coming up",
-                          date: '21',
-                          month: 'Dec',
+                          imagePath: featuredEvents.image,
+                          title: featuredEvents.eventName,
+                          subtitle: featuredEvents.about,
+                          date: dateData['day']!,
+                          month: dateData['month']!,
                           onTap: () {},
                         ),
                       );

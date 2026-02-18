@@ -29,18 +29,21 @@ class EventModel {
 
   factory EventModel.fromJson(Map<String, dynamic> json) {
     return EventModel(
-      id: json['id'],
-      userId: json['userId'],
+      id: json['id']?? 0,
+      userId: json['userId']?? 0,
       image: json['image'],
       eventName: json['eventName'],
-      eventCategory: json['eventCategory'],
+      eventCategory: json['eventCategory']?? '',
       about: json['about'],
       country: json['country']?? '',
       city: json['city']?? '',
       eventDate: json['eventDate'] ?? '',
-      sendReminderEmail: json['sendReminderEmail'],
-      createdAt: DateTime.parse(json['createdAt']),
-      updatedAt: DateTime.parse(json['updatedAt']),
+      sendReminderEmail: json['sendReminderEmail']?? false,
+      // createdAt: DateTime.parse(json['createdAt']),
+      // updatedAt: DateTime.parse(json['updatedAt']),
+      createdAt: DateTime.tryParse(json['createdAt'] ?? '') ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(json['updatedAt'] ?? '') ?? DateTime.now(),
+
     );
   }
 
