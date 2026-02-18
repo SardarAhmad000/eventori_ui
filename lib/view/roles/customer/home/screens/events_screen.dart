@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../constants/app_text_style.dart';
 import '../../../../../utils/date_helpers.dart';
+import '../../event/widgets/event_details_bottom_sheet.dart';
 import '../controller/home_controller.dart';
 import '../widgets/custom_category_tab_bar.dart';
 import '../widgets/custom_card.dart';
@@ -73,7 +74,22 @@ class _EventsScreenState extends State<EventsScreen> {
                             subtitle: events.about,
                             onTap: ()
                             {
-                              print('Tapped on Kids Birthday Bash');
+                              print('Tapped on Event');
+                              showEventDetailsBottomSheet(
+                                context: context,
+                                eventid:events.id.toString(),
+                                eventImage: events.image,
+                                eventTitle: events.eventName,
+                                eventDate: (events.eventDate == null ||
+                                    events.eventDate.toString().isEmpty)
+                                    ? ''
+                                    : DateUtilsHelper.formatToDayMonthYear(
+                                  events.eventDate.toString(),
+                                ),
+                                // eventDate:event.eventDate.toString()==''?"":DateUtilsHelper.formatToDayMonthYear(event.eventDate.toString(),
+                                eventDescription: events.about,
+                                eventUrl:  'www.jsdskdjhjdjdsbab',
+                              );
                             },
                           );
                         },

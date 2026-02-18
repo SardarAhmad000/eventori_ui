@@ -162,28 +162,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 const SizedBox(height: 12),
-                SizedBox(
-                  height: 96,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    physics: AlwaysScrollableScrollPhysics(),
-                    itemCount: eventController.eventFeaturedList.length,
-                    itemBuilder: (context, index) {
-                      final featuredEvents = eventController.eventFeaturedList[index];
-                      final dateData = DateUtilsHelper.getMonthAndDay(featuredEvents.eventDate.toString()==''?"2000-12-05T18:00:00.000Z":featuredEvents.eventDate.toString());
+                Obx(
+                  () => SizedBox(
+                    height: 96,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      physics: AlwaysScrollableScrollPhysics(),
+                      itemCount: eventController.eventFeaturedList.length,
+                      itemBuilder: (context, index) {
+                        final featuredEvents = eventController.eventFeaturedList[index];
+                        final dateData = DateUtilsHelper.getMonthAndDay(featuredEvents.eventDate.toString()==''?"2000-12-05T18:00:00.000Z":featuredEvents.eventDate.toString());
 
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 12.0),
-                        child: FeaturedEventCard(
-                          imagePath: featuredEvents.image,
-                          title: featuredEvents.eventName,
-                          subtitle: featuredEvents.about,
-                          date: dateData['day']!,
-                          month: dateData['month']!,
-                          onTap: () {},
-                        ),
-                      );
-                    },
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 12.0),
+                          child: FeaturedEventCard(
+                            imagePath: featuredEvents.image,
+                            title: featuredEvents.eventName,
+                            subtitle: featuredEvents.about,
+                            date: dateData['day']!,
+                            month: dateData['month']!,
+                            onTap: () {},
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
