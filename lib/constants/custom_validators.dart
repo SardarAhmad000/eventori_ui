@@ -474,7 +474,7 @@ class CustomValidator {
     );
 
     if (!instagramRegex.hasMatch(value.trim())) {
-      return 'Please enter a valid Instagram link';
+      return 'Please enter a valid Instagram link(https://instagram.com/example)';
     }
 
     return null;
@@ -491,7 +491,7 @@ class CustomValidator {
     );
 
     if (!tiktokRegex.hasMatch(value.trim())) {
-      return 'Please enter a valid TikTok link';
+      return 'Please enter a valid TikTok link(https://tiktok.com/@example)';
     }
 
     return null;
@@ -508,7 +508,7 @@ class CustomValidator {
     );
 
     if (!facebookRegex.hasMatch(value.trim())) {
-      return 'Please enter a valid Facebook link';
+      return 'Please enter a valid Facebook link(https://facebook.com/example)';
     }
 
     return null;

@@ -10,6 +10,7 @@ import '../../../../../app_widgets/custom_textfield.dart';
 
 void showEventDetailsBottomSheet({
   required BuildContext context,
+  required String eventid,
   required String eventImage,
   required String eventTitle,
   required String eventDate,
@@ -21,6 +22,7 @@ void showEventDetailsBottomSheet({
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     builder: (context) => EventDetailsBottomSheet(
+      eventid : eventid,
       eventImage: eventImage,
       eventTitle: eventTitle,
       eventDate: eventDate,
@@ -31,6 +33,7 @@ void showEventDetailsBottomSheet({
 }
 
 class EventDetailsBottomSheet extends StatefulWidget {
+  final String eventid;
   final String eventImage;
   final String eventTitle;
   final String eventDate;
@@ -39,6 +42,7 @@ class EventDetailsBottomSheet extends StatefulWidget {
 
   const EventDetailsBottomSheet({
     Key? key,
+    required this.eventid,
     required this.eventImage,
     required this.eventTitle,
     required this.eventDate,
@@ -138,8 +142,10 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                   // iconColor: _isFeatured ? AppTheme.amber : AppTheme.silverColor,
                   iconHeight: 20,
                   onTap: (){
+                    print("object ${widget.eventid}");
                       featureEventBottomSheet(
                         context: context,
+                        eventid: widget.eventid,
                         eventTitle: widget.eventTitle,
                         eventDate: widget.eventDate,
                       );

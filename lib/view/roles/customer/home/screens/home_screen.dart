@@ -116,10 +116,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: eventVendors.businessName,
                         subtitle: eventVendors.operatingAddress,
                         onTap: () {
+                          print("hahahaha ${eventVendors.id}");
                           print(eventVendors.portfolio);
                           Get.toNamed(
                             AppRoutes.vendorDetailedScreen,
                             arguments: {
+                              'vendorId' : eventVendors.id,
                               'imagePaths':  eventVendors.portfolio,
                               'vendorName': eventVendors.businessName,
                               'location': eventVendors.operatingAddress,

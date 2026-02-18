@@ -220,7 +220,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       },
                       onTap: () {
                         print(eventVendor.portfolio);
-                        print(eventVendor.id);
+                        print("hahahaha ${eventVendor.id}");
                         Get.toNamed(
                           AppRoutes.vendorDetailedScreen,
                           arguments: {

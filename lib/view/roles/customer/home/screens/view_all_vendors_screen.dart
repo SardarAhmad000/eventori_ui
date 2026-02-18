@@ -134,9 +134,11 @@ class _ViewAllVendorsScreenState extends State<ViewAllVendorsScreen> {
                       },
                       onTap: () {
                         print(eventVendor.portfolio);
+                        print("hahahaha ${eventVendor.id}");
                         Get.toNamed(
                           AppRoutes.vendorDetailedScreen,
                           arguments: {
+                            'vendorId' : eventVendor.id,
                             'imagePaths': eventVendor.portfolio,
                             'vendorName': eventVendor.businessName,
                             'location': eventVendor.operatingAddress,

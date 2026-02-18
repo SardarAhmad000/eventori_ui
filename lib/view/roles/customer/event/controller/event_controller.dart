@@ -317,6 +317,39 @@ class EventController extends GetxController {
   }
 
 
+  Future featuredEvent(String eventId) async {
+    _baseController.showLoading();
+    Map<String, String> body = {
+      "eventId":eventId,
+    };
+    var response = await DataApiService.instance
+        .post('/event/feature', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+
+    var result = json.decode(response);
+    if (result['success'].toString()=="true") {
+
+      print('Selected Plan: ${selectedPromotionPlan.value}');
+      print('Selected Payment Method: ${selectedPaymentMethod.value}');
+
+    }
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
 
 
   @override
@@ -538,10 +571,10 @@ class EventController extends GetxController {
     return null;
   }
 
-  void handlePayment() {
-    print('Selected Plan: ${selectedPromotionPlan.value}');
-    print('Selected Payment Method: ${selectedPaymentMethod.value}');
-  }
+  // void handlePayment() {
+  //   print('Selected Plan: ${selectedPromotionPlan.value}');
+  //   print('Selected Payment Method: ${selectedPaymentMethod.value}');
+  // }
 
   // Method to reset form
   void resetForm() {

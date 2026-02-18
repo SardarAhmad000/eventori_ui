@@ -70,6 +70,7 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
                       onTap: (){
                         showEventDetailsBottomSheet(
                           context: context,
+                          eventid:event.id.toString(),
                           eventImage: event.image,
                           eventTitle: event.eventName,
                           eventDate: (event.eventDate == null ||

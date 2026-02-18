@@ -41,6 +41,7 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
     super.initState();
     // homeController.getAllVendors();
     vendorId = args['vendorId'];
+    print("Vendor ID is ${vendorId}");
     imagePaths= args['imagePaths'];
     vendorName = args['vendorName'] ?? 'Vendor Name';
     preferredContactValue = args['preferredContactValue'] ?? '';
@@ -112,9 +113,13 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
                           ],
                           primaryActionText: 'Yes, Block Vendor',
                           primaryActionIcon: AppAssets.reportIcon,
-                          onPrimaryAction: () {
+                          onPrimaryAction: () async{
                             print('Vendor blocked');
-                            },
+                            await homeController.blockVendor(vendorId.toString());
+                            Get.back();
+                            Get.back();
+
+                          },
                           secondaryActionText: 'Cancel',
                           secondaryActionIcon: AppAssets.blockIcon,
                         ),

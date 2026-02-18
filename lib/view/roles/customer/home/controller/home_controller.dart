@@ -139,6 +139,42 @@ class HomeController extends GetxController {
     }
   }
 
+  Future blockVendor( String vendorId) async {
+    _baseController.showLoading();
+    Map<String, String> body = {
+      "vendorId":vendorId,
+    };
+
+    var response = await DataApiService.instance
+        .post('/vendor/block', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      }
+      else {
+        _baseController.handleError(error);
+      }
+    });
+
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+    if (result['success'].toString()=="true" ) {
+
+      getAllVendors();
+
+
+    } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
   @override
   void onInit() {
     super.onInit();

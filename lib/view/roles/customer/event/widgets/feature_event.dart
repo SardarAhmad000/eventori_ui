@@ -8,6 +8,7 @@ import '../controller/event_controller.dart';
 
 void featureEventBottomSheet({
   required BuildContext context,
+  required String eventid,
   required String eventTitle,
   required String eventDate,
 }) {
@@ -16,6 +17,7 @@ void featureEventBottomSheet({
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     builder: (context) => FeatureEventBottomSheet(
+      eventid: eventid,
       eventTitle: eventTitle,
       eventDate: eventDate,
     ),
@@ -23,19 +25,20 @@ void featureEventBottomSheet({
 }
 
 class FeatureEventBottomSheet extends StatelessWidget {
+  EventController eventController =Get.find();
+  final String eventid;
   final String eventTitle;
   final String eventDate;
 
-  const FeatureEventBottomSheet({
+  FeatureEventBottomSheet({
     Key? key,
+    required this.eventid,
     required this.eventTitle,
     required this.eventDate,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<EventController>();
-
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(
@@ -113,16 +116,16 @@ class FeatureEventBottomSheet extends StatelessWidget {
                       Expanded(
                         child: CustomRadioButton(
                           label: '7 day promotion \$12.00',
-                          isSelected: controller.selectedPromotionPlan.value == '7day',
-                          onTap: () => controller.selectPromotionPlan('7day'),
+                          isSelected: eventController.selectedPromotionPlan.value == '7day',
+                          onTap: () => eventController.selectPromotionPlan('7day'),
                         ),
                       ),
                       const SizedBox(width: 8),
                       Expanded(
                         child: CustomRadioButton(
                           label: '30 day promotion \$12.00',
-                          isSelected: controller.selectedPromotionPlan.value == '30day',
-                          onTap: () => controller.selectPromotionPlan('30day'),
+                          isSelected: eventController.selectedPromotionPlan.value == '30day',
+                          onTap: () => eventController.selectPromotionPlan('30day'),
                         ),
                       )
                     ],
@@ -139,16 +142,16 @@ class FeatureEventBottomSheet extends StatelessWidget {
                       Expanded(
                         child: CustomRadioButton(
                           label: 'Card payment',
-                          isSelected: controller.selectedPaymentMethod.value == 'card',
-                          onTap: () => controller.selectPaymentMethod('card'),
+                          isSelected: eventController.selectedPaymentMethod.value == 'card',
+                          onTap: () => eventController.selectPaymentMethod('card'),
                         ),
                       ),
                       const SizedBox(width: 10),
                       Expanded(
                         child: CustomRadioButton(
                           label: 'Paypal',
-                          isSelected: controller.selectedPaymentMethod.value == 'paypal',
-                          onTap: () => controller.selectPaymentMethod('paypal'),
+                          isSelected: eventController.selectedPaymentMethod.value == 'paypal',
+                          onTap: () => eventController.selectPaymentMethod('paypal'),
                         ),
                       ),
                       GestureDetector(
@@ -212,7 +215,12 @@ class FeatureEventBottomSheet extends StatelessWidget {
                           buttonColor: AppTheme.lightCyanColor,
                           textColor: AppTheme.whiteColor,
                           textSize: 16,
-                          onTap: () => controller.handlePayment(),
+                          onTap: () {
+                            print("objects sss ${eventid}");
+                            // eventController.handlePayment();
+                            eventController.featuredEvent(eventid);
+
+                          }
                         ),
                       ),
                     ],
