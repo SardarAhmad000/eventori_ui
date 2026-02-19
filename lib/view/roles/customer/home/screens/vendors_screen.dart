@@ -110,6 +110,13 @@ class _VendorsScreenState extends State<VendorsScreen> {
                       rating: 4.8,
                       isVerified: true,
                       isSponsored: true,
+                      isFavorite:eventVendor.isfavorite,
+                      onFavoriteToggle: () {
+                        setState(() {
+                          homeController.favoriteVendor(eventVendor.id.toString(), eventVendor.isfavorite.toString()=='true'?"false":"true");
+                          eventVendor.isfavorite = !eventVendor.isfavorite;
+                        });
+                      },
                       onAddToEvent: () {},
                       onContact: () async {
                         await ContactService.launchContact(

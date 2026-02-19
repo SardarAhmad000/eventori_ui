@@ -17,6 +17,7 @@ class HomeController extends GetxController {
   final BaseController _baseController = BaseController.instance;
   RxList<EventCategory> eventCategoryList=<EventCategory>[].obs;
   RxList<EventVendor> eventAllVendorsList=<EventVendor>[].obs;
+  RxList<EventVendor> favVendorList=<EventVendor>[].obs;
 
   // Filter State Management
   final Rx<String?> selectedCountry = Rx<String?>(null);
@@ -35,6 +36,7 @@ class HomeController extends GetxController {
   final RxBool isPhotographySelected = false.obs;
   final RxBool isFloralSelected = false.obs;
   final RxBool isVerifiedIdSelected = false.obs;
+
 
 
   void selectVendorCategory(int index) {
@@ -140,6 +142,39 @@ class HomeController extends GetxController {
     }
   }
 
+  Future getFavoriteVendor() async {
+    isLoading.value=true;
+    var  response = await DataApiService.instance
+        .get('event/vendors?isfavorite=true',)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    isLoading.value=false;
+    update();
+    if (response == null) return;
+    print(response + " responded");
+    var result = json.decode(response);
+    print(result['message']);
+    print(result['success']);
+
+    if (result['success'].toString()=="true") {
+
+      favVendorList.value=List<EventVendor>.from(result['data']['vendors'].map((x) => EventVendor.fromJson(x)));
+      print(favVendorList.length.toString()+"lenght");
+    }
+
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
+
   Future blockVendor( String vendorId) async {
     _baseController.showLoading();
     Map<String, String> body = {
@@ -171,6 +206,39 @@ class HomeController extends GetxController {
 
 
     } else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
+      String message = result['data']['message'];
+      SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
+    }
+  }
+
+  Future favoriteVendor(String vendorId, String isfavorite) async {
+    _baseController.showLoading();
+    Map<String, String> body = {
+      'vendorId': vendorId,
+      'isfavorite': isfavorite
+    };
+    var response = await DataApiService.instance
+        .post('favorite/vendor', body)
+        .catchError((error) {
+      if (error is BadRequestException) {
+        var apiError = json.decode(error.message!);
+        SnackbarUtil.showSnackbar(message: apiError.toString(), type: SnackbarType.error);
+      } else {
+        _baseController.handleError(error);
+      }
+    });
+    update();
+    _baseController.hideLoading();
+    if (response == null) return;
+    print(response + " responded");
+
+    var result = json.decode(response);
+    if (result['success'].toString()=="true") {
+
+      print("/favorite/vendor Api Call");
+
+    }
+    else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];
       SnackbarUtil.showSnackbar(message: message, type: SnackbarType.error);
     }

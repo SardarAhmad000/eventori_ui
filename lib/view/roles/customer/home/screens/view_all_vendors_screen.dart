@@ -126,6 +126,13 @@ class _ViewAllVendorsScreenState extends State<ViewAllVendorsScreen> {
                       isVerified: true,
                       isSponsored: true,
                       onAddToEvent: () {},
+                      isFavorite:eventVendor.isfavorite,
+                      onFavoriteToggle: () {
+                        setState(() {
+                          homeController.favoriteVendor(eventVendor.id.toString(), eventVendor.isfavorite.toString()=='true'?"false":"true");
+                          eventVendor.isfavorite = !eventVendor.isfavorite;
+                        });
+                      },
                       onContact: () async {
                         await ContactService.launchContact(
                           contactValue: eventVendor.preferredContactValue,

@@ -9,6 +9,7 @@ class EventVendor {
   final String preferredContact;
   final String preferredContactValue;
   final VendorUser user;
+   bool isfavorite;
 
   EventVendor({
     required this.id,
@@ -21,6 +22,7 @@ class EventVendor {
     required this.preferredContact,
     required this.preferredContactValue,
     required this.user,
+    required this.isfavorite,
   });
 
   factory EventVendor.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class EventVendor {
       preferredContact: json['preferredContact'] ?? '',
       preferredContactValue: json['preferredContactValue'] ?? '',
       user: VendorUser.fromJson(json['user'] ?? {}),
+        isfavorite: json['isfavorite'] ?? false
     );
   }
 
@@ -50,6 +53,7 @@ class EventVendor {
       'preferredContact': preferredContact,
       'preferredContactValue': preferredContactValue,
       'user': user.toJson(),
+      'isfavorite': isfavorite,
     };
   }
 

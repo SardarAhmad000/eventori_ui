@@ -23,7 +23,7 @@ import '../view/roles/customer/home/screens/forum_screen.dart';
 import '../view/roles/customer/home/screens/home_screen.dart';
 import '../view/roles/customer/home/screens/vendors_screen.dart';
 import '../view/roles/customer/home/screens/view_all_vendors_screen.dart';
-import '../view/roles/customer/search/screens/faviourte_vendors_screen.dart';
+import '../view/roles/customer/home/screens/faviourte_vendors_screen.dart';
 import '../view/roles/customer/search/screens/report_vendor_screen.dart';
 import '../view/roles/customer/search/screens/vendor_detailed_screen.dart';
 import '../view/roles/vendor/bottom_nav_bar/screen/custom_bottom_nav_bar_screen.dart';

@@ -24,7 +24,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchVendorsController = TextEditingController();
   Timer? _searchDebouncer;
 
-  final Map<int, bool> _favoriteStatus = {};
+  // final Map<int, bool> _favoriteStatus = {};
   int _selectedIndex = 0;
 
   @override
@@ -196,6 +196,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: homeController.eventAllVendorsList.length,
                   itemBuilder: (context, index) {
                     var eventVendor = homeController.eventAllVendorsList[index];
+                    // print(_favoriteStatus[index].toString());
                     return CustomVendorCard(
                       imagePaths: eventVendor.portfolio,
                       vendorName: eventVendor.businessName,
@@ -205,10 +206,12 @@ class _SearchScreenState extends State<SearchScreen> {
                       isVerified: true,
                       isSponsored: true,
                       categories: eventVendor.servicesProvided,
-                      isFavorite: _favoriteStatus[index] ?? false,
+                      isFavorite:eventVendor.isfavorite,
                       onFavoriteToggle: () {
                         setState(() {
-                          _favoriteStatus[index] = !(_favoriteStatus[index] ?? false);
+                          homeController.favoriteVendor(eventVendor.id.toString(), eventVendor.isfavorite.toString()=='true'?"false":"true");
+                          eventVendor.isfavorite = !eventVendor.isfavorite;
+
                         });
                       },
                       onAddToEvent: () {},

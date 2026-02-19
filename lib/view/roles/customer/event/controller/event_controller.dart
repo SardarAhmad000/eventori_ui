@@ -371,10 +371,10 @@ class EventController extends GetxController {
 
     var result = json.decode(response);
     if (result['success'].toString()=="true") {
-
+      Get.back();
       print('Selected Plan: ${selectedPromotionPlan.value}');
       print('Selected Payment Method: ${selectedPaymentMethod.value}');
-
+      Get.back();
     }
     else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];
