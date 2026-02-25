@@ -124,6 +124,8 @@ class EventController extends GetxController {
       );
       print("Event Created Successfully Api Called");
 
+      print("hahHAHAHAH${selectedCategory}");
+
     }
     else if(result['status'].toString()=="failed"&&result['error'].toString()=="true"){
       String message = result['data']['message'];
@@ -154,6 +156,8 @@ class EventController extends GetxController {
     if (result['success'].toString()=="true" && result['message']=="Successful") {
 
       eventList.value=List<EventModel>.from(result['data'].map((x) => EventModel.fromJson(x)));
+
+      print("This is a Get Event :${selectedCategory}");
 
     }
 

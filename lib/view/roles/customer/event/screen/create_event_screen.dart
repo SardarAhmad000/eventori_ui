@@ -605,6 +605,7 @@ class _CreateEventScreenState extends State<CreateEventScreen> {
                                 eventcontroller.isReminderEnabled.value,
                                 eventcontroller.selectedEventImage.value?.path ?? ''
                             );
+                            print("In the Create Event Screen: ${eventcontroller.selectedCategory.value}");
                           } else {
                             print('Form validation failed');
                           }

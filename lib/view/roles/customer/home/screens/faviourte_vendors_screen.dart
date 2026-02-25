@@ -111,8 +111,6 @@ class _FaviourteVendorsScreenState extends State<FaviourteVendorsScreen> {
                   itemCount: homeController.favVendorList.length,
                   itemBuilder: (context, index) {
                     final favVendor = homeController.favVendorList[index];
-
-
                     return FavoriteVendorCard(
                       vendorName: favVendor.businessName,
                       description: favVendor.serviceDescription,

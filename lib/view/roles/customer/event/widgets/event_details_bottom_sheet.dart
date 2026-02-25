@@ -106,11 +106,19 @@ class _EventDetailsBottomSheetState extends State<EventDetailsBottomSheet> {
                     style: AppTextStyle.f20W600BColorTextStyle
                 ),
                 const SizedBox(height: 12),
-                Text(
-                    widget.eventDate,
-                    style: AppTextStyle.f16W500BColorTextStyle,
-                ),
-                const SizedBox(height: 12),
+                widget.eventDate != null && widget.eventDate.isNotEmpty
+                    ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.eventDate,
+                      style: AppTextStyle.f16W500BColorTextStyle,
+                    ),
+                    const SizedBox(height: 12), // sirf tabhi spacing milegi
+                  ],
+                )
+                    : const SizedBox.shrink(), // agar date empty ho, koi space nahi
+
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

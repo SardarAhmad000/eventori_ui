@@ -27,6 +27,8 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
     // TODO: implement initState
     super.initState();
     eventController.getEvent();
+    print(eventController.eventList.length);
+    print(eventController.selectedCategory.value);
   }
 
   EventController eventController = Get.find();
@@ -104,7 +106,6 @@ class _MyEventsScreenState extends State<MyEventsScreen> {
                               builder: (context) => EditEventBottomSheet(
                                 eventData: event,
                                 onEventUpdated: () {
-                                  // Refresh the event list after update
                                   eventController.getEvent();
                                 },
                               ),

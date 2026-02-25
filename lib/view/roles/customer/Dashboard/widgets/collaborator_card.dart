@@ -104,56 +104,59 @@ class CollaboratorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 12.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Stack(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  color: AppTheme.denimBlueColor,
-                  shape: BoxShape.circle,
-                ),
-                child: ClipOval(
-                  child: CustomImageHandler(
-                    imagePath: imagePath,
-                    width: 44,
-                    height: 44,
-                  ),
-                ),
-              ),
-              Positioned(
-                top: 0,
-                right: 4,
-                child: Container(
-                  width: 10,
-                  height: 10,
+      child: SizedBox(
+        width: 50,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  width: 44,
+                  height: 44,
                   decoration: BoxDecoration(
-                    color: isOnline ? AppTheme.greenColor : AppTheme.redColor,
+                    color: AppTheme.denimBlueColor,
                     shape: BoxShape.circle,
                   ),
+                  child: ClipOval(
+                    child: CustomImageHandler(
+                      imagePath: imagePath,
+                      width: 44,
+                      height: 44,
+                    ),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            name,
-            style: AppTextStyle.f12W400DSBColorTextStyle,
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            role ?? (isOnline ? 'Online' : lastActive ?? 'Offline'),
-            style: AppTextStyle.f10W400SGColorTextStyle,
-            textAlign: TextAlign.center,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
+                Positioned(
+                  top: 0,
+                  right: 4,
+                  child: Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: isOnline ? AppTheme.greenColor : AppTheme.redColor,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              name,
+              style: AppTextStyle.f12W400DSBColorTextStyle,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              role ?? (isOnline ? 'Online' : lastActive ?? 'Offline'),
+              style: AppTextStyle.f10W400SGColorTextStyle,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
       ),
     );
   }

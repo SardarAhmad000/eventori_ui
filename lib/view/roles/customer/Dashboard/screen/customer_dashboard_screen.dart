@@ -1,4 +1,5 @@
 import 'package:eventori/view/auth/controller/auth_controller.dart';
+import 'package:eventori/view/roles/customer/Dashboard/controller/dashboard_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -22,6 +23,16 @@ class EventDashboardScreen extends StatefulWidget {
 
 class _EventDashboardScreenState extends State<EventDashboardScreen> {
   AuthController authController = Get.find();
+  DashboardController dashboardController = Get.find();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dashboardController.getCollaborator();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +92,7 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                              children: [
                                Row(
                                  children: [
-                                   Text('Hi',style:  AppTextStyle.f12W400LGColorTextStyle,),
+                                   Text('Hi',style:  AppTextStyle.f12W400SGColorTextStyle,),
                                    SizedBox(width: 4,),
                                    Text( authController.userData.value!.firstName??'',
                                        style: AppTextStyle.f12W400SGColorTextStyle),
@@ -178,38 +189,41 @@ class _EventDashboardScreenState extends State<EventDashboardScreen> {
                      children: [
                        Text('Collaborators',style: AppTextStyle.f18W500BColorTextStyle),
                        const SizedBox(height: 12),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                           Expanded(
-                             child: SizedBox(
-                               height: 85,
-                               child: ListView.builder(
-                                 scrollDirection: Axis.horizontal,
-                                 physics: const AlwaysScrollableScrollPhysics(),
-                                 itemCount: 2,
-                                 itemBuilder: (context, index) {
-                                   return Padding(
-                                     padding: const EdgeInsets.only(right: 0),
-                                     child: CollaboratorCard(
-                                       name: 'Just Planned',
-                                       imagePath: AppAssets.profileImage,
-                                       isOnline: false,
-                                       lastActive: 'Last active 2hr',
-                                       role: 'Event planner (Me)',
-                                     ),
-                                   );
-                                 },
+                       Obx(
+                         () => Row(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
+                             Expanded(
+                               child: SizedBox(
+                                 height: 85,
+                                 child: ListView.builder(
+                                   scrollDirection: Axis.horizontal,
+                                   physics: const AlwaysScrollableScrollPhysics(),
+                                   itemCount:dashboardController.collaboratorModelList.length,
+                                   itemBuilder: (context, index) {
+                                     final collaborators = dashboardController.collaboratorModelList[index];
+                                     return Padding(
+                                       padding: const EdgeInsets.only(right: 0),
+                                       child: CollaboratorCard(
+                                         name: collaborators.firstName.trim(),
+                                         imagePath: collaborators.image.toString(),
+                                         isOnline: true,
+                                         // lastActive: 'Last active 2hr',
+                                         role: collaborators.role,
+                                       ),
+                                     );
+                                   },
+                                 ),
                                ),
                              ),
-                           ),
-                           InviteMoreCard(
-                             onTap: () {
-                               print('Invite more tapped');
-                               Get.toNamed(AppRoutes.addCollaboratorsScreen);
-                             },
-                           ),
-                         ],
+                             InviteMoreCard(
+                               onTap: () {
+                                 print('Invite more tapped');
+                                 Get.toNamed(AppRoutes.addCollaboratorsScreen);
+                               },
+                             ),
+                           ],
+                         ),
                        ),
                      ],
                    ),

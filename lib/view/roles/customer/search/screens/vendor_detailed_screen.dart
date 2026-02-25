@@ -401,10 +401,10 @@ class _VendorDetailedScreenState extends State<VendorDetailedScreen> {
                         ],
                       ),
                   ],
-                  ),
                 ),
               ),
-            ],
+            ),
+          ],
         ),
       ),
     );

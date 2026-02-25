@@ -1,8 +1,8 @@
 // Switch this flag depending on environment
 const bool useLiveServer = false;
 // const String LOCAL_URL_BASE = 'http://192.168.18.65:3000';//Warrich
-// const String LOCAL_URL_BASE = 'https://9a0a-2407-aa80-116-63b5-81c-94c0-6fe2-56c7.ngrok-free.app';
-const String LOCAL_URL_BASE = 'http://192.168.18.126:3000';//Sardar(192.168.18.126)
+const String LOCAL_URL_BASE = 'https://nonrespectably-unhawked-esperanza.ngrok-free.dev';
+// const String LOCAL_URL_BASE = 'http://192.168.18.126:3000';//Sardar(192.168.18.126)
 const String LOCAL_URL = '$LOCAL_URL_BASE/eventori/api/';
 const String Live_URL_BASE = 'https://deploy-racrally.onrender.com';
 // const String Live_URL_BASE = 'https://learning-similarly-redfish.ngrok-free.app';

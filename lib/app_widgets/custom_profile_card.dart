@@ -19,13 +19,23 @@ class CustomProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(99),
-          child: CustomImageHandler(
-            imagePath: imageUrl,
-            width: 44,
-            height: 44,
-            fit: BoxFit.cover,
+        Container(
+          decoration: BoxDecoration(
+            color: AppTheme.lightCyanColor,
+            border: Border.all(
+              color: AppTheme.textfieldBorderColor,
+              width: 1,
+            ),
+            borderRadius: BorderRadius.circular(99),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(99),
+            child: CustomImageHandler(
+              imagePath: imageUrl,
+              width: 44,
+              height: 44,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
 

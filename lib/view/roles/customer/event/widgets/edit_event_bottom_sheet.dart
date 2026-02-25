@@ -17,7 +17,6 @@ import '../../../../../constants/app_text_style.dart';
 import '../../../../../constants/custom_validators.dart';
 import '../../../../../controller/date_controller.dart';
 import '../../../../../models/event_model.dart';
-import '../../../../../utils/date_helpers.dart';
 import '../controller/event_controller.dart';
 
 class EditEventBottomSheet extends StatefulWidget {
@@ -51,15 +50,21 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
   void initState() {
     super.initState();
 
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // Reset image selection
       eventController.selectedEventImage.value = null;
 
-      // Set basic fields
+
       eventEditNameController.text = widget.eventData.eventName;
       eventEditAboutController.text = widget.eventData.about;
       eventController.selectedCategory.value = widget.eventData.eventCategory;
       eventController.isReminderEnabled.value = widget.eventData.sendReminderEmail;
+
+      print("objectaaaa: ${ eventController.selectedCategory.value}");
+      print("EVENT LIST :${ widget.eventData.eventCategory}");
+
+      eventController.getEvent();
 
       // Handle Country and City
       if (widget.eventData.country == null || widget.eventData.country.isEmpty) {
@@ -197,7 +202,10 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                       const SizedBox(height: 8),
                       Obx(() => CustomDropdownField(
                         hintText: "Event Category",
-                        value: eventController.selectedCategory.value,
+                        // value: eventController.selectedCategory.value,
+                        value: (eventController.selectedCategory.value?.isEmpty ?? true)
+                            ? null
+                            : eventController.selectedCategory.value,
                         items: eventController.eventCategories.map((category) {
                           return DropdownMenuItem<String>(
                             value: category,
@@ -206,6 +214,7 @@ class _EditEventBottomSheetState extends State<EditEventBottomSheet> {
                         }).toList(),
                         onChanged: (value) {
                           eventController.selectedCategory.value = value;
+
                         },
                         hintTextColor: AppTheme.silverColor,
                         inputTextColor: AppTheme.darkpurpleColor,
